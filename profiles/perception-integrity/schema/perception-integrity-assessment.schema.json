@@ -1,0 +1,278 @@
+{
+  "$id": "urn:bridgenode7:fiw:perception-integrity:assessment:0.3.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "A declared pre-decision assessment. It does not determine truth or authorize action.",
+  "properties": {
+    "alternative_hypotheses": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "assumptions": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "claim_mode": {
+      "enum": [
+        "DIRECT_OBSERVATION",
+        "REPORTED_CLAIM",
+        "INFERENCE",
+        "INTERPRETATION",
+        "FORECAST",
+        "RECOMMENDATION"
+      ]
+    },
+    "claim_reference": {
+      "additionalProperties": false,
+      "properties": {
+        "claim_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "claim_mode": {
+          "enum": [
+            "DIRECT_OBSERVATION",
+            "REPORTED_CLAIM",
+            "INFERENCE",
+            "INTERPRETATION",
+            "FORECAST",
+            "RECOMMENDATION"
+          ]
+        }
+      },
+      "required": [
+        "claim_id",
+        "claim_mode"
+      ],
+      "type": "object"
+    },
+    "decision_conditions": {
+      "additionalProperties": false,
+      "properties": {
+        "stop_conditions": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "stop_conditions"
+      ],
+      "type": "object"
+    },
+    "decision_context": {
+      "additionalProperties": false,
+      "properties": {
+        "consequence": {
+          "enum": [
+            "LOW",
+            "MODERATE",
+            "MAJOR",
+            "CRITICAL"
+          ]
+        },
+        "reversibility": {
+          "enum": [
+            "REVERSIBLE",
+            "PARTIALLY_REVERSIBLE",
+            "DIFFICULT_TO_REVERSE",
+            "IRREVERSIBLE"
+          ]
+        }
+      },
+      "required": [
+        "consequence",
+        "reversibility"
+      ],
+      "type": "object"
+    },
+    "evidence_references": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "evidence_state": {
+      "additionalProperties": false,
+      "properties": {
+        "expires_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "strength": {
+          "enum": [
+            "NONE",
+            "WEAK",
+            "LIMITED",
+            "MODERATE",
+            "STRONG"
+          ]
+        }
+      },
+      "required": [
+        "strength",
+        "expires_at"
+      ],
+      "type": "object"
+    },
+    "inference": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "metadata": {
+      "additionalProperties": false,
+      "properties": {
+        "assessment_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "case_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "synthetic": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "assessment_id",
+        "case_id",
+        "synthetic"
+      ],
+      "type": "object"
+    },
+    "observation": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "public_boundary": {
+      "additionalProperties": false,
+      "properties": {
+        "contains_sensitive_data": {
+          "type": "boolean"
+        },
+        "public_release_allowed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "contains_sensitive_data",
+        "public_release_allowed"
+      ],
+      "type": "object"
+    },
+    "review_requirements": {
+      "additionalProperties": false,
+      "properties": {
+        "decision_owner": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "human_review_required": {
+          "const": true
+        }
+      },
+      "required": [
+        "human_review_required",
+        "decision_owner"
+      ],
+      "type": "object"
+    },
+    "salience": {
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH"
+      ]
+    },
+    "source_lineage": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "parent_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "relationship": {
+            "enum": [
+              "PRIMARY",
+              "REPUBLICATION",
+              "SUMMARY",
+              "COMMENTARY",
+              "TRANSLATION",
+              "WRAPPER_PAGE",
+              "PRESS_REPORT",
+              "AI_DERIVATION",
+              "UNKNOWN"
+            ]
+          },
+          "source_id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "source_id",
+          "relationship",
+          "parent_id"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "subject": {
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "title"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "metadata",
+    "subject",
+    "decision_context",
+    "claim_reference",
+    "evidence_references",
+    "claim_mode",
+    "source_lineage",
+    "observation",
+    "inference",
+    "assumptions",
+    "alternative_hypotheses",
+    "salience",
+    "evidence_state",
+    "decision_conditions",
+    "review_requirements",
+    "public_boundary"
+  ],
+  "title": "FIW Perception Integrity Assessment",
+  "type": "object"
+}

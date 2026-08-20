@@ -1,0 +1,109 @@
+{
+  "$id": "urn:bridgenode7:fiw:perception-integrity:validation:0.3.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Deterministic structural findings and an advisory recommendation for human review.",
+  "properties": {
+    "assessment_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "assessment_path": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "assessment_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "evaluated_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "findings": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "control_id": {
+            "pattern": "^PI-[0-9]{2}$",
+            "type": "string"
+          },
+          "finding_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "message": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "related_field": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "severity": {
+            "enum": [
+              "INFO",
+              "WARNING",
+              "BLOCKING",
+              "CRITICAL"
+            ]
+          }
+        },
+        "required": [
+          "control_id",
+          "finding_id",
+          "severity",
+          "message",
+          "related_field"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "human_decision_required": {
+      "const": true
+    },
+    "profile_version": {
+      "const": "0.3.0"
+    },
+    "recommendation": {
+      "enum": [
+        "READY_FOR_HUMAN_REVIEW",
+        "REQUIRE_CORROBORATION",
+        "REQUEST_ADDITIONAL_EVIDENCE",
+        "REASSESS_BEFORE_ACTION",
+        "ESCALATE_FOR_HUMAN_REVIEW",
+        "HOLD",
+        "RECOMMEND_REJECTION",
+        "DO_NOT_RELEASE_PUBLICLY"
+      ]
+    },
+    "ruleset_version": {
+      "const": "1.1.0"
+    },
+    "validation_status": {
+      "enum": [
+        "PASS",
+        "REVIEW_REQUIRED"
+      ]
+    },
+    "validator_version": {
+      "const": "0.3.0"
+    }
+  },
+  "required": [
+    "assessment_id",
+    "assessment_path",
+    "assessment_sha256",
+    "profile_version",
+    "ruleset_version",
+    "validator_version",
+    "evaluated_at",
+    "findings",
+    "recommendation",
+    "validation_status",
+    "human_decision_required"
+  ],
+  "title": "FIW Perception Integrity Validation",
+  "type": "object"
+}

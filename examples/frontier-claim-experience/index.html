@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; connect-src 'none'; font-src 'none'; media-src 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; form-action 'none'; base-uri 'none'">
+  <title>Frontier Claim Experience · FIW</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #090b0f;
+      --panel: #0f1319;
+      --panel-2: #121821;
+      --text: #f3f1ea;
+      --muted: #a6acb5;
+      --line: #2a313b;
+      --focus: #d5b56e;
+      --evidence: #8db7d7;
+      --alt: #b8a3d9;
+      --warning: #d1a16f;
+      --max: 1180px;
+      --radius: 22px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--bg); scroll-behavior: smooth; }
+    body { margin: 0; background: radial-gradient(circle at 50% -20%, #17202c 0, var(--bg) 44%); color: var(--text); line-height: 1.55; }
+    button, textarea { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; }
+    .skip-link { position: fixed; left: 1rem; top: -4rem; z-index: 99; padding: .7rem 1rem; background: var(--text); color: var(--bg); border-radius: 10px; }
+    .skip-link:focus { top: 1rem; }
+    :focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+    .shell { width: min(calc(100% - 32px), var(--max)); margin: 0 auto; }
+    .quiet-rail { display: flex; align-items: center; justify-content: space-between; min-height: 72px; border-bottom: 1px solid rgba(255,255,255,.07); color: var(--muted); font-size: .86rem; letter-spacing: .08em; text-transform: uppercase; }
+    .quiet-rail strong { color: var(--text); font-weight: 650; letter-spacing: .13em; }
+    .hero { min-height: calc(100vh - 72px); display: grid; place-items: center; text-align: center; padding: 7rem 0 9rem; }
+    .hero-inner { max-width: 790px; }
+    .eyebrow { margin: 0 0 1.1rem; color: var(--focus); font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; }
+    h1 { margin: 0; font-size: clamp(3rem, 8vw, 6.9rem); line-height: .96; letter-spacing: -.055em; font-weight: 570; }
+    .hero p { max-width: 650px; margin: 1.6rem auto 0; color: var(--muted); font-size: clamp(1.06rem, 2vw, 1.3rem); }
+    .truth-boundary { display: inline-block; margin-top: 1.4rem; padding: .55rem .8rem; border: 1px solid var(--line); border-radius: 999px; color: #cdd2d9; font-size: .82rem; }
+    .primary, .secondary { border-radius: 999px; padding: .86rem 1.2rem; border: 1px solid transparent; transition: transform 180ms ease, background 180ms ease, border-color 180ms ease; }
+    .primary { margin-top: 2rem; background: var(--text); color: #0b0e12; font-weight: 700; }
+    .primary:hover { transform: translateY(-1px); }
+    .secondary { background: transparent; color: var(--text); border-color: var(--line); }
+    main { padding-bottom: 9rem; }
+    .case { display: grid; gap: 1.25rem; }
+    .section { background: linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.012)); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(1.25rem, 3vw, 2.25rem); }
+    .section-kicker { margin: 0 0 .5rem; color: var(--focus); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; }
+    h2, h3 { margin-top: 0; letter-spacing: -.025em; }
+    h2 { font-size: clamp(1.9rem, 4vw, 3.3rem); line-height: 1.05; font-weight: 580; }
+    h3 { font-size: 1.1rem; font-weight: 650; }
+    .lede { color: var(--muted); max-width: 760px; }
+    .decision-grid, .evidence-grid, .triptych, .record-grid { display: grid; gap: 1rem; }
+    .decision-grid { grid-template-columns: repeat(4, 1fr); margin-top: 1.5rem; }
+    .metric { padding: 1rem; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,.012); }
+    .metric span { display: block; color: var(--muted); font-size: .78rem; margin-bottom: .35rem; text-transform: uppercase; letter-spacing: .08em; }
+    .metric strong { font-weight: 590; }
+    .claim { display: grid; gap: 1rem; grid-template-columns: minmax(0,1fr) auto; align-items: end; }
+    .claim-state { color: var(--muted); text-align: right; }
+    .claim-state strong { display: block; color: var(--evidence); font-size: 1.15rem; }
+    .evidence-grid { grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr); align-items: stretch; }
+    .graph-card { position: relative; min-height: 460px; overflow: hidden; border: 1px solid var(--line); border-radius: 20px; background: #0b1016; }
+    .graph-card svg { width: 100%; height: 100%; min-height: 460px; display: block; }
+    .node { fill: #111923; stroke: #4c5969; stroke-width: 1.5; }
+    .node.claim-node { stroke: var(--focus); }
+    .root-node { opacity: 0; transition: opacity 320ms ease; }
+    .node.root-node { stroke: var(--evidence); transform-origin: center; }
+    .traced .root-node { opacity: 1; }
+    .edge { stroke: #526171; stroke-width: 1.4; fill: none; opacity: .55; transition: opacity 260ms ease; }
+    .edge.lineage { stroke: var(--evidence); opacity: 0; stroke-dasharray: 5 6; }
+    .traced .edge.lineage { opacity: .85; }
+    .graph-label { fill: var(--text); font-size: 14px; font-family: ui-sans-serif, system-ui, sans-serif; }
+    .graph-sub { fill: var(--muted); font-size: 11px; font-family: ui-sans-serif, system-ui, sans-serif; }
+    .graph-actions { position: absolute; left: 1rem; right: 1rem; top: 1rem; bottom: auto; display: flex; gap: .7rem; flex-wrap: wrap; }
+    .mobile-lineage-map { display: none; }
+    .lineage-panel { display: flex; flex-direction: column; gap: 1rem; }
+    .lineage-summary { border-left: 2px solid var(--evidence); padding-left: 1rem; }
+    .lineage-summary strong { display: block; font-size: 1.6rem; letter-spacing: -.03em; }
+    .relation-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .65rem; }
+    .relation-list li { padding: .8rem .9rem; border: 1px solid var(--line); border-radius: 14px; }
+    .relation-list small { display: block; color: var(--muted); margin-top: .25rem; }
+    .triptych { grid-template-columns: repeat(3, 1fr); }
+    .triptych article { padding: 1rem; border: 1px solid var(--line); border-radius: 16px; min-height: 160px; }
+    .triptych p { color: var(--muted); }
+    .unknown { border-color: #4c3e58 !important; }
+    .next-evidence { margin-top: 1rem; padding: 1.15rem; border-radius: 16px; background: rgba(213,181,110,.06); border: 1px solid rgba(213,181,110,.28); }
+    .next-evidence[hidden] { display: none; }
+    .why-list { margin: .65rem 0 0; padding-left: 1.2rem; color: var(--muted); }
+    fieldset { border: 0; padding: 0; margin: 1.4rem 0 0; }
+    legend { font-weight: 650; margin-bottom: .9rem; }
+    .decision-options { display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; }
+    .decision-option { position: relative; }
+    .decision-option input { position: absolute; opacity: 0; pointer-events: none; }
+    .decision-option span { display: block; height: 100%; padding: .9rem; border: 1px solid var(--line); border-radius: 14px; color: var(--muted); }
+    .decision-option input:checked + span { border-color: var(--focus); color: var(--text); box-shadow: inset 0 0 0 1px var(--focus); }
+    .decision-option input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: 4px; }
+    textarea { width: 100%; min-height: 110px; resize: vertical; margin-top: .9rem; padding: 1rem; border-radius: 14px; border: 1px solid var(--line); background: #0c1117; color: var(--text); }
+    .decision-actions { display: flex; gap: .75rem; align-items: center; margin-top: 1rem; flex-wrap: wrap; }
+    .decision-note { color: var(--muted); font-size: .88rem; }
+    .validation-message { margin: .8rem 0 0; color: var(--warning); font-size: .92rem; }
+    .record { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+    .record[hidden] { display: none; }
+    .record-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .record-grid div { padding: .8rem 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .record-grid dt { color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; }
+    .record-grid dd { margin: .25rem 0 0; }
+    details { border-top: 1px solid var(--line); margin-top: 1.5rem; padding-top: 1rem; }
+    summary { cursor: pointer; font-weight: 620; }
+    pre { max-height: 420px; overflow: auto; padding: 1rem; background: #070a0e; border: 1px solid var(--line); border-radius: 14px; color: #dbe4ef; font-size: .78rem; white-space: pre-wrap; word-break: break-word; }
+    .history { margin: 0; padding-left: 1.25rem; color: var(--muted); }
+    .history li + li { margin-top: .55rem; }
+    .footnote { margin-top: 1rem; color: var(--muted); font-size: .86rem; }
+    .sr-only { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0,0,0,0) !important; white-space: nowrap !important; border: 0 !important; }
+    @media (max-width: 860px) {
+      .decision-grid, .triptych, .decision-options { grid-template-columns: 1fr 1fr; }
+      .evidence-grid { grid-template-columns: 1fr; }
+      .claim { grid-template-columns: 1fr; }
+      .claim-state { text-align: left; }
+      .graph-card { min-height: 400px; }
+      .graph-card svg { min-height: 400px; }
+    }
+    @media (max-width: 520px) {
+      .shell { width: min(calc(100% - 22px), var(--max)); }
+      .quiet-rail { min-height: 58px; font-size: .7rem; }
+      .hero { min-height: calc(100vh - 58px); padding: 5rem 0 6rem; }
+      .decision-grid, .triptych, .decision-options, .record-grid { grid-template-columns: 1fr; }
+      .section { border-radius: 18px; }
+      .graph-card { min-height: 190px; }
+      .graph-card svg { display: none; }
+      .mobile-lineage-map { display: grid; min-height: 190px; place-content: center; gap: .35rem; padding: 4.8rem 1.2rem 1.25rem; text-align: center; }
+      .mobile-lineage-map strong { font-size: 1.15rem; }
+      .mobile-lineage-map span { color: var(--muted); }
+      .graph-actions { top: 1rem; bottom: auto; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+    }
+    @media (forced-colors: active) {
+      .section, .metric, .graph-card, .relation-list li, .triptych article, .decision-option span, textarea, pre { border: 1px solid CanvasText; }
+      .primary { border: 1px solid ButtonText; }
+      .lineage-summary { border-left: 3px solid CanvasText; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#case">Skip to case</a>
+  <header class="shell quiet-rail" aria-label="Experience header">
+    <strong>FIW</strong>
+    <span>Frontier Claim Experience · Synthetic</span>
+  </header>
+
+  <section class="shell hero" aria-labelledby="hero-title">
+    <div class="hero-inner">
+      <p class="eyebrow">Frontier Intelligence Workflows</p>
+      <h1 id="hero-title">Turn uncertainty into a decision you can defend.</h1>
+      <p>Trace the evidence. Expose the unknowns. Preserve human judgment.</p>
+      <span class="truth-boundary">A claim is not evidence. Evidence is not truth. Automation is not authority.</span><br>
+      <button class="primary" id="begin-case" type="button">Explore a Synthetic Case</button>
+    </div>
+  </section>
+
+  <main id="case" class="shell case" tabindex="-1">
+    <section class="section" aria-labelledby="decision-title">
+      <p class="section-kicker">01 · Decision</p>
+      <h2 id="decision-title">Can we responsibly depend on Supplier A for Component X?</h2>
+      <p class="lede">The decision is intentionally bounded. This synthetic case asks whether the available evidence supports production dependency—not whether the supplier is “good,” the claim is universally true, or an investment should be made.</p>
+      <div class="decision-grid">
+        <div class="metric"><span>Consequence</span><strong>Schedule + integration exposure</strong></div>
+        <div class="metric"><span>Reversibility</span><strong>Partially reversible</strong></div>
+        <div class="metric"><span>Evidence burden</span><strong>Independent qualification evidence</strong></div>
+        <div class="metric"><span>Decision owner</span><strong>Synthetic Program Review Board</strong></div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="claim-title">
+      <p class="section-kicker">02 · Claim</p>
+      <div class="claim">
+        <div>
+          <h2 id="claim-title">Supplier A is production-ready for Component X.</h2>
+          <p class="lede">This is the claim under review. The interface does not promote it to truth, qualification, certification, or deployment authority.</p>
+        </div>
+        <div class="claim-state" aria-label="Current source state">
+          <strong id="claim-source-count">3 cited reports</strong>
+          <span id="claim-independence">Independence unresolved</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="evidence-title">
+      <p class="section-kicker">03 · Evidence</p>
+      <h2 id="evidence-title">Follow the provenance, not the repetition.</h2>
+      <p class="lede">Three reports appear to support the claim. Trace their origins before treating repetition as independent corroboration.</p>
+      <div class="evidence-grid">
+        <div class="graph-card" id="graph-card">
+          <div class="mobile-lineage-map" aria-hidden="true">
+            <strong id="mobile-lineage-title">3 cited reports</strong>
+            <span id="mobile-lineage-detail">Origins unresolved</span>
+          </div>
+          <svg viewBox="0 0 700 470" role="img" aria-labelledby="graph-title graph-desc">
+            <title id="graph-title">Evidence lineage visualization</title>
+            <desc id="graph-desc">Three cited reports support one claim. Trace origins to inspect whether the reports are independent.</desc>
+            <path class="edge" d="M350 188 L165 300" />
+            <path class="edge" d="M350 188 L350 320" />
+            <path class="edge" d="M350 188 L535 300" />
+            <path class="edge lineage" d="M165 300 Q190 390 350 410" />
+            <path class="edge lineage" d="M350 320 L350 410" />
+            <path class="edge lineage" d="M535 300 Q510 390 350 410" />
+            <rect class="node claim-node" x="236" y="102" width="228" height="86" rx="18" />
+            <text class="graph-label" x="350" y="137" text-anchor="middle">Claim</text>
+            <text class="graph-sub" x="350" y="160" text-anchor="middle">Production-ready</text>
+            <rect class="node" x="80" y="268" width="170" height="70" rx="16" />
+            <text class="graph-label" x="165" y="298" text-anchor="middle">Report A</text>
+            <text class="graph-sub" x="165" y="319" text-anchor="middle">Supplier briefing</text>
+            <rect class="node" x="265" y="288" width="170" height="70" rx="16" />
+            <text class="graph-label" x="350" y="318" text-anchor="middle">Report B</text>
+            <text class="graph-sub" x="350" y="339" text-anchor="middle">Industry summary</text>
+            <rect class="node" x="450" y="268" width="170" height="70" rx="16" />
+            <text class="graph-label" x="535" y="298" text-anchor="middle">Report C</text>
+            <text class="graph-sub" x="535" y="319" text-anchor="middle">Analyst note</text>
+            <rect class="node root-node" x="250" y="390" width="200" height="58" rx="15" />
+            <text class="graph-label root-node" x="350" y="415" text-anchor="middle">1 Provenance Root</text>
+            <text class="graph-sub root-node" x="350" y="435" text-anchor="middle">Supplier-origin statement</text>
+          </svg>
+          <div class="graph-actions">
+            <button class="primary" id="trace-origins" type="button" style="margin-top:0" aria-controls="lineage-relations">Trace Origins</button>
+            <button class="secondary" id="reset-lineage" type="button" aria-controls="lineage-relations" hidden>Reset Lineage</button>
+          </div>
+        </div>
+
+        <aside class="lineage-panel" aria-labelledby="lineage-heading">
+          <div class="lineage-summary">
+            <span class="sr-only">Lineage result</span>
+            <strong id="lineage-heading">Independence unresolved</strong>
+            <span id="lineage-detail">Trace the reports to determine whether they provide independent corroboration.</span>
+          </div>
+          <ul class="relation-list" id="lineage-relations" aria-label="Source relationships" hidden>
+            <li><strong>Report A</strong><small>DERIVED_FROM → Supplier-origin statement</small></li>
+            <li><strong>Report B</strong><small>REPUBLICATION_OF → Report A</small></li>
+            <li><strong>Report C</strong><small>DERIVED_FROM → Report A</small></li>
+          </ul>
+          <p class="footnote">Relationships are explicit case data. The interface does not invent provenance.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="challenge-title">
+      <p class="section-kicker">04 · Challenge</p>
+      <h2 id="challenge-title">What does the evidence support—and what does it still leave open?</h2>
+      <div class="triptych">
+        <article>
+          <h3>What Supports This?</h3>
+          <p>Three reports repeat a production-readiness statement associated with Supplier A.</p>
+        </article>
+        <article>
+          <h3>What Challenges This?</h3>
+          <p>No independent lot-level qualification record is present in the synthetic evidence set.</p>
+        </article>
+        <article class="unknown">
+          <h3>Critical Unknown</h3>
+          <p>Whether independent production qualification under intended-use conditions has been completed.</p>
+        </article>
+      </div>
+      <button class="secondary" id="change-state" type="button" aria-expanded="false" aria-controls="next-evidence">What Could Materially Change This Decision State?</button>
+      <div class="next-evidence" id="next-evidence" hidden>
+        <h3>Most Decision-Relevant Missing Evidence</h3>
+        <p><strong>Independent lot-level qualification evidence under intended-use conditions.</strong></p>
+        <ul class="why-list">
+          <li><strong>Decision relevance:</strong> directly addresses production dependency.</li>
+          <li><strong>Discrimination:</strong> distinguishes repeated supplier-origin reporting from independently observed readiness.</li>
+          <li><strong>Reversibility:</strong> requesting evidence preserves optionality before deeper commitment.</li>
+          <li><strong>State effect:</strong> could materially change HOLD if scope, method, provenance, and results are acceptable to the human authority.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="decision-review-title">
+      <p class="section-kicker">05 · Human Decision</p>
+      <h2 id="decision-review-title">The evidence can inform the decision. It cannot own it.</h2>
+      <p class="lede">Choose a scoped decision state for this synthetic session and state your rationale. No option is scored, rewarded, or treated as machine-certified truth.</p>
+      <form id="decision-form">
+        <fieldset>
+          <legend>Decision state</legend>
+          <div class="decision-options">
+            <label class="decision-option"><input type="radio" name="decision" value="PROCEED_WITHIN_SCOPE"><span><strong>Proceed Within Scope</strong><br><small>Move only within explicitly supported bounds.</small></span></label>
+            <label class="decision-option"><input type="radio" name="decision" value="HOLD"><span><strong>Hold</strong><br><small>Preserve optionality while the critical evidence gap remains.</small></span></label>
+            <label class="decision-option"><input type="radio" name="decision" value="DO_NOT_PROCEED"><span><strong>Do Not Proceed</strong><br><small>Current decision conditions are not acceptable.</small></span></label>
+            <label class="decision-option"><input type="radio" name="decision" value="UNKNOWN"><span><strong>Unknown</strong><br><small>No responsible disposition can yet be recorded.</small></span></label>
+          </div>
+        </fieldset>
+        <label for="rationale"><strong>Human rationale</strong></label>
+        <textarea id="rationale" name="rationale" maxlength="900" placeholder="State why this decision is justified by the current evidence and scope."></textarea>
+        <div class="decision-actions">
+          <button class="primary" type="submit" style="margin-top:0">Record Decision</button>
+          <span class="decision-note">Stored in memory for this session only. Nothing is transmitted or persisted.</span>
+        </div>
+        <p id="decision-error" class="validation-message" role="alert" hidden></p>
+      </form>
+      <div class="record" id="decision-record" hidden tabindex="-1">
+        <h3>Decision Record</h3>
+        <dl class="record-grid">
+          <div><dt>Decision</dt><dd id="record-decision"></dd></div>
+          <div><dt>Scope</dt><dd>Dependence on Supplier A for Component X under this synthetic evidence state</dd></div>
+          <div><dt>Evidence supports</dt><dd>Three reports repeat one supplier-origin readiness statement</dd></div>
+          <div><dt>Evidence does not establish</dt><dd>Independent production qualification</dd></div>
+          <div><dt>Critical unknown</dt><dd>Independent lot-level qualification under intended-use conditions</dd></div>
+          <div><dt>Human authority</dt><dd>Synthetic Program Review Board</dd></div>
+          <div><dt>Rationale</dt><dd id="record-rationale"></dd></div>
+          <div><dt>Evidence-state version</dt><dd>FIW-FCE-1.0 · synthetic</dd></div>
+        </dl>
+        <p class="footnote" id="record-advisory"></p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="assurance-title">
+      <p class="section-kicker">06 · Assurance</p>
+      <h2 id="assurance-title">The interface may be quiet. The evidence chain stays exact.</h2>
+      <p class="lede">This experience is a projection of the canonical synthetic case artifact below. The embedded copy is regression-tested against the repository artifact so the local-first interface can remain self-contained without becoming a second source of truth.</p>
+      <details>
+        <summary>Inspect Exact Underlying Artifact</summary>
+        <pre id="artifact-view" aria-label="Exact synthetic case artifact"></pre>
+      </details>
+      <details>
+        <summary>Case History</summary>
+        <ol class="history" id="case-history">
+          <li>Case opened from a fixed synthetic evidence state.</li>
+          <li>Source independence starts unresolved.</li>
+          <li>Tracing exposes one provenance root behind three cited reports.</li>
+          <li>New evidence would create a reassessment; it would not silently rewrite this decision state.</li>
+        </ol>
+      </details>
+    </section>
+  </main>
+
+  <div id="status" class="sr-only" role="status" aria-live="polite"></div>
+
+  <noscript>
+    <div class="shell section" style="margin-bottom:3rem">
+      <strong>JavaScript is disabled.</strong> The synthetic case remains readable, but lineage tracing and in-memory decision recording require JavaScript. No network service is required.
+    </div>
+  </noscript>
+
+  <script id="fiw-case-artifact" type="application/json">
+{
+  "schema_version": "1.0",
+  "case_id": "FIW-FCE-SYN-001",
+  "synthetic": true,
+  "public_safe": true,
+  "decision": {
+    "question": "Can we responsibly depend on Supplier A for Component X?",
+    "consequence": "Schedule and integration exposure",
+    "reversibility": "PARTIALLY_REVERSIBLE",
+    "owner": "Synthetic Program Review Board"
+  },
+  "claim": {
+    "id": "CLM-FIW-FCE-SYN-001",
+    "text": "Supplier A is production-ready for Component X.",
+    "mode": "REPORTED_CLAIM"
+  },
+  "sources": [
+    {"id":"RPT-A","label":"Supplier briefing","relationship":"DERIVED_FROM","parent_id":"ROOT-1"},
+    {"id":"RPT-B","label":"Industry summary","relationship":"REPUBLICATION_OF","parent_id":"RPT-A"},
+    {"id":"RPT-C","label":"Analyst note","relationship":"DERIVED_FROM","parent_id":"RPT-A"},
+    {"id":"ROOT-1","label":"Supplier-origin statement","relationship":"PRIMARY","parent_id":null}
+  ],
+  "lineage_result": {
+    "cited_reports": 3,
+    "provenance_roots": 1,
+    "independent_corroboration": "NOT_ESTABLISHED"
+  },
+  "evidence": {
+    "support": "Three reports repeat a production-readiness statement associated with Supplier A.",
+    "challenge": "No independent lot-level qualification record is present in the synthetic evidence set."
+  },
+  "critical_unknown": {
+    "type": "MISSING_EVIDENCE",
+    "text": "Whether independent production qualification under intended-use conditions has been completed.",
+    "currently_resolvable": true
+  },
+  "next_evidence": {
+    "text": "Independent lot-level qualification evidence under intended-use conditions.",
+    "why": ["decision relevance","discrimination ability","reversibility","decision-state impact"]
+  },
+  "truth_boundary": "This artifact does not certify truth, supplier qualification, production readiness, deployment authority, or investment merit. Human judgment is final."
+}
+  </script>
+
+  <script>
+    (() => {
+      'use strict';
+      const $ = (id) => document.getElementById(id);
+      const artifactNode = $('fiw-case-artifact');
+      const artifact = JSON.parse(artifactNode.textContent);
+      $('artifact-view').textContent = JSON.stringify(artifact, null, 2);
+
+      const announce = (message) => { $('status').textContent = message; };
+      const clearDecisionError = () => { $('decision-error').textContent = ''; $('decision-error').hidden = true; };
+      const showDecisionError = (message) => { $('decision-error').textContent = message; $('decision-error').hidden = false; announce(message); };
+
+      $('begin-case').addEventListener('click', () => {
+        $('case').focus({preventScroll: true});
+        $('case').scrollIntoView({behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start'});
+        announce('Synthetic case opened. Decision context is first.');
+      });
+
+      $('trace-origins').addEventListener('click', () => {
+        $('graph-card').classList.add('traced');
+        $('lineage-heading').textContent = '3 Reports · 1 Provenance Root';
+        $('lineage-detail').textContent = 'Independent corroboration is not established.';
+        $('claim-source-count').textContent = '3 cited reports';
+        $('claim-independence').textContent = '1 provenance root · independent corroboration not established';
+        $('graph-desc').textContent = 'Three cited reports resolve to one supplier-origin provenance root. Independent corroboration is not established.';
+        $('lineage-relations').hidden = false;
+        $('mobile-lineage-title').textContent = 'Lineage traced';
+        $('mobile-lineage-detail').textContent = 'Source relationships revealed below';
+        $('trace-origins').hidden = true;
+        $('reset-lineage').hidden = false;
+        announce('Lineage traced. Three reports resolve to one provenance root. Independent corroboration is not established.');
+      });
+
+      $('reset-lineage').addEventListener('click', () => {
+        $('graph-card').classList.remove('traced');
+        $('lineage-heading').textContent = 'Independence unresolved';
+        $('lineage-detail').textContent = 'Trace the reports to determine whether they provide independent corroboration.';
+        $('claim-independence').textContent = 'Independence unresolved';
+        $('graph-desc').textContent = 'Three cited reports support one claim. Trace origins to inspect whether the reports are independent.';
+        $('lineage-relations').hidden = true;
+        $('mobile-lineage-title').textContent = '3 cited reports';
+        $('mobile-lineage-detail').textContent = 'Origins unresolved';
+        $('trace-origins').hidden = false;
+        $('reset-lineage').hidden = true;
+        announce('Lineage view reset. Source independence is unresolved.');
+      });
+
+      $('change-state').addEventListener('click', () => {
+        const open = $('change-state').getAttribute('aria-expanded') === 'true';
+        $('change-state').setAttribute('aria-expanded', String(!open));
+        $('next-evidence').hidden = open;
+        announce(open ? 'Decision-relevant missing evidence collapsed.' : 'Decision-relevant missing evidence expanded.');
+      });
+
+      $('decision-form').addEventListener('submit', (event) => {
+        event.preventDefault();
+        clearDecisionError();
+        const selected = document.querySelector('input[name="decision"]:checked');
+        const rationale = $('rationale').value.trim();
+        if (!selected) {
+          showDecisionError('Select a decision state before recording the decision.');
+          document.querySelector('input[name="decision"]').focus();
+          return;
+        }
+        if (!rationale) {
+          showDecisionError('Add a human rationale before recording the decision.');
+          $('rationale').focus();
+          return;
+        }
+        const labels = {
+          PROCEED_WITHIN_SCOPE: 'Proceed Within Scope',
+          HOLD: 'Hold',
+          DO_NOT_PROCEED: 'Do Not Proceed',
+          UNKNOWN: 'Unknown'
+        };
+        $('record-decision').textContent = labels[selected.value];
+        $('record-rationale').textContent = rationale;
+        $('record-advisory').textContent = 'Decision recorded. FIW does not score, reward, or certify the selected state. Review the evidence, scope, authority, and rationale before relying on it.';
+        $('decision-record').hidden = false;
+        const historyItem = document.createElement('li');
+        historyItem.textContent = `Session decision recorded: ${labels[selected.value]}. No persistence or transmission occurred.`;
+        $('case-history').appendChild(historyItem);
+        $('decision-record').focus();
+        announce(`Decision recorded: ${labels[selected.value]}.`);
+      });
+    })();
+  </script>
+</body>
+</html>

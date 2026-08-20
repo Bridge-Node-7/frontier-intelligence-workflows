@@ -1,0 +1,104 @@
+{
+  "$id": "urn:bridgenode7:fiw:perception-integrity:review:0.3.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "A human-owned review record linked to exact assessment and validation bytes.",
+  "properties": {
+    "accepted_findings": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "assessment_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "authorized_exceptions": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "human_disposition": {
+      "enum": [
+        "HOLD_FOR_REVIEW",
+        "READY_FOR_BOUNDED_DECISION",
+        "DO_NOT_PROCEED"
+      ]
+    },
+    "next_review_trigger": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "public_release_decision": {
+      "enum": [
+        "SYNTHETIC_DEMONSTRATION_ONLY",
+        "DO_NOT_RELEASE",
+        "BOUNDED_RELEASE_APPROVED"
+      ]
+    },
+    "rationale": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "rejected_findings": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "review_basis": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "review_time": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "reviewer_record": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "stop_condition": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "unresolved_questions": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "validation_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "assessment_sha256",
+    "validation_sha256",
+    "reviewer_record",
+    "review_time",
+    "review_basis",
+    "accepted_findings",
+    "rejected_findings",
+    "authorized_exceptions",
+    "unresolved_questions",
+    "human_disposition",
+    "rationale",
+    "stop_condition",
+    "next_review_trigger",
+    "public_release_decision"
+  ],
+  "title": "FIW Perception Integrity Human Review",
+  "type": "object"
+}
