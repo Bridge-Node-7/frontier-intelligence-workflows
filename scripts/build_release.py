@@ -173,7 +173,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", default=".")
     parser.add_argument("--output-dir", default="../fiw-release-output")
-    parser.add_argument("--check", action="store_true", required=True, help="Read-only verification mode")
+    parser.add_argument("--check", action="store_true", help="Read-only verification mode; retained for CLI compatibility")
     parser.add_argument("--commit", default="candidate")
     args = parser.parse_args()
 

@@ -1,4 +1,4 @@
-# Validation — v0.4.1
+# Validation — v0.5.0
 
 FIW validation is reproducible from a clean checkout.
 
@@ -16,6 +16,35 @@ git diff --check
 
 Validation output belongs outside the repository source tree.
 
-The gate checks repository policy, tracked-path coverage, portable paths, workflow controls, common secret patterns, local user paths, public boundaries, synthetic traceability, manifests, and deterministic release construction.
+## Evidence Hierarchy
 
-A passing result applies only to the controls executed.
+### Source Correctness
+
+- Python source compilation
+- complete regression suite
+- v0.5 adversarial regressions
+
+### Repository Correctness
+
+- exact file policy
+- tracked-path coverage when Git metadata is available
+- public/private boundary
+- link and version consistency
+- selected secret, path, and source-text safety checks across public code/configuration/Markdown surfaces
+- deterministic relative-link resolution with exact published path case/normalization enforcement
+
+### Integrity
+
+- manifest parity
+- strict release validation
+- every mandatory repository control reports `PASS`; `NOT_RUN` is non-passing
+
+### Reproducibility
+
+- deterministic archive membership
+- deterministic archive bytes
+- archive checksum verification
+
+The gate checks defined software and repository properties. It does not determine external truth, qualification, readiness, investment merit, or deployment authority.
+
+The fixed 1980 timestamp in deterministic metadata is a reproducibility sentinel, not provenance time.

@@ -1,0 +1,121 @@
+{
+  "assessment": {
+    "confidence_boundary": "This assessment concerns only the sufficiency and lineage of the fictional evidence record. It does not establish the real-world merit of any company, technology, supplier, or investment.",
+    "does_not_establish": [
+      "independent technical validation",
+      "manufacturing repeatability",
+      "production scale readiness",
+      "supplier readiness",
+      "commercialization readiness",
+      "investment merit"
+    ],
+    "supports": "A bounded independent validation step is supportable if the decision owner chooses to continue diligence."
+  },
+  "assumptions": [
+    "The three reports accurately reproduce the originating fictional company statement.",
+    "No independent test report has been omitted from the supplied fictional record."
+  ],
+  "case_id": "FIW-SYN-005",
+  "challenges": [
+    "Apparent corroboration may be derivative repetition rather than independent confirmation.",
+    "Bench performance may not survive manufacturing, environmental, lifetime, or scale conditions.",
+    "Commercial application claims may depend on readiness conditions not established in the supplied record."
+  ],
+  "claims": [
+    {
+      "claim_id": "CLM-01",
+      "statement": "The fictional material demonstrates exceptional technical performance."
+    },
+    {
+      "claim_id": "CLM-02",
+      "statement": "The fictional technology has been independently validated."
+    },
+    {
+      "claim_id": "CLM-03",
+      "statement": "The fictional process is manufacturing-repeatable and near scale readiness."
+    },
+    {
+      "claim_id": "CLM-04",
+      "statement": "The fictional technology is ready for multiple commercial applications."
+    }
+  ],
+  "decision": {
+    "decision_owner": "Synthetic Technology Diligence Lead",
+    "decision_question": "Should the fictional capital allocator continue diligence, commission bounded validation, hold pending evidence, or close diligence on the fictional advanced-materials venture?",
+    "evidence_cutoff": "2026-08-21",
+    "reversibility": "The next proposed action is a bounded, reversible validation step rather than a capital commitment.",
+    "stakes": "The next diligence step consumes time and limited validation budget. FIW does not make or execute an investment decision."
+  },
+  "decision_boundary": {
+    "currently_justified": [
+      "continue_diligence",
+      "commission_bounded_validation",
+      "hold_pending_evidence",
+      "close_diligence"
+    ],
+    "not_authorized": [
+      "investment_recommendation",
+      "capital_commitment",
+      "technical_certification",
+      "commercial_readiness_claim"
+    ],
+    "stop_conditions": [
+      "source lineage cannot be verified",
+      "independent validation cannot be scoped",
+      "new evidence materially contradicts the stated technical claim",
+      "validation prerequisites cannot be met"
+    ]
+  },
+  "human_disposition": {
+    "disposition": "commission_bounded_validation",
+    "rationale": "The supplied fictional record does not establish independent corroboration or commercialization readiness, but it is coherent enough to justify one bounded independent evidence-gathering step.",
+    "requires_human_authority": true
+  },
+  "independent_corroboration_established": false,
+  "knowns": [
+    "Three fictional reports repeat the technical claim.",
+    "All three reports trace to one originating fictional company statement.",
+    "The supplied record contains no independent raw technical test report."
+  ],
+  "next_evidence": [
+    "Independent technical test report with raw data, method, calibration, and uncertainty.",
+    "Manufacturing repeatability evidence across multiple lots or runs.",
+    "Process and supplier evidence supporting scale claims.",
+    "Application-specific evidence connecting measured performance to the claimed use cases."
+  ],
+  "provenance": {
+    "apparent_report_count": 3,
+    "independent_provenance_roots": 1,
+    "reports": [
+      {
+        "independent": false,
+        "provenance_root": "SRC-ROOT-01",
+        "report_id": "RPT-A"
+      },
+      {
+        "independent": false,
+        "provenance_root": "SRC-ROOT-01",
+        "report_id": "RPT-B"
+      },
+      {
+        "independent": false,
+        "provenance_root": "SRC-ROOT-01",
+        "report_id": "RPT-C"
+      }
+    ],
+    "roots": [
+      {
+        "description": "Originating fictional company statement describing claimed performance and readiness.",
+        "root_id": "SRC-ROOT-01"
+      }
+    ]
+  },
+  "synthetic": true,
+  "title": "Frontier Technology Diligence",
+  "unknowns": [
+    "Whether the technical performance reproduces independently.",
+    "Whether the process is repeatable across lots and operators.",
+    "Whether scale-up preserves the claimed performance.",
+    "Whether supplier and process conditions support the claimed commercialization timeline."
+  ]
+}

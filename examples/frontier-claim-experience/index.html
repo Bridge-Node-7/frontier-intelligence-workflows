@@ -15,13 +15,14 @@
       --text: #f3f1ea;
       --muted: #a6acb5;
       --line: #2a313b;
+      --control-line: #737f8d;
       --focus: #d5b56e;
       --evidence: #8db7d7;
       --alt: #b8a3d9;
       --warning: #d1a16f;
       --max: 1180px;
       --radius: 22px;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
     * { box-sizing: border-box; }
     [hidden] { display: none !important; }
@@ -45,7 +46,7 @@
     .primary, .secondary { border-radius: 999px; padding: .86rem 1.2rem; border: 1px solid transparent; transition: transform 180ms ease, background 180ms ease, border-color 180ms ease; }
     .primary { margin-top: 2rem; background: var(--text); color: #0b0e12; font-weight: 700; }
     .primary:hover { transform: translateY(-1px); }
-    .secondary { background: transparent; color: var(--text); border-color: var(--line); }
+    .secondary { background: transparent; color: var(--text); border-color: var(--control-line); }
     main { padding-bottom: 9rem; }
     .case { display: grid; gap: 1.25rem; }
     .section { background: linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.012)); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(1.25rem, 3vw, 2.25rem); }
@@ -95,10 +96,10 @@
     .decision-options { display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; }
     .decision-option { position: relative; }
     .decision-option input { position: absolute; opacity: 0; pointer-events: none; }
-    .decision-option span { display: block; height: 100%; padding: .9rem; border: 1px solid var(--line); border-radius: 14px; color: var(--muted); }
+    .decision-option span { display: block; height: 100%; padding: .9rem; border: 1px solid var(--control-line); border-radius: 14px; color: var(--muted); }
     .decision-option input:checked + span { border-color: var(--focus); color: var(--text); box-shadow: inset 0 0 0 1px var(--focus); }
     .decision-option input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: 4px; }
-    textarea { width: 100%; min-height: 110px; resize: vertical; margin-top: .9rem; padding: 1rem; border-radius: 14px; border: 1px solid var(--line); background: #0c1117; color: var(--text); }
+    textarea { width: 100%; min-height: 110px; resize: vertical; margin-top: .9rem; padding: 1rem; border-radius: 14px; border: 1px solid var(--control-line); background: #0c1117; color: var(--text); }
     .decision-actions { display: flex; gap: .75rem; align-items: center; margin-top: 1rem; flex-wrap: wrap; }
     .decision-note { color: var(--muted); font-size: .88rem; }
     .validation-message { margin: .8rem 0 0; color: var(--warning); font-size: .92rem; }
@@ -139,6 +140,17 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+    }
+    @media print {
+      :root { color-scheme: light; }
+      html, body { background: #fff !important; color: #000 !important; }
+      .hero { min-height: auto; padding: 2rem 0; }
+      .section, .metric, .graph-card, .relation-list li, .triptych article, textarea, pre { background: #fff !important; color: #000 !important; border-color: #666 !important; box-shadow: none !important; }
+      .muted, .hero p, .lede, .triptych p, .history, .footnote, .decision-note, .claim-state, .graph-sub { color: #333 !important; }
+      button, .skip-link, .graph-actions { display: none !important; }
+      details:not([open]) > *:not(summary) { display: block !important; }
+      a { color: #000 !important; text-decoration: underline; }
+      main { padding-bottom: 0; }
     }
     @media (forced-colors: active) {
       .section, .metric, .graph-card, .relation-list li, .triptych article, .decision-option span, textarea, pre { border: 1px solid CanvasText; }

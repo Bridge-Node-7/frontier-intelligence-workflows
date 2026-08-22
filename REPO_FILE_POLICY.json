@@ -10,10 +10,12 @@
     ".github/dependabot.yml",
     ".github/workflows/release.yml",
     ".github/workflows/validate.yml",
+    "data/synthetic/FIW-SYN-005-frontier-technology-diligence.json",
     "data/synthetic/README.md",
     "data/synthetic/frontier-claim-experience.json",
     "docs/assurance/README.md",
     "docs/assurance/SECURITY_TESTS.md",
+    "docs/assurance/STATUS_SEMANTICS.md",
     "docs/assurance/TESTING.md",
     "docs/briefs/FIW-SYN-001-decision-ready-brief.md",
     "docs/briefs/README.md",
@@ -24,9 +26,12 @@
     "examples/README.md",
     "examples/frontier-claim-experience/README.md",
     "examples/frontier-claim-experience/index.html",
+    "examples/frontier-technology-diligence/README.md",
+    "examples/frontier-technology-diligence/decision-record.md",
     "examples/synthetic-component-readiness/README.md",
     "examples/synthetic-component-readiness/release-decision.md",
     "examples/synthetic-component-readiness/source-record.md",
+    "profiles/perception-integrity/CONTROL_EXAMPLES.md",
     "profiles/perception-integrity/README.md",
     "profiles/perception-integrity/examples/FIW-SYN-002/PIA-FIW-SYN-002.json",
     "profiles/perception-integrity/examples/FIW-SYN-002/PIA-FIW-SYN-002.review.json",
@@ -60,13 +65,17 @@
     "scripts/validate_repo.py",
     "templates/ai-governance-gate.md",
     "templates/decision-ready-brief.md",
+    "templates/decision-record.md",
     "templates/evidence-card.md",
     "templates/perception-integrity-assessment.json",
     "templates/perception-integrity-assessment.md",
+    "templates/perception-integrity-starter.json",
     "tests/test_adopter_enablement.py",
     "tests/test_frontier_claim_experience.py",
+    "tests/test_frontier_technology_diligence.py",
     "tests/test_perception_integrity.py",
-    "tests/test_release_tooling.py"
+    "tests/test_release_tooling.py",
+    "tests/test_v050_hardening.py"
   ],
   "allowed_root_files": [
     ".gitattributes",
@@ -135,6 +144,6 @@
     ".pyc",
     ".pyo"
   ],
-  "release_version": "0.4.1",
+  "release_version": "0.5.0",
   "schema_version": "1.1"
 }

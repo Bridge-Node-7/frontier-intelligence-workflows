@@ -92,6 +92,8 @@ def main(argv: list[str] | None = None) -> int:
         output.parent.mkdir(parents=True, exist_ok=True)
         output.write_bytes(canonical_json_bytes(report))
         print(f"Perception Integrity: {report['validation_status']}")
+        if report["validation_status"] == "NO_FINDINGS":
+            print("Meaning: no configured deterministic PI rule produced a finding; underlying evidence is not verified.")
         print(f"Recommendation: {report['recommendation']}")
         print("Human decision required: true")
         print(f"Output: {output}")

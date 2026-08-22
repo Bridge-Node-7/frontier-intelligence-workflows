@@ -28,8 +28,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "2708ed763ecdb5a06b05ad67b7f97786729c8e853d69274f93906e05c4d97d3a",
-      "size_bytes": 1562
+      "sha256": "6c4f4330fdaed662dc839c6cc18428b8dc282b043188325dc0ec66622b9080e0",
+      "size_bytes": 4398
     },
     {
       "path": "LICENSE",
@@ -38,8 +38,8 @@
     },
     {
       "path": "LIMITATIONS.md",
-      "sha256": "3c8d2b1a797a3ac30e3cc9190db750ca9468ed8e0090755e2fc4beca41692cac",
-      "size_bytes": 1332
+      "sha256": "0070fe4f8ddec0f76883f269b3a35748560c762c4108d175428a2e31d642e8ba",
+      "size_bytes": 3420
     },
     {
       "path": "NOTICE.md",
@@ -48,13 +48,13 @@
     },
     {
       "path": "README.md",
-      "sha256": "915ca0793ff38c48a5d17c54dbc6f9b18fe56521ee0fefc408c1cfb17f81ab19",
-      "size_bytes": 4276
+      "sha256": "ac0ed2053dd23d8ff57b8ab1b8b0e38768594017ea7f8fc94ba0e46b6900f030",
+      "size_bytes": 9291
     },
     {
       "path": "REPO_FILE_POLICY.json",
-      "sha256": "15a0c3ce2550d18a101ac35a7efd1deb752b9275d134bbc9809543eb854bf7df",
-      "size_bytes": 5108
+      "sha256": "9168c3b69a887e7fb33e084250f112feca81841a5d584bf362c2d9c1c9d0ccff",
+      "size_bytes": 5571
     },
     {
       "path": "SECURITY.md",
@@ -63,13 +63,18 @@
     },
     {
       "path": "VERSION",
-      "sha256": "f62184cee8787f2f6941c82041a5725d4edc9aa293ebe5dbf664406e82ec1fe1",
+      "sha256": "a0ad50640139a524f86591157145bf1d4674ea9c065bfea21558f0f7b04430c8",
       "size_bytes": 6
     },
     {
+      "path": "data/synthetic/FIW-SYN-005-frontier-technology-diligence.json",
+      "sha256": "46567e5c32a0eaa166d3026560415b9f53fba49a96f995036cc22de717f3b95f",
+      "size_bytes": 4885
+    },
+    {
       "path": "data/synthetic/README.md",
-      "sha256": "e763ecea65da91be699ca69fbf3f9ae7ead007dfe263a1712031181a353606d5",
-      "size_bytes": 436
+      "sha256": "ee92b4f7fbc82975e120bb9a5ae2916186e4e4120e0608f386b17995562f5f59",
+      "size_bytes": 590
     },
     {
       "path": "data/synthetic/frontier-claim-experience.json",
@@ -78,18 +83,23 @@
     },
     {
       "path": "docs/assurance/README.md",
-      "sha256": "ca3bfb8f799abf6302a8c49ba55c34b2f8ca7ce7071c9cc07fc9e0f4369c9599",
-      "size_bytes": 271
+      "sha256": "fe5e860f4dd002fd694b4f5505b8bbc9688c3b5e1fb3da0f2c4c2ef7280d591a",
+      "size_bytes": 483
     },
     {
       "path": "docs/assurance/SECURITY_TESTS.md",
-      "sha256": "b25e417befc9640105ea52cd73c3b3829a70efd514733104f7fcb6348bc47a17",
-      "size_bytes": 785
+      "sha256": "3bb5e02dedc9e5ed6974e61265c35153099b29e629eb053c4412bfc37ae85ca8",
+      "size_bytes": 1193
+    },
+    {
+      "path": "docs/assurance/STATUS_SEMANTICS.md",
+      "sha256": "13a03bc3737dd7cbc19d4696c0daac25ef407767e5a4b141c2fccfc858fdb9a8",
+      "size_bytes": 1494
     },
     {
       "path": "docs/assurance/TESTING.md",
-      "sha256": "4bbd1f953a03ffcb700c6505d13ffbcf79c99e0728dbc9957c0fce51e123be1b",
-      "size_bytes": 891
+      "sha256": "8e4c7def73a8d2cabb695c23bb16c2b9282957e47ea603c241b17f76ffaf54cb",
+      "size_bytes": 1635
     },
     {
       "path": "docs/briefs/FIW-SYN-001-decision-ready-brief.md",
@@ -123,8 +133,8 @@
     },
     {
       "path": "examples/README.md",
-      "sha256": "004e2aa1516f53aeaae3e0e6663fcae56159485417f927c77ff6e363d03842f0",
-      "size_bytes": 366
+      "sha256": "222811d14f69a9a3379f19ca01a851db53ae6926aa18121edea1459403ef33cb",
+      "size_bytes": 482
     },
     {
       "path": "examples/frontier-claim-experience/README.md",
@@ -133,8 +143,18 @@
     },
     {
       "path": "examples/frontier-claim-experience/index.html",
-      "sha256": "a96efaf8f400829e2e329e2e5c0cf5bec0c3efb5a8330d0c0ef49d35b3e5c1c5",
-      "size_bytes": 30621
+      "sha256": "5b76f29bd91e833c4d8defc1d1250ff8cfb3f44a912ce54b765c26dd119f6710",
+      "size_bytes": 31424
+    },
+    {
+      "path": "examples/frontier-technology-diligence/README.md",
+      "sha256": "80f6c2fdb478171adf4ad21a4e3c07ffaf1bc536c7f368a65a2fb4b122ef645a",
+      "size_bytes": 2604
+    },
+    {
+      "path": "examples/frontier-technology-diligence/decision-record.md",
+      "sha256": "e6b134c65ef6efc50f0ea8c4e2762701876bbf381fc9953783f31bbce41cc608",
+      "size_bytes": 4577
     },
     {
       "path": "examples/synthetic-component-readiness/README.md",
@@ -152,9 +172,14 @@
       "size_bytes": 1277
     },
     {
+      "path": "profiles/perception-integrity/CONTROL_EXAMPLES.md",
+      "sha256": "78f20bd5864a4164cbbe3f5c253cad93c1546923383ef130672f2007586e8066",
+      "size_bytes": 2821
+    },
+    {
       "path": "profiles/perception-integrity/README.md",
-      "sha256": "e3a2e8173e799b495e359973efb1ffea160b96f344f6d3530b703ba66b1883ef",
-      "size_bytes": 1444
+      "sha256": "291a6cd5924db52a056bbecbef9968b272348dda722685694fb42d3f824678a9",
+      "size_bytes": 2820
     },
     {
       "path": "profiles/perception-integrity/examples/FIW-SYN-002/PIA-FIW-SYN-002.json",
@@ -163,17 +188,17 @@
     },
     {
       "path": "profiles/perception-integrity/examples/FIW-SYN-002/PIA-FIW-SYN-002.review.json",
-      "sha256": "671c8dbef9ccec076862984d3819798465622160ba603acd4e50a03cffddf680",
+      "sha256": "5f429cdbf4c6790370902dc61a1eff9ff91f24be73d3927823c8c46ee76b994e",
       "size_bytes": 855
     },
     {
       "path": "profiles/perception-integrity/examples/FIW-SYN-002/PIA-FIW-SYN-002.review.md",
-      "sha256": "86b475c82d631ea14e1c38e5f690bab225b1d01426c871cd13270fc41bf3a8f0",
+      "sha256": "e52b4a088d5e03bc5ae91902380599d844a23632ecb81aa1b35db410cb10358b",
       "size_bytes": 683
     },
     {
       "path": "profiles/perception-integrity/examples/FIW-SYN-002/PIA-FIW-SYN-002.validation.json",
-      "sha256": "74acc9643d2fe7ca68d33fbcfc77ce26403556ae6c8b460741d51599626158f3",
+      "sha256": "243fe2448060dcb8ecdf97fa99d60e23e1d66fefca423290216961e846c99789",
       "size_bytes": 675
     },
     {
@@ -183,17 +208,17 @@
     },
     {
       "path": "profiles/perception-integrity/examples/FIW-SYN-003/PIA-FIW-SYN-003.review.json",
-      "sha256": "ab879a833a5eb7b43cac65d3cb6484af555404505f49e41512feaef501931abb",
+      "sha256": "d487dfa7f7d0a79ec8ea416719d803c643acc421feec7955068bf5cda8c6ce9c",
       "size_bytes": 857
     },
     {
       "path": "profiles/perception-integrity/examples/FIW-SYN-003/PIA-FIW-SYN-003.review.md",
-      "sha256": "16185a0a2943d26e2f32c7d56dc40a9a58f7120fafaf501c7fd483d5550edce5",
+      "sha256": "71907c7efc631a53aa3807cb4190046f9179a7ac595aa21a90014c70cd68a35a",
       "size_bytes": 687
     },
     {
       "path": "profiles/perception-integrity/examples/FIW-SYN-003/PIA-FIW-SYN-003.validation.json",
-      "sha256": "71b5b668720263cf575c4014ea8ee582e305906c3c97885ed8c8d2db20bd91eb",
+      "sha256": "5cded4d9953468cbbafc63e5238768732970c80c308df1410de72d5aec32c6a2",
       "size_bytes": 658
     },
     {
@@ -203,17 +228,17 @@
     },
     {
       "path": "profiles/perception-integrity/examples/FIW-SYN-004/PIA-FIW-SYN-004.review.json",
-      "sha256": "a4df0da9ee3ff0d64c0b543ff6fb6dacc5945a13f72677dc0737e8d5bf58d178",
+      "sha256": "0764a4e206248abde30272b334c03b50c0e018d38956234b88dd61ce9836d4cd",
       "size_bytes": 853
     },
     {
       "path": "profiles/perception-integrity/examples/FIW-SYN-004/PIA-FIW-SYN-004.review.md",
-      "sha256": "a930cb2a2b255e2d4b1b0d3fec24bc88771d936e7d6eda4ece6867abc32a54ef",
+      "sha256": "c1ecbc6540e1b1fb6dbd8bbf41c3211e9bf240cba39547da159a79793beea8ad",
       "size_bytes": 689
     },
     {
       "path": "profiles/perception-integrity/examples/FIW-SYN-004/PIA-FIW-SYN-004.validation.json",
-      "sha256": "974205cac898aacd7346e56b0048ced8e580ee0fae78dae41d0f4b375bd67450",
+      "sha256": "bea65e6b7a065534463b657726f64f3d069a8e41a340571d7a4ca7660d063b8c",
       "size_bytes": 654
     },
     {
@@ -248,18 +273,18 @@
     },
     {
       "path": "profiles/perception-integrity/schema/perception-integrity-assessment.schema.json",
-      "sha256": "f259d4d3a05e08759f80bab95f635dc7c311f767fbf8713bc390bcfa30f2c33a",
+      "sha256": "5b1db48d7e69c92e0a3adb46ca4abeeef5d86e3a43ec4927278104aeaa904ded",
       "size_bytes": 5872
     },
     {
       "path": "profiles/perception-integrity/schema/perception-integrity-review.schema.json",
-      "sha256": "a274ed6a3af53d18bbb21ee902f2833e1d0fa73cc3bbdc747ae17139701c895b",
+      "sha256": "c61cf8c2e02000b291e5b53d69d267a1cd65715cc4ab4c3edffb9f01602a8c9c",
       "size_bytes": 2275
     },
     {
       "path": "profiles/perception-integrity/schema/perception-integrity-validation.schema.json",
-      "sha256": "9332a39f6809c22781b57aac904dcf6efdfca63eed6c8c60223c08085695e56a",
-      "size_bytes": 2489
+      "sha256": "5810d8ac3d743d3ee6a6904af68b6bf46bff8b63e6791eafeca984ad2cfa98fb",
+      "size_bytes": 2496
     },
     {
       "path": "scripts/README.md",
@@ -268,8 +293,8 @@
     },
     {
       "path": "scripts/build_release.py",
-      "sha256": "8c6a297e107e224960bfc6f4b052bb7c700933813f0c75c07e252e0eda1ddf38",
-      "size_bytes": 7977
+      "sha256": "3675f3aff41eb21564b22efb5efdf792a41639bc0376cffe413957dea41fc31f",
+      "size_bytes": 7994
     },
     {
       "path": "scripts/compile_sources.py",
@@ -278,23 +303,23 @@
     },
     {
       "path": "scripts/perception_integrity.py",
-      "sha256": "6b9e970c4857d68fb4463475a60c179eaa215be0a7e0b38a5ae395a143fe6bf1",
-      "size_bytes": 20723
+      "sha256": "c90d9ccb0de263ccb6ddda3156f37981af67eb794058b33a3c881d4e0b6d34b5",
+      "size_bytes": 22214
     },
     {
       "path": "scripts/refresh_release_metadata.py",
-      "sha256": "3d7d4092f6f5a40d526af93a9044cda6454786441ca43b3b26f9884f060f450e",
-      "size_bytes": 1468
+      "sha256": "4033dab382cc720046c83558c23b8eff7a12d093ece8d047a7669a15732d726d",
+      "size_bytes": 2811
     },
     {
       "path": "scripts/release_common.py",
-      "sha256": "9dbb39442ef426ab22528e1f953be0b2db7326341747ad7823e244876a376497",
+      "sha256": "ec9039a1c0104566b9d988c65644ab8a71a65add90449cf8ebce599a2b627e9f",
       "size_bytes": 22236
     },
     {
       "path": "scripts/run_perception_integrity.py",
-      "sha256": "b6e6e436e6ff802c9dd97f83c02c8e2ea0a53a0d7cd71d091fb5fb49390a32d6",
-      "size_bytes": 4257
+      "sha256": "00c8f642500a966c3d2d8a670a2091963113bf8febd3322ed55d8a8548a3971e",
+      "size_bytes": 4437
     },
     {
       "path": "scripts/run_tests.py",
@@ -303,8 +328,8 @@
     },
     {
       "path": "scripts/validate_repo.py",
-      "sha256": "0ec2774c7570abd78bf5528bd679ffdddbce0f909865fefd7c31a9797d623d02",
-      "size_bytes": 28391
+      "sha256": "73a4a312e911dfc5c3e48b1c14318664308f9ab3bd32daa5c499a06043866ab0",
+      "size_bytes": 34777
     },
     {
       "path": "templates/ai-governance-gate.md",
@@ -315,6 +340,11 @@
       "path": "templates/decision-ready-brief.md",
       "sha256": "79e63c7208c07fd131376b5957510a93ffb3ebaf49671bb3784aad3c621eac91",
       "size_bytes": 845
+    },
+    {
+      "path": "templates/decision-record.md",
+      "sha256": "1a01bf41d647baf677b5a0c3c5929686238744cf73b77759da30c14fd660aa93",
+      "size_bytes": 1991
     },
     {
       "path": "templates/evidence-card.md",
@@ -332,8 +362,13 @@
       "size_bytes": 783
     },
     {
+      "path": "templates/perception-integrity-starter.json",
+      "sha256": "1d1c9801d94a4a1af40bf89fc75f5028b53d3fd0bfd879d3902f6673cfc1bc8b",
+      "size_bytes": 1248
+    },
+    {
       "path": "tests/test_adopter_enablement.py",
-      "sha256": "2a97c7aa78affbe3e80dccd73aa1f80bf9bfc9bf256856fcd92a9344722c61e4",
+      "sha256": "c1c7fc0fe7f8ccc5c2bb2c5c2e3ce8d889ea9360a74691df76871e030db75e54",
       "size_bytes": 13168
     },
     {
@@ -342,18 +377,28 @@
       "size_bytes": 9508
     },
     {
+      "path": "tests/test_frontier_technology_diligence.py",
+      "sha256": "d449bdfdec66a247ba4854c1863af0c6174089bfde1f3f2951e73f8c9ba8583e",
+      "size_bytes": 4599
+    },
+    {
       "path": "tests/test_perception_integrity.py",
-      "sha256": "da6f1e7228115b5630909b178c77d427385c189a50b8c1d0fe69470e2b89c9d6",
-      "size_bytes": 24630
+      "sha256": "2a80becfc38caeae9129eaf4a413af9084d36b0fa8216bf416955700b5579649",
+      "size_bytes": 24637
     },
     {
       "path": "tests/test_release_tooling.py",
-      "sha256": "fff9fb667595227aa55e359fab58dd227db7093572445e30d08d6078ad33da91",
-      "size_bytes": 17139
+      "sha256": "16b6315de8474899876b49373b5bdf2f9e4ed2d3e76db5ca1bea5197a5129193",
+      "size_bytes": 17681
+    },
+    {
+      "path": "tests/test_v050_hardening.py",
+      "sha256": "72ce2385b3c903984ec34b117b0e5ada679250f2a5617644b881897ed91b9aab",
+      "size_bytes": 9443
     }
   ],
   "generated_at_utc": "1980-01-01T00:00:00Z",
   "project": "Frontier Intelligence Workflows",
   "schema_version": "1.0",
-  "version": "0.4.1"
+  "version": "0.5.0"
 }

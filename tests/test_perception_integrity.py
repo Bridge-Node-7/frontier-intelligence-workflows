@@ -104,7 +104,7 @@ class PerceptionIntegrityTests(unittest.TestCase):
         report = evaluate(base_assessment())
         self.assertEqual(report["findings"], [])
         self.assertEqual(report["recommendation"], "READY_FOR_HUMAN_REVIEW")
-        self.assertEqual(report["validation_status"], "PASS")
+        self.assertEqual(report["validation_status"], "NO_FINDINGS")
         self.assertTrue(report["human_decision_required"])
 
     def test_02_claim_mode_mismatch(self) -> None:

@@ -8,10 +8,11 @@ import json
 import re
 import subprocess
 import sys
+import unicodedata
 
 # Keep validation and release tooling read-only with respect to Python bytecode.
 sys.dont_write_bytecode = True
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Any, Iterable
 from urllib.parse import unquote
 
@@ -24,6 +25,7 @@ from release_common import (  # noqa: E402
     PROJECT,
     IntegrityError,
     load_policy,
+    portable_path_key,
     scan_repository,
     validate_workflow_semantics,
     verify_manifests,
@@ -39,7 +41,7 @@ from perception_integrity import (  # noqa: E402
     validate_schema_instance as validate_pi_schema_instance,
 )
 
-TEXT_SUFFIXES = {".md", ".txt", ".py", ".yml", ".yaml", ".json", ".csv", ".toml", ".html"}
+TEXT_SUFFIXES = {".md", ".txt", ".py", ".yml", ".yaml", ".json", ".csv", ".toml", ".html", ".sha256"}
 TEXT_NAMES = {"LICENSE", "VERSION", ".gitattributes", ".gitignore"}
 REQUIRED_FILES = {
     ".gitattributes",
@@ -60,6 +62,8 @@ REQUIRED_FILES = {
     "docs/assurance/README.md",
     "docs/assurance/SECURITY_TESTS.md",
     "docs/assurance/TESTING.md",
+    "docs/assurance/STATUS_SEMANTICS.md",
+    "profiles/perception-integrity/CONTROL_EXAMPLES.md",
     "scripts/build_release.py",
     "scripts/compile_sources.py",
     "scripts/perception_integrity.py",
@@ -72,6 +76,8 @@ REQUIRED_FILES = {
     "tests/test_adopter_enablement.py",
     "tests/test_frontier_claim_experience.py",
     "tests/test_perception_integrity.py",
+    "tests/test_frontier_technology_diligence.py",
+    "tests/test_v050_hardening.py",
     "profiles/perception-integrity/README.md",
     "profiles/perception-integrity/schema/perception-integrity-assessment.schema.json",
     "profiles/perception-integrity/schema/perception-integrity-validation.schema.json",
@@ -97,6 +103,8 @@ REQUIRED_FILES = {
     "templates/evidence-card.md",
     "templates/ai-governance-gate.md",
     "templates/decision-ready-brief.md",
+    "templates/decision-record.md",
+    "templates/perception-integrity-starter.json",
     "templates/perception-integrity-assessment.json",
     "templates/perception-integrity-assessment.md",
     "examples/synthetic-component-readiness/README.md",
@@ -104,7 +112,10 @@ REQUIRED_FILES = {
     "examples/synthetic-component-readiness/release-decision.md",
     "examples/frontier-claim-experience/README.md",
     "examples/frontier-claim-experience/index.html",
+    "examples/frontier-technology-diligence/README.md",
+    "examples/frontier-technology-diligence/decision-record.md",
     "data/synthetic/frontier-claim-experience.json",
+    "data/synthetic/FIW-SYN-005-frontier-technology-diligence.json",
     "docs/evidence-cards/FIW-SYN-001-evidence-card.md",
     "docs/governance/FIW-SYN-001-governance-review.md",
     "docs/briefs/FIW-SYN-001-decision-ready-brief.md",
@@ -131,6 +142,12 @@ SECRET_PATTERNS = {
     "Stripe secret": re.compile(r"sk_(?:live|test)_[A-Za-z0-9]{16,}"),
     "OpenAI key": re.compile(r"sk-(?:proj-)?[A-Za-z0-9_-]{20,}"),
     "Google API key": re.compile(r"AIza[0-9A-Za-z_-]{30,}"),
+    "Bearer credential": re.compile(r"(?i)\bBearer\s+[A-Za-z0-9._~+/=-]{16,}"),
+    "Basic-auth URL": re.compile(r"(?i)https?://[^\s/:@]+:[^\s/@]+@[^\s/]+"),
+    "Private key material": re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
+    "SendGrid API key": re.compile(r"SG\.[A-Za-z0-9_-]{16,}\.[A-Za-z0-9_-]{16,}"),
+    "Twilio API key": re.compile(r"SK[0-9a-fA-F]{32}"),
+    "Azure storage account key": re.compile(r"(?i)AccountKey=[A-Za-z0-9+/=]{32,}"),
     "JWT": re.compile(r"eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}"),
     "Connection URI": re.compile(r"(?i)(?:postgres(?:ql)?|mysql|mongodb(?:\+srv)?|redis)://[^\s]+"),
     "Private key header": re.compile(r"-----BEGIN (?:RSA |OPENSSH |EC |PGP )?PRIVATE KEY-----"),
@@ -139,6 +156,13 @@ SECRET_PATTERNS = {
         r"\s*[:=]\s*(?:[\"'][^\"'\s]{8,}[\"']|[A-Za-z0-9_./+=:@-]{12,})"
     ),
 }
+SOURCE_SAFETY_SUFFIXES = {".md", ".py", ".json", ".yml", ".yaml", ".toml", ".html", ".sh"}
+UNSAFE_SOURCE_CODEPOINTS = {
+    *range(0x202A, 0x202F),  # bidi embeddings / overrides / PDF
+    *range(0x2066, 0x206A),  # bidi isolates
+    0x061C, 0x200B, 0x200C, 0x200D, 0x200E, 0x200F, 0x2060, 0xFEFF,
+}
+
 LOCAL_PATH_PATTERNS = {
     "Windows user path": re.compile(r"[A-Za-z]:[\\/]Users[\\/][^\\/\s]+", re.IGNORECASE),
     "macOS user path": re.compile(r"/" + r"Users/[^/\s]+/"),
@@ -155,11 +179,32 @@ def read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
 
-def secret_scan_text(path: Path) -> str:
-    """Return text with only explicitly marked synthetic fixture lines removed."""
+def secret_scan_text(path: Path, *, root: Path) -> str:
+    """Return scanner text; fixture-marker exemptions are limited to top-level tests/."""
+    text = read_text(path)
+    try:
+        relative = path.resolve().relative_to(root.resolve())
+    except ValueError:
+        return text
+    if not relative.parts or relative.parts[0] != "tests":
+        return text
     return "\n".join(
-        line for line in read_text(path).splitlines() if "FIW_SECRET_FIXTURE" not in line
+        line for line in text.splitlines() if "FIW_SECRET_FIXTURE" not in line
     )
+
+
+def source_text_findings(path: Path) -> list[str]:
+    """Reject selected source-deception controls on public code, config, and Markdown surfaces."""
+    if path.suffix.lower() not in SOURCE_SAFETY_SUFFIXES:
+        return []
+    findings: list[str] = []
+    for index, character in enumerate(read_text(path)):
+        codepoint = ord(character)
+        if codepoint in UNSAFE_SOURCE_CODEPOINTS:
+            findings.append(
+                f"{path.as_posix()}: U+{codepoint:04X} {unicodedata.name(character, 'UNNAMED')} at character {index}"
+            )
+    return findings
 
 
 def text_files(root: Path) -> Iterable[Path]:
@@ -180,6 +225,48 @@ def normalize_link_target(raw_target: str) -> str:
         target = target.split(" ", 1)[0]
     target = target.split("#", 1)[0].split("?", 1)[0]
     return unquote(target)
+
+
+def resolve_portable_candidate(root: Path, base: Path, target: str) -> tuple[Path | None, list[tuple[str, str]]]:
+    """Resolve lexically and deterministically while preserving written path spelling."""
+    root_resolved = root.resolve()
+    try:
+        base_relative = base.resolve().relative_to(root_resolved)
+    except ValueError:
+        return None, []
+    target_path = PurePosixPath(target.replace("\\", "/"))
+    if target_path.is_absolute():
+        return None, []
+    parts: list[str] = []
+    for part in (*PurePosixPath(base_relative.as_posix()).parts, *target_path.parts):
+        if part in {"", "."}:
+            continue
+        if part == "..":
+            if not parts:
+                return None, []
+            parts.pop()
+            continue
+        parts.append(part)
+    current = root_resolved
+    mismatches: list[tuple[str, str]] = []
+    for part in parts:
+        if not current.is_dir():
+            return None, mismatches
+        entries = list(current.iterdir())
+        exact_matches = [entry for entry in entries if entry.name == part]
+        if len(exact_matches) == 1:
+            current = exact_matches[0]
+            continue
+        portable_matches = [
+            entry for entry in entries
+            if portable_path_key(entry.name) == portable_path_key(part)
+        ]
+        if len(portable_matches) != 1:
+            return None, mismatches
+        actual = portable_matches[0].name
+        mismatches.append((part, actual))
+        current = portable_matches[0]
+    return current, mismatches
 
 
 PI_PROFILE_RELATIVE = "profiles/perception-integrity"
@@ -354,8 +441,14 @@ def validate_perception_integrity_profile(root: Path) -> tuple[bool, str]:
 def validate(root: Path, check_manifest: bool = True) -> dict[str, Any]:
     checks: list[dict[str, Any]] = []
 
-    def check(name: str, passed: bool, detail: str) -> None:
-        checks.append({"name": name, "passed": bool(passed), "detail": detail})
+    def check(name: str, passed: bool | None, detail: str) -> None:
+        status = "NOT_RUN" if passed is None else ("PASS" if passed else "FAIL")
+        checks.append({
+            "name": name,
+            "status": status,
+            "passed": status == "PASS",
+            "detail": detail,
+        })
 
     try:
         policy = load_policy(root)
@@ -386,7 +479,8 @@ def validate(root: Path, check_manifest: bool = True) -> dict[str, Any]:
         ["git", "-C", str(root), "rev-parse", "--is-inside-work-tree"],
         text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False,
     )
-    if git_probe.returncode == 0 and git_probe.stdout.strip() == "true":
+    git_metadata_available = git_probe.returncode == 0 and git_probe.stdout.strip() == "true"
+    if git_metadata_available:
         tracked = subprocess.run(
             ["git", "-C", str(root), "ls-files", "-z"],
             stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False,
@@ -398,34 +492,41 @@ def validate(root: Path, check_manifest: bool = True) -> dict[str, Any]:
             unscanned = sorted(tracked_paths - record_paths)
             if unscanned:
                 tracked_issues.append(f"TRACKED_PATH_OUTSIDE_POLICY_SCAN: {unscanned}")
-    check(
-        "tracked_path_coverage",
-        not tracked_issues,
-        "Every tracked path is covered by the public file-policy scan." if not tracked_issues else "; ".join(tracked_issues),
-    )
+    if not git_metadata_available:
+        check("tracked_path_coverage", None, "Git metadata is unavailable; tracked-path coverage was not run.")
+    else:
+        check(
+            "tracked_path_coverage",
+            not tracked_issues,
+            "Every tracked path is covered by the public file-policy scan." if not tracked_issues else "; ".join(tracked_issues),
+        )
 
     version_path = root / "VERSION"
     version = read_text(version_path).strip() if version_path.is_file() else ""
     version_ok = bool(re.fullmatch(r"\d+\.\d+\.\d+", version)) and version == EXPECTED_VERSION
     check("version_format", version_ok, f"VERSION={version!r}; expected {EXPECTED_VERSION!r} without a leading v.")
 
-    current_files = [
-        "README.md",
-        "LIMITATIONS.md",
-        "CHANGELOG.md",
-        "docs/assurance/TESTING.md",
+    exact_release_markers = {
+        "README.md": re.compile(rf"^\*\*v{re.escape(EXPECTED_VERSION)} — Decision-Ready Intelligence\*\*$", re.MULTILINE),
+        "LIMITATIONS.md": re.compile(rf"^Current release: `{re.escape(EXPECTED_VERSION)}`\.$", re.MULTILINE),
+        "CHANGELOG.md": re.compile(rf"^## \[{re.escape(EXPECTED_VERSION)}\] - \d{{4}}-\d{{2}}-\d{{2}}$", re.MULTILINE),
+        "docs/assurance/TESTING.md": re.compile(rf"^# Validation — v{re.escape(EXPECTED_VERSION)}$", re.MULTILINE),
+    }
+    version_gaps = [
+        rel for rel, pattern in exact_release_markers.items()
+        if not (root / rel).is_file() or pattern.search(read_text(root / rel)) is None
     ]
-    version_gaps = [rel for rel in current_files if (root / rel).is_file() and EXPECTED_VERSION not in read_text(root / rel)]
     check(
         "version_consistency",
         not version_gaps,
-        f"Current release files reference {EXPECTED_VERSION}."
+        f"Current release files contain exact {EXPECTED_VERSION} release markers."
         if not version_gaps
-        else f"Missing current version in: {version_gaps}",
+        else f"Missing or malformed exact release markers in: {version_gaps}",
     )
 
     broken_product_url: list[str] = []
     bad_url = "bridgenode7.com/frontier-intelligence-workflows"
+    website_scan_error: str | None = None
     try:
         for path in text_files(root):
             rel = path.relative_to(root).as_posix()
@@ -433,15 +534,18 @@ def validate(root: Path, check_manifest: bool = True) -> dict[str, Any]:
                 continue
             if bad_url in read_text(path):
                 broken_product_url.append(rel)
-    except IntegrityError:
-        pass
-    check("website_boundary", not broken_product_url, "No nonexistent FIW website route is referenced." if not broken_product_url else f"Broken route found in: {broken_product_url}")
+    except IntegrityError as exc:
+        website_scan_error = str(exc)
+    if website_scan_error is not None:
+        check("website_boundary", None, f"Website-boundary scan was not run: {website_scan_error}")
+    else:
+        check("website_boundary", not broken_product_url, "No nonexistent FIW website route is referenced." if not broken_product_url else f"Broken route found in: {broken_product_url}")
 
     readme = read_text(root / "README.md") if (root / "README.md").is_file() else ""
     readme_phrases = [
         PROJECT,
-        "Turn uncertain technical claims into evidence-backed decisions.",
-        "Automation checks structure and declared evidence conditions. It does not determine truth or authorize action.",
+        "Turn uncertain frontier-technology claims into decision-ready intelligence.",
+        "Automation checks structure, traceability, and declared evidence conditions. It does not determine truth, verify the underlying claim, make investment decisions, certify readiness, or authorize action.",
         "Keep nonpublic working evidence outside this public repository.",
         "FIW-SYN-001",
         "Perception Integrity",
@@ -451,6 +555,7 @@ def validate(root: Path, check_manifest: bool = True) -> dict[str, Any]:
     check("readme_orientation", not missing_phrases, "README contains required orientation and boundaries." if not missing_phrases else f"Missing README phrases: {missing_phrases}")
 
     broken_links: list[str] = []
+    markdown_scan_error: str | None = None
     try:
         for path in text_files(root):
             if path.suffix.lower() != ".md":
@@ -460,17 +565,24 @@ def validate(root: Path, check_manifest: bool = True) -> dict[str, Any]:
                 target = normalize_link_target(match.group(1))
                 if not target or target.startswith(("http://", "https://", "mailto:", "#")):
                     continue
-                candidate = (path.parent / target).resolve()
-                try:
-                    candidate.relative_to(root.resolve())
-                except ValueError:
-                    broken_links.append(f"{rel}: link escapes repository: {target}")
-                    continue
-                if not candidate.exists():
-                    broken_links.append(f"{rel}: {target}")
-    except IntegrityError:
-        pass
-    check("markdown_links", not broken_links, "All relative Markdown links resolve." if not broken_links else f"Broken links: {broken_links}")
+                candidate, mismatches = resolve_portable_candidate(root, path.parent, target)
+                if candidate is None:
+                    raw_candidate = (path.parent / target).resolve()
+                    try:
+                        raw_candidate.relative_to(root.resolve())
+                    except ValueError:
+                        broken_links.append(f"{rel}: link escapes repository: {target}")
+                    else:
+                        broken_links.append(f"{rel}: {target}")
+                elif mismatches:
+                    mismatch_text = ", ".join(f"{written!r}->{actual!r}" for written, actual in mismatches)
+                    broken_links.append(f"{rel}: path case/normalization mismatch for {target}: {mismatch_text}")
+    except IntegrityError as exc:
+        markdown_scan_error = str(exc)
+    if markdown_scan_error is not None:
+        check("markdown_links", None, f"Markdown-link scan was not run: {markdown_scan_error}")
+    else:
+        check("markdown_links", not broken_links, "All relative Markdown links resolve with portable path semantics." if not broken_links else f"Broken links: {broken_links}")
 
     security_text = read_text(root / "SECURITY.md") if (root / "SECURITY.md").is_file() else ""
     security_private_reporting = (
@@ -491,6 +603,8 @@ def validate(root: Path, check_manifest: bool = True) -> dict[str, Any]:
     secret_hits: list[str] = []
     local_path_hits: list[str] = []
     personal_contact_hits: list[str] = []
+    source_safety_hits: list[str] = []
+    scan_error: str | None = None
     email_pattern = re.compile(r"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b", re.IGNORECASE)
     telephone_pattern = re.compile(r"(?<!\d)(?:\+?1[\s.-]?)?(?:\(\d{3}\)|\d{3})[\s.-]\d{3}[\s.-]\d{4}(?!\d)")
     social_pattern = re.compile(r"https?://(?:www\.)?(?:linkedin\.com|instagram\.com|twitter\.com|x\.com|facebook\.com)/", re.IGNORECASE)
@@ -498,7 +612,7 @@ def validate(root: Path, check_manifest: bool = True) -> dict[str, Any]:
     try:
         for path in text_files(root):
             rel = path.relative_to(root).as_posix()
-            text = secret_scan_text(path)
+            text = secret_scan_text(path, root=root)
             for label, pattern in SECRET_PATTERNS.items():
                 if pattern.search(text):
                     secret_hits.append(f"{rel}: {label}")
@@ -514,11 +628,21 @@ def validate(root: Path, check_manifest: bool = True) -> dict[str, Any]:
                 personal_contact_hits.append(f"{rel}: telephone number")
             if social_pattern.search(text):
                 personal_contact_hits.append(f"{rel}: personal social profile")
-    except IntegrityError:
-        pass
-    check("secret_patterns", not secret_hits, "No common secret patterns found." if not secret_hits else f"Potential secrets: {secret_hits}")
-    check("local_user_paths", not local_path_hits, "No local user paths found." if not local_path_hits else f"Local paths: {local_path_hits}")
-    check("personal_contact_surface", not personal_contact_hits, "No personal contact information or personal social-profile links found." if not personal_contact_hits else f"Personal contact surfaces: {personal_contact_hits}")
+            source_safety_hits.extend(
+                f"{rel}: {item.split(': ', 1)[-1]}" for item in source_text_findings(path)
+            )
+    except IntegrityError as exc:
+        scan_error = str(exc)
+    if scan_error is not None:
+        check("secret_patterns", None, f"Secret-pattern scan was not run: {scan_error}")
+        check("local_user_paths", None, f"Local-path scan was not run: {scan_error}")
+        check("personal_contact_surface", None, f"Personal-contact scan was not run: {scan_error}")
+        check("source_text_safety", None, f"Source-text safety scan was not run: {scan_error}")
+    else:
+        check("secret_patterns", not secret_hits, "No configured secret patterns found." if not secret_hits else f"Potential secrets: {secret_hits}")
+        check("local_user_paths", not local_path_hits, "No local user paths found." if not local_path_hits else f"Local paths: {local_path_hits}")
+        check("personal_contact_surface", not personal_contact_hits, "No personal contact information or personal social-profile links found." if not personal_contact_hits else f"Personal contact surfaces: {personal_contact_hits}")
+        check("source_text_safety", not source_safety_hits, "No selected deceptive Unicode controls found on public code/configuration/Markdown surfaces." if not source_safety_hits else f"Unsafe source text: {source_safety_hits}")
 
     boundary = read_text(root / "NOTICE.md") if (root / "NOTICE.md").is_file() else ""
     boundary_terms = [
@@ -580,7 +704,7 @@ def validate(root: Path, check_manifest: bool = True) -> dict[str, Any]:
             manifest_ok, manifest_detail = False, str(exc)
         check("manifest_consistency", manifest_ok, manifest_detail)
 
-    passed = all(item["passed"] for item in checks)
+    passed = all(item["status"] == "PASS" for item in checks)
     return {
         "project": PROJECT,
         "version": version,
@@ -603,7 +727,7 @@ def main() -> int:
 
     report = validate(root, check_manifest=True)
     for item in report["checks"]:
-        status = "PASS" if item["passed"] else "FAIL"
+        status = item["status"]
         print(f"[{status}] {item['name']}: {item['detail']}")
     print(f"Validation: {'PASS' if report['passed'] else 'FAIL'} ({report['summary']['passed']}/{report['summary']['total']})")
 

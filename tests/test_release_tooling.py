@@ -35,6 +35,12 @@ class ReleaseToolingTests(unittest.TestCase):
             ignore=shutil.ignore_patterns(".git", "dist", "__pycache__", "validation-report.json"),
             symlinks=True,
         )
+        # v0.5 treats missing Git metadata as NOT_RUN/non-passing in strict validation.
+        # Give release-tooling fixtures a real index so tracked-path coverage actually executes.
+        # Intent-to-add records path membership without hashing every copied file into a
+        # new object database, avoiding Windows temp/antivirus contention observed in R3.
+        subprocess.run(["git", "-C", str(self.repo), "init", "-q"], check=True)
+        subprocess.run(["git", "-C", str(self.repo), "add", "--intent-to-add", "-A"], check=True)
 
     def tearDown(self) -> None:
         self.temporary.cleanup()
