@@ -1,5 +1,5 @@
 {
-  "$id": "urn:bridgenode7:fiw:perception-integrity:validation:0.3.0",
+  "$id": "urn:bridgenode7:fiw:perception-integrity:validation:0.4.0",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Deterministic structural findings and an advisory recommendation for human review.",
@@ -64,7 +64,7 @@
       "const": true
     },
     "profile_version": {
-      "const": "0.3.0"
+      "const": "0.4.0"
     },
     "recommendation": {
       "enum": [
@@ -79,16 +79,16 @@
       ]
     },
     "ruleset_version": {
-      "const": "1.1.0"
+      "const": "1.2.0"
     },
     "validation_status": {
       "enum": [
-        "PASS",
+        "NO_FINDINGS",
         "REVIEW_REQUIRED"
       ]
     },
     "validator_version": {
-      "const": "0.3.0"
+      "const": "0.4.0"
     }
   },
   "required": [

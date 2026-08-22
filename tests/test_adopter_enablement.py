@@ -57,9 +57,9 @@ class AdopterEnablementTests(unittest.TestCase):
             report = json.loads(first.read_text(encoding="utf-8"))
             self.assertTrue(report["human_decision_required"])
             self.assertEqual(report["recommendation"], "READY_FOR_HUMAN_REVIEW")
-            self.assertEqual(report["profile_version"], "0.3.0")
-            self.assertEqual(report["ruleset_version"], "1.1.0")
-            self.assertEqual(report["validator_version"], "0.3.0")
+            self.assertEqual(report["profile_version"], "0.4.0")
+            self.assertEqual(report["ruleset_version"], "1.2.0")
+            self.assertEqual(report["validator_version"], "0.4.0")
             validation_schema = json.loads(
                 (ROOT / "profiles/perception-integrity/schema/perception-integrity-validation.schema.json").read_text(
                     encoding="utf-8"

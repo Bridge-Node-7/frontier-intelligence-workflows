@@ -1,8 +1,13 @@
-# Assurance
+# Public Assurance
 
-FIW provides public, inspectable controls for repository integrity and deterministic behavior.
+FIW public assurance is layered by what each control can actually establish:
 
-- [Validation](TESTING.md)
-- [Security Baseline](SECURITY_TESTS.md)
+1. behavioral and adversarial regression tests;
+2. repository policy and public-boundary validation;
+3. pinned and bounded workflow controls;
+4. manifest byte integrity; and
+5. deterministic release construction.
 
-These controls establish bounded engineering evidence. They do not determine external truth.
+A passing control establishes only what that control tested.
+
+See [Testing](TESTING.md), [Security Tests](SECURITY_TESTS.md), and [Status Semantics](STATUS_SEMANTICS.md).

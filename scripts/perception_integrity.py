@@ -18,9 +18,9 @@ from typing import Any
 
 sys.dont_write_bytecode = True
 
-PROFILE_VERSION = "0.3.0"
-RULESET_VERSION = "1.1.0"
-VALIDATOR_VERSION = "0.3.0"
+PROFILE_VERSION = "0.4.0"
+RULESET_VERSION = "1.2.0"
+VALIDATOR_VERSION = "0.4.0"
 
 CLAIM_MODES = {
     "DIRECT_OBSERVATION",
@@ -56,7 +56,7 @@ RFC3339_UTC = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$")
 CONTROL_FINDINGS: dict[str, tuple[str, ...]] = {
     "PI-01": ("PI-CLAIM-MODE-MISMATCH",),
     "PI-02": ("PI-INFERENCE-AS-OBSERVATION",),
-    "PI-03": ("PI-SOURCE-LINEAGE-UNRESOLVED",),
+    "PI-03": ("PI-SOURCE-LINEAGE-UNRESOLVED", "PI-EVIDENCE-REFERENCE-UNRESOLVED"),
     "PI-04": ("PI-DERIVATIVE-CORROBORATION",),
     "PI-05": ("PI-MATERIAL-ASSUMPTION-MISSING",),
     "PI-06": ("PI-ALTERNATIVE-HYPOTHESIS-MISSING",),
@@ -102,10 +102,12 @@ def _list(value: Any) -> list[Any]:
 
 
 def _normalize_text(value: str) -> str:
-    """Normalize text for semantic comparisons without changing stored evidence bytes."""
-    normalized = unicodedata.normalize("NFC", value)
+    """Normalize bounded comparison text without changing stored evidence bytes."""
+    normalized = unicodedata.normalize("NFKC", value)
     normalized = "".join(ch for ch in normalized if unicodedata.category(ch) != "Cf")
-    return re.sub(r"\s+", " ", normalized).strip()
+    normalized = re.sub(r"\s+", " ", normalized).strip()
+    # Treat terminal prose punctuation as non-semantic for duplicate observation/inference detection.
+    return re.sub(r"[\s.,;:!?…]+$", "", normalized).strip()
 
 
 def _text_items(value: Any) -> list[str]:
@@ -200,7 +202,7 @@ def _recommendation(findings: list[dict[str, str]]) -> str:
         return "DO_NOT_RELEASE_PUBLICLY"
     if any(item["severity"] == "CRITICAL" for item in findings):
         return "HOLD"
-    if ids & {"PI-SOURCE-LINEAGE-UNRESOLVED", "PI-DERIVATIVE-CORROBORATION"}:
+    if ids & {"PI-SOURCE-LINEAGE-UNRESOLVED", "PI-EVIDENCE-REFERENCE-UNRESOLVED", "PI-DERIVATIVE-CORROBORATION"}:
         return "REQUIRE_CORROBORATION"
     completeness = {
         "PI-CLAIM-MODE-MISMATCH",
@@ -381,6 +383,27 @@ def evaluate_assessment(
     findings.extend(_lineage_findings(assessment))
 
     sources = [_mapping(item) for item in _list(assessment.get("source_lineage"))]
+    declared_source_ids = {
+        str(item.get("source_id")).strip()
+        for item in sources
+        if isinstance(item.get("source_id"), str) and str(item.get("source_id")).strip()
+    }
+    evidence_references = {
+        item.strip()
+        for item in _list(assessment.get("evidence_references"))
+        if isinstance(item, str) and item.strip()
+    }
+    unresolved_evidence = sorted(evidence_references - declared_source_ids)
+    if unresolved_evidence:
+        findings.append(
+            _finding(
+                "PI-03",
+                "PI-EVIDENCE-REFERENCE-UNRESOLVED",
+                "BLOCKING",
+                f"Evidence references do not resolve to declared source-lineage IDs: {unresolved_evidence}.",
+                "evidence_references",
+            )
+        )
     independent_roots = {
         str(item.get("source_id"))
         for item in sources
@@ -485,6 +508,20 @@ def evaluate_assessment(
             )
 
     if (
+        consequence == "CRITICAL"
+        and reversibility == "IRREVERSIBLE"
+        and strength in {"NONE", "WEAK", "LIMITED"}
+    ):
+        findings.append(
+            _finding(
+                "PI-09",
+                "PI-IRREVERSIBLE-WEAK-EVIDENCE",
+                "CRITICAL",
+                "A critical, irreversible action is paired with insufficient declared evidence.",
+                "decision_context",
+            )
+        )
+    elif (
         consequence == "CRITICAL" or reversibility == "IRREVERSIBLE"
     ) and strength in {"NONE", "WEAK", "LIMITED"}:
         findings.append(
@@ -564,6 +601,6 @@ def evaluate_assessment(
         "evaluated_at": evaluated_at,
         "findings": findings,
         "recommendation": recommendation,
-        "validation_status": "PASS" if not findings else "REVIEW_REQUIRED",
+        "validation_status": "NO_FINDINGS" if not findings else "REVIEW_REQUIRED",
         "human_decision_required": True,
     }

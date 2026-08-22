@@ -1,5 +1,5 @@
 {
-  "$id": "urn:bridgenode7:fiw:perception-integrity:assessment:0.3.0",
+  "$id": "urn:bridgenode7:fiw:perception-integrity:assessment:0.4.0",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "A declared pre-decision assessment. It does not determine truth or authorize action.",
