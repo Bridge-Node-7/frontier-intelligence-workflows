@@ -183,6 +183,39 @@ class FrontierClaimExperienceTests(unittest.TestCase):
     def test_16_programmatic_scroll_respects_reduced_motion(self) -> None:
         self.assertIn("window.matchMedia('(prefers-reduced-motion: reduce)').matches", self.html)
 
+    def test_17_product_promise_is_aligned_with_repository_positioning(self) -> None:
+        self.assertIn(
+            "Turn uncertain frontier-technology claims into decision-ready intelligence.",
+            self.html,
+        )
+        self.assertIn("Follow the provenance.", self.html)
+
+    def test_18_signature_provenance_reveal_is_explicit_and_progressive(self) -> None:
+        self.assertIn('id="lineage-equation" hidden', self.html)
+        self.assertIn("3 cited reports", self.html)
+        self.assertIn("3 independent confirmations", self.html)
+        self.assertIn("$('lineage-equation').hidden = false;", self.html)
+        self.assertIn("$('lineage-equation').hidden = true;", self.html)
+
+    def test_19_decision_boundary_and_receipt_are_visually_explicit(self) -> None:
+        for phrase in (
+            "04 · Decision Boundary",
+            "Supported by the Record",
+            "Not Established",
+            "Critical Unknown",
+            "Evidence That Could Change the State",
+            "FIW Decision Record · Synthetic Session",
+            "Decision Receipt",
+            "Evidence cutoff",
+            "Decision boundary",
+        ):
+            self.assertIn(phrase, self.html)
+
+    def test_20_commercial_bridge_is_informational_and_offline(self) -> None:
+        self.assertIn("Bring a consequential technology question.", self.html)
+        self.assertIn("BridgeNode7.com", self.html)
+        self.assertNotRegex(self.html, r"https?://")
+
 
 if __name__ == "__main__":
     unittest.main()

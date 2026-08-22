@@ -49,7 +49,7 @@
     .secondary { background: transparent; color: var(--text); border-color: var(--control-line); }
     main { padding-bottom: 9rem; }
     .case { display: grid; gap: 1.25rem; }
-    .section { background: linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.012)); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(1.25rem, 3vw, 2.25rem); }
+    .section { background: linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.012)); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(1.25rem, 3vw, 2.25rem); box-shadow: 0 24px 70px rgba(0,0,0,.16); }
     .section-kicker { margin: 0 0 .5rem; color: var(--focus); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; }
     h2, h3 { margin-top: 0; letter-spacing: -.025em; }
     h2 { font-size: clamp(1.9rem, 4vw, 3.3rem); line-height: 1.05; font-weight: 580; }
@@ -79,8 +79,12 @@
     .graph-actions { position: absolute; left: 1rem; right: 1rem; top: 1rem; bottom: auto; display: flex; gap: .7rem; flex-wrap: wrap; }
     .mobile-lineage-map { display: none; }
     .lineage-panel { display: flex; flex-direction: column; gap: 1rem; }
-    .lineage-summary { border-left: 2px solid var(--evidence); padding-left: 1rem; }
-    .lineage-summary strong { display: block; font-size: 1.6rem; letter-spacing: -.03em; }
+    .lineage-summary { border-left: 2px solid var(--evidence); padding: 1rem 1rem 1rem 1.15rem; border-radius: 0 16px 16px 0; background: linear-gradient(90deg, rgba(141,183,215,.08), rgba(141,183,215,0)); }
+    .lineage-summary strong { display: block; font-size: clamp(1.6rem, 3vw, 2.15rem); line-height: 1.05; letter-spacing: -.04em; }
+    .lineage-equation { display: grid; grid-template-columns: 1fr auto 1fr; gap: .8rem; align-items: center; padding: 1rem; border: 1px solid rgba(141,183,215,.28); border-radius: 16px; background: rgba(141,183,215,.045); text-align: center; }
+    .lineage-equation[hidden] { display: none; }
+    .lineage-equation span { color: var(--muted); font-size: .86rem; }
+    .lineage-equation strong { color: var(--evidence); font-size: 1.4rem; }
     .relation-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .65rem; }
     .relation-list li { padding: .8rem .9rem; border: 1px solid var(--line); border-radius: 14px; }
     .relation-list small { display: block; color: var(--muted); margin-top: .25rem; }
@@ -103,8 +107,14 @@
     .decision-actions { display: flex; gap: .75rem; align-items: center; margin-top: 1rem; flex-wrap: wrap; }
     .decision-note { color: var(--muted); font-size: .88rem; }
     .validation-message { margin: .8rem 0 0; color: var(--warning); font-size: .92rem; }
-    .record { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+    .record { margin-top: 1.5rem; padding: 1.35rem; border: 1px solid rgba(213,181,110,.24); border-radius: 18px; background: linear-gradient(180deg, rgba(213,181,110,.055), rgba(255,255,255,.012)); }
     .record[hidden] { display: none; }
+    .record-head { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; padding-bottom: 1rem; border-bottom: 1px solid var(--line); }
+    .record-head span { color: var(--muted); font-size: .76rem; letter-spacing: .1em; text-transform: uppercase; }
+    .record-head strong { color: var(--focus); font-weight: 650; }
+    .closing { text-align: center; padding-block: clamp(2.4rem, 6vw, 5rem); }
+    .closing p { max-width: 650px; margin-inline: auto; color: var(--muted); }
+    .closing-domain { display: inline-block; margin-top: 1rem; color: var(--focus); letter-spacing: .08em; font-weight: 650; }
     .record-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
     .record-grid div { padding: .8rem 0; border-bottom: 1px solid rgba(255,255,255,.06); }
     .record-grid dt { color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; }
@@ -128,7 +138,7 @@
       .shell { width: min(calc(100% - 22px), var(--max)); }
       .quiet-rail { min-height: 58px; font-size: .7rem; }
       .hero { min-height: calc(100vh - 58px); padding: 5rem 0 6rem; }
-      .decision-grid, .triptych, .decision-options, .record-grid { grid-template-columns: 1fr; }
+      .decision-grid, .triptych, .decision-options, .record-grid, .lineage-equation { grid-template-columns: 1fr; }
       .section { border-radius: 18px; }
       .graph-card { min-height: 190px; }
       .graph-card svg { display: none; }
@@ -169,10 +179,10 @@
   <section class="shell hero" aria-labelledby="hero-title">
     <div class="hero-inner">
       <p class="eyebrow">Frontier Intelligence Workflows</p>
-      <h1 id="hero-title">Turn uncertainty into a decision you can defend.</h1>
-      <p>Trace the evidence. Expose the unknowns. Preserve human judgment.</p>
+      <h1 id="hero-title">Turn uncertain frontier-technology claims into decision-ready intelligence.</h1>
+      <p>Follow the provenance. Separate what is supported from what is merely repeated. See the evidence worth obtaining next.</p>
       <span class="truth-boundary">A claim is not evidence. Evidence is not truth. Automation is not authority.</span><br>
-      <button class="primary" id="begin-case" type="button">Explore a Synthetic Case</button>
+      <button class="primary" id="begin-case" type="button">Explore the Evidence</button>
     </div>
   </section>
 
@@ -255,31 +265,34 @@
             <li><strong>Report B</strong><small>REPUBLICATION_OF → Report A</small></li>
             <li><strong>Report C</strong><small>DERIVED_FROM → Report A</small></li>
           </ul>
+          <div class="lineage-equation" id="lineage-equation" hidden aria-live="polite">
+            <span>3 cited reports</span><strong>≠</strong><span>3 independent confirmations</span>
+          </div>
           <p class="footnote">Relationships are explicit case data. The interface does not invent provenance.</p>
         </aside>
       </div>
     </section>
 
     <section class="section" aria-labelledby="challenge-title">
-      <p class="section-kicker">04 · Challenge</p>
-      <h2 id="challenge-title">What does the evidence support—and what does it still leave open?</h2>
+      <p class="section-kicker">04 · Decision Boundary</p>
+      <h2 id="challenge-title">What is supported, what is not established, and what could change the state?</h2>
       <div class="triptych">
         <article>
-          <h3>What Supports This?</h3>
+          <h3>Supported by the Record</h3>
           <p>Three reports repeat a production-readiness statement associated with Supplier A.</p>
         </article>
         <article>
-          <h3>What Challenges This?</h3>
-          <p>No independent lot-level qualification record is present in the synthetic evidence set.</p>
+          <h3>Not Established</h3>
+          <p>Independent production qualification is not established by the synthetic evidence set.</p>
         </article>
         <article class="unknown">
           <h3>Critical Unknown</h3>
           <p>Whether independent production qualification under intended-use conditions has been completed.</p>
         </article>
       </div>
-      <button class="secondary" id="change-state" type="button" aria-expanded="false" aria-controls="next-evidence">What Could Materially Change This Decision State?</button>
+      <button class="secondary" id="change-state" type="button" aria-expanded="false" aria-controls="next-evidence">Reveal the Evidence That Could Change This State</button>
       <div class="next-evidence" id="next-evidence" hidden>
-        <h3>Most Decision-Relevant Missing Evidence</h3>
+        <h3>Evidence That Could Change the State</h3>
         <p><strong>Independent lot-level qualification evidence under intended-use conditions.</strong></p>
         <ul class="why-list">
           <li><strong>Decision relevance:</strong> directly addresses production dependency.</li>
@@ -313,7 +326,11 @@
         <p id="decision-error" class="validation-message" role="alert" hidden></p>
       </form>
       <div class="record" id="decision-record" hidden tabindex="-1">
-        <h3>Decision Record</h3>
+        <div class="record-head">
+          <span>FIW Decision Record · Synthetic Session</span>
+          <strong>Human-owned</strong>
+        </div>
+        <h3>Decision Receipt</h3>
         <dl class="record-grid">
           <div><dt>Decision</dt><dd id="record-decision"></dd></div>
           <div><dt>Scope</dt><dd>Dependence on Supplier A for Component X under this synthetic evidence state</dd></div>
@@ -322,7 +339,8 @@
           <div><dt>Critical unknown</dt><dd>Independent lot-level qualification under intended-use conditions</dd></div>
           <div><dt>Human authority</dt><dd>Synthetic Program Review Board</dd></div>
           <div><dt>Rationale</dt><dd id="record-rationale"></dd></div>
-          <div><dt>Evidence-state version</dt><dd>FIW-FCE-1.0 · synthetic</dd></div>
+          <div><dt>Evidence cutoff</dt><dd>Fixed synthetic evidence state · FIW-FCE-1.0</dd></div>
+          <div><dt>Decision boundary</dt><dd>Independent production qualification is not established by this evidence state</dd></div>
         </dl>
         <p class="footnote" id="record-advisory"></p>
       </div>
@@ -346,6 +364,15 @@
         </ol>
       </details>
     </section>
+
+
+    <section class="section closing" aria-labelledby="closing-title">
+      <p class="section-kicker">From Synthetic Proof to Real Decision</p>
+      <h2 id="closing-title">Bring a consequential technology question.</h2>
+      <p>FIW is designed to clarify what the evidence earns before a high-consequence next step. Bridge Node 7 applies the same discipline to real frontier-technology decisions under appropriate confidentiality and human authority.</p>
+      <span class="closing-domain">BridgeNode7.com</span>
+    </section>
+
   </main>
 
   <div id="status" class="sr-only" role="status" aria-live="polite"></div>
@@ -427,6 +454,7 @@
         $('claim-independence').textContent = '1 provenance root · independent corroboration not established';
         $('graph-desc').textContent = 'Three cited reports resolve to one supplier-origin provenance root. Independent corroboration is not established.';
         $('lineage-relations').hidden = false;
+        $('lineage-equation').hidden = false;
         $('mobile-lineage-title').textContent = 'Lineage traced';
         $('mobile-lineage-detail').textContent = 'Source relationships revealed below';
         $('trace-origins').hidden = true;
@@ -441,6 +469,7 @@
         $('claim-independence').textContent = 'Independence unresolved';
         $('graph-desc').textContent = 'Three cited reports support one claim. Trace origins to inspect whether the reports are independent.';
         $('lineage-relations').hidden = true;
+        $('lineage-equation').hidden = true;
         $('mobile-lineage-title').textContent = '3 cited reports';
         $('mobile-lineage-detail').textContent = 'Origins unresolved';
         $('trace-origins').hidden = false;

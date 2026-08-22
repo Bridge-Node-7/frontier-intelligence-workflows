@@ -128,6 +128,30 @@ class V050HardeningTests(unittest.TestCase):
             self.assertTrue(findings)
             self.assertTrue(any("U+202E" in item for item in findings))
 
+    def test_08aa_markdown_allows_legitimate_international_formatting(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="fiw-unicode-md-intl-") as temporary:
+            path = Path(temporary) / "README.md"
+            family = "\U0001F468\u200d\U0001F469\u200d\U0001F467"
+            persian = "\u0645\u06cc\u200c\u062e\u0648\u0627\u0647\u0645"
+            path.write_text("\ufeffFamily " + family + " · Persian: " + persian + "\n", encoding="utf-8")
+            self.assertEqual(source_text_findings(path), [])
+
+    def test_08ab_code_still_rejects_invisible_formatting_with_remediation(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="fiw-unicode-code-invisible-") as temporary:
+            path = Path(temporary) / "sample.py"
+            path.write_text("value = 'a\u200bb'\n", encoding="utf-8")
+            findings = source_text_findings(path)
+            self.assertTrue(findings)
+            self.assertTrue(any("U+200B" in item for item in findings))
+            self.assertTrue(any("remove or escape" in item for item in findings))
+
+    def test_08ac_markdown_bidi_failure_is_actionable(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="fiw-unicode-md-help-") as temporary:
+            path = Path(temporary) / "README.md"
+            path.write_text("visible\u202ereordered\u202c\n", encoding="utf-8")
+            findings = source_text_findings(path)
+            self.assertTrue(any("spell out its Unicode code point" in item for item in findings))
+
     def test_08b_selected_provider_secret_patterns_are_present(self) -> None:
         for label in ("Private key material", "SendGrid API key", "Twilio API key", "Azure storage account key"):
             self.assertIn(label, SECRET_PATTERNS)
@@ -160,7 +184,7 @@ class V050HardeningTests(unittest.TestCase):
             repo = Path(temporary) / "repo"
             shutil.copytree(ROOT, repo, ignore=shutil.ignore_patterns(".git", "__pycache__"))
             readme = repo / "README.md"
-            text = readme.read_text(encoding="utf-8").replace("**v0.5.0 — Decision-Ready Intelligence**", "**v10.5.00 — Decision-Ready Intelligence**")
+            text = readme.read_text(encoding="utf-8").replace("**v0.5.1 — Decision-Ready Intelligence**", "**v10.5.01 — Decision-Ready Intelligence**")
             readme.write_text(text, encoding="utf-8", newline="\n")
             report = validate(repo, check_manifest=False)
             item = next(check for check in report["checks"] if check["name"] == "version_consistency")

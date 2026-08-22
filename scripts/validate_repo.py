@@ -157,11 +157,24 @@ SECRET_PATTERNS = {
     ),
 }
 SOURCE_SAFETY_SUFFIXES = {".md", ".py", ".json", ".yml", ".yaml", ".toml", ".html", ".sh"}
-UNSAFE_SOURCE_CODEPOINTS = {
+
+# High-risk bidirectional controls can make reviewer-visible text diverge from
+# source order. Reject them on every scanned surface, including Markdown.
+BIDI_CONTROL_CODEPOINTS = {
     *range(0x202A, 0x202F),  # bidi embeddings / overrides / PDF
     *range(0x2066, 0x206A),  # bidi isolates
-    0x061C, 0x200B, 0x200C, 0x200D, 0x200E, 0x200F, 0x2060, 0xFEFF,
+    0x061C,                  # Arabic letter mark
 }
+
+# Invisible formatting is unsafe on code/configuration surfaces but can be
+# legitimate prose. For example, U+200C is required in Persian orthography,
+# U+200D joins standard emoji sequences, and U+FEFF may appear as a UTF-8 BOM.
+INVISIBLE_FORMATTING_CODEPOINTS = {
+    0x200B, 0x200C, 0x200D, 0x200E, 0x200F, 0x2060, 0xFEFF,
+}
+
+UNSAFE_SOURCE_CODEPOINTS = BIDI_CONTROL_CODEPOINTS | INVISIBLE_FORMATTING_CODEPOINTS
+PROSE_SOURCE_SUFFIXES = {".md"}
 
 LOCAL_PATH_PATTERNS = {
     "Windows user path": re.compile(r"[A-Za-z]:[\\/]Users[\\/][^\\/\s]+", re.IGNORECASE),
@@ -194,15 +207,32 @@ def secret_scan_text(path: Path, *, root: Path) -> str:
 
 
 def source_text_findings(path: Path) -> list[str]:
-    """Reject selected source-deception controls on public code, config, and Markdown surfaces."""
-    if path.suffix.lower() not in SOURCE_SAFETY_SUFFIXES:
+    """Reject deceptive controls by surface without banning legitimate international prose."""
+    suffix = path.suffix.lower()
+    if suffix not in SOURCE_SAFETY_SUFFIXES:
         return []
+    unsafe = (
+        BIDI_CONTROL_CODEPOINTS
+        if suffix in PROSE_SOURCE_SUFFIXES
+        else UNSAFE_SOURCE_CODEPOINTS
+    )
     findings: list[str] = []
     for index, character in enumerate(read_text(path)):
         codepoint = ord(character)
-        if codepoint in UNSAFE_SOURCE_CODEPOINTS:
+        if codepoint in unsafe:
+            if suffix in PROSE_SOURCE_SUFFIXES:
+                remediation = (
+                    "remove the bidirectional control or spell out its Unicode code point "
+                    "(for example, U+202E) instead of embedding it literally"
+                )
+            else:
+                remediation = (
+                    "remove or escape the invisible/control character; do not rely on "
+                    "visually hidden formatting in code or configuration"
+                )
             findings.append(
-                f"{path.as_posix()}: U+{codepoint:04X} {unicodedata.name(character, 'UNNAMED')} at character {index}"
+                f"{path.as_posix()}: U+{codepoint:04X} "
+                f"{unicodedata.name(character, 'UNNAMED')} at character {index}; {remediation}"
             )
     return findings
 

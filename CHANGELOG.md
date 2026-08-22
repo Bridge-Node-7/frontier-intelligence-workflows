@@ -6,6 +6,28 @@ Notable public changes to Frontier Intelligence Workflows are recorded here.
 
 _No unreleased changes._
 
+## [0.5.1] - 2026-08-22
+
+### Fixed
+
+- split source-text safety by surface so legitimate Markdown prose can contain ZWNJ/ZWJ and a UTF-8 BOM while selected high-risk bidirectional controls remain rejected
+- made source-text-safety findings include an actionable remediation
+- clarified how historical v0.4.x `PASS` artifacts should be preserved and re-evaluated under the v0.5.x status contract
+
+### Changed
+
+- aligned the Frontier Claim Experience hero with FIW's Decision-Ready Intelligence positioning
+- strengthened the signature provenance reveal around `3 cited reports ≠ 3 independent confirmations`
+- made the decision boundary, next-evidence state, and human-owned Decision Receipt more visually explicit
+- added a restrained, offline Bridge Node 7 commercial bridge without network calls, telemetry, or external assets
+
+### Boundaries
+
+- Unicode-confusable homoglyph detection remains intentionally non-comprehensive
+- lineage traversal remains optimized for bounded decision records rather than massive graph workloads
+- the fixed 1980 archive timestamp remains a reproducibility sentinel, not provenance time
+- cryptographic build-provenance attestation remains outside the current bounded-permissions release posture
+
 ## [0.5.0] - 2026-08-22
 
 ### Added
