@@ -1,0 +1,81 @@
+name: release
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: release
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+
+      - name: Create external evidence directories
+        run: |
+          mkdir -p "${RUNNER_TEMP}/fiw-validation" "${RUNNER_TEMP}/fiw-release"
+
+      - name: Reconcile tag and VERSION
+        if: github.ref_type == 'tag'
+        run: |
+          expected="v$(tr -d '\r\n' < VERSION)"
+          if [[ "${GITHUB_REF_NAME}" != "$expected" ]]; then
+            echo "Tag ${GITHUB_REF_NAME} does not match VERSION (${expected})."
+            exit 1
+          fi
+
+      - name: Run adversarial regression tests
+        run: >-
+          python scripts/run_tests.py
+          --root .
+          --json-output "${RUNNER_TEMP}/fiw-validation/source-test-summary.json"
+
+      - name: Check Python syntax without bytecode
+        run: python scripts/compile_sources.py --root .
+
+      - name: Validate repository
+        run: >-
+          python scripts/validate_repo.py
+          --root .
+          --json-output "${RUNNER_TEMP}/fiw-validation/validation-report.json"
+
+      - name: Build deterministic release evidence
+        run: >-
+          python scripts/build_release.py
+          --root .
+          --output-dir "${RUNNER_TEMP}/fiw-release"
+          --check
+          --commit "${GITHUB_SHA}"
+
+      - name: Confirm checks did not modify the repository
+        run: |
+          git diff --check
+          test -z "$(git status --porcelain)"
+
+      - name: Upload release evidence
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: frontier-intelligence-workflows-release-${{ github.ref_name }}-${{ github.sha }}
+          path: ${{ runner.temp }}/fiw-release/
+          if-no-files-found: error
+          retention-days: 30

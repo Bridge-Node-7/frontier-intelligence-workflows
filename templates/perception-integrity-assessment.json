@@ -1,0 +1,65 @@
+{
+  "metadata": {
+    "assessment_id": "PIA-FIW-SYN-ADOPTER",
+    "case_id": "FIW-SYN-ADOPTER",
+    "synthetic": true
+  },
+  "subject": {
+    "title": "Synthetic adopter readiness claim"
+  },
+  "decision_context": {
+    "consequence": "MODERATE",
+    "reversibility": "REVERSIBLE"
+  },
+  "claim_reference": {
+    "claim_id": "CLM-FIW-SYN-ADOPTER",
+    "claim_mode": "REPORTED_CLAIM"
+  },
+  "evidence_references": [
+    "SRC-FIW-SYN-ADOPTER-A",
+    "SRC-FIW-SYN-ADOPTER-B"
+  ],
+  "claim_mode": "REPORTED_CLAIM",
+  "source_lineage": [
+    {
+      "source_id": "SRC-FIW-SYN-ADOPTER-A",
+      "relationship": "PRIMARY",
+      "parent_id": null
+    },
+    {
+      "source_id": "SRC-FIW-SYN-ADOPTER-B",
+      "relationship": "PRIMARY",
+      "parent_id": null
+    }
+  ],
+  "observation": [
+    "The fictional record contains a declared measurement."
+  ],
+  "inference": [
+    "The fictional measurement may support a bounded human review."
+  ],
+  "assumptions": [
+    "The fictional source identifiers accurately describe independent roots."
+  ],
+  "alternative_hypotheses": [
+    "The fictional measurement may reflect a benign artifact."
+  ],
+  "salience": "MEDIUM",
+  "evidence_state": {
+    "strength": "STRONG",
+    "expires_at": "2027-12-31T23:59:59Z"
+  },
+  "decision_conditions": {
+    "stop_conditions": [
+      "Stop if either fictional source identity cannot be verified."
+    ]
+  },
+  "review_requirements": {
+    "human_review_required": true,
+    "decision_owner": "Synthetic Review Board"
+  },
+  "public_boundary": {
+    "contains_sensitive_data": false,
+    "public_release_allowed": true
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "assessment_id": "PIA-FIW-STARTER",
+    "case_id": "FIW-STARTER",
+    "synthetic": true
+  },
+  "subject": {
+    "title": "Intentionally incomplete FIW starter assessment"
+  },
+  "decision_context": {
+    "consequence": "MAJOR",
+    "reversibility": "PARTIALLY_REVERSIBLE"
+  },
+  "claim_reference": {
+    "claim_id": "CLM-FIW-STARTER",
+    "claim_mode": "REPORTED_CLAIM"
+  },
+  "evidence_references": [
+    "SRC-FIW-STARTER-A"
+  ],
+  "claim_mode": "REPORTED_CLAIM",
+  "source_lineage": [
+    {
+      "source_id": "SRC-FIW-STARTER-A",
+      "relationship": "PRIMARY",
+      "parent_id": null
+    }
+  ],
+  "observation": [
+    "One reported source is currently present in the starter record."
+  ],
+  "inference": [
+    "The current record is not yet sufficient for a consequential decision."
+  ],
+  "assumptions": [],
+  "alternative_hypotheses": [],
+  "salience": "HIGH",
+  "evidence_state": {
+    "strength": "LIMITED",
+    "expires_at": "2027-12-31T23:59:59Z"
+  },
+  "decision_conditions": {
+    "stop_conditions": []
+  },
+  "review_requirements": {
+    "human_review_required": true,
+    "decision_owner": "UNASSIGNED"
+  },
+  "public_boundary": {
+    "contains_sensitive_data": false,
+    "public_release_allowed": true
+  }
+}

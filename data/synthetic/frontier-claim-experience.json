@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "case_id": "FIW-FCE-SYN-001",
+  "synthetic": true,
+  "public_safe": true,
+  "decision": {
+    "question": "Can we responsibly depend on Supplier A for Component X?",
+    "consequence": "Schedule and integration exposure",
+    "reversibility": "PARTIALLY_REVERSIBLE",
+    "owner": "Synthetic Program Review Board"
+  },
+  "claim": {
+    "id": "CLM-FIW-FCE-SYN-001",
+    "text": "Supplier A is production-ready for Component X.",
+    "mode": "REPORTED_CLAIM"
+  },
+  "sources": [
+    {
+      "id": "RPT-A",
+      "label": "Supplier briefing",
+      "relationship": "DERIVED_FROM",
+      "parent_id": "ROOT-1"
+    },
+    {
+      "id": "RPT-B",
+      "label": "Industry summary",
+      "relationship": "REPUBLICATION_OF",
+      "parent_id": "RPT-A"
+    },
+    {
+      "id": "RPT-C",
+      "label": "Analyst note",
+      "relationship": "DERIVED_FROM",
+      "parent_id": "RPT-A"
+    },
+    {
+      "id": "ROOT-1",
+      "label": "Supplier-origin statement",
+      "relationship": "PRIMARY",
+      "parent_id": null
+    }
+  ],
+  "lineage_result": {
+    "cited_reports": 3,
+    "provenance_roots": 1,
+    "independent_corroboration": "NOT_ESTABLISHED"
+  },
+  "evidence": {
+    "support": "Three reports repeat a production-readiness statement associated with Supplier A.",
+    "challenge": "No independent lot-level qualification record is present in the synthetic evidence set."
+  },
+  "critical_unknown": {
+    "type": "MISSING_EVIDENCE",
+    "text": "Whether independent production qualification under intended-use conditions has been completed.",
+    "currently_resolvable": true
+  },
+  "next_evidence": {
+    "text": "Independent lot-level qualification evidence under intended-use conditions.",
+    "why": [
+      "decision relevance",
+      "discrimination ability",
+      "reversibility",
+      "decision-state impact"
+    ]
+  },
+  "truth_boundary": "This artifact does not certify truth, supplier qualification, production readiness, deployment authority, or investment merit. Human judgment is final."
+}
