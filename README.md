@@ -45,6 +45,12 @@ FIW deliberately uses two different status vocabularies:
 
 See [Status Semantics](docs/assurance/STATUS_SEMANTICS.md).
 
+### Upgrading from v0.4.x
+
+- Treat existing v0.4.x assessment artifacts as **historical evidence under the contract that produced them**. Do not silently rewrite `validation_status: "PASS"` to `NO_FINDINGS`.
+- When a current assessment is required, preserve the original artifact and re-run the source assessment under v0.5.x so the new result has its own version, digest, and evaluation time.
+- For modified working copies, do not overwrite local changes in place. Preserve the modifications, start from the tagged v0.5.x release, reapply the changes deliberately, and run the complete repository gate before relying on the updated tree.
+
 ## Decision Contexts
 
 FIW applies the same evidence discipline to different consequential decision contexts:
@@ -198,6 +204,6 @@ Published by [Bridge Node 7](https://bridgenode7.com/).
 
 ## Release
 
-**v0.5.0 — Decision-Ready Intelligence**
+**v0.5.1 — Decision-Ready Intelligence**
 
-This release hardens FIW's trust semantics, adds explicit `NOT_RUN` repository-control state, strengthens adversarial validation, introduces the FIW Decision Record v0.5 and FIW-SYN-005 Frontier Technology Diligence, and preserves the public-boundary and accountable-human-authority model.
+This patch preserves the v0.5 Decision-Ready Intelligence contract while closing the Markdown internationalization defect, clarifying v0.4.x artifact migration, and refining the Frontier Claim Experience into a calmer, more legible decision journey.

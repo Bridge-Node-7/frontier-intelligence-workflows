@@ -1,6 +1,6 @@
 # Limitations
 
-Current release: `0.5.0`.
+Current release: `0.5.1`.
 
 Frontier Intelligence Workflows is an evidence and integrity framework, not a universal verification system.
 
@@ -22,7 +22,7 @@ Repository and release controls use `PASS`, `FAIL`, and `NOT_RUN`. A `PASS` mean
 - exact release-version markers
 - selected common credential patterns
 - local user paths
-- selected deceptive Unicode controls on public code, configuration, and Markdown surfaces
+- selected deceptive Unicode controls by surface: high-risk bidirectional controls on code/configuration/Markdown, with additional invisible-formatting controls on code/configuration
 - workflow pinning and permissions
 - synthetic example traceability
 - manifest integrity
@@ -54,6 +54,8 @@ Source quality, method, scope, contradictory evidence, independence, and reprodu
 ## Scanner Limitation
 
 The repository scanner covers selected high-signal credential and source-deception patterns. It is not a complete data-loss-prevention, malware-detection, or Unicode-confusables system. Compatibility normalization does not comprehensively identify visually confusable homoglyphs.
+
+Markdown source-text safety deliberately allows ordinary international prose formatting such as ZWNJ/ZWJ and a UTF-8 BOM while continuing to reject the selected high-risk bidirectional controls. Code and configuration surfaces remain stricter.
 
 ## Scale Limitation
 

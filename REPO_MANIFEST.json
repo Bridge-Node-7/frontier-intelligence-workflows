@@ -28,8 +28,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "6c4f4330fdaed662dc839c6cc18428b8dc282b043188325dc0ec66622b9080e0",
-      "size_bytes": 4398
+      "sha256": "ed399942f5323ffb60078b8aaf675c21bfe3ec97373c814c5f50288d4bdc7c43",
+      "size_bytes": 5630
     },
     {
       "path": "LICENSE",
@@ -38,8 +38,8 @@
     },
     {
       "path": "LIMITATIONS.md",
-      "sha256": "0070fe4f8ddec0f76883f269b3a35748560c762c4108d175428a2e31d642e8ba",
-      "size_bytes": 3420
+      "sha256": "3ffa797610d6dc3fb3ec631bb25c1819c40dd5916d70b924bfac599c7feae716",
+      "size_bytes": 3757
     },
     {
       "path": "NOTICE.md",
@@ -48,12 +48,12 @@
     },
     {
       "path": "README.md",
-      "sha256": "ac0ed2053dd23d8ff57b8ab1b8b0e38768594017ea7f8fc94ba0e46b6900f030",
-      "size_bytes": 9291
+      "sha256": "d1c8ba90ce8b30cd3591495be3724fd44e4a1bc5b942b328454800d630b65e89",
+      "size_bytes": 9891
     },
     {
       "path": "REPO_FILE_POLICY.json",
-      "sha256": "9168c3b69a887e7fb33e084250f112feca81841a5d584bf362c2d9c1c9d0ccff",
+      "sha256": "63b625bd81c76ab63ba42c9d80ac27ec8aeec28b1a0337988638b40bb45f6ddd",
       "size_bytes": 5571
     },
     {
@@ -63,7 +63,7 @@
     },
     {
       "path": "VERSION",
-      "sha256": "a0ad50640139a524f86591157145bf1d4674ea9c065bfea21558f0f7b04430c8",
+      "sha256": "aba951626c8690ce493cbc8f018205bb468003f61fbf00fd3d3c71cebabc0177",
       "size_bytes": 6
     },
     {
@@ -88,17 +88,17 @@
     },
     {
       "path": "docs/assurance/SECURITY_TESTS.md",
-      "sha256": "3bb5e02dedc9e5ed6974e61265c35153099b29e629eb053c4412bfc37ae85ca8",
-      "size_bytes": 1193
+      "sha256": "5b1254bbdc6f2aa1b85180e709ca40a41172e0626f08e7d2bd6208527357866b",
+      "size_bytes": 1261
     },
     {
       "path": "docs/assurance/STATUS_SEMANTICS.md",
-      "sha256": "13a03bc3737dd7cbc19d4696c0daac25ef407767e5a4b141c2fccfc858fdb9a8",
-      "size_bytes": 1494
+      "sha256": "77f46d3bdf5b436573e55df2d6c3014cb010b7d70bacc20390581895ea05aca1",
+      "size_bytes": 1956
     },
     {
       "path": "docs/assurance/TESTING.md",
-      "sha256": "8e4c7def73a8d2cabb695c23bb16c2b9282957e47ea603c241b17f76ffaf54cb",
+      "sha256": "455076ad2e500adfa1864ca816b89bb6298748504d1e895061e1c003eb3cbfef",
       "size_bytes": 1635
     },
     {
@@ -138,13 +138,13 @@
     },
     {
       "path": "examples/frontier-claim-experience/README.md",
-      "sha256": "f8b357bfb9fab7594871b607e8b9c348b38aaa3ea663952df8cbc35a01353170",
-      "size_bytes": 1614
+      "sha256": "a9a0e958b4b2ab87d591b01eaff0c933d2597bc0954a390256ec592e89da50ca",
+      "size_bytes": 2296
     },
     {
       "path": "examples/frontier-claim-experience/index.html",
-      "sha256": "5b76f29bd91e833c4d8defc1d1250ff8cfb3f44a912ce54b765c26dd119f6710",
-      "size_bytes": 31424
+      "sha256": "405d074cffcde1c53438959c04bad61ec12350da311d3716c8dab97bb942b33b",
+      "size_bytes": 34043
     },
     {
       "path": "examples/frontier-technology-diligence/README.md",
@@ -313,7 +313,7 @@
     },
     {
       "path": "scripts/release_common.py",
-      "sha256": "ec9039a1c0104566b9d988c65644ab8a71a65add90449cf8ebce599a2b627e9f",
+      "sha256": "a6d5fa84efe54825b0ff0f638cf6ebec7ecefa7e0c498ee5ff87430219aba2f4",
       "size_bytes": 22236
     },
     {
@@ -328,8 +328,8 @@
     },
     {
       "path": "scripts/validate_repo.py",
-      "sha256": "73a4a312e911dfc5c3e48b1c14318664308f9ab3bd32daa5c499a06043866ab0",
-      "size_bytes": 34777
+      "sha256": "0884c02e0880fcc0108dfa2036e0a511b604946455376e265ca2d3d4ca398c1f",
+      "size_bytes": 36024
     },
     {
       "path": "templates/ai-governance-gate.md",
@@ -373,8 +373,8 @@
     },
     {
       "path": "tests/test_frontier_claim_experience.py",
-      "sha256": "cb27088bbe57705a35b2fae24c6ae02d3470108ea539da84c46d2f197debba83",
-      "size_bytes": 9508
+      "sha256": "9106dbefdd1d20017cf7fa64b5f828e49ec0ef26ff65ade1bf52828abea2fbff",
+      "size_bytes": 10989
     },
     {
       "path": "tests/test_frontier_technology_diligence.py",
@@ -393,12 +393,12 @@
     },
     {
       "path": "tests/test_v050_hardening.py",
-      "sha256": "72ce2385b3c903984ec34b117b0e5ada679250f2a5617644b881897ed91b9aab",
-      "size_bytes": 9443
+      "sha256": "2c4cf46ce7307c924ad3db571371942de107d63c47d65e0cc06c8fc213d98a83",
+      "size_bytes": 10949
     }
   ],
   "generated_at_utc": "1980-01-01T00:00:00Z",
   "project": "Frontier Intelligence Workflows",
   "schema_version": "1.0",
-  "version": "0.5.0"
+  "version": "0.5.1"
 }

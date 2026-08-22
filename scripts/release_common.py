@@ -16,7 +16,7 @@ from pathlib import Path
 from typing import Any, Iterable
 
 PROJECT = "Frontier Intelligence Workflows"
-EXPECTED_VERSION = "0.5.0"
+EXPECTED_VERSION = "0.5.1"
 MANIFEST_FILES = {"REPO_MANIFEST.json", "MANIFEST.sha256"}
 GENERATED_ROOT_FILES: set[str] = set()
 DEFAULT_EXCLUDED_DIRS = {".git"}

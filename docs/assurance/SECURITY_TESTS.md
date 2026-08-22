@@ -13,7 +13,8 @@ Coverage includes:
 - selected common credential patterns, including bounded bearer/basic-auth forms
 - path-scoped synthetic secret-fixture handling
 - local user paths
-- selected Trojan Source / invisible Unicode controls on code and configuration surfaces
+- high-risk bidirectional controls on code, configuration, and Markdown surfaces
+- selected invisible-formatting controls on code and configuration surfaces
 - broken repository links using portable path semantics
 - exact release-version markers
 - synthetic traceability
