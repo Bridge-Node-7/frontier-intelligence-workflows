@@ -1,0 +1,1 @@
+Administrative closeout marker. This branch exists only to attach GitHub recent-push state to an explicit pull request before self-deletion.
