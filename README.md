@@ -69,7 +69,9 @@ Source independence remains analyst-established. FIW validates declared lineage 
 
 Keep nonpublic working evidence outside this public repository.
 
-Start from the intentionally incomplete teaching template:
+Start from the intentionally incomplete teaching template using the shell you already have.
+
+### macOS, Linux, or Git Bash
 
 ```bash
 mkdir -p ../fiw-work ../fiw-results
@@ -79,6 +81,20 @@ python scripts/run_perception_integrity.py \
   --root . \
   --assessment ../fiw-work/assessment.json \
   --evaluated-at "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+  --json-output ../fiw-results/validation.json
+```
+
+### Windows PowerShell
+
+```powershell
+New-Item -ItemType Directory -Force ../fiw-work, ../fiw-results | Out-Null
+Copy-Item templates/perception-integrity-starter.json ../fiw-work/assessment.json
+$evaluatedAt = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+
+python scripts/run_perception_integrity.py `
+  --root . `
+  --assessment ../fiw-work/assessment.json `
+  --evaluated-at $evaluatedAt `
   --json-output ../fiw-results/validation.json
 ```
 
