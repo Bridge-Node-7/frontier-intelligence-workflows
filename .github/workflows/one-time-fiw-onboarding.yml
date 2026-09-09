@@ -1,0 +1,54 @@
+name: One-time FIW cross-platform onboarding
+
+on:
+  push:
+    branches:
+      - corrective/fiw-cross-platform-final
+
+permissions:
+  contents: write
+
+jobs:
+  update-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Apply bounded onboarding correction
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('README.md')
+          text = path.read_text(encoding='utf-8')
+          old = '''Start from the intentionally incomplete teaching template:\n\n```bash\nmkdir -p ../fiw-work ../fiw-results\ncp templates/perception-integrity-starter.json ../fiw-work/assessment.json\n\npython scripts/run_perception_integrity.py \\\n  --root . \\\n  --assessment ../fiw-work/assessment.json \\\n  --evaluated-at "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \\\n  --json-output ../fiw-results/validation.json\n```\n'''
+          new = '''Start from the intentionally incomplete teaching template using the shell you already have.\n\n### macOS, Linux, or Git Bash\n\n```bash\nmkdir -p ../fiw-work ../fiw-results\ncp templates/perception-integrity-starter.json ../fiw-work/assessment.json\n\npython scripts/run_perception_integrity.py \\\n  --root . \\\n  --assessment ../fiw-work/assessment.json \\\n  --evaluated-at "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \\\n  --json-output ../fiw-results/validation.json\n```\n\n### Windows PowerShell\n\n```powershell\nNew-Item -ItemType Directory -Force ../fiw-work, ../fiw-results | Out-Null\nCopy-Item templates/perception-integrity-starter.json ../fiw-work/assessment.json\n$evaluatedAt = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")\n\npython scripts/run_perception_integrity.py `\n  --root . `\n  --assessment ../fiw-work/assessment.json `\n  --evaluated-at $evaluatedAt `\n  --json-output ../fiw-results/validation.json\n```\n'''
+          if old not in text:
+              raise SystemExit('expected onboarding block not found; refusing broad edit')
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
+
+      - name: Remove one-time operator before manifest refresh
+        run: rm .github/workflows/one-time-fiw-onboarding.yml
+
+      - name: Refresh governed release metadata
+        run: python scripts/refresh_release_metadata.py --root .
+
+      - name: Re-run repository validation
+        run: |
+          python scripts/compile_sources.py --root .
+          python scripts/run_tests.py --root .
+          python scripts/validate_repo.py --root .
+          sha256sum -c MANIFEST.sha256
+          git diff --check
+
+      - name: Commit validated correction
+        run: |
+          git config user.name "Bridge Node 7"
+          git config user.email "291729790+Bridge-Node-7@users.noreply.github.com"
+          git add README.md REPO_MANIFEST.json MANIFEST.sha256 .github/workflows/one-time-fiw-onboarding.yml
+          git commit -m "docs: make FIW onboarding cross-platform"
+          git push origin HEAD:corrective/fiw-cross-platform-final
