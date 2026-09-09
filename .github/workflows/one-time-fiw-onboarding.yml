@@ -31,8 +31,12 @@ jobs:
           path.write_text(text.replace(old, new, 1), encoding='utf-8')
           PY
 
-      - name: Remove one-time operator before manifest refresh
-        run: rm .github/workflows/one-time-fiw-onboarding.yml
+      - name: Commit one-time operator removal before manifest refresh
+        run: |
+          git config user.name "Bridge Node 7"
+          git config user.email "291729790+Bridge-Node-7@users.noreply.github.com"
+          git rm .github/workflows/one-time-fiw-onboarding.yml
+          git commit -m "chore: remove one-time FIW operator before validation" -- .github/workflows/one-time-fiw-onboarding.yml
 
       - name: Refresh governed release metadata
         run: python scripts/refresh_release_metadata.py --root .
@@ -47,8 +51,6 @@ jobs:
 
       - name: Commit validated correction
         run: |
-          git config user.name "Bridge Node 7"
-          git config user.email "291729790+Bridge-Node-7@users.noreply.github.com"
-          git add README.md REPO_MANIFEST.json MANIFEST.sha256 .github/workflows/one-time-fiw-onboarding.yml
+          git add README.md REPO_MANIFEST.json MANIFEST.sha256
           git commit -m "docs: make FIW onboarding cross-platform"
           git push origin HEAD:corrective/fiw-cross-platform-final
