@@ -1,0 +1,136 @@
+{
+  "genealogy": {
+    "declared_independent_root_count": 2,
+    "edges": [
+      {
+        "from": "SYN-SRC-A",
+        "relationship": "SUMMARY",
+        "to": "SYN-SRC-C"
+      }
+    ],
+    "nodes": [
+      "SYN-SRC-A",
+      "SYN-SRC-B",
+      "SYN-SRC-C"
+    ],
+    "roots": [
+      "SYN-SRC-A",
+      "SYN-SRC-B"
+    ]
+  },
+  "hypotheses": [
+    {
+      "evidence_references": [
+        "SYN-EV-A",
+        "SYN-EV-B"
+      ],
+      "evidence_weight": "EVIDENCE_LINKED",
+      "hypothesis_id": "SYN-H1",
+      "origin": "HUMAN",
+      "statement": "The architecture reaches the scaling milestone in the stated window."
+    },
+    {
+      "evidence_references": [
+        "SYN-EV-C"
+      ],
+      "evidence_weight": "EVIDENCE_LINKED",
+      "hypothesis_id": "SYN-H0",
+      "origin": "HUMAN",
+      "statement": "The architecture does not reach the milestone in the stated window because integration constraints dominate."
+    },
+    {
+      "evidence_references": [],
+      "evidence_weight": "NONE_UNTIL_EVIDENCED",
+      "hypothesis_id": "SYN-H2",
+      "origin": "CREATIVE_PSIONICS",
+      "statement": "A different subsystem becomes the limiting factor before the advertised scaling limit."
+    }
+  ],
+  "metadata": {
+    "rg_case_id": "RG-SYN-002",
+    "subject": "Fictional frontier photonic interconnect scaling claim",
+    "synthetic": true,
+    "version": "0.1.0"
+  },
+  "pi_reference": {
+    "assessment_id": "PIA-RG-SYN-002",
+    "validation_path": "profiles/radiant-guardian/examples/RG-SYN-002/PIA-RG-SYN-002.validation.json",
+    "validation_sha256": "11bd84c24a7d3420751ca5e2cdfd28de243ddd93e85293fff6d5b43ccc0eba87"
+  },
+  "predictions": [
+    {
+      "ambiguous_criteria": [
+        "A demonstration is announced but measurement conditions are not inspectable."
+      ],
+      "failure_criteria": [
+        "The window closes without a qualifying demonstration."
+      ],
+      "frozen_at": "2026-09-01T22:00:00Z",
+      "prediction_id": "SYN-PRED-01",
+      "statement": "A qualifying public demonstration reaches milestone M by the end of the observation window.",
+      "status": "OPEN",
+      "success_criteria": [
+        "A public demonstration reports milestone M with inspectable measurement conditions.",
+        "At least one independent source can reproduce or validate the measurement."
+      ],
+      "unresolved_criteria": [
+        "The program ceases public reporting before resolution."
+      ],
+      "window_end": "2027-09-01T23:59:59Z",
+      "window_start": "2026-09-02T00:00:00Z"
+    }
+  ],
+  "proof_loop": {
+    "action_reference": null,
+    "active": false,
+    "decision_reference": null,
+    "learning_recorded": false,
+    "outcome_state": "NOT_APPLICABLE",
+    "reassessment_trigger": null
+  },
+  "reasoning_patterns": [
+    {
+      "bridge_evidence_references": [
+        "SYN-EV-A"
+      ],
+      "claim_reference": "SYN-CLAIM-01",
+      "discriminating_test_ids": [
+        "SYN-TEST-01"
+      ],
+      "pattern": "SOURCE_DEPENDENCY",
+      "rationale": "One summary is derivative of root A and is not counted as independent corroboration."
+    }
+  ],
+  "review": {
+    "human_review_required": true,
+    "owner": "Synthetic accountable reviewer",
+    "public_release_allowed": true
+  },
+  "signal": {
+    "asserted_as_fact": false,
+    "category": "EMERGING",
+    "mode": "REPORTED_CLAIM",
+    "novelty": "MEDIUM",
+    "observability": "DOCUMENTARY",
+    "requires_independent_corroboration": true,
+    "statement": "Two independently rooted public reports indicate a fictional photonic interconnect architecture may reach a defined scaling milestone within twelve months."
+  },
+  "tests": [
+    {
+      "decision_rule": "Prefer the hypothesis whose pre-registered predictions best match the measured outcomes; preserve unresolved status if evidence is unavailable.",
+      "discriminating_evidence": [
+        "Pre-registered milestone measurements across repeated integration runs.",
+        "Independent reproduction or validation."
+      ],
+      "hypothesis_ids": [
+        "SYN-H1",
+        "SYN-H0",
+        "SYN-H2"
+      ],
+      "observable_outcome": "Measured milestone attainment and failure-mode distribution by the end of the window.",
+      "question": "Which scaling hypothesis better predicts measured integration performance?",
+      "test_id": "SYN-TEST-01"
+    }
+  ],
+  "update_receipts": []
+}

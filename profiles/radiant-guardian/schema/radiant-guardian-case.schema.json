@@ -1,0 +1,53 @@
+{
+  "$id": "urn:bridgenode7:fiw:radiant-guardian:case:0.1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FIW Radiant Guardian Case",
+  "description": "A declared frontier-signal integrity companion record. It does not determine truth or authorize action.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["metadata", "pi_reference", "signal", "genealogy", "hypotheses", "reasoning_patterns", "predictions", "tests", "update_receipts", "proof_loop", "review"],
+  "properties": {
+    "metadata": {"type": "object", "additionalProperties": false, "required": ["rg_case_id", "version", "synthetic", "subject"], "properties": {
+      "rg_case_id": {"type": "string", "minLength": 1}, "version": {"type": "string", "minLength": 1}, "synthetic": {"type": "boolean"}, "subject": {"type": "string", "minLength": 1}
+    }},
+    "pi_reference": {"type": "object", "additionalProperties": false, "required": ["assessment_id", "validation_path", "validation_sha256"], "properties": {
+      "assessment_id": {"type": "string", "minLength": 1}, "validation_path": {"type": "string", "minLength": 1}, "validation_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+    }},
+    "signal": {"type": "object", "additionalProperties": false, "required": ["mode", "statement", "category", "novelty", "observability", "asserted_as_fact", "requires_independent_corroboration"], "properties": {
+      "mode": {"enum": ["DIRECT_OBSERVATION", "REPORTED_CLAIM", "INFERENCE", "INTERPRETATION", "FORECAST"]},
+      "statement": {"type": "string", "minLength": 1}, "category": {"enum": ["ROUTINE", "EMERGING", "CONTESTED", "ANOMALOUS"]},
+      "novelty": {"enum": ["LOW", "MEDIUM", "HIGH"]}, "observability": {"enum": ["DIRECT", "INSTRUMENTED", "DOCUMENTARY", "TESTIMONIAL", "MIXED", "UNKNOWN"]},
+      "asserted_as_fact": {"type": "boolean"}, "requires_independent_corroboration": {"type": "boolean"}
+    }},
+    "genealogy": {"type": "object", "additionalProperties": false, "required": ["roots", "nodes", "edges", "declared_independent_root_count"], "properties": {
+      "roots": {"type": "array", "items": {"type": "string", "minLength": 1}}, "nodes": {"type": "array", "items": {"type": "string", "minLength": 1}},
+      "edges": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["from", "to", "relationship"], "properties": {"from": {"type": "string"}, "to": {"type": "string"}, "relationship": {"enum": ["REPUBLICATION", "SUMMARY", "COMMENTARY", "TRANSLATION", "PRESS_REPORT", "AI_DERIVATION", "UNKNOWN"]}}},
+      "declared_independent_root_count": {"type": "integer", "minimum": 0}
+    }},
+    "hypotheses": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["hypothesis_id", "statement", "origin", "evidence_weight", "evidence_references"], "properties": {
+      "hypothesis_id": {"type": "string"}, "statement": {"type": "string"}, "origin": {"enum": ["HUMAN", "SOURCE_DERIVED", "AI_ASSISTED", "CREATIVE_PSIONICS"]},
+      "evidence_weight": {"enum": ["NONE_UNTIL_EVIDENCED", "EVIDENCE_LINKED"]}, "evidence_references": {"type": "array", "items": {"type": "string"}}
+    }}},
+    "reasoning_patterns": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["pattern", "claim_reference", "rationale", "bridge_evidence_references", "discriminating_test_ids"], "properties": {
+      "pattern": {"enum": ["REAL_ANCHOR_EXTRAORDINARY_EXTENSION", "SELF_SEALING_RISK", "ARGUMENT_FROM_SECRECY", "SOURCE_DEPENDENCY", "PREDICTION_DRIFT_RISK", "UNFALSIFIABLE_OR_UNDERDEFINED"]},
+      "claim_reference": {"type": "string"}, "rationale": {"type": "string"}, "bridge_evidence_references": {"type": "array", "items": {"type": "string"}}, "discriminating_test_ids": {"type": "array", "items": {"type": "string"}}
+    }}},
+    "predictions": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["prediction_id", "statement", "frozen_at", "window_start", "window_end", "success_criteria", "failure_criteria", "ambiguous_criteria", "unresolved_criteria", "status"], "properties": {
+      "prediction_id": {"type": "string"}, "statement": {"type": "string"}, "frozen_at": {"type": "string"}, "window_start": {"type": "string"}, "window_end": {"type": "string"},
+      "success_criteria": {"type": "array", "items": {"type": "string"}}, "failure_criteria": {"type": "array", "items": {"type": "string"}}, "ambiguous_criteria": {"type": "array", "items": {"type": "string"}}, "unresolved_criteria": {"type": "array", "items": {"type": "string"}},
+      "status": {"enum": ["OPEN", "SUPPORTED", "FAILED", "AMBIGUOUS", "UNRESOLVED", "WITHDRAWN_WITH_RECEIPT"]}
+    }}},
+    "tests": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["test_id", "question", "hypothesis_ids", "discriminating_evidence", "observable_outcome", "decision_rule"], "properties": {
+      "test_id": {"type": "string"}, "question": {"type": "string"}, "hypothesis_ids": {"type": "array", "items": {"type": "string"}}, "discriminating_evidence": {"type": "array", "items": {"type": "string"}}, "observable_outcome": {"type": "string"}, "decision_rule": {"type": "string"}
+    }}},
+    "update_receipts": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["receipt_id", "previous_state", "new_state", "evidence_delta", "rationale", "reviewer", "updated_at", "reversal_trigger"], "properties": {
+      "receipt_id": {"type": "string"}, "previous_state": {"type": "string"}, "new_state": {"type": "string"}, "evidence_delta": {"type": "array", "items": {"type": "string"}}, "rationale": {"type": "string"}, "reviewer": {"type": "string"}, "updated_at": {"type": "string"}, "reversal_trigger": {"type": "string"}
+    }}},
+    "proof_loop": {"type": "object", "additionalProperties": false, "required": ["active", "decision_reference", "action_reference", "outcome_state", "learning_recorded", "reassessment_trigger"], "properties": {
+      "active": {"type": "boolean"}, "decision_reference": {"type": ["string", "null"]}, "action_reference": {"type": ["string", "null"]}, "outcome_state": {"enum": ["NOT_APPLICABLE", "PENDING", "OBSERVED", "UNKNOWN"]}, "learning_recorded": {"type": "boolean"}, "reassessment_trigger": {"type": ["string", "null"]}
+    }},
+    "review": {"type": "object", "additionalProperties": false, "required": ["human_review_required", "owner", "public_release_allowed"], "properties": {
+      "human_review_required": {"const": true}, "owner": {"type": "string", "minLength": 1}, "public_release_allowed": {"type": "boolean"}
+    }}
+  }
+}

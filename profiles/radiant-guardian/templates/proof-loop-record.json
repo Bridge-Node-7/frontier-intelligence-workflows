@@ -1,0 +1,16 @@
+{
+  "proof_loop_id": "RG-PL-001",
+  "case_id": "RG-WORK-001",
+  "decision_reference": null,
+  "action_reference": null,
+  "expected_indicators": [],
+  "disconfirming_indicators": [],
+  "observation_window": null,
+  "outcome_state": "PENDING",
+  "evidence_added_after_decision": [],
+  "prediction_resolutions": [],
+  "strategic_surprise": null,
+  "method_lesson": null,
+  "reassessment_trigger": "Define before consequential action",
+  "reviewer": "Named accountable human"
+}
