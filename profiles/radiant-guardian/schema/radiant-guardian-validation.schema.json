@@ -1,0 +1,16 @@
+{
+  "$id": "urn:bridgenode7:fiw:radiant-guardian:validation:0.1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FIW Radiant Guardian Validation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["rg_case_id", "case_path", "case_sha256", "evaluated_at", "profile_version", "ruleset_version", "validator_version", "upstream_pi", "findings", "validation_status", "recommendation", "human_decision_required"],
+  "properties": {
+    "rg_case_id": {"type": "string"}, "case_path": {"type": "string"}, "case_sha256": {"type": "string"}, "evaluated_at": {"type": "string"},
+    "profile_version": {"type": "string"}, "ruleset_version": {"type": "string"}, "validator_version": {"type": "string"},
+    "upstream_pi": {"type": "object"}, "findings": {"type": "array"},
+    "validation_status": {"enum": ["NO_RG_FINDINGS", "RG_REVIEW_REQUIRED"]},
+    "recommendation": {"enum": ["READY_FOR_HUMAN_REVIEW", "REQUIRE_CORROBORATION", "REQUIRE_DISCRIMINATING_EVIDENCE", "REVISE_PREDICTION", "REASSESS_BEFORE_ACTION", "DO_NOT_RELEASE_PUBLICLY"]},
+    "human_decision_required": {"const": true}
+  }
+}

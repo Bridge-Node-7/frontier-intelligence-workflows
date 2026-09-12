@@ -1,0 +1,127 @@
+{
+  "genealogy": {
+    "declared_independent_root_count": 1,
+    "edges": [
+      {
+        "from": "SYN-SRC-ROOT",
+        "relationship": "SUMMARY",
+        "to": "SYN-SRC-DERIVATIVE"
+      }
+    ],
+    "nodes": [
+      "SYN-SRC-ROOT",
+      "SYN-SRC-DERIVATIVE"
+    ],
+    "roots": [
+      "SYN-SRC-ROOT"
+    ]
+  },
+  "hypotheses": [
+    {
+      "evidence_references": [],
+      "evidence_weight": "NONE_UNTIL_EVIDENCED",
+      "hypothesis_id": "SYN-H1",
+      "origin": "SOURCE_DERIVED",
+      "statement": "The fictional extraordinary capability exists as reported."
+    },
+    {
+      "evidence_references": [],
+      "evidence_weight": "NONE_UNTIL_EVIDENCED",
+      "hypothesis_id": "SYN-H0",
+      "origin": "HUMAN",
+      "statement": "The repeated reports are derivative and do not establish the capability."
+    },
+    {
+      "evidence_references": [],
+      "evidence_weight": "NONE_UNTIL_EVIDENCED",
+      "hypothesis_id": "SYN-H2",
+      "origin": "CREATIVE_PSIONICS",
+      "statement": "An alternative mechanism could explain the reported observations, but it has no evidentiary weight until independently evidenced."
+    }
+  ],
+  "metadata": {
+    "rg_case_id": "RG-SYN-001",
+    "subject": "Synthetic contested narrative with derivative corroboration",
+    "synthetic": true,
+    "version": "0.1.0"
+  },
+  "pi_reference": {
+    "assessment_id": "PIA-RG-SYN-001",
+    "validation_path": "profiles/radiant-guardian/examples/RG-SYN-001/PIA-RG-SYN-001.validation.json",
+    "validation_sha256": "d4939e4ee6452d4857bcb0bf3b4bf2fa36cb65261f54c914915139d29f6537d9"
+  },
+  "predictions": [
+    {
+      "ambiguous_criteria": [
+        "A demonstration is announced but its conditions are not inspectable."
+      ],
+      "failure_criteria": [
+        "The observation window closes without qualifying independently inspectable evidence."
+      ],
+      "frozen_at": "2026-09-11T20:00:00Z",
+      "prediction_id": "SYN-PRED-01",
+      "statement": "A qualifying synthetic demonstration will be documented before the observation window closes.",
+      "status": "OPEN",
+      "success_criteria": [
+        "A reproducible demonstration is documented under inspectable conditions.",
+        "At least one independent source validates the result."
+      ],
+      "unresolved_criteria": [
+        "Evidence remains unavailable or too incomplete to distinguish success from failure."
+      ],
+      "window_end": "2027-09-11T23:59:59Z",
+      "window_start": "2026-09-12T00:00:00Z"
+    }
+  ],
+  "proof_loop": {
+    "action_reference": null,
+    "active": false,
+    "decision_reference": null,
+    "learning_recorded": false,
+    "outcome_state": "NOT_APPLICABLE",
+    "reassessment_trigger": null
+  },
+  "reasoning_patterns": [
+    {
+      "bridge_evidence_references": [],
+      "claim_reference": "SYN-CLAIM-01",
+      "discriminating_test_ids": [
+        "SYN-TEST-01"
+      ],
+      "pattern": "REAL_ANCHOR_EXTRAORDINARY_EXTENSION",
+      "rationale": "A mundane synthetic anchor is extended into an extraordinary conclusion without bridge evidence."
+    }
+  ],
+  "review": {
+    "human_review_required": true,
+    "owner": "Synthetic accountable reviewer",
+    "public_release_allowed": true
+  },
+  "signal": {
+    "asserted_as_fact": false,
+    "category": "CONTESTED",
+    "mode": "REPORTED_CLAIM",
+    "novelty": "HIGH",
+    "observability": "DOCUMENTARY",
+    "requires_independent_corroboration": true,
+    "statement": "Several fictional reports repeat an extraordinary capability claim, but all trace to one synthetic source root."
+  },
+  "tests": [
+    {
+      "decision_rule": "Increase support for SYN-H1 only if independent, provenance-preserving evidence demonstrates the capability; otherwise preserve alternatives.",
+      "discriminating_evidence": [
+        "A reproducible synthetic demonstration with inspectable conditions.",
+        "Independent evidence not derived from SYN-SRC-ROOT."
+      ],
+      "hypothesis_ids": [
+        "SYN-H1",
+        "SYN-H0",
+        "SYN-H2"
+      ],
+      "observable_outcome": "Independent evidence either demonstrates the claimed capability or fails to do so under defined criteria.",
+      "question": "Does independent evidence distinguish the extraordinary capability claim from derivative repetition?",
+      "test_id": "SYN-TEST-01"
+    }
+  ],
+  "update_receipts": []
+}

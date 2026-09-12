@@ -1,0 +1,17 @@
+{
+  "register_id": "RG-SSR-001",
+  "case_id": "RG-WORK-001",
+  "entries": [
+    {
+      "signal": "What could materially change the current model?",
+      "hypothesis_reference": "H-001",
+      "expected_indicator": "What we expect if the current model is right",
+      "disconfirming_indicator": "What would weaken the current model",
+      "observation_window": "YYYY-MM-DD/YYYY-MM-DD",
+      "current_evidence_state": "UNKNOWN",
+      "decision_affected": false,
+      "owner": "Named human",
+      "next_review": "YYYY-MM-DD"
+    }
+  ]
+}

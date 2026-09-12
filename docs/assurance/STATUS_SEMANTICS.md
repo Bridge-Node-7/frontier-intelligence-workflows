@@ -9,6 +9,13 @@ FIW deliberately separates assessment findings from repository-control execution
 
 `NO_FINDINGS` does not establish that the declarations are accurate, the evidence is independently verified, the claim is true, or an action is authorized.
 
+## Radiant Guardian
+
+- `NO_RG_FINDINGS` — no configured deterministic RG frontier-signal integrity rule produced a finding.
+- `RG_REVIEW_REQUIRED` — one or more configured RG integrity rules produced findings.
+
+`NO_RG_FINDINGS` does not establish that a frontier claim is true, independently verified, safe, or authorized for action. RG cannot downgrade upstream Perception Integrity findings.
+
 ## Repository and Release Controls
 
 - `PASS` — the named machine control executed and satisfied its defined assertion.

@@ -1,4 +1,4 @@
-# Validation — v0.5.2
+# Validation — v0.6.0
 
 FIW validation is reproducible from a clean checkout.
 

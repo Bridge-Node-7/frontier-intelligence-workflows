@@ -61,6 +61,10 @@ The [Frontier Claim Experience](examples/frontier-claim-experience/) is a local-
 
 Source independence remains analyst-established. FIW validates declared lineage consistency; it does not determine whether two real-world sources are genuinely independent.
 
+### Radiant Guardian — Frontier Signal Integrity
+
+[Radiant Guardian](profiles/radiant-guardian/) adds deterministic controls for frontier-signal genealogy, strategic-surprise hypotheses, self-sealing-model risk, prediction integrity, discriminating tests, update receipts, and Proof Loop reassessment. It composes with Perception Integrity and does not determine external truth.
+
 ### Synthetic Component Readiness
 
 [FIW-SYN-001](examples/synthetic-component-readiness/) shows a complete evidence-to-decision artifact chain using fictional data.
@@ -151,4 +155,4 @@ Published by [Bridge Node 7](https://bridgenode7.com/).
 
 ## Release
 
-**v0.5.2 — Decision-Ready Intelligence**
+**v0.6.0 — Decision-Ready Intelligence**

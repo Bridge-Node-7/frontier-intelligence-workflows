@@ -1,6 +1,6 @@
 # Limitations
 
-Current release: `0.5.2`.
+Current release: `0.6.0`.
 
 Frontier Intelligence Workflows is an evidence and integrity framework, not a universal verification system.
 
