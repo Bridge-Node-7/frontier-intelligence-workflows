@@ -1,0 +1,10 @@
+{
+  "metadata": {"case_id": "LI-SYN-PROVENANCE-OK", "synthetic": true},
+  "source_records": [
+    {"source_id": "SRC-P-1", "root_source_id": "ROOT-P-1", "assertion_type": "REPORTED_CLAIM", "assertion_text": "Synthetic report A repeats the root claim.", "attributed_to": null, "temporal_status": "CURRENT", "superseded_by": null},
+    {"source_id": "SRC-P-2", "root_source_id": "ROOT-P-1", "assertion_type": "REPORTED_CLAIM", "assertion_text": "Synthetic report B repeats the same root claim.", "attributed_to": null, "temporal_status": "CURRENT", "superseded_by": null}
+  ],
+  "claim": {"claim_id": "CLM-P-1", "text": "Two reports trace to one declared provenance root.", "claim_mode": "REPORTED_CLAIM", "support_basis": "DIRECT", "source_ids": ["SRC-P-1", "SRC-P-2"], "attributed_to": null, "temporal_status": "CURRENT", "declared_independent_source_count": 1},
+  "review_requirements": {"human_review_required": true, "decision_owner": "SYNTHETIC-OWNER"},
+  "public_boundary": {"contains_sensitive_data": false, "public_release_allowed": true}
+}
