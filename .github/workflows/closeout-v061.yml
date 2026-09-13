@@ -29,11 +29,18 @@ jobs:
           set -euo pipefail
           python scripts/closeout_apply_v061.py
           python scripts/closeout_patch_v061.py
-          rm scripts/closeout_apply_v061.py scripts/closeout_patch_v061.py .github/workflows/closeout-v061.yml
+          tmpdir="$(mktemp -d)"
+          mv scripts/closeout_apply_v061.py "$tmpdir/"
+          mv scripts/closeout_patch_v061.py "$tmpdir/"
+          mv .github/workflows/closeout-v061.yml "$tmpdir/"
           git add -A
           python scripts/refresh_release_metadata.py --root .
           python scripts/validate_repo.py --root .
           python scripts/build_release.py --root . --output-dir "${RUNNER_TEMP}/fiw-release" --check --commit "${GITHUB_SHA}"
+          mv "$tmpdir/closeout_apply_v061.py" scripts/
+          mv "$tmpdir/closeout_patch_v061.py" scripts/
+          mv "$tmpdir/closeout-v061.yml" .github/workflows/
+          rmdir "$tmpdir"
           git config user.name 'Bridge Node 7'
           git config user.email '291729790+Bridge-Node-7@users.noreply.github.com'
           git add -A
