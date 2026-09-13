@@ -1,0 +1,7 @@
+{
+  "metadata": {"case_id": "LI-SYN-FORECAST-BAD", "synthetic": true},
+  "source_records": [{"source_id": "SRC-F-1", "root_source_id": "ROOT-F-1", "assertion_type": "FORECAST", "assertion_text": "Synthetic team expects 1,000 units in 2028.", "attributed_to": null, "temporal_status": "CURRENT", "superseded_by": null}],
+  "claim": {"claim_id": "CLM-F-1", "text": "The system demonstrated 1,000 units.", "claim_mode": "DEMONSTRATED_RESULT", "support_basis": "DIRECT", "source_ids": ["SRC-F-1"], "attributed_to": null, "temporal_status": "CURRENT", "declared_independent_source_count": 1},
+  "review_requirements": {"human_review_required": true, "decision_owner": "SYNTHETIC-OWNER"},
+  "public_boundary": {"contains_sensitive_data": false, "public_release_allowed": true}
+}

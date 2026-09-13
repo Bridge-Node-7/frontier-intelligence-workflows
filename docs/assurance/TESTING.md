@@ -1,4 +1,4 @@
-# Validation — v0.6.1
+# Validation — v0.7.0
 
 FIW validation is reproducible from a clean checkout.
 
@@ -19,6 +19,6 @@ git diff --check
 
 Validation output belongs outside the repository source tree.
 
-The gate checks defined software behavior, approved repository structure, public boundaries, workflow controls, selected source-safety conditions, manifest parity, and deterministic release construction. It does not determine external truth, qualification, readiness, investment merit, or deployment authority.
+The gate checks defined software behavior, approved repository structure, public boundaries, workflow controls, selected semantic/source-safety conditions, manifest parity, and deterministic release construction. It does not determine external truth, qualification, readiness, investment merit, or deployment authority.
 
 In strict release validation, every mandatory repository control must report `PASS`; `NOT_RUN` is non-passing.

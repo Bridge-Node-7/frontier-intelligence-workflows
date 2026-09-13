@@ -16,7 +16,7 @@ from pathlib import Path
 from typing import Any, Iterable
 
 PROJECT = "Frontier Intelligence Workflows"
-EXPECTED_VERSION = "0.6.1"
+EXPECTED_VERSION = "0.7.0"
 MANIFEST_FILES = {"REPO_MANIFEST.json", "MANIFEST.sha256"}
 GENERATED_ROOT_FILES: set[str] = set()
 DEFAULT_EXCLUDED_DIRS = {".git"}
@@ -91,7 +91,6 @@ def load_policy(root: Path) -> dict[str, Any]:
 
 def _contains_control_characters(value: str) -> bool:
     return any(ord(ch) < 32 or ord(ch) == 127 for ch in value)
-
 
 
 
