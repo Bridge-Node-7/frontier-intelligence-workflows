@@ -10,6 +10,18 @@ import sys
 import unittest
 from pathlib import Path
 
+sys.dont_write_bytecode = True
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+
+from release_common import (  # noqa: E402
+    collect_manifest_entries,
+    expected_manifest_document,
+    expected_sha_text,
+)
+
 ALLOWED_SKIPS_BY_PLATFORM = {
     "nt": {
         "test_release_tooling.ReleaseToolingTests.test_04_symbolic_link_rejected",
@@ -25,6 +37,28 @@ class RecordingResult(unittest.TextTestResult):
     pass
 
 
+def write_expected_integrity_evidence(root: Path) -> None:
+    """Write expected metadata outside the repository when hosted evidence space exists."""
+    runner_temp = os.environ.get("RUNNER_TEMP")
+    if not runner_temp:
+        return
+    evidence_dir = Path(runner_temp) / "fiw-validation"
+    evidence_dir.mkdir(parents=True, exist_ok=True)
+    version = (root / "VERSION").read_text(encoding="utf-8").strip()
+    entries = collect_manifest_entries(root)
+    document = expected_manifest_document(version, entries)
+    (evidence_dir / "expected-REPO_MANIFEST.json").write_text(
+        json.dumps(document, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    (evidence_dir / "expected-MANIFEST.sha256").write_text(
+        expected_sha_text(entries),
+        encoding="utf-8",
+        newline="\n",
+    )
+
+
 def main() -> int:
     # Prevent tests and their subprocesses from mutating the reviewed source tree.
     sys.dont_write_bytecode = True
@@ -34,6 +68,11 @@ def main() -> int:
     parser.add_argument("--json-output")
     args = parser.parse_args()
     root = Path(args.root).resolve()
+
+    # Evidence generation is read-only with respect to the repository. It lets a
+    # review branch prove exactly which committed integrity records need refresh.
+    write_expected_integrity_evidence(root)
+
     suite = unittest.defaultTestLoader.discover(str(root / "tests"), pattern="test*.py")
     runner = unittest.TextTestRunner(verbosity=2, resultclass=RecordingResult)
     result = runner.run(suite)

@@ -2,8 +2,8 @@
 
 - `run_perception_integrity.py` evaluates one assessment against the public Perception Integrity contract. It does not authorize action.
 - `perception_integrity.py` implements deterministic profile rules and schema validation.
-- `run_tests.py` runs the repository regression suite.
-- `compile_sources.py` verifies Python source syntax without creating bytecode.
+- `run_tests.py` runs the repository regression suite and, on hosted runners, writes expected manifest evidence outside the repository without mutating reviewed source.
+- `compile_sources.py` verifies Python source syntax without creating bytecode and validates every `*.schema.json` document against FIW's supported Draft 2020-12 structural contract, including negative regressions.
 - `validate_repo.py` validates repository structure, public boundaries, workflow controls, traceability, and manifests.
 - `build_release.py` creates deterministic source-release evidence outside the repository.
 - `refresh_release_metadata.py` refreshes committed manifests after approved source changes.
