@@ -6,6 +6,7 @@ Notable public changes to Frontier Intelligence Workflows are recorded here.
 
 - Add repository-wide offline JSON Schema document validation to the existing syntax preflight, including parser and structural negative regressions.
 - Emit machine-generated expected integrity metadata to hosted validation evidence without mutating the reviewed repository tree.
+- Keep hostile-filesystem policy failures fail-closed while allowing independent website, link, secret, local-path, personal-contact, and source-safety scans to complete; classify prohibited directories as tracked violations or removable untracked local artifacts.
 
 ## [0.6.0] - 2026-09-11
 

@@ -96,6 +96,7 @@
     "scripts/run_radiant_guardian.py",
     "scripts/run_tests.py",
     "scripts/validate_repo.py",
+    "scripts/validate_repo_core.py",
     "templates/ai-governance-gate.md",
     "templates/decision-ready-brief.md",
     "templates/decision-record.md",

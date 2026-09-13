@@ -1,13 +1,24 @@
 #!/usr/bin/env python3
-"""Compile FIW Python sources and validate JSON Schema documents without bytecode."""
+"""Compile FIW Python sources and validate semantic documents without bytecode."""
 
 from __future__ import annotations
 
 import argparse
 import json
 import re
+import shutil
+import subprocess
+import sys
+import tempfile
 from pathlib import Path
 from typing import Any
+
+sys.dont_write_bytecode = True
+SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+
+import validate_repo  # noqa: E402
 
 SUPPORTED_SCHEMA_URI = "https://json-schema.org/draft/2020-12/schema"
 JSON_SCHEMA_TYPES = {"null", "boolean", "object", "array", "number", "string", "integer"}
@@ -161,7 +172,7 @@ def validate_schema_documents(root: Path) -> tuple[list[str], list[str]]:
     return schemas, errors
 
 
-def run_negative_regressions() -> None:
+def run_schema_negative_regressions() -> None:
     malformed = validate_schema_text("{\n", "synthetic-malformed.schema.json")
     if not malformed or "invalid JSON" not in malformed[0]:
         raise RuntimeError("schema parser negative regression did not fail closed")
@@ -177,6 +188,57 @@ def run_negative_regressions() -> None:
     )
     if not structurally_invalid or not any("properties" in item for item in structurally_invalid):
         raise RuntimeError("schema structural negative regression did not fail closed")
+
+
+def run_diagnostic_independence_regression(root: Path) -> None:
+    """Prove policy failure remains blocking without suppressing independent scans."""
+
+    with tempfile.TemporaryDirectory(prefix="fiw-diagnostic-regression-") as temporary:
+        candidate = Path(temporary) / "repo"
+        shutil.copytree(
+            root,
+            candidate,
+            ignore=shutil.ignore_patterns(".git", "dist", "__pycache__", "validation-report.json"),
+            symlinks=True,
+        )
+        subprocess.run(["git", "-C", str(candidate), "init", "-q"], check=True)
+        subprocess.run(["git", "-C", str(candidate), "add", "-A"], check=True)
+
+        cache = candidate / ".pytest_cache" / "private-client-data.txt"
+        cache.parent.mkdir(parents=True, exist_ok=True)
+        cache.write_text("nonpublic local artifact\n", encoding="utf-8", newline="\n")
+
+        # Build the synthetic credential marker dynamically so the regression
+        # itself does not become a secret-pattern finding in reviewed source.
+        marker_name = "api" + "_key"
+        marker_value = "synthetic-credential-" + "1234567890"
+        approved_doc = candidate / "docs" / "assurance" / "README.md"
+        approved_doc.write_text(
+            approved_doc.read_text(encoding="utf-8")
+            + f"\n{marker_name}='{marker_value}'\n",
+            encoding="utf-8",
+            newline="\n",
+        )
+
+        report = validate_repo.validate(candidate, check_manifest=False)
+        checks = {item["name"]: item for item in report["checks"]}
+        if checks["file_policy_and_filesystem"]["status"] != "FAIL":
+            raise RuntimeError("diagnostic regression did not preserve fail-closed file policy")
+        if ".pytest_cache" not in checks["file_policy_and_filesystem"]["detail"]:
+            raise RuntimeError("diagnostic regression did not identify the prohibited cache path")
+        if "untracked local artifact" not in checks["file_policy_and_filesystem"]["detail"]:
+            raise RuntimeError("diagnostic regression did not classify the local artifact")
+        if checks["secret_patterns"]["status"] != "FAIL":
+            raise RuntimeError("diagnostic regression suppressed an independent secret finding")
+        for name in (
+            "website_boundary",
+            "markdown_links",
+            "local_user_paths",
+            "personal_contact_surface",
+            "source_text_safety",
+        ):
+            if checks[name]["status"] == "NOT_RUN":
+                raise RuntimeError(f"diagnostic regression suppressed independent control {name}")
 
 
 def main() -> int:
@@ -195,17 +257,19 @@ def main() -> int:
             compile(path.read_text(encoding="utf-8"), relative, "exec")
             compiled.append(relative)
 
-    run_negative_regressions()
+    run_schema_negative_regressions()
     schemas, schema_errors = validate_schema_documents(root)
     if schema_errors:
         for issue in schema_errors:
             print(f"Schema document FAIL: {issue}")
         return 1
 
+    run_diagnostic_independence_regression(root)
     print(
         f"Schema documents: PASS ({len(schemas)} files; parser and structural "
         "negative regressions fail closed)"
     )
+    print("Validation diagnostics: PASS (policy failure does not suppress independent scans)")
     print(f"Python syntax: PASS ({len(compiled)} files; no bytecode written)")
     return 0
 
