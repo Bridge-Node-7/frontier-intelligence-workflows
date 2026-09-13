@@ -218,7 +218,7 @@
     },
     {
       "path": "profiles/language-integrity/fixtures/valid/quoted-attribution-preserved.json",
-      "sha256": "66e2c1f534b0a4def0246ce44a409b4003993de669341168d2f5bb0f63fbc5a6",
+      "sha256": "66e2c1f534b0a4def0246ce44a409b4003993de669341168d2f5fb0f63fbc5a6",
       "size_bytes": 811
     },
     {
