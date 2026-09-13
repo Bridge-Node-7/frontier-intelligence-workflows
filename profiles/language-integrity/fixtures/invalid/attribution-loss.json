@@ -1,0 +1,7 @@
+{
+  "metadata": {"case_id": "LI-SYN-QUOTE-BAD", "synthetic": true},
+  "source_records": [{"source_id": "SRC-Q-1", "root_source_id": "ROOT-Q-1", "assertion_type": "QUOTED_ASSERTION", "assertion_text": "The synthetic test passed.", "attributed_to": "SYNTHETIC-SPEAKER-A", "temporal_status": "CURRENT", "superseded_by": null}],
+  "claim": {"claim_id": "CLM-Q-1", "text": "The synthetic test passed.", "claim_mode": "REPORTED_CLAIM", "support_basis": "DIRECT", "source_ids": ["SRC-Q-1"], "attributed_to": null, "temporal_status": "CURRENT", "declared_independent_source_count": 1},
+  "review_requirements": {"human_review_required": true, "decision_owner": "SYNTHETIC-OWNER"},
+  "public_boundary": {"contains_sensitive_data": false, "public_release_allowed": true}
+}

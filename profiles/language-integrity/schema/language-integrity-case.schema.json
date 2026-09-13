@@ -1,0 +1,71 @@
+{
+  "$id": "urn:bridgenode7:fiw:language-integrity:case:0.7.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FIW Language Integrity Case",
+  "description": "A synthetic/public-safe declared semantic-integrity case. Validation does not establish truth or authorize action.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["metadata", "source_records", "claim", "review_requirements", "public_boundary"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["case_id", "synthetic"],
+      "properties": {
+        "case_id": {"type": "string", "minLength": 1},
+        "synthetic": {"const": true}
+      }
+    },
+    "source_records": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_id", "root_source_id", "assertion_type", "assertion_text", "attributed_to", "temporal_status", "superseded_by"],
+        "properties": {
+          "source_id": {"type": "string", "minLength": 1},
+          "root_source_id": {"type": "string", "minLength": 1},
+          "assertion_type": {"enum": ["OBSERVATION", "REPORTED_CLAIM", "QUOTED_ASSERTION", "FORECAST", "DESIGN_TARGET", "RECOMMENDATION"]},
+          "assertion_text": {"type": "string", "minLength": 1},
+          "attributed_to": {"type": ["string", "null"]},
+          "temporal_status": {"enum": ["CURRENT", "SUPERSEDED"]},
+          "superseded_by": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["claim_id", "text", "claim_mode", "support_basis", "source_ids", "attributed_to", "temporal_status", "declared_independent_source_count"],
+      "properties": {
+        "claim_id": {"type": "string", "minLength": 1},
+        "text": {"type": "string", "minLength": 1},
+        "claim_mode": {"enum": ["DIRECT_OBSERVATION", "REPORTED_CLAIM", "INFERENCE", "FORECAST", "DESIGN_TARGET", "DEMONSTRATED_RESULT", "RECOMMENDATION"]},
+        "support_basis": {"enum": ["DIRECT", "DERIVED", "NONE"]},
+        "source_ids": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "attributed_to": {"type": ["string", "null"]},
+        "temporal_status": {"enum": ["CURRENT", "SUPERSEDED"]},
+        "declared_independent_source_count": {"type": "integer", "minimum": 1}
+      }
+    },
+    "review_requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["human_review_required", "decision_owner"],
+      "properties": {
+        "human_review_required": {"const": true},
+        "decision_owner": {"type": "string", "minLength": 1}
+      }
+    },
+    "public_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contains_sensitive_data", "public_release_allowed"],
+      "properties": {
+        "contains_sensitive_data": {"type": "boolean"},
+        "public_release_allowed": {"type": "boolean"}
+      }
+    }
+  }
+}

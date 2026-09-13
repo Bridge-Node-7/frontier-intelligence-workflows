@@ -28,8 +28,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "f6ea9aec7f6f9f604339b5c57d2bcc8099e8a39bfe9eecfe716c8807de1c8791",
-      "size_bytes": 1331
+      "sha256": "9a1cc2e1e5d1a02e9ac242d4214428c23957dca6b68fe7b48771c71bb42761ef",
+      "size_bytes": 2023
     },
     {
       "path": "LICENSE",
@@ -38,8 +38,8 @@
     },
     {
       "path": "LIMITATIONS.md",
-      "sha256": "fed8727c6a24e795ca9e7de5bf9efc320845bc03b149edef47780d4bed911259",
-      "size_bytes": 1930
+      "sha256": "d1067f756b0d3147cecc0657274a93a1958afa6b5a7c5c9ac7a835bd7fd0cf20",
+      "size_bytes": 2325
     },
     {
       "path": "NOTICE.md",
@@ -48,13 +48,13 @@
     },
     {
       "path": "README.md",
-      "sha256": "b3f9dc50c7af6d2b93d6f69ec565f5a2fc4f5a34c7e4f5505301e4c7c5d2dede",
-      "size_bytes": 7206
+      "sha256": "979bffd8d920ea0319e9d9d8ede8385a45a0504b6f4370e372358f0de7733b5c",
+      "size_bytes": 8025
     },
     {
       "path": "REPO_FILE_POLICY.json",
-      "sha256": "e749e0fd8680935ad698ca3f828157f4416a368f9f8abfac6efb1889669817ad",
-      "size_bytes": 7820
+      "sha256": "fd3c5800b20f8389ded5fdbcf5c7dec0f172f163ebadeaeca4de075e00fab7de",
+      "size_bytes": 8858
     },
     {
       "path": "SECURITY.md",
@@ -63,7 +63,7 @@
     },
     {
       "path": "VERSION",
-      "sha256": "87b241b275c591694846560e9879f50c9da3150f854efdabd782c539772f3033",
+      "sha256": "967d9afb101346667166f2e76e81910bc190488d7d41d50ca0072e9d92f00e32",
       "size_bytes": 6
     },
     {
@@ -98,8 +98,8 @@
     },
     {
       "path": "docs/assurance/TESTING.md",
-      "sha256": "e3bde35daba430f9c8205ed0b0b254a7742fd96f0e9c4bc0578143d73d41444c",
-      "size_bytes": 1229
+      "sha256": "df872c4484e1aeba241518880541e67f889cb6903210c6b054a81069501607ad",
+      "size_bytes": 1238
     },
     {
       "path": "docs/briefs/FIW-SYN-001-decision-ready-brief.md",
@@ -170,6 +170,66 @@
       "path": "examples/synthetic-component-readiness/source-record.md",
       "sha256": "91e68e9b0148c5e548184e289b2e26d30f7d53981c2516cbcad7e7148b9d0fe5",
       "size_bytes": 1277
+    },
+    {
+      "path": "profiles/language-integrity/README.md",
+      "sha256": "c19a8b553d15486c19ca2f7dfd988a210f2c26a1e6d98f1b7a0686fb76f2dd05",
+      "size_bytes": 2947
+    },
+    {
+      "path": "profiles/language-integrity/fixtures/invalid/attribution-loss.json",
+      "sha256": "a8c433d1c7722dd8dfc97db1d8fb588e7ebdae8140ee94d772d0f0dfc61c9594",
+      "size_bytes": 763
+    },
+    {
+      "path": "profiles/language-integrity/fixtures/invalid/forecast-as-result.json",
+      "sha256": "ec3db1d7903affca8a2f342148d3ee1b0639540cc6d6fe1dfddea9d05df6e001",
+      "size_bytes": 773
+    },
+    {
+      "path": "profiles/language-integrity/fixtures/invalid/inference-as-direct.json",
+      "sha256": "5fcc21ffc9d4c66ec4827f1060589fd638946504b70f794b9ea2b13b27173ddd",
+      "size_bytes": 767
+    },
+    {
+      "path": "profiles/language-integrity/fixtures/invalid/provenance-independence-overstated.json",
+      "sha256": "174c13df85a064089f90c57452143e3067ea253ba4e05ab53cf31471a6ae0722",
+      "size_bytes": 1045
+    },
+    {
+      "path": "profiles/language-integrity/fixtures/invalid/superseded-as-current.json",
+      "sha256": "a9b9142be86ae788fba462fca03e5ab210f00bb3715df3da0bc447f6fc69316c",
+      "size_bytes": 990
+    },
+    {
+      "path": "profiles/language-integrity/fixtures/valid/forecast-preserved.json",
+      "sha256": "1f86235120c3d1a6750559c428154a43650fb60f9313fa6eb21b20e9baf6201b",
+      "size_bytes": 774
+    },
+    {
+      "path": "profiles/language-integrity/fixtures/valid/inference-labeled.json",
+      "sha256": "ebd814e12dd576f11a527b4a96abe8c39fd92a9969b2c3d31599c020c678e3a8",
+      "size_bytes": 778
+    },
+    {
+      "path": "profiles/language-integrity/fixtures/valid/provenance-collapse-visible.json",
+      "sha256": "0f384dcdc35813182f02c71c7f21893bed534207a726d46dd60c8586e3c55bc1",
+      "size_bytes": 1048
+    },
+    {
+      "path": "profiles/language-integrity/fixtures/valid/quoted-attribution-preserved.json",
+      "sha256": "66e2c1f534b0a4def0246ce44a409b4003993de669341168d2f5fb0f63fbc5a6",
+      "size_bytes": 811
+    },
+    {
+      "path": "profiles/language-integrity/fixtures/valid/temporal-supersession-visible.json",
+      "sha256": "d3d3025e5dae34150a1c39b288cdeabe2c84b17b7c1db1c4e32c6bb4f3e77aaf",
+      "size_bytes": 1000
+    },
+    {
+      "path": "profiles/language-integrity/schema/language-integrity-case.schema.json",
+      "sha256": "cfd428b050fb0a36f044370a5008ab074ae526a6c143522cd62df25eef3d926e",
+      "size_bytes": 3082
     },
     {
       "path": "profiles/perception-integrity/CONTROL_EXAMPLES.md",
@@ -447,6 +507,11 @@
       "size_bytes": 10974
     },
     {
+      "path": "scripts/language_integrity.py",
+      "sha256": "ac391183e04dd6fca7fe2ac973e3c94ed93d8d21327ba7e88c2c98ef64cde151",
+      "size_bytes": 7736
+    },
+    {
       "path": "scripts/perception_integrity.py",
       "sha256": "c90d9ccb0de263ccb6ddda3156f37981af67eb794058b33a3c881d4e0b6d34b5",
       "size_bytes": 22214
@@ -463,8 +528,13 @@
     },
     {
       "path": "scripts/release_common.py",
-      "sha256": "adfd1f1f872ccca9a057f2001a1425863d706c135c34fd21c463fb2c8f1790cf",
-      "size_bytes": 22236
+      "sha256": "fe5e32652e80e376d3e3cca44f5a02b6bd6fc3e1c713c7693fd89facdbb55df8",
+      "size_bytes": 22235
+    },
+    {
+      "path": "scripts/run_language_integrity.py",
+      "sha256": "bbdb2a4c3f8d9cac6771478527fa155cfc34a85ddb235bcb387296feb1e07012",
+      "size_bytes": 2721
     },
     {
       "path": "scripts/run_perception_integrity.py",
@@ -488,8 +558,8 @@
     },
     {
       "path": "scripts/validate_repo_core.py",
-      "sha256": "8f4cd4a1b5e2e15a838bde719512a18f6aab9c66500ffb4a68fb90526f11ebc3",
-      "size_bytes": 36049
+      "sha256": "6d605ca2aff52a06f4de4301cfeff1f913fc0e9e5315fc0c8c87a4df871bb70d",
+      "size_bytes": 37016
     },
     {
       "path": "templates/ai-governance-gate.md",
@@ -542,6 +612,11 @@
       "size_bytes": 4513
     },
     {
+      "path": "tests/test_language_integrity.py",
+      "sha256": "031223b08374622f52732921479ad780735f7b11e7907a48c9510a0c507cb35f",
+      "size_bytes": 4921
+    },
+    {
       "path": "tests/test_perception_integrity.py",
       "sha256": "2a80becfc38caeae9129eaf4a413af9084d36b0fa8216bf416955700b5579649",
       "size_bytes": 24637
@@ -553,8 +628,8 @@
     },
     {
       "path": "tests/test_release_semantics.py",
-      "sha256": "980e8b8d152aa297f288ddca54727c5b719e4a3dc3eac1244258545c6811e04e",
-      "size_bytes": 10944
+      "sha256": "59f801b024d768fbf3b71ea5235a8b317a1704c57efb1d27ccad2c1cb1dbc3d0",
+      "size_bytes": 11084
     },
     {
       "path": "tests/test_release_tooling.py",
@@ -565,5 +640,5 @@
   "generated_at_utc": "1980-01-01T00:00:00Z",
   "project": "Frontier Intelligence Workflows",
   "schema_version": "1.0",
-  "version": "0.6.1"
+  "version": "0.7.0"
 }

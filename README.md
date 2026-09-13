@@ -6,6 +6,8 @@ Frontier Intelligence Workflows (FIW) is an open, evidence-first workflow for co
 
 **Automation checks structure, traceability, and declared evidence conditions. It does not determine truth, verify the underlying claim, make investment decisions, certify readiness, or authorize action.**
 
+Language Integrity adds deterministic checks over declared language semantics; it does not change that assurance boundary.
+
 ## Core Workflow
 
 ```text
@@ -35,6 +37,7 @@ Accountable Human
 ## Status Semantics
 
 - **Perception Integrity:** `NO_FINDINGS` / `REVIEW_REQUIRED` describe configured deterministic findings in the declared assessment.
+- **Language Integrity:** `NO_FINDINGS` / `REVIEW_REQUIRED` describe configured deterministic semantic-integrity findings in a declared public-safe case.
 - **Repository controls:** `PASS` / `FAIL` / `NOT_RUN` describe whether a named machine control executed and satisfied its assertion.
 
 `NO_FINDINGS` does not mean a claim or evidence set was verified. A passing repository control establishes only what that control tested.
@@ -60,6 +63,10 @@ The [Frontier Claim Experience](examples/frontier-claim-experience/) is a local-
 [Perception Integrity](profiles/perception-integrity/) provides deterministic checks for declared evidence lineage, observation-versus-inference separation, assumptions, alternative hypotheses, evidence state, stop conditions, public-release boundaries, and decision authority.
 
 Source independence remains analyst-established. FIW validates declared lineage consistency; it does not determine whether two real-world sources are genuinely independent.
+
+### Language Integrity
+
+[Language Integrity](profiles/language-integrity/) is a public-safe deterministic profile for preserving declared source meaning before information moves deeper into an assurance or decision workflow. It checks forecast-versus-result separation, quoted attribution, inference-versus-direct-support labeling, declared provenance-root collapse, and temporal supersession. It uses synthetic fixtures only and does not expose private extraction logic, governed intelligence, customer evidence, or canonical-promotion mechanisms.
 
 ### Radiant Guardian — Frontier Signal Integrity
 
@@ -158,4 +165,4 @@ Published by [Bridge Node 7](https://bridgenode7.com/).
 
 ## Release
 
-**v0.6.1 — Decision-Ready Intelligence**
+**v0.7.0 — Language Integrity**
