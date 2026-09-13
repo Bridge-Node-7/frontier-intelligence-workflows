@@ -9,25 +9,41 @@ longer suppresses independent content scans over policy-approved records.
 
 from __future__ import annotations
 
+import re
 import subprocess
+import sys
 from pathlib import Path
 from typing import Iterable
+
+# Suppress bytecode before importing the preserved validator module. Setting this
+# only inside the imported module is too late for its own import cache write.
+sys.dont_write_bytecode = True
 
 import validate_repo_core as _core
 from validate_repo_core import *  # noqa: F401,F403
 from release_common import load_policy, scan_repository
 
-# The core file is part of the required trusted validator surface.
-REQUIRED_FILES = set(_core.REQUIRED_FILES) | {"scripts/validate_repo_core.py"}
+CORE_RELATIVE = "scripts/validate_repo_core.py"
+
+# The preserved core is part of the required trusted validator surface.
+REQUIRED_FILES = set(_core.REQUIRED_FILES) | {CORE_RELATIVE}
 _core.REQUIRED_FILES = REQUIRED_FILES
 _CORE_VALIDATE = _core.validate
 
 
 def _approved_text_files(root: Path) -> Iterable[Path]:
-    """Yield approved text records even when another path violates file policy."""
+    """Yield approved text records even when another path violates file policy.
+
+    The preserved core is omitted from the generic pass because the historical
+    website-boundary sentinel intentionally excludes the validator implementation
+    that contains its own test string. Dedicated security scans for the core are
+    folded back into the report below.
+    """
 
     records, _findings = scan_repository(root, include_manifests=True)
     for record in records:
+        if record.relative == CORE_RELATIVE:
+            continue
         path = record.path
         if path.suffix.lower() in _core.TEXT_SUFFIXES or path.name in _core.TEXT_NAMES:
             yield path
@@ -84,6 +100,70 @@ def _operator_classification(root: Path) -> list[str]:
     return classified
 
 
+def _check(report: dict, name: str) -> dict:
+    return next(item for item in report["checks"] if item["name"] == name)
+
+
+def _fail_check(item: dict, detail: str) -> None:
+    item["status"] = "FAIL"
+    item["passed"] = False
+    item["detail"] = detail if not item.get("detail") else f"{item['detail']}; {detail}"
+
+
+def _fold_core_security_scans(report: dict, root: Path) -> None:
+    """Keep the preserved implementation inside security scans while avoiding self-sentinel noise."""
+
+    path = root / CORE_RELATIVE
+    if not path.is_file():
+        return
+    text = _core.secret_scan_text(path, root=root)
+
+    secret_hits = [label for label, pattern in _core.SECRET_PATTERNS.items() if pattern.search(text)]
+    if secret_hits:
+        _fail_check(
+            _check(report, "secret_patterns"),
+            f"Potential secrets in {CORE_RELATIVE}: {secret_hits}",
+        )
+
+    local_hits = [label for label, pattern in _core.LOCAL_PATH_PATTERNS.items() if pattern.search(text)]
+    if local_hits:
+        _fail_check(
+            _check(report, "local_user_paths"),
+            f"Local paths in {CORE_RELATIVE}: {local_hits}",
+        )
+
+    email_pattern = re.compile(r"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b", re.IGNORECASE)
+    telephone_pattern = re.compile(
+        r"(?<!\d)(?:\+?1[\s.-]?)?(?:\(\d{3}\)|\d{3})[\s.-]\d{3}[\s.-]\d{4}(?!\d)"
+    )
+    social_pattern = re.compile(
+        r"https?://(?:www\.)?(?:linkedin\.com|instagram\.com|twitter\.com|x\.com|facebook\.com)/",
+        re.IGNORECASE,
+    )
+    reserved_email_suffixes = (".invalid", ".example", ".test", ".localhost")
+    contact_hits: list[str] = []
+    for match in email_pattern.finditer(text):
+        domain = match.group(0).rsplit("@", 1)[1].lower()
+        if not domain.endswith(reserved_email_suffixes):
+            contact_hits.append("email address")
+    if telephone_pattern.search(text):
+        contact_hits.append("telephone number")
+    if social_pattern.search(text):
+        contact_hits.append("personal social profile")
+    if contact_hits:
+        _fail_check(
+            _check(report, "personal_contact_surface"),
+            f"Personal contact surfaces in {CORE_RELATIVE}: {contact_hits}",
+        )
+
+    source_hits = _core.source_text_findings(path)
+    if source_hits:
+        _fail_check(
+            _check(report, "source_text_safety"),
+            f"Unsafe source text in {CORE_RELATIVE}: {source_hits}",
+        )
+
+
 def validate(root: Path, check_manifest: bool = True):
     """Run the core 19-control validator with independent diagnostic scans."""
 
@@ -93,6 +173,8 @@ def validate(root: Path, check_manifest: bool = True):
         report = _CORE_VALIDATE(root, check_manifest=check_manifest)
     finally:
         _core.text_files = original_text_files
+
+    _fold_core_security_scans(report, root)
 
     file_policy = next(
         (item for item in report["checks"] if item["name"] == "file_policy_and_filesystem"),
