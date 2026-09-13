@@ -372,5 +372,33 @@ class ReleaseToolingTests(unittest.TestCase):
         self.assert_check_fails("secret_patterns", check_manifest=True)
 
 
+    def test_structured_semantics_baseline_passes(self):
+        item = self.check("structured_artifact_semantics", check_manifest=False)
+        self.assertEqual(item["status"], "PASS", item)
+
+    def test_malformed_governed_json_fails_semantic_control(self):
+        path = self.repo / "data" / "synthetic" / "frontier-claim-experience.json"
+        path.write_text("{not-json\n", encoding="utf-8", newline="\n")
+        item = self.check("structured_artifact_semantics", check_manifest=False)
+        self.assertEqual(item["status"], "FAIL", item)
+        self.assertIn("frontier-claim-experience.json", item["detail"])
+
+    def test_schema_invalid_against_metaschema_fails_even_when_json_parses(self):
+        path = self.repo / "profiles" / "radiant-guardian" / "schema" / "radiant-guardian-case.schema.json"
+        schema = json.loads(path.read_text(encoding="utf-8"))
+        schema["type"] = 7
+        path.write_text(json.dumps(schema, indent=2) + "\n", encoding="utf-8", newline="\n")
+        item = self.check("structured_artifact_semantics", check_manifest=False)
+        self.assertEqual(item["status"], "FAIL", item)
+        self.assertIn("radiant-guardian-case.schema.json", item["detail"])
+
+    def test_malformed_governed_yaml_fails_semantic_control(self):
+        path = self.repo / ".github" / "dependabot.yml"
+        path.write_text("updates: [\n", encoding="utf-8", newline="\n")
+        item = self.check("structured_artifact_semantics", check_manifest=False)
+        self.assertEqual(item["status"], "FAIL", item)
+        self.assertIn("dependabot.yml", item["detail"])
+
+
 if __name__ == "__main__":
     unittest.main()

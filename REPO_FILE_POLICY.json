@@ -85,6 +85,7 @@
     "profiles/radiant-guardian/templates/proof-loop-record.json",
     "profiles/radiant-guardian/templates/radiant-guardian-starter.json",
     "profiles/radiant-guardian/templates/strategic-surprise-register.json",
+    "requirements-validation.txt",
     "scripts/README.md",
     "scripts/build_release.py",
     "scripts/compile_sources.py",
@@ -124,11 +125,12 @@
     "REPO_FILE_POLICY.json",
     "REPO_MANIFEST.json",
     "SECURITY.md",
-    "VERSION"
+    "VERSION",
+    "requirements-validation.txt"
   ],
   "approved_workflow_sha256": {
-    "release.yml": "7e238c3eacd338d7737e50cb774ee67c192ab30fa825602bc74e6d07fc836500",
-    "validate.yml": "4442fd09cabf938b61dc08db0478bcdeddd4f522d37367eb5f4a231c1d623524"
+    "release.yml": "d09bfb3a64cdd62e40999b32e4ac20effbbe44c3c737726e67db4fc40c0527a0",
+    "validate.yml": "b6ca7a6e565e51ca9766cde4c8f240138423a11fe5efc28cf4302a3131e0a739"
   },
   "binary_files_allowed": false,
   "max_file_size_bytes": 524288,
@@ -179,6 +181,6 @@
     ".pyc",
     ".pyo"
   ],
-  "release_version": "0.6.0",
+  "release_version": "0.6.1",
   "schema_version": "1.1"
 }

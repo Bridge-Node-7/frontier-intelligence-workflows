@@ -1,10 +1,13 @@
-# Validation — v0.6.0
+# Validation — v0.6.1
 
 FIW validation is reproducible from a clean checkout.
 
 ## Complete Gate
 
 ```bash
+python -m venv ../fiw-validation-venv
+source ../fiw-validation-venv/bin/activate  # Windows PowerShell: ..\fiw-validation-venv\Scripts\Activate.ps1
+python -m pip install -r requirements-validation.txt
 mkdir -p ../fiw-validation ../fiw-release
 python scripts/run_tests.py --root . --json-output ../fiw-validation/source-test-summary.json
 python scripts/compile_sources.py --root .
