@@ -117,9 +117,12 @@ For an existing assessment, preserve the prior artifact and create a new result 
 
 FIW includes reproducible checks for software behavior, approved public structure, workflow integrity, manifest consistency, and deterministic packaging.
 
-Run the complete repository gate:
+Run the complete repository gate from an isolated Python environment. The validation-only dependencies are pinned and are not runtime dependencies of FIW's public methods.
 
 ```bash
+python -m venv ../fiw-validation-venv
+source ../fiw-validation-venv/bin/activate  # Windows PowerShell: ..\fiw-validation-venv\Scripts\Activate.ps1
+python -m pip install -r requirements-validation.txt
 mkdir -p ../fiw-validation ../fiw-release
 python scripts/run_tests.py --root . --json-output ../fiw-validation/source-test-summary.json
 python scripts/compile_sources.py --root .
@@ -155,4 +158,4 @@ Published by [Bridge Node 7](https://bridgenode7.com/).
 
 ## Release
 
-**v0.6.0 — Decision-Ready Intelligence**
+**v0.6.1 — Decision-Ready Intelligence**

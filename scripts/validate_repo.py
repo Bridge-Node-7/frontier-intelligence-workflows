@@ -9,9 +9,15 @@ longer suppresses independent content scans over policy-approved records.
 
 from __future__ import annotations
 
+import json
 import re
 import subprocess
 import sys
+import tomllib
+
+import yaml
+from jsonschema.exceptions import SchemaError
+from jsonschema.validators import validator_for
 from pathlib import Path
 from typing import Iterable
 
@@ -164,6 +170,39 @@ def _fold_core_security_scans(report: dict, root: Path) -> None:
         )
 
 
+
+def _structured_semantic_findings(root: Path) -> list[str]:
+    """Parse every approved structured artifact and validate schema documents.
+
+    This is deliberately independent from byte-integrity: updating a manifest hash
+    cannot convert malformed JSON/YAML/TOML or an invalid JSON Schema into PASS.
+    """
+
+    records, _policy_findings = scan_repository(root, include_manifests=True)
+    findings: list[str] = []
+    for record in records:
+        path = record.path
+        relative = record.relative
+        suffix = path.suffix.lower()
+        try:
+            source = path.read_text(encoding="utf-8")
+            if suffix == ".json":
+                document = json.loads(source)
+                if relative.endswith(".schema.json"):
+                    if not isinstance(document, (dict, bool)):
+                        raise ValueError("JSON Schema root must be an object or boolean")
+                    validator_class = validator_for(document)
+                    validator_class.check_schema(document)
+            elif suffix in {".yml", ".yaml"}:
+                document = yaml.safe_load(source)
+                if document is None:
+                    raise ValueError("YAML document is empty")
+            elif suffix == ".toml":
+                tomllib.loads(source)
+        except (OSError, UnicodeError, json.JSONDecodeError, yaml.YAMLError, tomllib.TOMLDecodeError, SchemaError, ValueError) as exc:
+            findings.append(f"{relative}: {type(exc).__name__}: {exc}")
+    return findings
+
 def validate(root: Path, check_manifest: bool = True):
     """Run the core 19-control validator with independent diagnostic scans."""
 
@@ -175,6 +214,18 @@ def validate(root: Path, check_manifest: bool = True):
         _core.text_files = original_text_files
 
     _fold_core_security_scans(report, root)
+
+    semantic_findings = _structured_semantic_findings(root)
+    report["checks"].append({
+        "name": "structured_artifact_semantics",
+        "status": "PASS" if not semantic_findings else "FAIL",
+        "passed": not semantic_findings,
+        "detail": (
+            "Every policy-approved JSON, YAML, and TOML artifact parses; every JSON Schema validates against its declared metaschema."
+            if not semantic_findings
+            else "; ".join(semantic_findings)
+        ),
+    })
 
     file_policy = next(
         (item for item in report["checks"] if item["name"] == "file_policy_and_filesystem"),
