@@ -96,6 +96,7 @@
     "scripts/run_radiant_guardian.py",
     "scripts/run_tests.py",
     "scripts/validate_repo.py",
+    "scripts/validate_repo_core.py",
     "templates/ai-governance-gate.md",
     "templates/decision-ready-brief.md",
     "templates/decision-record.md",
@@ -126,8 +127,8 @@
     "VERSION"
   ],
   "approved_workflow_sha256": {
-    "release.yml": "748ac87867b12c235f76ff23319e8ec0294e4802b0e62df17724f9cee55f043a",
-    "validate.yml": "337e37643283ba8e1bb6e1c0397b4ef27668bc30673e55701b80113ee08b96e4"
+    "release.yml": "7e238c3eacd338d7737e50cb774ee67c192ab30fa825602bc74e6d07fc836500",
+    "validate.yml": "4442fd09cabf938b61dc08db0478bcdeddd4f522d37367eb5f4a231c1d623524"
   },
   "binary_files_allowed": false,
   "max_file_size_bytes": 524288,
