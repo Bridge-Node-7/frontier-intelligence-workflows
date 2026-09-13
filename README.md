@@ -4,7 +4,9 @@
 
 Frontier Intelligence Workflows (FIW) is an open, evidence-first workflow for consequential technology questions when evidence is incomplete. It traces claims to sources, separates observation from inference, exposes contradictions and unknowns, and records the evidence needed before a decision responsibly moves forward.
 
-**Automation checks structure, traceability, declared language semantics, and declared evidence conditions. It does not determine truth, verify the underlying claim, make investment decisions, certify readiness, or authorize action.**
+**Automation checks structure, traceability, and declared evidence conditions. It does not determine truth, verify the underlying claim, make investment decisions, certify readiness, or authorize action.**
+
+Language Integrity adds deterministic checks over declared language semantics; it does not change that assurance boundary.
 
 ## Core Workflow
 
