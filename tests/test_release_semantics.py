@@ -184,8 +184,14 @@ class ReleaseSemanticsTests(unittest.TestCase):
             repo = Path(temporary) / "repo"
             shutil.copytree(ROOT, repo, ignore=shutil.ignore_patterns(".git", "__pycache__"))
             readme = repo / "README.md"
-            text = readme.read_text(encoding="utf-8").replace("**v0.6.0 — Decision-Ready Intelligence**", "**v10.5.01 — Decision-Ready Intelligence**")
-            readme.write_text(text, encoding="utf-8", newline="\n")
+            text = readme.read_text(encoding="utf-8")
+            current_marker = "**v0.7.0 — Language Integrity**"
+            self.assertIn(current_marker, text)
+            readme.write_text(
+                text.replace(current_marker, "**v10.7.01 — Language Integrity**", 1),
+                encoding="utf-8",
+                newline="\n",
+            )
             report = validate(repo, check_manifest=False)
             item = next(check for check in report["checks"] if check["name"] == "version_consistency")
             self.assertEqual(item["status"], "FAIL")
