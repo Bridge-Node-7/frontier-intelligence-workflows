@@ -1,13 +1,25 @@
 #!/usr/bin/env python3
-"""Compile FIW Python sources and validate JSON Schema documents without bytecode."""
+"""Compile FIW sources, validate schemas, and provide hardened repository validation."""
 
 from __future__ import annotations
 
 import argparse
 import json
 import re
+import shutil
+import subprocess
+import sys
+import tempfile
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterable
+
+sys.dont_write_bytecode = True
+SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+
+import validate_repo as base_validator  # noqa: E402
+from release_common import load_policy, scan_repository  # noqa: E402
 
 SUPPORTED_SCHEMA_URI = "https://json-schema.org/draft/2020-12/schema"
 JSON_SCHEMA_TYPES = {"null", "boolean", "object", "array", "number", "string", "integer"}
@@ -161,7 +173,7 @@ def validate_schema_documents(root: Path) -> tuple[list[str], list[str]]:
     return schemas, errors
 
 
-def run_negative_regressions() -> None:
+def run_schema_negative_regressions() -> None:
     malformed = validate_schema_text("{\n", "synthetic-malformed.schema.json")
     if not malformed or "invalid JSON" not in malformed[0]:
         raise RuntimeError("schema parser negative regression did not fail closed")
@@ -179,9 +191,147 @@ def run_negative_regressions() -> None:
         raise RuntimeError("schema structural negative regression did not fail closed")
 
 
+def approved_text_files(root: Path) -> Iterable[Path]:
+    """Yield policy-approved text files while preserving separate filesystem findings."""
+    records, _findings = scan_repository(root, include_manifests=True)
+    for record in records:
+        path = record.path
+        if path.suffix.lower() in base_validator.TEXT_SUFFIXES or path.name in base_validator.TEXT_NAMES:
+            yield path
+
+
+def _tracked_paths(root: Path) -> set[str]:
+    completed = subprocess.run(
+        ["git", "-C", str(root), "ls-files", "-z"],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+    )
+    if completed.returncode != 0:
+        return set()
+    return {
+        item.decode("utf-8", errors="strict")
+        for item in completed.stdout.split(b"\0")
+        if item
+    }
+
+
+def _operator_classification(root: Path) -> list[str]:
+    try:
+        policy = load_policy(root)
+    except Exception:
+        return []
+    prohibited = {str(item).casefold() for item in policy.get("prohibited_path_segments", [])}
+    tracked = _tracked_paths(root)
+    classified: list[str] = []
+    for path in sorted(
+        (candidate for candidate in root.rglob("*") if candidate.is_dir()),
+        key=lambda candidate: candidate.as_posix(),
+    ):
+        try:
+            relative = path.relative_to(root).as_posix()
+        except ValueError:
+            continue
+        if relative == ".git" or relative.startswith(".git/"):
+            continue
+        if not any(part.casefold() in prohibited for part in Path(relative).parts):
+            continue
+        tracked_under = any(
+            tracked_path == relative or tracked_path.startswith(relative + "/")
+            for tracked_path in tracked
+        )
+        state = (
+            "tracked policy violation"
+            if tracked_under
+            else "untracked local artifact — remove it and re-run"
+        )
+        classified.append(f"{relative}: {state}")
+    return classified
+
+
+def validate_repository(root: Path, *, check_manifest: bool = True) -> dict[str, Any]:
+    """Run the 19-control validator while keeping independent scans independent."""
+    original_text_files = base_validator.text_files
+    base_validator.text_files = approved_text_files
+    try:
+        report = base_validator.validate(root, check_manifest=check_manifest)
+    finally:
+        base_validator.text_files = original_text_files
+
+    file_policy = next(
+        (item for item in report["checks"] if item["name"] == "file_policy_and_filesystem"),
+        None,
+    )
+    if file_policy is not None and file_policy["status"] == "FAIL":
+        classifications = _operator_classification(root)
+        if classifications:
+            file_policy["detail"] += "; operator classification: " + "; ".join(classifications)
+    report["passed"] = all(item["status"] == "PASS" for item in report["checks"])
+    report["summary"] = {
+        "passed": sum(1 for item in report["checks"] if item["status"] == "PASS"),
+        "total": len(report["checks"]),
+    }
+    return report
+
+
+def run_diagnostic_independence_regression(root: Path) -> None:
+    """Prove a prohibited local artifact fails policy without suppressing other scans."""
+    with tempfile.TemporaryDirectory(prefix="fiw-diagnostic-regression-") as temporary:
+        candidate = Path(temporary) / "repo"
+        shutil.copytree(
+            root,
+            candidate,
+            ignore=shutil.ignore_patterns(".git", "dist", "__pycache__", "validation-report.json"),
+            symlinks=True,
+        )
+        subprocess.run(["git", "-C", str(candidate), "init", "-q"], check=True)
+        subprocess.run(["git", "-C", str(candidate), "add", "-A"], check=True)
+
+        cache = candidate / ".pytest_cache" / "private-client-data.txt"
+        cache.parent.mkdir(parents=True, exist_ok=True)
+        cache.write_text("nonpublic local artifact\n", encoding="utf-8", newline="\n")
+
+        approved_doc = candidate / "docs" / "assurance" / "README.md"
+        approved_doc.write_text(
+            approved_doc.read_text(encoding="utf-8")
+            + "\napi_key='this-is-a-realistic-secret-value'\n",
+            encoding="utf-8",
+            newline="\n",
+        )
+
+        report = validate_repository(candidate, check_manifest=False)
+        checks = {item["name"]: item for item in report["checks"]}
+        if checks["file_policy_and_filesystem"]["status"] != "FAIL":
+            raise RuntimeError("diagnostic regression did not preserve fail-closed file policy")
+        if ".pytest_cache" not in checks["file_policy_and_filesystem"]["detail"]:
+            raise RuntimeError("diagnostic regression did not identify the prohibited cache path")
+        if "untracked local artifact" not in checks["file_policy_and_filesystem"]["detail"]:
+            raise RuntimeError("diagnostic regression did not classify the local artifact")
+        if checks["secret_patterns"]["status"] != "FAIL":
+            raise RuntimeError("diagnostic regression suppressed an independent secret finding")
+        for name in ("website_boundary", "markdown_links", "local_user_paths", "personal_contact_surface", "source_text_safety"):
+            if checks[name]["status"] == "NOT_RUN":
+                raise RuntimeError(f"diagnostic regression suppressed independent control {name}")
+
+
+def _print_repository_report(report: dict[str, Any]) -> None:
+    for item in report["checks"]:
+        print(f"[{item['status']}] {item['name']}: {item['detail']}")
+    print(
+        f"Validation: {'PASS' if report['passed'] else 'FAIL'} "
+        f"({report['summary']['passed']}/{report['summary']['total']})"
+    )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", default=".")
+    parser.add_argument(
+        "--validate-repository",
+        action="store_true",
+        help="Run hardened 19-control repository validation after source/schema preflight.",
+    )
+    parser.add_argument("--json-output", help="Write hardened repository validation JSON outside the repository root.")
     args = parser.parse_args()
     root = Path(args.root).resolve()
 
@@ -195,19 +345,49 @@ def main() -> int:
             compile(path.read_text(encoding="utf-8"), relative, "exec")
             compiled.append(relative)
 
-    run_negative_regressions()
+    run_schema_negative_regressions()
     schemas, schema_errors = validate_schema_documents(root)
     if schema_errors:
         for issue in schema_errors:
             print(f"Schema document FAIL: {issue}")
         return 1
 
+    run_diagnostic_independence_regression(root)
     print(
         f"Schema documents: PASS ({len(schemas)} files; parser and structural "
         "negative regressions fail closed)"
     )
+    print("Validation diagnostics: PASS (policy failure does not suppress independent scans)")
     print(f"Python syntax: PASS ({len(compiled)} files; no bytecode written)")
-    return 0
+
+    if not args.validate_repository:
+        return 0
+
+    report = validate_repository(root, check_manifest=True)
+    _print_repository_report(report)
+    if args.json_output:
+        output = Path(args.json_output)
+        if not output.is_absolute():
+            output = (Path.cwd() / output).resolve()
+        else:
+            output = output.resolve()
+        try:
+            output.relative_to(root)
+        except ValueError:
+            pass
+        else:
+            print(
+                f"ERROR: validation report must be written outside the repository root: {output}",
+                file=sys.stderr,
+            )
+            return 2
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(
+            json.dumps(report, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+            newline="\n",
+        )
+    return 0 if report["passed"] else 1
 
 
 if __name__ == "__main__":

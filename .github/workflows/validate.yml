@@ -46,8 +46,9 @@ jobs:
 
       - name: Validate repository
         run: >-
-          python scripts/validate_repo.py
+          python scripts/compile_sources.py
           --root .
+          --validate-repository
           --json-output "${RUNNER_TEMP}/fiw-validation/validation-report.json"
 
       - name: Verify deterministic release build
