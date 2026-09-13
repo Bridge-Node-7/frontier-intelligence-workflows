@@ -1,0 +1,7 @@
+{
+  "metadata": {"case_id": "LI-SYN-INFERENCE-OK", "synthetic": true},
+  "source_records": [{"source_id": "SRC-I-1", "root_source_id": "ROOT-I-1", "assertion_type": "OBSERVATION", "assertion_text": "Synthetic measurement A was observed.", "attributed_to": null, "temporal_status": "CURRENT", "superseded_by": null}],
+  "claim": {"claim_id": "CLM-I-1", "text": "The observation may support a bounded interpretation.", "claim_mode": "INFERENCE", "support_basis": "DERIVED", "source_ids": ["SRC-I-1"], "attributed_to": null, "temporal_status": "CURRENT", "declared_independent_source_count": 1},
+  "review_requirements": {"human_review_required": true, "decision_owner": "SYNTHETIC-OWNER"},
+  "public_boundary": {"contains_sensitive_data": false, "public_release_allowed": true}
+}

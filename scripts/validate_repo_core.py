@@ -63,18 +63,33 @@ REQUIRED_FILES = {
     "docs/assurance/SECURITY_TESTS.md",
     "docs/assurance/TESTING.md",
     "docs/assurance/STATUS_SEMANTICS.md",
+    "profiles/language-integrity/README.md",
+    "profiles/language-integrity/schema/language-integrity-case.schema.json",
+    "profiles/language-integrity/fixtures/valid/forecast-preserved.json",
+    "profiles/language-integrity/fixtures/valid/quoted-attribution-preserved.json",
+    "profiles/language-integrity/fixtures/valid/inference-labeled.json",
+    "profiles/language-integrity/fixtures/valid/provenance-collapse-visible.json",
+    "profiles/language-integrity/fixtures/valid/temporal-supersession-visible.json",
+    "profiles/language-integrity/fixtures/invalid/forecast-as-result.json",
+    "profiles/language-integrity/fixtures/invalid/attribution-loss.json",
+    "profiles/language-integrity/fixtures/invalid/inference-as-direct.json",
+    "profiles/language-integrity/fixtures/invalid/provenance-independence-overstated.json",
+    "profiles/language-integrity/fixtures/invalid/superseded-as-current.json",
     "profiles/perception-integrity/CONTROL_EXAMPLES.md",
     "scripts/build_release.py",
     "scripts/compile_sources.py",
+    "scripts/language_integrity.py",
     "scripts/perception_integrity.py",
     "scripts/refresh_release_metadata.py",
     "scripts/release_common.py",
+    "scripts/run_language_integrity.py",
     "scripts/run_tests.py",
     "scripts/run_perception_integrity.py",
     "scripts/validate_repo.py",
     "tests/test_release_tooling.py",
     "tests/test_adopter_enablement.py",
     "tests/test_frontier_claim_experience.py",
+    "tests/test_language_integrity.py",
     "tests/test_perception_integrity.py",
     "tests/test_frontier_technology_diligence.py",
     "tests/test_release_semantics.py",
@@ -161,9 +176,9 @@ SOURCE_SAFETY_SUFFIXES = {".md", ".py", ".json", ".yml", ".yaml", ".toml", ".htm
 # High-risk bidirectional controls can make reviewer-visible text diverge from
 # source order. Reject them on every scanned surface, including Markdown.
 BIDI_CONTROL_CODEPOINTS = {
-    *range(0x202A, 0x202F),  # bidi embeddings / overrides / PDF
-    *range(0x2066, 0x206A),  # bidi isolates
-    0x061C,                  # Arabic letter mark
+    *range(0x202A, 0x202F),
+    *range(0x2066, 0x206A),
+    0x061C,
 }
 
 # Invisible formatting is unsafe on code/configuration surfaces but can be
@@ -537,7 +552,7 @@ def validate(root: Path, check_manifest: bool = True) -> dict[str, Any]:
     check("version_format", version_ok, f"VERSION={version!r}; expected {EXPECTED_VERSION!r} without a leading v.")
 
     exact_release_markers = {
-        "README.md": re.compile(rf"^\*\*v{re.escape(EXPECTED_VERSION)} — Decision-Ready Intelligence\*\*$", re.MULTILINE),
+        "README.md": re.compile(rf"^\*\*v{re.escape(EXPECTED_VERSION)} — Language Integrity\*\*$", re.MULTILINE),
         "LIMITATIONS.md": re.compile(rf"^Current release: `{re.escape(EXPECTED_VERSION)}`\.$", re.MULTILINE),
         "CHANGELOG.md": re.compile(rf"^(?:## \[{re.escape(EXPECTED_VERSION)}\] - \d{{4}}-\d{{2}}-\d{{2}}|## \[Unreleased\])$", re.MULTILINE),
         "docs/assurance/TESTING.md": re.compile(rf"^# Validation — v{re.escape(EXPECTED_VERSION)}$", re.MULTILINE),
@@ -579,6 +594,7 @@ def validate(root: Path, check_manifest: bool = True) -> dict[str, Any]:
         "Keep nonpublic working evidence outside this public repository.",
         "FIW-SYN-001",
         "Perception Integrity",
+        "Language Integrity",
         "Frontier Claim Experience",
     ]
     missing_phrases = [phrase for phrase in readme_phrases if phrase not in readme]

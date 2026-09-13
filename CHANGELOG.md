@@ -6,9 +6,17 @@ Notable public changes to Frontier Intelligence Workflows are recorded here.
 
 _No unreleased changes._
 
+## [0.7.0] - 2026-09-13
+
+Current public release candidate.
+
+- Add Language Integrity as a public-safe deterministic companion profile for semantic assurance before deeper decision workflows.
+- Add controls and synthetic adversarial fixtures for forecast-as-result corruption, attribution loss, inference-as-direct-support collapse, overstated declared source independence, and superseded information presented as current.
+- Preserve the v0.6.1 semantic structured-artifact validation baseline, human review, public/private separation, and the boundary that deterministic semantic findings do not establish external truth, canonical knowledge, readiness, or decision authority.
+
 ## [0.6.1] - 2026-09-13
 
-Current public release.
+Previous public release.
 
 - Validate every policy-approved JSON, YAML, and TOML artifact for syntax before a repository PASS can be reported.
 - Validate every `*.schema.json` document against its declared JSON Schema metaschema in addition to FIW's offline structural checks.
@@ -19,11 +27,11 @@ Current public release.
 
 ## [0.6.0] - 2026-09-11
 
-Current public release.
+Earlier public release.
 
 - Add Radiant Guardian — Frontier Signal Integrity as a PI-compatible companion profile.
 - Add 12 deterministic RG controls, RG-SYN-001 synthetic contested-narrative stress case, RG-SYN-002 clean frontier-technology case, prediction and Proof Loop structures, adversarial tests, and CLI.
 
 ## [0.5.2] - 2026-08-22
 
-Previous public release.
+Earlier public release.

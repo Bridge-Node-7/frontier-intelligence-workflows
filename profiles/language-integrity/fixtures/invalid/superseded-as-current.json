@@ -1,0 +1,10 @@
+{
+  "metadata": {"case_id": "LI-SYN-TEMPORAL-BAD", "synthetic": true},
+  "source_records": [
+    {"source_id": "SRC-T-OLD", "root_source_id": "ROOT-T-1", "assertion_type": "REPORTED_CLAIM", "assertion_text": "Synthetic earlier state.", "attributed_to": null, "temporal_status": "SUPERSEDED", "superseded_by": "SRC-T-NEW"},
+    {"source_id": "SRC-T-NEW", "root_source_id": "ROOT-T-1", "assertion_type": "REPORTED_CLAIM", "assertion_text": "Synthetic current state.", "attributed_to": null, "temporal_status": "CURRENT", "superseded_by": null}
+  ],
+  "claim": {"claim_id": "CLM-T-1", "text": "The earlier state is current.", "claim_mode": "REPORTED_CLAIM", "support_basis": "DIRECT", "source_ids": ["SRC-T-OLD"], "attributed_to": null, "temporal_status": "CURRENT", "declared_independent_source_count": 1},
+  "review_requirements": {"human_review_required": true, "decision_owner": "SYNTHETIC-OWNER"},
+  "public_boundary": {"contains_sensitive_data": false, "public_release_allowed": true}
+}
