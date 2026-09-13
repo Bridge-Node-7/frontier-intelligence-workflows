@@ -1,0 +1,40 @@
+name: FIW v0.6.1 bounded closeout
+
+on:
+  push:
+    branches:
+      - hardening/semantic-artifacts-v0.6.1
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout exact branch head
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: true
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - name: Install bounded closeout dependencies
+        run: python -m pip install --disable-pip-version-check jsonschema==4.25.1 PyYAML==6.0.3
+      - name: Apply, validate, and self-remove
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/closeout_apply_v061.py
+          rm scripts/closeout_apply_v061.py .github/workflows/closeout-v061.yml
+          python scripts/refresh_release_metadata.py --root .
+          python scripts/validate_repo.py --root .
+          python scripts/build_release.py --root . --output-dir "${RUNNER_TEMP}/fiw-release" --check --commit "${GITHUB_SHA}"
+          git config user.name 'Bridge Node 7'
+          git config user.email '291729790+Bridge-Node-7@users.noreply.github.com'
+          git add -A
+          git diff --cached --check
+          git commit -m 'Release v0.6.1 — validate structured artifacts semantically'
+          git push origin HEAD:hardening/semantic-artifacts-v0.6.1
