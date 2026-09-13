@@ -1,0 +1,114 @@
+name: FIW v0.7.0 reconciliation
+
+on:
+  push:
+    branches:
+      - feat/language-integrity-0.7.0-reconciled
+
+permissions:
+  contents: write
+
+jobs:
+  reconcile:
+    if: github.event.head_commit.message != 'FIW v0.7.0 — reconcile Language Integrity over v0.6.1'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout reconciled branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - name: Install validation dependencies
+        run: python -m pip install --disable-pip-version-check -r requirements-validation.txt
+      - name: Reconcile, validate, and push candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'Bridge Node 7'
+          git config user.email '291729790+Bridge-Node-7@users.noreply.github.com'
+          git fetch origin feat/language-integrity-0.7.0
+          git merge --no-commit --no-ff -X ours origin/feat/language-integrity-0.7.0
+          python - <<'PY'
+          from __future__ import annotations
+          import json, subprocess
+          from pathlib import Path
+
+          root = Path('.')
+
+          def replace_all(path: str, old: str, new: str) -> None:
+              p = root / path
+              text = p.read_text(encoding='utf-8')
+              if old in text:
+                  p.write_text(text.replace(old, new), encoding='utf-8', newline='\n')
+
+          (root / 'VERSION').write_text('0.7.0\n', encoding='utf-8', newline='\n')
+          replace_all('scripts/release_common.py', 'EXPECTED_VERSION = "0.6.1"', 'EXPECTED_VERSION = "0.7.0"')
+          replace_all('README.md', '**v0.6.1 — Decision-Ready Intelligence**', '**v0.7.0 — Language Integrity**')
+          replace_all('LIMITATIONS.md', 'Current release: `0.6.1`.', 'Current release: `0.7.0`.')
+          replace_all('docs/assurance/TESTING.md', '# Validation — v0.6.1', '# Validation — v0.7.0')
+          replace_all('tests/test_release_semantics.py', 'v0.6.1', 'v0.7.0')
+          replace_all('tests/test_release_semantics.py', '0.6.1', '0.7.0')
+
+          # Preserve the v0.6.1 semantic-artifact hardening and union in the
+          # reviewed Language Integrity public surface from the superseded branch.
+          policy_path = root / 'REPO_FILE_POLICY.json'
+          policy = json.loads(policy_path.read_text(encoding='utf-8'))
+          feature_policy = json.loads(subprocess.check_output(
+              ['git','show','origin/feat/language-integrity-0.7.0:REPO_FILE_POLICY.json'], text=True
+          ))
+          for key in ('allowed_path_globs','allowed_root_files','allowed_hidden_path_globs'):
+              policy[key] = sorted(set(policy.get(key, [])) | set(feature_policy.get(key, [])))
+          policy['release_version'] = '0.7.0'
+          # Current main owns workflow integrity hashes; Language Integrity does
+          # not change release/validate workflows.
+          policy_path.write_text(json.dumps(policy, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          changelog = root / 'CHANGELOG.md'
+          text = changelog.read_text(encoding='utf-8')
+          # Normalize to one current 0.7.0 section above the preserved 0.6.1 record.
+          import re
+          text = re.sub(r'\n## \[0\.7\.0\].*?(?=\n## \[0\.6\.1\])', '', text, flags=re.S)
+          marker = '## [Unreleased]\n\n_No unreleased changes._\n\n'
+          section = '''## [0.7.0] - 2026-09-13\n\nCurrent public release.\n\n- Add Language Integrity as a public-safe deterministic companion profile for semantic assurance before deeper decision workflows.\n- Add controls and synthetic adversarial fixtures for forecast-as-result corruption, attribution loss, inference-as-direct-support collapse, overstated declared source independence, and superseded information presented as current.\n- Preserve FIW v0.6.1 structured-artifact semantic validation, deterministic release integrity, human review, public/private separation, and the boundary that deterministic semantic findings do not establish external truth, canonical knowledge, readiness, or decision authority.\n\n'''
+          if marker not in text:
+              raise SystemExit('unexpected CHANGELOG header')
+          text = text.replace(marker, marker + section, 1)
+          text = text.replace('## [0.6.1] - 2026-09-13\n\nCurrent public release.', '## [0.6.1] - 2026-09-13\n\nPrevious public release.', 1)
+          text = text.replace('## [0.6.0] - 2026-09-11\n\nCurrent public release.', '## [0.6.0] - 2026-09-11\n\nEarlier public release.', 1)
+          changelog.write_text(text, encoding='utf-8', newline='\n')
+
+          # The feature branch already contributed the profile implementation,
+          # synthetic fixtures, CLI, validator integration, and tests through
+          # the merge. Required files must exist before release metadata refresh.
+          required = [
+              'profiles/language-integrity/README.md',
+              'profiles/language-integrity/schema/language-integrity-case.schema.json',
+              'scripts/language_integrity.py',
+              'scripts/run_language_integrity.py',
+              'tests/test_language_integrity.py',
+              'requirements-validation.txt',
+          ]
+          missing = [p for p in required if not (root / p).is_file()]
+          if missing:
+              raise SystemExit('missing reconciled Language Integrity files: ' + ', '.join(missing))
+          PY
+
+          tmpdir="$(mktemp -d)"
+          mv .github/workflows/reconcile-language-integrity-v070.yml "$tmpdir/"
+          git add -A
+          python scripts/refresh_release_metadata.py --root .
+          python scripts/run_tests.py --root . --json-output "${RUNNER_TEMP}/source-test-summary.json"
+          python scripts/compile_sources.py --root .
+          python scripts/validate_repo.py --root . --json-output "${RUNNER_TEMP}/validation-report.json"
+          python scripts/build_release.py --root . --output-dir "${RUNNER_TEMP}/fiw-v070-release" --check --commit "${GITHUB_SHA}"
+          mv "$tmpdir/reconcile-language-integrity-v070.yml" .github/workflows/
+          rmdir "$tmpdir"
+          git add -A
+          git diff --cached --check
+          git commit -m 'FIW v0.7.0 — reconcile Language Integrity over v0.6.1'
+          git push origin HEAD:feat/language-integrity-0.7.0-reconciled
