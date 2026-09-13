@@ -143,6 +143,13 @@ class AdopterEnablementTests(unittest.TestCase):
             self.assertEqual(result.returncode, 1, result.stderr)
             report = json.loads(out.read_text(encoding="utf-8"))
             self.assertEqual(report["recommendation"], "DO_NOT_RELEASE_PUBLICLY")
+            self.assertIn("Findings:", result.stderr)
+            for finding in report["findings"]:
+                self.assertIn(finding["control_id"], result.stderr)
+                self.assertIn(finding["finding_id"], result.stderr)
+                self.assertIn(finding["severity"], result.stderr)
+                self.assertIn(finding["related_field"], result.stderr)
+                self.assertIn(finding["message"], result.stderr)
 
     def test_09_cli_returns_three_for_schema_invalid_input(self) -> None:
         assessment = ROOT / "profiles/perception-integrity/fixtures/invalid/unknown-top-level-field.json"
@@ -275,7 +282,6 @@ class AdopterEnablementTests(unittest.TestCase):
             )
             self.assertEqual(result.returncode, 2)
             self.assertFalse(output.exists())
-
 
     def test_14_public_html_surface_is_in_validator_text_scan(self) -> None:
         self.assertIn(".html", TEXT_SUFFIXES)

@@ -538,8 +538,8 @@
     },
     {
       "path": "scripts/run_perception_integrity.py",
-      "sha256": "00c8f642500a966c3d2d8a670a2091963113bf8febd3322ed55d8a8548a3971e",
-      "size_bytes": 4437
+      "sha256": "b7fe67576772e7f30d1bc103f2ca54f3427c3daa35085d757930d4589dfdb829",
+      "size_bytes": 4976
     },
     {
       "path": "scripts/run_radiant_guardian.py",
@@ -598,8 +598,8 @@
     },
     {
       "path": "tests/test_adopter_enablement.py",
-      "sha256": "c1c7fc0fe7f8ccc5c2bb2c5c2e3ce8d889ea9360a74691df76871e030db75e54",
-      "size_bytes": 13168
+      "sha256": "b0fe2152ec453bdbc9b9cdfa6c278ab7bde2378d61d7a685cda601bca4a4c729",
+      "size_bytes": 13606
     },
     {
       "path": "tests/test_frontier_claim_experience.py",

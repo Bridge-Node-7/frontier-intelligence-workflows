@@ -39,6 +39,21 @@ def _assessment_source(root: Path, raw_value: str) -> tuple[Path, str]:
     return resolved, relative.as_posix()
 
 
+def _print_findings(report: dict) -> None:
+    """Render deterministic findings for a human without replacing the JSON receipt."""
+    findings = report.get("findings", [])
+    if not findings:
+        return
+    print("Findings:", file=sys.stderr)
+    for finding in findings:
+        print(
+            "- "
+            f"{finding['severity']} {finding['control_id']} / {finding['finding_id']} | "
+            f"{finding['related_field']} | {finding['message']}",
+            file=sys.stderr,
+        )
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", default=".", help="Repository root")
@@ -94,6 +109,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"Perception Integrity: {report['validation_status']}")
         if report["validation_status"] == "NO_FINDINGS":
             print("Meaning: no configured deterministic PI rule produced a finding; underlying evidence is not verified.")
+        _print_findings(report)
         print(f"Recommendation: {report['recommendation']}")
         print("Human decision required: true")
         print(f"Output: {output}")
