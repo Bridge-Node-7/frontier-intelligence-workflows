@@ -1,0 +1,93 @@
+name: Temporary FIW v0.8 release reconciliation
+
+on:
+  push:
+    branches:
+      - source-genealogy-v0.8.0
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out exact branch head
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: source-genealogy-v0.8.0
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+
+      - name: Install validation dependencies
+        run: python -m pip install --disable-pip-version-check -r requirements-validation.txt
+
+      - name: Reconcile v0.8 release authorities
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          def replace_exact(path, old, new):
+              p = Path(path)
+              text = p.read_text(encoding='utf-8')
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'{path}: expected exactly one occurrence, found {count}: {old!r}')
+              p.write_text(text.replace(old, new, 1), encoding='utf-8', newline='\n')
+
+          replace_exact('scripts/release_common.py', 'EXPECTED_VERSION = "0.7.0"', 'EXPECTED_VERSION = "0.8.0"')
+          replace_exact('docs/assurance/TESTING.md', '# Validation — v0.7.0', '# Validation — v0.8.0')
+          replace_exact(
+              'tests/test_release_semantics.py',
+              'current_marker = "**v0.7.0 — Language Integrity**"',
+              'current_marker = "**v0.8.0 — Source Genealogy**"',
+          )
+          replace_exact(
+              'tests/test_release_semantics.py',
+              '"**v10.7.01 — Language Integrity**"',
+              '"**v10.8.01 — Source Genealogy**"',
+          )
+          replace_exact(
+              'README.md',
+              'Language Integrity adds deterministic checks over declared language semantics; it does not change that assurance boundary.',
+              'Language Integrity and Source Genealogy add deterministic checks over declared language semantics and declared provenance relationships; neither changes that assurance boundary.',
+          )
+          replace_exact(
+              'README.md',
+              '### Radiant Guardian — Frontier Signal Integrity',
+              '### Source Genealogy\n\n[Source Genealogy](profiles/source-genealogy/) prevents publication multiplicity from masquerading as independent corroboration. It collapses declared derivatives, mirrors, translations, syndication, AI derivatives, and coordinated publication to their declared provenance roots; preserves superseded, retracted, unavailable, and unknown lineage states; and never treats URL count as proof of source independence.\n\n### Radiant Guardian — Frontier Signal Integrity',
+          )
+          replace_exact(
+              'README.md',
+              '**v0.7.0 — Language Integrity**',
+              '**v0.8.0 — Source Genealogy**',
+          )
+          replace_exact(
+              'CHANGELOG.md',
+              '## [0.7.0] - 2026-09-13',
+              '## [0.8.0] - 2026-09-14\n\nCurrent public release candidate.\n\n- Add Source Genealogy as a public-safe deterministic profile for preventing publication multiplicity from masquerading as independent corroboration.\n- Model declared roots, derivatives, translations, mirrors, syndication, AI derivatives, coordinated publication, and unknown lineage without crawling the web or authenticating authorship.\n- Collapse shared provenance roots, citation dependencies, and declared coordination groups for bounded corroboration counts rather than treating URL count as independent support.\n- Preserve retracted, superseded, unavailable, and unknown lineage states; detect circular citation and parent-lineage cycles; and keep accountable human review mandatory.\n- Add adversarial regressions for five-URLs/one-root, translation/mirror derivatives, AI summaries, coordinated reposting, retractions/supersession, unavailable sources, unknown genealogy, exaggerated independent-source counts, cycles, deterministic output, and CLI behavior.\n- Preserve the boundary that Source Genealogy validates only declared relationships and does not establish external truth, authenticated authorship, qualification, readiness, or decision authority.\n\n## [0.7.0] - 2026-09-13',
+          )
+          PY
+
+          rm .github/workflows/fiw-v080-finalize.yml
+
+      - name: Refresh and prove deterministic release metadata
+        run: python scripts/refresh_release_metadata.py --root .
+
+      - name: Commit exact reconciled candidate
+        shell: bash
+        run: |
+          git diff --check
+          git status --short
+          git config user.name 'Bridge Node 7'
+          git config user.email '291729790+Bridge-Node-7@users.noreply.github.com'
+          git add -A
+          git commit -m 'Finalize FIW v0.8 Source Genealogy release candidate'
+          git push origin HEAD:source-genealogy-v0.8.0
