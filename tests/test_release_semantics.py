@@ -185,10 +185,10 @@ class ReleaseSemanticsTests(unittest.TestCase):
             shutil.copytree(ROOT, repo, ignore=shutil.ignore_patterns(".git", "__pycache__"))
             readme = repo / "README.md"
             text = readme.read_text(encoding="utf-8")
-            current_marker = "**v0.7.0 — Language Integrity**"
+            current_marker = "**v0.8.0 — Source Genealogy**"
             self.assertIn(current_marker, text)
             readme.write_text(
-                text.replace(current_marker, "**v10.7.01 — Language Integrity**", 1),
+                text.replace(current_marker, "**v10.8.01 — Source Genealogy**", 1),
                 encoding="utf-8",
                 newline="\n",
             )

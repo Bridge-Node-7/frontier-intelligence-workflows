@@ -6,7 +6,7 @@ Frontier Intelligence Workflows (FIW) is an open, evidence-first workflow for co
 
 **Automation checks structure, traceability, and declared evidence conditions. It does not determine truth, verify the underlying claim, make investment decisions, certify readiness, or authorize action.**
 
-Language Integrity adds deterministic checks over declared language semantics; it does not change that assurance boundary.
+Language Integrity and Source Genealogy add deterministic checks over declared language semantics and declared provenance relationships; neither changes that assurance boundary.
 
 ## Core Workflow
 
@@ -67,6 +67,10 @@ Source independence remains analyst-established. FIW validates declared lineage 
 ### Language Integrity
 
 [Language Integrity](profiles/language-integrity/) is a public-safe deterministic profile for preserving declared source meaning before information moves deeper into an assurance or decision workflow. It checks forecast-versus-result separation, quoted attribution, inference-versus-direct-support labeling, declared provenance-root collapse, and temporal supersession. It uses synthetic fixtures only and does not expose private extraction logic, governed intelligence, customer evidence, or canonical-promotion mechanisms.
+
+### Source Genealogy
+
+[Source Genealogy](profiles/source-genealogy/) prevents publication multiplicity from masquerading as independent corroboration. It collapses declared derivatives, mirrors, translations, syndication, AI derivatives, and coordinated publication to their declared provenance roots; preserves superseded, retracted, unavailable, and unknown lineage states; and never treats URL count as proof of source independence.
 
 ### Radiant Guardian — Frontier Signal Integrity
 
@@ -165,4 +169,4 @@ Published by [Bridge Node 7](https://bridgenode7.com/).
 
 ## Release
 
-**v0.7.0 — Language Integrity**
+**v0.8.0 — Source Genealogy**
