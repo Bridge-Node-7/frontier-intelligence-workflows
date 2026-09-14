@@ -97,6 +97,7 @@
     "profiles/radiant-guardian/templates/proof-loop-record.json",
     "profiles/radiant-guardian/templates/radiant-guardian-starter.json",
     "profiles/radiant-guardian/templates/strategic-surprise-register.json",
+    "profiles/source-genealogy/README.md",
     "requirements-validation.txt",
     "scripts/README.md",
     "scripts/build_release.py",
@@ -109,7 +110,9 @@
     "scripts/run_language_integrity.py",
     "scripts/run_perception_integrity.py",
     "scripts/run_radiant_guardian.py",
+    "scripts/run_source_genealogy.py",
     "scripts/run_tests.py",
+    "scripts/source_genealogy.py",
     "scripts/validate_repo.py",
     "scripts/validate_repo_core.py",
     "templates/ai-governance-gate.md",
@@ -126,7 +129,8 @@
     "tests/test_perception_integrity.py",
     "tests/test_radiant_guardian.py",
     "tests/test_release_semantics.py",
-    "tests/test_release_tooling.py"
+    "tests/test_release_tooling.py",
+    "tests/test_source_genealogy.py"
   ],
   "allowed_root_files": [
     ".gitattributes",
@@ -196,6 +200,6 @@
     ".pyc",
     ".pyo"
   ],
-  "release_version": "0.7.0",
+  "release_version": "0.8.0",
   "schema_version": "1.1"
 }
