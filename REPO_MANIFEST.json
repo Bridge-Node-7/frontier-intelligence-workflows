@@ -8,8 +8,13 @@
     },
     {
       "path": ".github/dependabot.yml",
-      "sha256": "a23c20301d29bdc0a0e61caa42bfeb3b6e0e3568ab5a7d639e3e6978c8930902",
-      "size_bytes": 145
+      "sha256": "ab6935bc8ceef2ab0920d29b77b40ea3cd854598dda9a9c4bfdad814c014e98a",
+      "size_bytes": 327
+    },
+    {
+      "path": ".github/workflows/codeql.yml",
+      "sha256": "8a8416428be12a9de7c0ae59b85987e6d65d74fe461434a956c1b24e9330f9f0",
+      "size_bytes": 1016
     },
     {
       "path": ".github/workflows/release.yml",
@@ -53,8 +58,8 @@
     },
     {
       "path": "REPO_FILE_POLICY.json",
-      "sha256": "2eda328295a6172431414f083982cef3dd65a8b9dd05225708b7cd4bc5d6e153",
-      "size_bytes": 9013
+      "sha256": "0be9e14de9b1c1d219792bf683b336ec2c2e969066bff3b1f58c2f2f96006d0c",
+      "size_bytes": 9181
     },
     {
       "path": "SECURITY.md",
