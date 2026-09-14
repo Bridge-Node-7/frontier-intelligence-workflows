@@ -6,6 +6,17 @@ Notable public changes to Frontier Intelligence Workflows are recorded here.
 
 _No unreleased changes._
 
+## [0.8.0] - 2026-09-14
+
+Current public release candidate.
+
+- Add Source Genealogy as a public-safe deterministic profile for preventing publication multiplicity from masquerading as independent corroboration.
+- Model declared roots, derivatives, translations, mirrors, syndication, AI derivatives, coordinated publication, and unknown lineage without crawling the web or authenticating authorship.
+- Collapse shared provenance roots, citation dependencies, and declared coordination groups for bounded corroboration counts rather than treating URL count as independent support.
+- Preserve retracted, superseded, unavailable, and unknown lineage states; detect circular citation and parent-lineage cycles; and keep accountable human review mandatory.
+- Add adversarial regressions for five-URLs/one-root, translation/mirror derivatives, AI summaries, coordinated reposting, retractions/supersession, unavailable sources, unknown genealogy, exaggerated independent-source counts, cycles, deterministic output, and CLI behavior.
+- Preserve the boundary that Source Genealogy validates only declared relationships and does not establish external truth, authenticated authorship, qualification, readiness, or decision authority.
+
 ## [0.7.0] - 2026-09-13
 
 Current public release.
