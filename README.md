@@ -82,7 +82,7 @@ Source independence remains analyst-established. FIW validates declared lineage 
 
 ## Use FIW
 
-Use a separate working directory for assessment inputs and generated results.
+Use a separate working directory in the environment authorized for assessment inputs and generated results.
 
 Start from the intentionally incomplete teaching template using the shell you already have.
 
