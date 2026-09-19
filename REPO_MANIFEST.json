@@ -618,8 +618,8 @@
     },
     {
       "path": "tests/test_adopter_enablement.py",
-      "sha256": "b0fe2152ec453bdbc9b9cdfa6c278ab7bde2378d61d7a685cda601bca4a4c729",
-      "size_bytes": 13606
+      "sha256": "2a7d32473aa5b15aea8b0a531616102f84c556d293dd0111b1726a034669002c",
+      "size_bytes": 13620
     },
     {
       "path": "tests/test_frontier_claim_experience.py",
@@ -628,8 +628,8 @@
     },
     {
       "path": "tests/test_frontier_technology_diligence.py",
-      "sha256": "c8e748fba4c8f0b02034695425eca203c3421b45ae87deca8e112df38934c054",
-      "size_bytes": 4513
+      "sha256": "4a58dd110c02a22d210970151feb9e4a28d5c0069d19102d4d3d5dce1d8c6dd5",
+      "size_bytes": 4558
     },
     {
       "path": "tests/test_language_integrity.py",
