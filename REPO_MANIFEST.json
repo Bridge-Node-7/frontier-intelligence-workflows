@@ -583,8 +583,8 @@
     },
     {
       "path": "templates/ai-governance-gate.md",
-      "sha256": "23f9dcc70239924826e023831cffdf0f6e8e44e148ebde57742e09bb76a6ef65",
-      "size_bytes": 937
+      "sha256": "fd5a4121651b945508381030ffbc428eace3007137076c2d77111d4dbe7ec217",
+      "size_bytes": 896
     },
     {
       "path": "templates/decision-ready-brief.md",
