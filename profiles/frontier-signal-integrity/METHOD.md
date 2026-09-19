@@ -1,4 +1,4 @@
-# Radiant Guardian Method v0.1
+# Frontier Signal Integrity Method v0.1
 
 ## 1. Preserve the signal
 
@@ -16,9 +16,9 @@ Require a serious alternative set. Novel hypotheses are allowed; null and conven
 
 Flag, at minimum:
 
-- `REAL_ANCHOR_EXTRAORDINARY_EXTENSION`
+- `SUPPORTED_ANCHOR_UNSUPPORTED_EXTENSION`
 - `SELF_SEALING_RISK`
-- `ARGUMENT_FROM_SECRECY`
+- `INACCESSIBLE_EVIDENCE_DEPENDENCY`
 - `SOURCE_DEPENDENCY`
 - `PREDICTION_DRIFT_RISK`
 - `UNFALSIFIABLE_OR_UNDERDEFINED`
