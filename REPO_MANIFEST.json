@@ -128,13 +128,13 @@
     },
     {
       "path": "docs/governance/FIW-SYN-001-governance-review.md",
-      "sha256": "149aed2e595d5f969a73fd3d3dd55875e4bbdd4a7af759a138c1af0a85ea8d9f",
-      "size_bytes": 1288
+      "sha256": "5e2a74e68fe05a80199fe2041969d8bf115a7e3d88f6a4f56989ba0431cc45fc",
+      "size_bytes": 1252
     },
     {
       "path": "docs/governance/README.md",
-      "sha256": "a934ff0e1a9646ade92ae972d9a65eef5b45bd6ebb153a5bf6cd0f151823b079",
-      "size_bytes": 231
+      "sha256": "75b9631356b749f48a6ce25c30f8beeaf69ab8d28d39cea4858d132dcc455ca1",
+      "size_bytes": 228
     },
     {
       "path": "examples/README.md",
@@ -583,8 +583,8 @@
     },
     {
       "path": "templates/ai-governance-gate.md",
-      "sha256": "23f9dcc70239924826e023831cffdf0f6e8e44e148ebde57742e09bb76a6ef65",
-      "size_bytes": 937
+      "sha256": "fd5a4121651b945508381030ffbc428eace3007137076c2d77111d4dbe7ec217",
+      "size_bytes": 896
     },
     {
       "path": "templates/decision-ready-brief.md",

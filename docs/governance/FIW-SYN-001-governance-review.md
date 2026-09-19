@@ -6,9 +6,9 @@
 - Reviewer: Synthetic Governance Reviewer
 - Review date: 2026-08-06
 
-## Public boundary
+## Release eligibility
 
-PASS. The case is explicitly fictional and contains no real supplier, component, customer, pricing, patent, credential, or protected operational information.
+PASS. The case is explicitly fictional and approved for unrestricted publication under the repository release checks.
 
 ## Source and claim control
 

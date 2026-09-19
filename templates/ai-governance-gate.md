@@ -15,10 +15,10 @@ Describe the AI system and the drafting, organization, summarization, or checkin
 - Are observed facts separated from generated inference?
 - Were citations and calculations checked by an accountable reviewer?
 
-## Public boundary
+## Release suitability
 
-- Is the content synthetic, sanitized, or approved for public release?
-- Is it free of nonpublic, confidential, proprietary, credential, controlled, or operationally sensitive information?
+- Is the artifact approved for its intended release context?
+- Are applicable handling, rights, attribution, and review requirements satisfied?
 
 ## Claim control
 
