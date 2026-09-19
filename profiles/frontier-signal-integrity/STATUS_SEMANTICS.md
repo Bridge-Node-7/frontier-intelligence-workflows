@@ -1,9 +1,9 @@
-# Radiant Guardian Status Semantics
+# Frontier Signal Integrity Status Semantics
 
 ## Validation status
 
-- `NO_RG_FINDINGS` — no configured RG deterministic integrity rule produced a finding from the supplied declared record.
-- `RG_REVIEW_REQUIRED` — one or more configured RG integrity rules produced findings.
+- `NO_FSI_FINDINGS` — no configured FSI deterministic integrity rule produced a finding from the supplied declared record.
+- `FSI_REVIEW_REQUIRED` — one or more configured FSI integrity rules produced findings.
 
 Neither status determines whether the underlying claim is true.
 
@@ -22,7 +22,7 @@ A recommendation is workflow guidance, never autonomous authorization.
 
 ## CLI exit contract
 
-- exit `0` — RG recommendation is `READY_FOR_HUMAN_REVIEW`;
-- exit `1` — deterministic RG findings require action before ordinary review;
+- exit `0` — FSI recommendation is `READY_FOR_HUMAN_REVIEW`;
+- exit `1` — deterministic FSI findings require action before ordinary review;
 - exit `2` — input/path/output handling error;
-- exit `3` — case is outside the bounded RG case contract.
+- exit `3` — case is outside the bounded FSI case contract.
