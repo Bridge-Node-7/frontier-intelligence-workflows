@@ -53,8 +53,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "830c7e30bfffe8a5f8c848e75b6bc3c9db79c03387763a5488b3218439380c2b",
-      "size_bytes": 8515
+      "sha256": "15bf649745b54e9cb88cbe8800d224cdf49bda80bfda87418980241521056921",
+      "size_bytes": 8370
     },
     {
       "path": "REPO_FILE_POLICY.json",
@@ -578,8 +578,8 @@
     },
     {
       "path": "scripts/validate_repo_core.py",
-      "sha256": "5aaa6d3f6ec828bd5d9c549c78b1bb706bda7a213035158120c2b894e16a13d9",
-      "size_bytes": 37014
+      "sha256": "0a4dcb09c0a24262347e3c3168cbeae7055c0b6a58d21f02236008108cee018c",
+      "size_bytes": 37058
     },
     {
       "path": "templates/ai-governance-gate.md",
