@@ -591,7 +591,7 @@ def validate(root: Path, check_manifest: bool = True) -> dict[str, Any]:
         PROJECT,
         "Turn uncertain frontier-technology claims into decision-ready intelligence.",
         "Automation checks structure, traceability, and declared evidence conditions. It does not determine truth, verify the underlying claim, make investment decisions, certify readiness, or authorize action.",
-        "Keep nonpublic working evidence outside this public repository.",
+        "Use a separate working directory in the environment authorized for assessment inputs and generated results.",
         "FIW-SYN-001",
         "Perception Integrity",
         "Language Integrity",

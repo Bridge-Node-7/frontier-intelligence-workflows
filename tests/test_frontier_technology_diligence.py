@@ -93,7 +93,7 @@ class FrontierTechnologyDiligenceTests(unittest.TestCase):
             "decision-ready intelligence",
             "accountable human",
             "portable record",
-            "keep nonpublic working evidence outside this public repository",
+            "use a separate working directory in the environment authorized for assessment inputs and generated results.",
             "perception integrity",
             "frontier claim experience",
         ):

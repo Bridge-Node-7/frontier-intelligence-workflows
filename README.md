@@ -60,13 +60,13 @@ The [Frontier Claim Experience](examples/frontier-claim-experience/) is a local-
 
 ### Perception Integrity
 
-[Perception Integrity](profiles/perception-integrity/) provides deterministic checks for declared evidence lineage, observation-versus-inference separation, assumptions, alternative hypotheses, evidence state, stop conditions, public-release boundaries, and decision authority.
+[Perception Integrity](profiles/perception-integrity/) provides deterministic checks for declared evidence lineage, observation-versus-inference separation, assumptions, alternative hypotheses, evidence state, stop conditions, release-surface integrity, and decision authority.
 
 Source independence remains analyst-established. FIW validates declared lineage consistency; it does not determine whether two real-world sources are genuinely independent.
 
 ### Language Integrity
 
-[Language Integrity](profiles/language-integrity/) is a public-safe deterministic profile for preserving declared source meaning before information moves deeper into an assurance or decision workflow. It checks forecast-versus-result separation, quoted attribution, inference-versus-direct-support labeling, declared provenance-root collapse, and temporal supersession. It uses synthetic fixtures only and does not expose private extraction logic, governed intelligence, customer evidence, or canonical-promotion mechanisms.
+[Language Integrity](profiles/language-integrity/) is a deterministic profile for preserving declared source meaning before information moves deeper into an assurance or decision workflow. It checks forecast-versus-result separation, quoted attribution, inference-versus-direct-support labeling, declared provenance-root collapse, and temporal supersession. The bundled fixtures are synthetic and exercise only the declared profile contracts.
 
 ### Source Genealogy
 
@@ -82,7 +82,7 @@ Source independence remains analyst-established. FIW validates declared lineage 
 
 ## Use FIW
 
-Keep nonpublic working evidence outside this public repository.
+Use a separate working directory in the environment authorized for assessment inputs and generated results.
 
 Start from the intentionally incomplete teaching template using the shell you already have.
 
@@ -124,9 +124,9 @@ For an existing assessment, preserve the prior artifact and create a new result 
 - Exit `2`: input, path, or output handling error.
 - Exit `3`: assessment fails the bounded schema contract.
 
-## Public Assurance
+## Verification
 
-FIW includes reproducible checks for software behavior, approved public structure, workflow integrity, manifest consistency, and deterministic packaging.
+FIW includes reproducible checks for software behavior, repository structure, workflow integrity, manifest consistency, and deterministic packaging.
 
 Run the complete repository gate from an isolated Python environment. The validation-only dependencies are pinned and are not runtime dependencies of FIW's public methods.
 
@@ -145,11 +145,9 @@ git diff --check
 
 A passing control establishes only what that control tested. Manifest checks establish byte consistency against the recorded manifest; they do not establish external truth or authorship.
 
-## Public Boundary
+## Scope and nonclaims
 
-FIW is designed for public-safe methods, synthetic examples, and inspectable assurance controls.
-
-Do not place nonpublic, confidential, proprietary, credential, controlled, or operationally sensitive material in this public repository.
+FIW provides deterministic methods, synthetic examples, and inspectable assurance controls for evidence-first intelligence workflows.
 
 FIW does not certify scientific truth, technical performance, supplier qualification, production readiness, safety, regulatory approval, legal compliance, investment merit, or deployment authority.
 

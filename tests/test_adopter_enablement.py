@@ -116,7 +116,7 @@ class AdopterEnablementTests(unittest.TestCase):
     def test_07_public_docs_expose_external_working_model(self) -> None:
         combined = "\n".join((ROOT / name).read_text(encoding="utf-8") for name in ("README.md", "profiles/perception-integrity/README.md"))
         self.assertIn("run_perception_integrity.py", combined)
-        self.assertIn("outside this public repository", combined)
+        self.assertIn("environment authorized for assessment inputs", combined)
 
     def test_08_cli_returns_one_for_actionable_findings(self) -> None:
         assessment = ROOT / "profiles/perception-integrity/fixtures/invalid/sensitive-public-release.json"
