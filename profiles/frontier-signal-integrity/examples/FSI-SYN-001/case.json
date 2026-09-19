@@ -22,7 +22,7 @@
       "evidence_weight": "NONE_UNTIL_EVIDENCED",
       "hypothesis_id": "SYN-H1",
       "origin": "SOURCE_DERIVED",
-      "statement": "The fictional extraordinary capability exists as reported."
+      "statement": "The fictional unsupported capability exists as reported."
     },
     {
       "evidence_references": [],
@@ -35,19 +35,19 @@
       "evidence_references": [],
       "evidence_weight": "NONE_UNTIL_EVIDENCED",
       "hypothesis_id": "SYN-H2",
-      "origin": "CREATIVE_PSIONICS",
+      "origin": "DIVERGENT_BRAINSTORM",
       "statement": "An alternative mechanism could explain the reported observations, but it has no evidentiary weight until independently evidenced."
     }
   ],
   "metadata": {
-    "rg_case_id": "RG-SYN-001",
+    "fsi_case_id": "FSI-SYN-001",
     "subject": "Synthetic contested narrative with derivative corroboration",
     "synthetic": true,
     "version": "0.1.0"
   },
   "pi_reference": {
-    "assessment_id": "PIA-RG-SYN-001",
-    "validation_path": "profiles/radiant-guardian/examples/RG-SYN-001/PIA-RG-SYN-001.validation.json",
+    "assessment_id": "PIA-FSI-SYN-001",
+    "validation_path": "profiles/frontier-signal-integrity/examples/FSI-SYN-001/PIA-FSI-SYN-001.validation.json",
     "validation_sha256": "d4939e4ee6452d4857bcb0bf3b4bf2fa36cb65261f54c914915139d29f6537d9"
   },
   "predictions": [
@@ -88,8 +88,8 @@
       "discriminating_test_ids": [
         "SYN-TEST-01"
       ],
-      "pattern": "REAL_ANCHOR_EXTRAORDINARY_EXTENSION",
-      "rationale": "A mundane synthetic anchor is extended into an extraordinary conclusion without bridge evidence."
+      "pattern": "SUPPORTED_ANCHOR_UNSUPPORTED_EXTENSION",
+      "rationale": "A mundane synthetic anchor is extended into an unsupported conclusion without bridge evidence."
     }
   ],
   "review": {
@@ -104,7 +104,7 @@
     "novelty": "HIGH",
     "observability": "DOCUMENTARY",
     "requires_independent_corroboration": true,
-    "statement": "Several fictional reports repeat an extraordinary capability claim, but all trace to one synthetic source root."
+    "statement": "Several fictional reports repeat an unsupported capability claim, but all trace to one synthetic source root."
   },
   "tests": [
     {
@@ -119,7 +119,7 @@
         "SYN-H2"
       ],
       "observable_outcome": "Independent evidence either demonstrates the claimed capability or fails to do so under defined criteria.",
-      "question": "Does independent evidence distinguish the extraordinary capability claim from derivative repetition?",
+      "question": "Does independent evidence distinguish the unsupported capability claim from derivative repetition?",
       "test_id": "SYN-TEST-01"
     }
   ],
