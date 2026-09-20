@@ -628,8 +628,8 @@
     },
     {
       "path": "tests/test_frontier_signal_integrity.py",
-      "sha256": "a01537f88258530122790ebd55d33c07c48ab169cea32a875a3fe970ba3ed8c1",
-      "size_bytes": 6554
+      "sha256": "3c261e195aec7cf548b87229d4d2c6990ef92522d1d98dc4c4669351cb1e399a",
+      "size_bytes": 6563
     },
     {
       "path": "tests/test_frontier_technology_diligence.py",
