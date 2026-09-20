@@ -552,7 +552,7 @@ def validate(root: Path, check_manifest: bool = True) -> dict[str, Any]:
     check("version_format", version_ok, f"VERSION={version!r}; expected {EXPECTED_VERSION!r} without a leading v.")
 
     exact_release_markers = {
-        "README.md": re.compile(rf"^\*\*v{re.escape(EXPECTED_VERSION)} — Source Genealogy\*\*$", re.MULTILINE),
+        "README.md": re.compile(rf"^\*\*v{re.escape(EXPECTED_VERSION)} — Frontier Signal Integrity\*\*$", re.MULTILINE),
         "LIMITATIONS.md": re.compile(rf"^Current release: `{re.escape(EXPECTED_VERSION)}`\.$", re.MULTILINE),
         "CHANGELOG.md": re.compile(rf"^(?:## \[{re.escape(EXPECTED_VERSION)}\] - \d{{4}}-\d{{2}}-\d{{2}}|## \[Unreleased\])$", re.MULTILINE),
         "docs/assurance/TESTING.md": re.compile(rf"^# Validation — v{re.escape(EXPECTED_VERSION)}$", re.MULTILINE),

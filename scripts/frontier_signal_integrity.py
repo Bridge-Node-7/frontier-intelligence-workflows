@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deterministic Radiant Guardian frontier-signal integrity controls.
+"""Deterministic Frontier Signal Integrity frontier-signal integrity controls.
 
 The module validates declared integrity conditions. It does not determine
 external truth, verify evidence authenticity, or authorize consequential action.
@@ -14,9 +14,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-PROFILE_VERSION = "0.1.0"
+PROFILE_VERSION = "0.9.0"
 RULESET_VERSION = "1.0.0"
-VALIDATOR_VERSION = "0.1.0"
+VALIDATOR_VERSION = "0.9.0"
 RFC3339_UTC = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$")
 SHA256 = re.compile(r"^[0-9a-f]{64}$")
 
@@ -26,7 +26,7 @@ REQUIRED_TOP = {
     "proof_loop", "review",
 }
 ALLOWED_TOP = REQUIRED_TOP
-GENERATED_ORIGINS = {"AI_ASSISTED", "CREATIVE_PSIONICS"}
+GENERATED_ORIGINS = {"AI_ASSISTED", "DIVERGENT_BRAINSTORM"}
 
 
 def canonical_json_bytes(value: Any) -> bytes:
@@ -75,11 +75,11 @@ def structural_issues(case: Any) -> list[str]:
         return issues
 
     metadata = _map(case["metadata"])
-    for key in ("rg_case_id", "version", "synthetic", "subject"):
+    for key in ("fsi_case_id", "version", "synthetic", "subject"):
         if key not in metadata:
             issues.append(f"$.metadata: missing {key}")
-    if not _nonempty(metadata.get("rg_case_id")):
-        issues.append("$.metadata.rg_case_id: non-empty string required")
+    if not _nonempty(metadata.get("fsi_case_id")):
+        issues.append("$.metadata.fsi_case_id: non-empty string required")
     if not isinstance(metadata.get("synthetic"), bool):
         issues.append("$.metadata.synthetic: boolean required")
 
@@ -143,25 +143,25 @@ def _load_upstream_pi(root: Path, case: Mapping[str, Any]) -> tuple[dict[str, An
     path_raw = pi_ref.get("validation_path")
     digest = pi_ref.get("validation_sha256")
     if not _nonempty(path_raw) or not _nonempty(digest):
-        return {}, [_finding("RG-01", "RG-UPSTREAM-PI-UNRESOLVED", "BLOCKING", "PI validation reference is incomplete.", "pi_reference")]
+        return {}, [_finding("FSI-01", "FSI-UPSTREAM-PI-UNRESOLVED", "BLOCKING", "PI validation reference is incomplete.", "pi_reference")]
     try:
         path = _resolve_repo_file(root, str(path_raw), "pi_reference.validation_path")
         raw = path.read_bytes()
         actual = sha256_bytes(raw)
         if actual != digest:
-            findings.append(_finding("RG-01", "RG-UPSTREAM-PI-UNRESOLVED", "BLOCKING", "Referenced PI validation digest does not match exact bytes.", "pi_reference.validation_sha256"))
+            findings.append(_finding("FSI-01", "FSI-UPSTREAM-PI-UNRESOLVED", "BLOCKING", "Referenced PI validation digest does not match exact bytes.", "pi_reference.validation_sha256"))
         value = json.loads(raw.decode("utf-8"))
         if not isinstance(value, dict):
             raise ValueError("PI validation must contain one JSON object")
         if value.get("assessment_id") != pi_ref.get("assessment_id"):
-            findings.append(_finding("RG-01", "RG-UPSTREAM-PI-UNRESOLVED", "BLOCKING", "Referenced PI assessment ID does not match RG declaration.", "pi_reference.assessment_id"))
+            findings.append(_finding("FSI-01", "FSI-UPSTREAM-PI-UNRESOLVED", "BLOCKING", "Referenced PI assessment ID does not match FSI declaration.", "pi_reference.assessment_id"))
         if value.get("human_decision_required") is not True:
-            findings.append(_finding("RG-01", "RG-UPSTREAM-PI-UNRESOLVED", "BLOCKING", "Upstream PI validation must preserve human decision authority.", "pi_reference.validation_path"))
+            findings.append(_finding("FSI-01", "FSI-UPSTREAM-PI-UNRESOLVED", "BLOCKING", "Upstream PI validation must preserve human decision authority.", "pi_reference.validation_path"))
         if value.get("validation_status") != "NO_FINDINGS" or value.get("recommendation") != "READY_FOR_HUMAN_REVIEW":
-            findings.append(_finding("RG-01", "RG-UPSTREAM-PI-REVIEW-REQUIRED", "BLOCKING", "Upstream PI validation already requires review; RG cannot mask or downgrade it.", "pi_reference.validation_path"))
+            findings.append(_finding("FSI-01", "FSI-UPSTREAM-PI-REVIEW-REQUIRED", "BLOCKING", "Upstream PI validation already requires review; FSI cannot mask or downgrade it.", "pi_reference.validation_path"))
         return value, findings
     except (OSError, UnicodeDecodeError, json.JSONDecodeError, ValueError) as exc:
-        findings.append(_finding("RG-01", "RG-UPSTREAM-PI-UNRESOLVED", "BLOCKING", str(exc), "pi_reference.validation_path"))
+        findings.append(_finding("FSI-01", "FSI-UPSTREAM-PI-UNRESOLVED", "BLOCKING", str(exc), "pi_reference.validation_path"))
         return {}, findings
 
 
@@ -169,51 +169,51 @@ def evaluate_case(case: Mapping[str, Any], *, root: Path, case_path: str, case_b
     parse_utc(evaluated_at, "evaluated_at")
     issues = structural_issues(case)
     if issues:
-        raise ValueError("case outside bounded RG contract: " + "; ".join(issues))
+        raise ValueError("case outside bounded FSI contract: " + "; ".join(issues))
     findings: list[dict[str, str]] = []
     upstream, upstream_findings = _load_upstream_pi(root, case)
     findings.extend(upstream_findings)
 
     signal = _map(case.get("signal"))
     if signal.get("mode") != "DIRECT_OBSERVATION" and signal.get("asserted_as_fact") is True:
-        findings.append(_finding("RG-02", "RG-SIGNAL-CLAIM-COLLAPSE", "BLOCKING", "A reported/inferred/interpreted signal is declared as established fact.", "signal.asserted_as_fact"))
+        findings.append(_finding("FSI-02", "FSI-SIGNAL-CLAIM-COLLAPSE", "BLOCKING", "A reported/inferred/interpreted signal is declared as established fact.", "signal.asserted_as_fact"))
 
     genealogy = _map(case.get("genealogy"))
     roots = [x for x in _list(genealogy.get("roots")) if _nonempty(x)]
     declared = genealogy.get("declared_independent_root_count")
     if declared != len(set(roots)):
-        findings.append(_finding("RG-03", "RG-INDEPENDENCE-OVERSTATED", "BLOCKING", "Declared independent-root count does not equal the unique declared roots.", "genealogy.declared_independent_root_count"))
+        findings.append(_finding("FSI-03", "FSI-INDEPENDENCE-OVERSTATED", "BLOCKING", "Declared independent-root count does not equal the unique declared roots.", "genealogy.declared_independent_root_count"))
     if signal.get("requires_independent_corroboration") is True and len(set(roots)) < 2:
-        findings.append(_finding("RG-03", "RG-INDEPENDENCE-OVERSTATED", "BLOCKING", "The case requires independent corroboration but fewer than two independent roots are declared.", "genealogy.roots"))
+        findings.append(_finding("FSI-03", "FSI-INDEPENDENCE-OVERSTATED", "BLOCKING", "The case requires independent corroboration but fewer than two independent roots are declared.", "genealogy.roots"))
 
     tests = {str(_map(t).get("test_id")): _map(t) for t in _list(case.get("tests")) if _nonempty(_map(t).get("test_id"))}
     for pattern in _list(case.get("reasoning_patterns")):
         item = _map(pattern)
         kind = item.get("pattern")
-        if kind == "REAL_ANCHOR_EXTRAORDINARY_EXTENSION" and not [x for x in _list(item.get("bridge_evidence_references")) if _nonempty(x)]:
-            findings.append(_finding("RG-04", "RG-ANCHOR-EXTENSION-BRIDGE-MISSING", "BLOCKING", "A real-anchor → extraordinary-extension pattern lacks declared bridge evidence.", "reasoning_patterns.bridge_evidence_references"))
+        if kind == "SUPPORTED_ANCHOR_UNSUPPORTED_EXTENSION" and not [x for x in _list(item.get("bridge_evidence_references")) if _nonempty(x)]:
+            findings.append(_finding("FSI-04", "FSI-ANCHOR-EXTENSION-BRIDGE-MISSING", "BLOCKING", "A supported-anchor / unsupported-extension pattern lacks declared bridge evidence.", "reasoning_patterns.bridge_evidence_references"))
         if kind == "SELF_SEALING_RISK":
             linked = [x for x in _list(item.get("discriminating_test_ids")) if _nonempty(x)]
             if not linked or any(test_id not in tests for test_id in linked):
-                findings.append(_finding("RG-05", "RG-SELF-SEALING-WITHOUT-DISCRIMINATOR", "BLOCKING", "Self-sealing risk lacks a resolvable discriminating test.", "reasoning_patterns.discriminating_test_ids"))
+                findings.append(_finding("FSI-05", "FSI-SELF-SEALING-WITHOUT-DISCRIMINATOR", "BLOCKING", "Self-sealing risk lacks a resolvable discriminating test.", "reasoning_patterns.discriminating_test_ids"))
 
     for prediction in _list(case.get("predictions")):
         p = _map(prediction)
         pid = p.get("prediction_id") or "<unknown>"
         essentials = ("statement", "frozen_at", "window_start", "window_end")
         if p.get("status") == "OPEN" and (any(not _nonempty(p.get(k)) for k in essentials)):
-            findings.append(_finding("RG-06", "RG-PREDICTION-NOT-FROZEN", "BLOCKING", f"Open prediction {pid} lacks a frozen statement/time window.", "predictions"))
+            findings.append(_finding("FSI-06", "FSI-PREDICTION-NOT-FROZEN", "BLOCKING", f"Open prediction {pid} lacks a frozen statement/time window.", "predictions"))
         try:
             frozen = parse_utc(str(p.get("frozen_at")), f"prediction {pid}.frozen_at")
             start = parse_utc(str(p.get("window_start")), f"prediction {pid}.window_start")
             end = parse_utc(str(p.get("window_end")), f"prediction {pid}.window_end")
             if frozen > start or start > end:
-                findings.append(_finding("RG-06", "RG-PREDICTION-NOT-FROZEN", "BLOCKING", f"Prediction {pid} chronology is not frozen_at ≤ window_start ≤ window_end.", "predictions"))
+                findings.append(_finding("FSI-06", "FSI-PREDICTION-NOT-FROZEN", "BLOCKING", f"Prediction {pid} chronology is not frozen_at ≤ window_start ≤ window_end.", "predictions"))
         except ValueError:
-            findings.append(_finding("RG-06", "RG-PREDICTION-NOT-FROZEN", "BLOCKING", f"Prediction {pid} uses an invalid UTC timestamp.", "predictions"))
+            findings.append(_finding("FSI-06", "FSI-PREDICTION-NOT-FROZEN", "BLOCKING", f"Prediction {pid} uses an invalid UTC timestamp.", "predictions"))
         criteria_fields = ("success_criteria", "failure_criteria", "ambiguous_criteria", "unresolved_criteria")
         if any(not [x for x in _list(p.get(k)) if _nonempty(x)] for k in criteria_fields):
-            findings.append(_finding("RG-07", "RG-PREDICTION-RESOLUTION-INCOMPLETE", "BLOCKING", f"Prediction {pid} requires success, failure, ambiguous, and unresolved criteria.", "predictions"))
+            findings.append(_finding("FSI-07", "FSI-PREDICTION-RESOLUTION-INCOMPLETE", "BLOCKING", f"Prediction {pid} requires success, failure, ambiguous, and unresolved criteria.", "predictions"))
 
     hypothesis_ids = {str(_map(h).get("hypothesis_id")) for h in _list(case.get("hypotheses")) if _nonempty(_map(h).get("hypothesis_id"))}
     for test in _list(case.get("tests")):
@@ -221,12 +221,12 @@ def evaluate_case(case: Mapping[str, Any], *, root: Path, case_path: str, case_b
         tid = t.get("test_id") or "<unknown>"
         refs = [x for x in _list(t.get("hypothesis_ids")) if _nonempty(x)]
         if len(set(refs)) < 2 or any(x not in hypothesis_ids for x in refs) or not [x for x in _list(t.get("discriminating_evidence")) if _nonempty(x)] or not _nonempty(t.get("observable_outcome")) or not _nonempty(t.get("decision_rule")):
-            findings.append(_finding("RG-08", "RG-DISCRIMINATING-TEST-INCOMPLETE", "BLOCKING", f"Test {tid} must compare at least two existing hypotheses using observable discriminating evidence and a decision rule.", "tests"))
+            findings.append(_finding("FSI-08", "FSI-DISCRIMINATING-TEST-INCOMPLETE", "BLOCKING", f"Test {tid} must compare at least two existing hypotheses using observable discriminating evidence and a decision rule.", "tests"))
 
     for hypothesis in _list(case.get("hypotheses")):
         h = _map(hypothesis)
         if h.get("origin") in GENERATED_ORIGINS and h.get("evidence_weight") != "NONE_UNTIL_EVIDENCED":
-            findings.append(_finding("RG-09", "RG-GENERATED-HYPOTHESIS-PROMOTED", "BLOCKING", f"Generated hypothesis {h.get('hypothesis_id', '<unknown>')} received evidentiary weight merely from generation.", "hypotheses.evidence_weight"))
+            findings.append(_finding("FSI-09", "FSI-GENERATED-HYPOTHESIS-PROMOTED", "BLOCKING", f"Generated hypothesis {h.get('hypothesis_id', '<unknown>')} received evidentiary weight merely from generation.", "hypotheses.evidence_weight"))
 
     for receipt in _list(case.get("update_receipts")):
         r = _map(receipt)
@@ -237,28 +237,28 @@ def evaluate_case(case: Mapping[str, Any], *, root: Path, case_path: str, case_b
         except ValueError:
             missing = True
         if missing:
-            findings.append(_finding("RG-10", "RG-UPDATE-RECEIPT-INCOMPLETE", "BLOCKING", "A material update receipt lacks the complete evidence/rationale/reviewer/time/reversal record.", "update_receipts"))
+            findings.append(_finding("FSI-10", "FSI-UPDATE-RECEIPT-INCOMPLETE", "BLOCKING", "A material update receipt lacks the complete evidence/rationale/reviewer/time/reversal record.", "update_receipts"))
 
     if _map(case.get("review")).get("public_release_allowed") is True and upstream.get("recommendation") == "DO_NOT_RELEASE_PUBLICLY":
-        findings.append(_finding("RG-11", "RG-PUBLIC-BOUNDARY-VIOLATION", "CRITICAL", "RG cannot permit public release when upstream PI forbids it.", "review.public_release_allowed"))
+        findings.append(_finding("FSI-11", "FSI-PUBLIC-BOUNDARY-VIOLATION", "CRITICAL", "FSI cannot permit public release when upstream PI forbids it.", "review.public_release_allowed"))
 
     proof = _map(case.get("proof_loop"))
     if proof.get("active") is True:
         if not _nonempty(proof.get("reassessment_trigger")):
-            findings.append(_finding("RG-12", "RG-PROOF-LOOP-INCOMPLETE", "WARNING", "Active Proof Loop lacks a reassessment trigger.", "proof_loop.reassessment_trigger"))
+            findings.append(_finding("FSI-12", "FSI-PROOF-LOOP-INCOMPLETE", "WARNING", "Active Proof Loop lacks a reassessment trigger.", "proof_loop.reassessment_trigger"))
         if proof.get("outcome_state") == "OBSERVED" and proof.get("learning_recorded") is not True:
-            findings.append(_finding("RG-12", "RG-PROOF-LOOP-INCOMPLETE", "WARNING", "Observed outcome must record a learning before the loop is considered complete.", "proof_loop.learning_recorded"))
+            findings.append(_finding("FSI-12", "FSI-PROOF-LOOP-INCOMPLETE", "WARNING", "Observed outcome must record a learning before the loop is considered complete.", "proof_loop.learning_recorded"))
 
     unique = {(f["control_id"], f["finding_id"], f["related_field"], f["message"]): f for f in findings}
     findings = sorted(unique.values(), key=lambda f: (0 if f["severity"] == "CRITICAL" else 1 if f["severity"] == "BLOCKING" else 2, f["control_id"], f["finding_id"], f["related_field"]))
     ids = {f["finding_id"] for f in findings}
-    if "RG-PUBLIC-BOUNDARY-VIOLATION" in ids:
+    if "FSI-PUBLIC-BOUNDARY-VIOLATION" in ids:
         recommendation = "DO_NOT_RELEASE_PUBLICLY"
-    elif ids & {"RG-UPSTREAM-PI-REVIEW-REQUIRED", "RG-UPSTREAM-PI-UNRESOLVED", "RG-INDEPENDENCE-OVERSTATED"}:
+    elif ids & {"FSI-UPSTREAM-PI-REVIEW-REQUIRED", "FSI-UPSTREAM-PI-UNRESOLVED", "FSI-INDEPENDENCE-OVERSTATED"}:
         recommendation = "REQUIRE_CORROBORATION"
-    elif ids & {"RG-ANCHOR-EXTENSION-BRIDGE-MISSING", "RG-SELF-SEALING-WITHOUT-DISCRIMINATOR", "RG-DISCRIMINATING-TEST-INCOMPLETE"}:
+    elif ids & {"FSI-ANCHOR-EXTENSION-BRIDGE-MISSING", "FSI-SELF-SEALING-WITHOUT-DISCRIMINATOR", "FSI-DISCRIMINATING-TEST-INCOMPLETE"}:
         recommendation = "REQUIRE_DISCRIMINATING_EVIDENCE"
-    elif ids & {"RG-PREDICTION-NOT-FROZEN", "RG-PREDICTION-RESOLUTION-INCOMPLETE"}:
+    elif ids & {"FSI-PREDICTION-NOT-FROZEN", "FSI-PREDICTION-RESOLUTION-INCOMPLETE"}:
         recommendation = "REVISE_PREDICTION"
     elif findings:
         recommendation = "REASSESS_BEFORE_ACTION"
@@ -266,7 +266,7 @@ def evaluate_case(case: Mapping[str, Any], *, root: Path, case_path: str, case_b
         recommendation = "READY_FOR_HUMAN_REVIEW"
 
     return {
-        "rg_case_id": _map(case.get("metadata")).get("rg_case_id"),
+        "fsi_case_id": _map(case.get("metadata")).get("fsi_case_id"),
         "case_path": case_path,
         "case_sha256": sha256_bytes(case_bytes),
         "evaluated_at": evaluated_at,
@@ -280,7 +280,7 @@ def evaluate_case(case: Mapping[str, Any], *, root: Path, case_path: str, case_b
             "validation_sha256": _map(case.get("pi_reference")).get("validation_sha256"),
         },
         "findings": findings,
-        "validation_status": "RG_REVIEW_REQUIRED" if findings else "NO_RG_FINDINGS",
+        "validation_status": "FSI_REVIEW_REQUIRED" if findings else "NO_FSI_FINDINGS",
         "recommendation": recommendation,
         "human_decision_required": True,
     }

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Evaluate one Radiant Guardian case without determining truth or authorizing action."""
+"""Evaluate one Frontier Signal Integrity case without determining truth or authorizing action."""
 from __future__ import annotations
 
 import argparse
@@ -12,7 +12,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
-from radiant_guardian import canonical_json_bytes, evaluate_case, structural_issues  # noqa: E402
+from frontier_signal_integrity import canonical_json_bytes, evaluate_case, structural_issues  # noqa: E402
 
 
 def _resolve_case(root: Path, raw: str) -> tuple[Path, str]:
@@ -59,9 +59,9 @@ def main(argv: list[str] | None = None) -> int:
         report = evaluate_case(case, root=root, case_path=relative, case_bytes=raw, evaluated_at=args.evaluated_at)
         output.parent.mkdir(parents=True, exist_ok=True)
         output.write_bytes(canonical_json_bytes(report))
-        print(f"Radiant Guardian: {report['validation_status']}")
-        if report["validation_status"] == "NO_RG_FINDINGS":
-            print("Meaning: no configured RG integrity rule produced a finding; underlying evidence is not verified.")
+        print(f"Frontier Signal Integrity: {report['validation_status']}")
+        if report["validation_status"] == "NO_FSI_FINDINGS":
+            print("Meaning: no configured FSI integrity rule produced a finding; underlying evidence is not verified.")
         print(f"Recommendation: {report['recommendation']}")
         print("Human decision required: true")
         print(f"Output: {output}")

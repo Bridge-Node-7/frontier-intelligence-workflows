@@ -6,6 +6,13 @@ Notable public changes to Frontier Intelligence Workflows are recorded here.
 
 _No unreleased changes._
 
+## [0.9.0] - 2026-09-19
+
+Current public release.
+
+- Introduce Frontier Signal Integrity as the supported deterministic profile for hypothesis/evidence separation, corroboration integrity, prediction integrity, discriminating tests, update receipts, and reassessment.
+- Preserve source genealogy, human-owned consequential decisions, and the boundary that machine validation does not establish external truth.
+
 ## [0.8.0] - 2026-09-14
 
 Current public release candidate.
@@ -34,14 +41,14 @@ Previous public release.
 - Keep repository diagnostics independent: a hostile-filesystem finding remains blocking without suppressing unrelated public-boundary controls.
 - Keep machine-readable validation output optional while surfacing every blocking control directly in terminal output.
 - Pin validation-only dependencies and install them in hosted validation/release workflows.
-- Preserve Perception Integrity and Radiant Guardian truth boundaries, human decision authority, and the aggressive public file-policy threat model.
+- Preserve Perception Integrity and Frontier Signal Integrity truth boundaries, human decision authority, and the aggressive public file-policy threat model.
 
 ## [0.6.0] - 2026-09-11
 
 Earlier public release.
 
-- Add Radiant Guardian — Frontier Signal Integrity as a PI-compatible companion profile.
-- Add 12 deterministic RG controls, RG-SYN-001 synthetic contested-narrative stress case, RG-SYN-002 clean frontier-technology case, prediction and Proof Loop structures, adversarial tests, and CLI.
+- Add Frontier Signal Integrity — Frontier Signal Integrity as a PI-compatible companion profile.
+- Add 12 deterministic FSI controls, FSI-SYN-001 synthetic contested-narrative stress case, FSI-SYN-002 clean frontier-technology case, prediction and Proof Loop structures, adversarial tests, and CLI.
 
 ## [0.5.2] - 2026-08-22
 

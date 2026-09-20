@@ -1,5 +1,5 @@
 {
-  "metadata": {"rg_case_id": "RG-WORK-001", "version": "0.1.0", "synthetic": false, "subject": "Replace with bounded subject"},
+  "metadata": {"fsi_case_id": "FSI-WORK-001", "version": "0.9.0", "synthetic": false, "subject": "Replace with bounded subject"},
   "pi_reference": {"assessment_id": "PIA-REPLACE", "validation_path": "replace/with/pi-validation.json", "validation_sha256": "REPLACE_WITH_64_HEX_SHA256"},
   "signal": {"mode": "REPORTED_CLAIM", "statement": "Replace with exact bounded signal statement", "category": "EMERGING", "novelty": "MEDIUM", "observability": "DOCUMENTARY", "asserted_as_fact": false, "requires_independent_corroboration": true},
   "genealogy": {"roots": [], "nodes": [], "edges": [], "declared_independent_root_count": 0},

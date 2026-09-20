@@ -43,12 +43,12 @@
     "fsi_case_id": "FSI-SYN-001",
     "subject": "Synthetic contested narrative with derivative corroboration",
     "synthetic": true,
-    "version": "0.1.0"
+    "version": "0.9.0"
   },
   "pi_reference": {
     "assessment_id": "PIA-FSI-SYN-001",
     "validation_path": "profiles/frontier-signal-integrity/examples/FSI-SYN-001/PIA-FSI-SYN-001.validation.json",
-    "validation_sha256": "d4939e4ee6452d4857bcb0bf3b4bf2fa36cb65261f54c914915139d29f6537d9"
+    "validation_sha256": "d8d33590d138b80e0ae98c5b9f77c345bb0559334b9aef20c7b4bab64f1ac95c"
   },
   "predictions": [
     {

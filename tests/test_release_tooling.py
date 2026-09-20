@@ -384,13 +384,13 @@ class ReleaseToolingTests(unittest.TestCase):
         self.assertIn("frontier-claim-experience.json", item["detail"])
 
     def test_schema_invalid_against_metaschema_fails_even_when_json_parses(self):
-        path = self.repo / "profiles" / "radiant-guardian" / "schema" / "radiant-guardian-case.schema.json"
+        path = self.repo / "profiles" / "frontier-signal-integrity" / "schema" / "frontier-signal-integrity-case.schema.json"
         schema = json.loads(path.read_text(encoding="utf-8"))
         schema["type"] = 7
         path.write_text(json.dumps(schema, indent=2) + "\n", encoding="utf-8", newline="\n")
         item = self.check("structured_artifact_semantics", check_manifest=False)
         self.assertEqual(item["status"], "FAIL", item)
-        self.assertIn("radiant-guardian-case.schema.json", item["detail"])
+        self.assertIn("frontier-signal-integrity-case.schema.json", item["detail"])
 
     def test_malformed_governed_yaml_fails_semantic_control(self):
         path = self.repo / ".github" / "dependabot.yml"

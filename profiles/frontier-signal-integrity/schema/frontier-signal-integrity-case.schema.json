@@ -1,21 +1,21 @@
 {
-  "$id": "urn:bridgenode7:fiw:radiant-guardian:case:0.1.0",
+  "$id": "urn:bridgenode7:fiw:frontier-signal-integrity:case:0.9.0",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "FIW Radiant Guardian Case",
+  "title": "FIW Frontier Signal Integrity Case",
   "description": "A declared frontier-signal integrity companion record. It does not determine truth or authorize action.",
   "type": "object",
   "additionalProperties": false,
   "required": ["metadata", "pi_reference", "signal", "genealogy", "hypotheses", "reasoning_patterns", "predictions", "tests", "update_receipts", "proof_loop", "review"],
   "properties": {
-    "metadata": {"type": "object", "additionalProperties": false, "required": ["rg_case_id", "version", "synthetic", "subject"], "properties": {
-      "rg_case_id": {"type": "string", "minLength": 1}, "version": {"type": "string", "minLength": 1}, "synthetic": {"type": "boolean"}, "subject": {"type": "string", "minLength": 1}
+    "metadata": {"type": "object", "additionalProperties": false, "required": ["fsi_case_id", "version", "synthetic", "subject"], "properties": {
+      "fsi_case_id": {"type": "string", "minLength": 1}, "version": {"type": "string", "minLength": 1}, "synthetic": {"type": "boolean"}, "subject": {"type": "string", "minLength": 1}
     }},
     "pi_reference": {"type": "object", "additionalProperties": false, "required": ["assessment_id", "validation_path", "validation_sha256"], "properties": {
       "assessment_id": {"type": "string", "minLength": 1}, "validation_path": {"type": "string", "minLength": 1}, "validation_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
     }},
     "signal": {"type": "object", "additionalProperties": false, "required": ["mode", "statement", "category", "novelty", "observability", "asserted_as_fact", "requires_independent_corroboration"], "properties": {
       "mode": {"enum": ["DIRECT_OBSERVATION", "REPORTED_CLAIM", "INFERENCE", "INTERPRETATION", "FORECAST"]},
-      "statement": {"type": "string", "minLength": 1}, "category": {"enum": ["ROUTINE", "EMERGING", "CONTESTED", "ANOMALOUS"]},
+      "statement": {"type": "string", "minLength": 1}, "category": {"enum": ["ROUTINE", "EMERGING", "CONTESTED", "OUTLIER"]},
       "novelty": {"enum": ["LOW", "MEDIUM", "HIGH"]}, "observability": {"enum": ["DIRECT", "INSTRUMENTED", "DOCUMENTARY", "TESTIMONIAL", "MIXED", "UNKNOWN"]},
       "asserted_as_fact": {"type": "boolean"}, "requires_independent_corroboration": {"type": "boolean"}
     }},
@@ -25,11 +25,11 @@
       "declared_independent_root_count": {"type": "integer", "minimum": 0}
     }},
     "hypotheses": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["hypothesis_id", "statement", "origin", "evidence_weight", "evidence_references"], "properties": {
-      "hypothesis_id": {"type": "string"}, "statement": {"type": "string"}, "origin": {"enum": ["HUMAN", "SOURCE_DERIVED", "AI_ASSISTED", "CREATIVE_PSIONICS"]},
+      "hypothesis_id": {"type": "string"}, "statement": {"type": "string"}, "origin": {"enum": ["HUMAN", "SOURCE_DERIVED", "AI_ASSISTED", "DIVERGENT_BRAINSTORM"]},
       "evidence_weight": {"enum": ["NONE_UNTIL_EVIDENCED", "EVIDENCE_LINKED"]}, "evidence_references": {"type": "array", "items": {"type": "string"}}
     }}},
     "reasoning_patterns": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["pattern", "claim_reference", "rationale", "bridge_evidence_references", "discriminating_test_ids"], "properties": {
-      "pattern": {"enum": ["REAL_ANCHOR_EXTRAORDINARY_EXTENSION", "SELF_SEALING_RISK", "ARGUMENT_FROM_SECRECY", "SOURCE_DEPENDENCY", "PREDICTION_DRIFT_RISK", "UNFALSIFIABLE_OR_UNDERDEFINED"]},
+      "pattern": {"enum": ["SUPPORTED_ANCHOR_UNSUPPORTED_EXTENSION", "SELF_SEALING_RISK", "INACCESSIBLE_EVIDENCE_DEPENDENCY", "SOURCE_DEPENDENCY", "PREDICTION_DRIFT_RISK", "UNFALSIFIABLE_OR_UNDERDEFINED"]},
       "claim_reference": {"type": "string"}, "rationale": {"type": "string"}, "bridge_evidence_references": {"type": "array", "items": {"type": "string"}}, "discriminating_test_ids": {"type": "array", "items": {"type": "string"}}
     }}},
     "predictions": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["prediction_id", "statement", "frozen_at", "window_start", "window_end", "success_criteria", "failure_criteria", "ambiguous_criteria", "unresolved_criteria", "status"], "properties": {

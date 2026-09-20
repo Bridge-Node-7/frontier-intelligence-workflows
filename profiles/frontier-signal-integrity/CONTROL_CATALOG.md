@@ -10,7 +10,7 @@
 | FSI-06 | `FSI-PREDICTION-NOT-FROZEN` | Open prediction lacks frozen timestamp/window/criteria | Prevent retrospective prediction rewriting |
 | FSI-07 | `FSI-PREDICTION-RESOLUTION-INCOMPLETE` | Success/failure/ambiguous/unresolved criteria are incomplete | Make resolution auditable |
 | FSI-08 | `FSI-DISCRIMINATING-TEST-INCOMPLETE` | Test cannot separate at least two hypotheses with observable evidence and a decision rule | Convert debate into learning |
-| FSI-09 | `FSI-GENERATED-HYPOTHESIS-PROMOTED` | AI-assisted/Creative-Psionics hypothesis receives automatic evidentiary weight | Keep creativity epistemically bounded |
+| FSI-09 | `FSI-GENERATED-HYPOTHESIS-PROMOTED` | AI-assisted/Divergent-Brainstorm hypothesis receives automatic evidentiary weight | Keep creativity epistemically bounded |
 | FSI-10 | `FSI-UPDATE-RECEIPT-INCOMPLETE` | Material state change lacks evidence delta, rationale, reviewer, time, or reversal trigger | Preserve belief history |
 | FSI-11 | `FSI-PUBLIC-BOUNDARY-VIOLATION` | FSI permits release when upstream PI says do not release | Fail closed on public boundary |
 | FSI-12 | `FSI-PROOF-LOOP-INCOMPLETE` | Active decision/action/outcome tracking lacks reassessment trigger or learning record | Make real-world outcomes improve the system |

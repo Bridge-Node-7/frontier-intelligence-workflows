@@ -35,7 +35,7 @@ Do not merely ask whether evidence is compatible with one hypothesis. Ask what o
 
 ## 7. Protect hypothesis/evidence separation
 
-Human, AI-assisted, Creative-Psionics, or source-derived hypotheses remain hypotheses. Generated novelty is not evidence.
+Human, AI-assisted, Divergent-Brainstorm, or source-derived hypotheses remain hypotheses. Generated novelty is not evidence.
 
 ## 8. Update with receipts
 

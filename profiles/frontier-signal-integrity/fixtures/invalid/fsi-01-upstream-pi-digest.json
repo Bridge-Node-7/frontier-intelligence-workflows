@@ -50,7 +50,7 @@
     "fsi_case_id": "FSI-SYN-002",
     "subject": "Fictional frontier photonic interconnect scaling claim",
     "synthetic": true,
-    "version": "0.1.0"
+    "version": "0.9.0"
   },
   "pi_reference": {
     "assessment_id": "PIA-FSI-SYN-002",

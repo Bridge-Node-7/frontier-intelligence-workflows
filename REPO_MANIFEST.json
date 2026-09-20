@@ -8,8 +8,8 @@
     },
     {
       "path": ".github/dependabot.yml",
-      "sha256": "f68f25cd9737862a739d9dd02750eadabcb7bff8d3389e99c5fbcd8d73782f0c",
-      "size_bytes": 327
+      "sha256": "459a91ce4e07f6847f82042c5ba944f2d848099ce6b8c1e480906fe5bc60ca8f",
+      "size_bytes": 385
     },
     {
       "path": ".github/workflows/codeql.yml",
@@ -33,8 +33,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "76b571cbcac766ba86eef46b21ae6d97f7113158bbb1ad9f63b0d3bf7b6a0642",
-      "size_bytes": 3249
+      "sha256": "c1c97fc774b96830138847b229e3e909163d4883e74ae0ef507f67b8a64cd9bd",
+      "size_bytes": 3680
     },
     {
       "path": "LICENSE",
@@ -43,7 +43,7 @@
     },
     {
       "path": "LIMITATIONS.md",
-      "sha256": "86094f3f26f285a34fd064b239a986039abed5903bc0f732f3308fb16a450b92",
+      "sha256": "b12ae27abd0e2a74f9554fe7460e01e1c57f821fb3af0ec5d4b5219222298667",
       "size_bytes": 2325
     },
     {
@@ -53,13 +53,13 @@
     },
     {
       "path": "README.md",
-      "sha256": "15bf649745b54e9cb88cbe8800d224cdf49bda80bfda87418980241521056921",
-      "size_bytes": 8370
+      "sha256": "518bf67d984cfa9c82ec4f001acd6de180b0c954e59d9d0ab9d1db7e6f395438",
+      "size_bytes": 8406
     },
     {
       "path": "REPO_FILE_POLICY.json",
-      "sha256": "0be9e14de9b1c1d219792bf683b336ec2c2e969066bff3b1f58c2f2f96006d0c",
-      "size_bytes": 9181
+      "sha256": "32dfa230d8d4e6f5497e94ea511e156bb88747e6b60f128c809e488c801ff52c",
+      "size_bytes": 9506
     },
     {
       "path": "SECURITY.md",
@@ -68,7 +68,7 @@
     },
     {
       "path": "VERSION",
-      "sha256": "a66780da23103beaf12432b418508966b31a2a3a787f9468a5b6cdaa8667c1ef",
+      "sha256": "9d8c94f1ad3ea96b1e2ac4914fda4cb93c76b4a3e0d8cc6dd8976d6c0b227d15",
       "size_bytes": 6
     },
     {
@@ -98,12 +98,12 @@
     },
     {
       "path": "docs/assurance/STATUS_SEMANTICS.md",
-      "sha256": "081e2bc7317041ffa0fb9d509db9ae06b77c66f669b1a11df5503f2f1360c72b",
-      "size_bytes": 2355
+      "sha256": "50549134be06b6697dbd235895a90835ee144781f47125af8003b0c056263535",
+      "size_bytes": 2370
     },
     {
       "path": "docs/assurance/TESTING.md",
-      "sha256": "7b2ab4f7dccee2759ba8a6b240a5692ac029ea1ac28866b56c4d6770a62e6694",
+      "sha256": "89b27404582e65f17ed4c67dbcde20f0c6e89b223561409f6e43e7b73b68204c",
       "size_bytes": 1238
     },
     {
@@ -175,6 +175,146 @@
       "path": "examples/synthetic-component-readiness/source-record.md",
       "sha256": "91e68e9b0148c5e548184e289b2e26d30f7d53981c2516cbcad7e7148b9d0fe5",
       "size_bytes": 1277
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/CONTROL_CATALOG.md",
+      "sha256": "152a74349a8a2c2638b1dde32b1517578894e7e1bed63069024fbe7bed7f0194",
+      "size_bytes": 2178
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/INTEGRATION.md",
+      "sha256": "1072220a7614814e2e131c9bc4d63dda2c19dc0e4c7ec8d5c9b00a05491404ac",
+      "size_bytes": 724
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/METHOD.md",
+      "sha256": "bb262b525cefeb1b5a02fd43331fd7e0723695d5a78deb4bfa8fb18d5d601645",
+      "size_bytes": 2007
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/README.md",
+      "sha256": "fa20d4d67197e9191de001a403c1eb98dcee23488289c7291e68892dd8ed4dbb",
+      "size_bytes": 2100
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/STATUS_SEMANTICS.md",
+      "sha256": "4d8a71fcaef3c9a25af0ef78cff46ab0f0d26c2965bba4627d56f4a98bcc728e",
+      "size_bytes": 927
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/examples/FSI-SYN-001/PIA-FSI-SYN-001.validation.json",
+      "sha256": "d8d33590d138b80e0ae98c5b9f77c345bb0559334b9aef20c7b4bab64f1ac95c",
+      "size_bytes": 686
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/examples/FSI-SYN-001/README.md",
+      "sha256": "2bf3edcface115983189a248e4bbaeb4b4663b5fb53dd562a4b89aa5aa32e99c",
+      "size_bytes": 758
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/examples/FSI-SYN-001/case.json",
+      "sha256": "7a353bcaafd01b4a8e124feaed75dd5a411bd940435a2d9c734efdaaea9d1979",
+      "size_bytes": 4353
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/examples/FSI-SYN-002/PIA-FSI-SYN-002.validation.json",
+      "sha256": "41580d02e485966837120110ba9d162d0f8e8a89ea91c959c59faab5598bf0b7",
+      "size_bytes": 459
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/examples/FSI-SYN-002/README.md",
+      "sha256": "e32ceae0de24374f3fed32fd1093eeec81fb468153ee0850dbebf87ecf86546a",
+      "size_bytes": 364
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/examples/FSI-SYN-002/case.json",
+      "sha256": "d617e350d2dab12602ed560f7567a5d0f8b66fc63b634ff965ccd0950cdb037f",
+      "size_bytes": 4387
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/fixtures/invalid/fsi-01-upstream-pi-digest.json",
+      "sha256": "1f2da0839d35ac9641f95d612784d1fcd1f7107a63022ec098655b9441577f96",
+      "size_bytes": 4387
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/fixtures/invalid/fsi-02-signal-claim-collapse.json",
+      "sha256": "5add8d91ab725d1aeef5cb9ab8be4af3fbe397c8f37ff83e26238af36f5d4d21",
+      "size_bytes": 4386
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/fixtures/invalid/fsi-03-independence-overstated.json",
+      "sha256": "a2338305e7eab1ae3d401268a452fa23e1b5b755c5d02a4823bc8d8b6ff6a53d",
+      "size_bytes": 4387
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/fixtures/invalid/fsi-04-anchor-extension.json",
+      "sha256": "515c73ea43f9cac1b9360c503c0841693f039c9a8240aae433e4d24d56ec42a7",
+      "size_bytes": 4288
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/fixtures/invalid/fsi-05-self-sealing.json",
+      "sha256": "8ca7d4a8b5fd4352fd4faf4a5fa7802d6f110b616890e42b012fb8555315c00a",
+      "size_bytes": 4238
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/fixtures/invalid/fsi-06-prediction-not-frozen.json",
+      "sha256": "fa78f1c1d2b5f97acadbd4fe1bfbc6aecb1cd83bf1d54e3da6c4babd6759f69c",
+      "size_bytes": 4387
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/fixtures/invalid/fsi-07-prediction-resolution.json",
+      "sha256": "d85b483a82d4a5308103594906f2666192aa7f87fec956e09130ee739a8f93de",
+      "size_bytes": 4293
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/fixtures/invalid/fsi-08-discriminating-test.json",
+      "sha256": "79045556ca24ade3fe2cf67f04559fed9c820222df895247bd0439f990e7debe",
+      "size_bytes": 4351
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/fixtures/invalid/fsi-09-generated-hypothesis.json",
+      "sha256": "96449de8cab438e1b572927aae785006aa2b6bd3e295929111775e0cf15a7a71",
+      "size_bytes": 4382
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/fixtures/invalid/fsi-10-update-receipt.json",
+      "sha256": "418c6fe1990fe62b65821c958c2b0e6138bc4feb6adc6431b3d1b63112a57402",
+      "size_bytes": 4630
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/fixtures/invalid/fsi-12-proof-loop.json",
+      "sha256": "a8bea4b12322b0e63a494ccebda0709a7bf32746f8ae871b4e31eb1302d986c2",
+      "size_bytes": 4380
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/fixtures/valid/assessment-ready.json",
+      "sha256": "d617e350d2dab12602ed560f7567a5d0f8b66fc63b634ff965ccd0950cdb037f",
+      "size_bytes": 4387
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/schema/frontier-signal-integrity-case.schema.json",
+      "sha256": "54d917fc8e846bf4296415f65cd739b750572af21d03cd7972027ad0a38086a9",
+      "size_bytes": 6710
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/schema/frontier-signal-integrity-validation.schema.json",
+      "sha256": "4aecb642663309ce25b4e82652f3194c2e156ecbda694196354be05cdd7e41c9",
+      "size_bytes": 1153
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/templates/frontier-signal-integrity-starter.json",
+      "sha256": "3b7a95a4c209087762092803a619f68f51e9db874bde0defe6a83e5f3e49c2bf",
+      "size_bytes": 1037
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/templates/proof-loop-record.json",
+      "sha256": "a76f232029390d2dc407ed8d6773ff04c4f033efbe86dd961aca013d0f73957c",
+      "size_bytes": 477
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/templates/strategic-surprise-register.json",
+      "sha256": "baea9966376a5996f1560542a6dbb03baf55da46381c5851b4bed82147145b33",
+      "size_bytes": 544
     },
     {
       "path": "profiles/language-integrity/README.md",
@@ -352,149 +492,9 @@
       "size_bytes": 2496
     },
     {
-      "path": "profiles/radiant-guardian/CONTROL_CATALOG.md",
-      "sha256": "1660ddba508a0be2e66e637e47d029ef4d2856ca956d79285c33a1b1c73baf73",
-      "size_bytes": 2141
-    },
-    {
-      "path": "profiles/radiant-guardian/INTEGRATION.md",
-      "sha256": "7866f36465e24104349e399a1ae10f443ec02f003e262fef51a9220acf6b3d2d",
-      "size_bytes": 710
-    },
-    {
-      "path": "profiles/radiant-guardian/METHOD.md",
-      "sha256": "b1a7077bf59c904ed6a90fbc749cfaf9c0459f832e34ead97b123d1aa4c93c10",
-      "size_bytes": 1981
-    },
-    {
-      "path": "profiles/radiant-guardian/README.md",
-      "sha256": "fc58d92ece3e7b7d17f2619ae0be50477953eb9a3252c703c4b2af9b998e8c75",
-      "size_bytes": 2065
-    },
-    {
-      "path": "profiles/radiant-guardian/STATUS_SEMANTICS.md",
-      "sha256": "1f0da76bbcdb405dfa91978a6d6e5e2cd55176931e6ecf4ba7f6186d286fd3ef",
-      "size_bytes": 911
-    },
-    {
-      "path": "profiles/radiant-guardian/examples/RG-SYN-001/PIA-RG-SYN-001.validation.json",
-      "sha256": "d4939e4ee6452d4857bcb0bf3b4bf2fa36cb65261f54c914915139d29f6537d9",
-      "size_bytes": 674
-    },
-    {
-      "path": "profiles/radiant-guardian/examples/RG-SYN-001/README.md",
-      "sha256": "620014bc057c8bb580dbf6f52a5462839fd351a03c4294e47de771f051e5d5db",
-      "size_bytes": 750
-    },
-    {
-      "path": "profiles/radiant-guardian/examples/RG-SYN-001/case.json",
-      "sha256": "d114aa31fa9092a206452a506703a47b84d3cdcbceb782d379908b7f7b434383",
-      "size_bytes": 4341
-    },
-    {
-      "path": "profiles/radiant-guardian/examples/RG-SYN-002/PIA-RG-SYN-002.validation.json",
-      "sha256": "11bd84c24a7d3420751ca5e2cdfd28de243ddd93e85293fff6d5b43ccc0eba87",
-      "size_bytes": 447
-    },
-    {
-      "path": "profiles/radiant-guardian/examples/RG-SYN-002/README.md",
-      "sha256": "c5e27657a297da6f732627febd0567d1c72c367705883a8ffa3f0c15e673f5b6",
-      "size_bytes": 352
-    },
-    {
-      "path": "profiles/radiant-guardian/examples/RG-SYN-002/case.json",
-      "sha256": "e10258d8687230c9a2099832635a960dd23aba9d7c2ac35d0da2a1a42b03de73",
-      "size_bytes": 4370
-    },
-    {
-      "path": "profiles/radiant-guardian/fixtures/invalid/rg-01-upstream-pi-digest.json",
-      "sha256": "bcb2b4253c0fabdb65a9536c74d25150cad503226f3dacd0c0678c27b4c5d3c4",
-      "size_bytes": 4370
-    },
-    {
-      "path": "profiles/radiant-guardian/fixtures/invalid/rg-02-signal-claim-collapse.json",
-      "sha256": "3e570a88bcb0b45767f33146b9aa3b44370d5f223bb67df3d12933db2fa961e6",
-      "size_bytes": 4369
-    },
-    {
-      "path": "profiles/radiant-guardian/fixtures/invalid/rg-03-independence-overstated.json",
-      "sha256": "5639370c8f9b6e2889c97d477f9fd723b15571f96b4a30e125fbd792c081af28",
-      "size_bytes": 4370
-    },
-    {
-      "path": "profiles/radiant-guardian/fixtures/invalid/rg-04-anchor-extension.json",
-      "sha256": "a84242d40bb30126f58d4db28b25b89c8f518609d942991e9e980cfbb7a55e35",
-      "size_bytes": 4268
-    },
-    {
-      "path": "profiles/radiant-guardian/fixtures/invalid/rg-05-self-sealing.json",
-      "sha256": "1ca9a2076a661f607929208d0ea8fc6a91db38170c04a9795c560eebba17ccb0",
-      "size_bytes": 4221
-    },
-    {
-      "path": "profiles/radiant-guardian/fixtures/invalid/rg-06-prediction-not-frozen.json",
-      "sha256": "a43c459568bb2c2b61a4b08c66b902399c02d6469b7f0c8968a4ccd8102f4208",
-      "size_bytes": 4370
-    },
-    {
-      "path": "profiles/radiant-guardian/fixtures/invalid/rg-07-prediction-resolution.json",
-      "sha256": "902f120cd2e41f434607afb96333cef68dfc15f381fe52c6f3ee04ea23ec37fc",
-      "size_bytes": 4276
-    },
-    {
-      "path": "profiles/radiant-guardian/fixtures/invalid/rg-08-discriminating-test.json",
-      "sha256": "f83533e02be1b73f13322b590a647150dd563e2d46cc20ab868ad5d059617783",
-      "size_bytes": 4334
-    },
-    {
-      "path": "profiles/radiant-guardian/fixtures/invalid/rg-09-generated-hypothesis.json",
-      "sha256": "09045bf9bb68149f63870735402f45a4145126321e7cc72e7c593987d6de6a59",
-      "size_bytes": 4365
-    },
-    {
-      "path": "profiles/radiant-guardian/fixtures/invalid/rg-10-update-receipt.json",
-      "sha256": "8a629b74829812a4e54aa288e50173f3c96276ed29640d7fa82f1360c1bda71d",
-      "size_bytes": 4613
-    },
-    {
-      "path": "profiles/radiant-guardian/fixtures/invalid/rg-12-proof-loop.json",
-      "sha256": "06849852f22258bc1bb6174f0deb974875d7f2658fd409cbc19e19a15733ab81",
-      "size_bytes": 4363
-    },
-    {
-      "path": "profiles/radiant-guardian/fixtures/valid/assessment-ready.json",
-      "sha256": "e10258d8687230c9a2099832635a960dd23aba9d7c2ac35d0da2a1a42b03de73",
-      "size_bytes": 4370
-    },
-    {
-      "path": "profiles/radiant-guardian/schema/radiant-guardian-case.schema.json",
-      "sha256": "bacf9e379c3a986f90314277d3439fe886c9d71749e414cac60cb2f8d1097a65",
-      "size_bytes": 6675
-    },
-    {
-      "path": "profiles/radiant-guardian/schema/radiant-guardian-validation.schema.json",
-      "sha256": "9f631ebed9899e2edd14b596715f1c34ee7f98084d808b712a3b88634382349d",
-      "size_bytes": 1131
-    },
-    {
-      "path": "profiles/radiant-guardian/templates/proof-loop-record.json",
-      "sha256": "055e65bf4d65a8682c3618973d7e00d23f533dc7adf618967e69abe0aa202c49",
-      "size_bytes": 475
-    },
-    {
-      "path": "profiles/radiant-guardian/templates/radiant-guardian-starter.json",
-      "sha256": "4f99614044139bc146c20a1feadb51fdd5bd755da5b4e2f51fd052803b4a0d8f",
-      "size_bytes": 1035
-    },
-    {
-      "path": "profiles/radiant-guardian/templates/strategic-surprise-register.json",
-      "sha256": "eac207101ddb38aec0fa9b2f65137baebaefc1194606aab7d6915d67a005c7ac",
-      "size_bytes": 542
-    },
-    {
       "path": "profiles/source-genealogy/README.md",
-      "sha256": "ad53a819e43d932c17dd0ba9ea83f7e30a43605020971235cd6d9c85ac6038bc",
-      "size_bytes": 3775
+      "sha256": "38499321c5f49954df46400f8c03daea0e67414751d1d17e943f299f60c4799b",
+      "size_bytes": 3784
     },
     {
       "path": "requirements-validation.txt",
@@ -517,6 +517,11 @@
       "size_bytes": 10974
     },
     {
+      "path": "scripts/frontier_signal_integrity.py",
+      "sha256": "2cbe825b00de08fdbd12b7bd928514f15175e56cc0d575095856e66e4e7d9874",
+      "size_bytes": 16725
+    },
+    {
       "path": "scripts/language_integrity.py",
       "sha256": "ac391183e04dd6fca7fe2ac973e3c94ed93d8d21327ba7e88c2c98ef64cde151",
       "size_bytes": 7736
@@ -527,19 +532,19 @@
       "size_bytes": 22214
     },
     {
-      "path": "scripts/radiant_guardian.py",
-      "sha256": "853b2fa373cf55ee81a325bc9cc4fa944ef8fef1d85d73e502903bf2b6b8ca73",
-      "size_bytes": 16647
-    },
-    {
       "path": "scripts/refresh_release_metadata.py",
       "sha256": "4033dab382cc720046c83558c23b8eff7a12d093ece8d047a7669a15732d726d",
       "size_bytes": 2811
     },
     {
       "path": "scripts/release_common.py",
-      "sha256": "0e36bb578df2c94cf7840673c8dcc88241401030342bd136ca6d43e05684fc62",
+      "sha256": "4fb0b06388f5fdf260dabb26dfc5f189e0220258419fd18c43ea1c0c36af9597",
       "size_bytes": 22235
+    },
+    {
+      "path": "scripts/run_frontier_signal_integrity.py",
+      "sha256": "1f3f9d72e2b3c9c075c37b6e92cf1af5358f4566ba5d0a2767c08fc347e0e6c3",
+      "size_bytes": 3037
     },
     {
       "path": "scripts/run_language_integrity.py",
@@ -550,11 +555,6 @@
       "path": "scripts/run_perception_integrity.py",
       "sha256": "b7fe67576772e7f30d1bc103f2ca54f3427c3daa35085d757930d4589dfdb829",
       "size_bytes": 4976
-    },
-    {
-      "path": "scripts/run_radiant_guardian.py",
-      "sha256": "ebe189041af7da7eb5400634031173cfae6d8a81fc43c2851ada9c2e3efe9372",
-      "size_bytes": 3008
     },
     {
       "path": "scripts/run_source_genealogy.py",
@@ -578,8 +578,8 @@
     },
     {
       "path": "scripts/validate_repo_core.py",
-      "sha256": "0a4dcb09c0a24262347e3c3168cbeae7055c0b6a58d21f02236008108cee018c",
-      "size_bytes": 37058
+      "sha256": "c99678d1d1ee1a5fefc13ab53c329e628fcde902e85fa497320d79d3711e656b",
+      "size_bytes": 37067
     },
     {
       "path": "templates/ai-governance-gate.md",
@@ -627,6 +627,11 @@
       "size_bytes": 10982
     },
     {
+      "path": "tests/test_frontier_signal_integrity.py",
+      "sha256": "a01537f88258530122790ebd55d33c07c48ab169cea32a875a3fe970ba3ed8c1",
+      "size_bytes": 6554
+    },
+    {
       "path": "tests/test_frontier_technology_diligence.py",
       "sha256": "4a58dd110c02a22d210970151feb9e4a28d5c0069d19102d4d3d5dce1d8c6dd5",
       "size_bytes": 4558
@@ -642,19 +647,14 @@
       "size_bytes": 24637
     },
     {
-      "path": "tests/test_radiant_guardian.py",
-      "sha256": "5bf6196f2dfdea6c1153beedd8c44231120e645e367255fde85f0ccfcb7b37cc",
-      "size_bytes": 6477
-    },
-    {
       "path": "tests/test_release_semantics.py",
-      "sha256": "988ec95a6fe29a5f91e8243ad05646e08aede89cbac8f04e82efc16a5e60c9ab",
-      "size_bytes": 11080
+      "sha256": "d71769e1a07afe8e0e16d0dd5818299540291b1e4e8e92debd415ebac9f9bba9",
+      "size_bytes": 11098
     },
     {
       "path": "tests/test_release_tooling.py",
-      "sha256": "93271782457d916da247847453285a8f6f8da2e42c3afc771692c3dfbc0a8383",
-      "size_bytes": 19188
+      "sha256": "08c6e13b97f22f121d6fda973d9bde3d6ea36a78141fce8b53700dad4b80d973",
+      "size_bytes": 19215
     },
     {
       "path": "tests/test_source_genealogy.py",
@@ -665,5 +665,5 @@
   "generated_at_utc": "1980-01-01T00:00:00Z",
   "project": "Frontier Intelligence Workflows",
   "schema_version": "1.0",
-  "version": "0.8.0"
+  "version": "0.9.0"
 }

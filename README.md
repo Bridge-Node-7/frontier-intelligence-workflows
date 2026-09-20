@@ -72,9 +72,9 @@ Source independence remains analyst-established. FIW validates declared lineage 
 
 [Source Genealogy](profiles/source-genealogy/) prevents publication multiplicity from masquerading as independent corroboration. It collapses declared derivatives, mirrors, translations, syndication, AI derivatives, and coordinated publication to their declared provenance roots; preserves superseded, retracted, unavailable, and unknown lineage states; and never treats URL count as proof of source independence.
 
-### Radiant Guardian — Frontier Signal Integrity
+### Frontier Signal Integrity — Frontier Signal Integrity
 
-[Radiant Guardian](profiles/radiant-guardian/) adds deterministic controls for frontier-signal genealogy, strategic-surprise hypotheses, self-sealing-model risk, prediction integrity, discriminating tests, update receipts, and Proof Loop reassessment. It composes with Perception Integrity and does not determine external truth.
+[Frontier Signal Integrity](profiles/frontier-signal-integrity/) adds deterministic controls for frontier-signal genealogy, strategic-surprise hypotheses, self-sealing-model risk, prediction integrity, discriminating tests, update receipts, and Proof Loop reassessment. It composes with Perception Integrity and does not determine external truth.
 
 ### Synthetic Component Readiness
 
@@ -167,4 +167,4 @@ Published by [Bridge Node 7](https://bridgenode7.com/).
 
 ## Release
 
-**v0.8.0 — Source Genealogy**
+**v0.9.0 — Frontier Signal Integrity**
