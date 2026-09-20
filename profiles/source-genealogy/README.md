@@ -73,4 +73,4 @@ Exit `0` means `NO_FINDINGS`; exit `1` means deterministic findings require atte
 
 ## Boundary
 
-Source Genealogy is an integrity signal for downstream FIW and Radiant Guardian review. It is not an automated truth oracle. No layer may upgrade a source's epistemic strength merely because the source was transported, repeated, translated, mirrored, summarized, or published at additional URLs.
+Source Genealogy is an integrity signal for downstream FIW and Frontier Signal Integrity review. It is not an automated truth oracle. No layer may upgrade a source's epistemic strength merely because the source was transported, repeated, translated, mirrored, summarized, or published at additional URLs.
