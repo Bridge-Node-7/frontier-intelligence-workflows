@@ -15,7 +15,7 @@ Current public release.
 
 ## [0.8.0] - 2026-09-14
 
-Current public release candidate.
+Current public release line.
 
 - Add Source Genealogy as a public-safe deterministic profile for preventing publication multiplicity from masquerading as independent corroboration.
 - Model declared roots, derivatives, translations, mirrors, syndication, AI derivatives, coordinated publication, and unknown lineage without crawling the web or authenticating authorship.
