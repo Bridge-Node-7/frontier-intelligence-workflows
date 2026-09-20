@@ -28,7 +28,7 @@ def evaluate(case):
     return evaluate_case(case, root=ROOT, case_path="work/case.json", case_bytes=raw, evaluated_at="2026-09-01T23:59:00Z")
 
 
-class RadiantGuardianTests(unittest.TestCase):
+class FrontierSignalIntegrityTests(unittest.TestCase):
     def ids(self, report):
         return {x["finding_id"] for x in report["findings"]}
 
@@ -102,7 +102,7 @@ class RadiantGuardianTests(unittest.TestCase):
         c=load_case(); c["unknown_field"]=1
         self.assertTrue(structural_issues(c))
 
-    def test_15_rg_syn_001_is_expected_review_case(self):
+    def test_15_fsi_syn_001_is_expected_review_case(self):
         p=ROOT/"profiles/frontier-signal-integrity/examples/FSI-SYN-001/case.json"; c=json.loads(p.read_text()); raw=p.read_bytes()
         report=evaluate_case(c,root=ROOT,case_path=p.relative_to(ROOT).as_posix(),case_bytes=raw,evaluated_at="2026-09-01T23:59:00Z")
         self.assertEqual(report["validation_status"],"FSI_REVIEW_REQUIRED")
