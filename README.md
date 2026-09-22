@@ -2,6 +2,10 @@
 
 **Turn uncertain frontier-technology claims into decision-ready intelligence.**
 
+## Bridge Node 7 system role
+
+Frontier Intelligence Workflows is the **public evidence-first workflow layer** within [Bridge Node 7's Frontier Assurance Architecture](https://github.com/Bridge-Node-7/Bridge-Node-7/blob/main/docs/FRONTIER_ASSURANCE_ARCHITECTURE.md). It supports bounded collection, assessment, and reassessment patterns. It does not become canonical institutional memory, scientific truth, or consequential decision authority.
+
 Frontier Intelligence Workflows (FIW) is an open, evidence-first workflow for consequential technology questions when evidence is incomplete. It traces claims to sources, separates observation from inference, exposes contradictions and unknowns, and records the evidence needed before a decision responsibly moves forward.
 
 **Automation checks structure, traceability, and declared evidence conditions. It does not determine truth, verify the underlying claim, make investment decisions, certify readiness, or authorize action.**
