@@ -4,6 +4,12 @@ Frontier Intelligence Workflows is a public repository for evidence-first decisi
 
 Material committed here is intended for unrestricted publication.
 
+## Authoritative Origin
+
+Authoritative upstream: <https://github.com/Bridge-Node-7/frontier-intelligence-workflows>
+
+Official Bridge Node 7 releases are published from that upstream. Third-party forks, mirrors, modifications, and redistributions are not official Bridge Node 7 releases unless explicitly identified as such by Bridge Node 7.
+
 ## Information Protection
 
 Users are responsible for protecting sensitive information and for meeting applicable legal, regulatory, classification, security, intellectual-property, contractual, and release obligations.
