@@ -178,8 +178,8 @@
     },
     {
       "path": "profiles/frontier-signal-integrity/CONTROL_CATALOG.md",
-      "sha256": "152a74349a8a2c2638b1dde32b1517578894e7e1bed63069024fbe7bed7f0194",
-      "size_bytes": 2178
+      "sha256": "50d64038eb44359d59c6c5368bca8a6b693ba1cd2dba51f81a859ddcf145ae64",
+      "size_bytes": 2186
     },
     {
       "path": "profiles/frontier-signal-integrity/INTEGRATION.md",
@@ -188,13 +188,13 @@
     },
     {
       "path": "profiles/frontier-signal-integrity/METHOD.md",
-      "sha256": "bb262b525cefeb1b5a02fd43331fd7e0723695d5a78deb4bfa8fb18d5d601645",
-      "size_bytes": 2007
+      "sha256": "0e14b83f2212ceaf15f003113523d425da021cbea8048a64f45b2f7845d16b0a",
+      "size_bytes": 2013
     },
     {
       "path": "profiles/frontier-signal-integrity/README.md",
-      "sha256": "fa20d4d67197e9191de001a403c1eb98dcee23488289c7291e68892dd8ed4dbb",
-      "size_bytes": 2100
+      "sha256": "b7695576db0cb6fd64c8e3e91a892ac6ade9e2ca6a99b091ccbf5de7bf8b831d",
+      "size_bytes": 2108
     },
     {
       "path": "profiles/frontier-signal-integrity/STATUS_SEMANTICS.md",
