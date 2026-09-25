@@ -25,7 +25,7 @@ Flag, at minimum:
 
 A reasoning-pattern flag is not proof that a claim is false. It identifies a condition requiring stronger evidence design.
 
-## 5. Freeze predictions
+## 5. Pre-register predictions
 
 Before the resolution window, record the exact statement, window, success criteria, failure criteria, ambiguity criteria, and unresolved criteria. Later correction requires a receipt; the original remains historical.
 
