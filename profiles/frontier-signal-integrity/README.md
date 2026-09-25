@@ -43,7 +43,7 @@ FSI must never mask or downgrade an upstream PI finding.
 ## Public examples
 
 - `FSI-SYN-001` — fully synthetic contested-narrative stress case. It intentionally demonstrates upstream PI, source-independence, and bridge-evidence findings without naming real people or organizations.
-- `FSI-SYN-002` — fictional frontier-technology diligence case showing a clean FSI record with independent roots, frozen prediction criteria, and a discriminating test.
+- `FSI-SYN-002` — fictional frontier-technology diligence case showing a clean FSI record with independent roots, pre-registered prediction criteria, and a discriminating test.
 
 ## Result semantics
 
