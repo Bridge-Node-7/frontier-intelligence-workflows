@@ -7,7 +7,7 @@
 | FSI-03 | `FSI-INDEPENDENCE-OVERSTATED` | Independent-root count is overstated or required corroboration lacks multiple roots | Prevent repetition from becoming corroboration |
 | FSI-04 | `FSI-ANCHOR-EXTENSION-BRIDGE-MISSING` | Real-anchor → unsupported-extension flag lacks bridge evidence | Prevent factual laundering across a causal gap |
 | FSI-05 | `FSI-SELF-SEALING-WITHOUT-DISCRIMINATOR` | Self-sealing risk has no linked discriminating test | Preserve falsifiability and learning |
-| FSI-06 | `FSI-PREDICTION-NOT-FROZEN` | Open prediction lacks frozen timestamp/window/criteria | Prevent retrospective prediction rewriting |
+| FSI-06 | `FSI-PREDICTION-NOT-FROZEN` | Open prediction lacks pre-registered timestamp/window/criteria | Prevent retrospective prediction rewriting |
 | FSI-07 | `FSI-PREDICTION-RESOLUTION-INCOMPLETE` | Success/failure/ambiguous/unresolved criteria are incomplete | Make resolution auditable |
 | FSI-08 | `FSI-DISCRIMINATING-TEST-INCOMPLETE` | Test cannot separate at least two hypotheses with observable evidence and a decision rule | Convert debate into learning |
 | FSI-09 | `FSI-GENERATED-HYPOTHESIS-PROMOTED` | AI-assisted/Divergent-Brainstorm hypothesis receives automatic evidentiary weight | Keep creativity epistemically bounded |
