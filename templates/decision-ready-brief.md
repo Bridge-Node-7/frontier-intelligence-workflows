@@ -26,6 +26,10 @@ State the strongest material reason not to take the prepared move.
 
 State the fact, assumption, threshold, or dependency most likely to change the current disposition.
 
+## Decision criteria and tradeoffs
+
+List the criteria that materially distinguish the options. Separate evidence-backed consequences from owner-set priorities, thresholds, lawful constraints, and value judgments. Preserve material dissent or affected-party perspectives when they change the decision basis. Do not manufacture weights or a single optimal choice when the evidence does not uniquely determine one.
+
 ## Minimum sufficient commitment
 
 When a full commitment is not justified, state the smallest reversible action that can materially reduce decision uncertainty. Include time, capital, or coordination burden only when supported by evidence or explicit assumptions.
