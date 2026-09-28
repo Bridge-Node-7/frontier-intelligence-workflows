@@ -53,8 +53,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "eca7c061106211935f35877c16d5847e45f0e4ba0f83b2a54558a27b24987237",
-      "size_bytes": 9860
+      "sha256": "a2d0e48a71f778062ae8a472e69b508f81ed669f385ec49ea57c2c37ab492bca",
+      "size_bytes": 9902
     },
     {
       "path": "REPO_FILE_POLICY.json",
@@ -588,8 +588,8 @@
     },
     {
       "path": "templates/decision-ready-brief.md",
-      "sha256": "420691c0090071150850ee2a2c153b51c86cd1424512474cf062194024dcc22f",
-      "size_bytes": 2473
+      "sha256": "3f754eb38b5fc0429fe1989e3990242c17931720dae85fce73892f16b64509b1",
+      "size_bytes": 2886
     },
     {
       "path": "templates/decision-record.md",
