@@ -54,7 +54,7 @@ The [FIW Decision Record](templates/decision-record.md) is a portable record for
 
 ## Decision-Ready Brief
 
-The [Decision-Ready Brief](templates/decision-ready-brief.md) is the human-facing handoff for a consequential decision. It leads with the current supportable disposition or next move, then exposes why, the strongest countercase, the decision hinge, the minimum sufficient commitment, material unknowns, stop conditions, and the evidence that should trigger reconsideration.
+The [Decision-Ready Brief](templates/decision-ready-brief.md) is the human-facing handoff for a consequential decision. It leads with the current supportable disposition or next move, then exposes why, the strongest countercase, the decision hinge, material decision criteria and tradeoffs, the minimum sufficient commitment, material unknowns, stop conditions, and the evidence that should trigger reconsideration.
 
 The brief is advisory preparation. It does not replace the accountable human decision. Real case inputs and generated results remain in the authorized working environment rather than being committed to this public repository unless they are explicitly approved for public release.
 
