@@ -588,8 +588,8 @@
     },
     {
       "path": "templates/decision-ready-brief.md",
-      "sha256": "79e63c7208c07fd131376b5957510a93ffb3ebaf49671bb3784aad3c621eac91",
-      "size_bytes": 845
+      "sha256": "420691c0090071150850ee2a2c153b51c86cd1424512474cf062194024dcc22f",
+      "size_bytes": 2473
     },
     {
       "path": "templates/decision-record.md",
