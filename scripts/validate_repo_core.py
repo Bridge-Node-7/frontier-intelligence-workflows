@@ -600,6 +600,34 @@ def validate(root: Path, check_manifest: bool = True) -> dict[str, Any]:
     missing_phrases = [phrase for phrase in readme_phrases if phrase not in readme]
     check("readme_orientation", not missing_phrases, "README contains required orientation and boundaries." if not missing_phrases else f"Missing README phrases: {missing_phrases}")
 
+    brief_template = read_text(root / "templates/decision-ready-brief.md") if (root / "templates/decision-ready-brief.md").is_file() else ""
+    brief_headings = [
+        "## Bottom line",
+        "## Why",
+        "## Prepared next move",
+        "## Strongest countercase",
+        "## Decision hinge",
+        "## Minimum sufficient commitment",
+        "## Critical unknowns",
+        "## Risks and stop conditions",
+        "## Reconsider when",
+        "## Recommendation",
+        "## Human decision",
+        "## Limitations",
+    ]
+    missing_brief_headings = [heading for heading in brief_headings if heading not in brief_template]
+    brief_boundary = (
+        "Keep the recommendation distinct from the accountable human decision." in brief_template
+        and "does not replace accountable human judgment" in brief_template
+    )
+    check(
+        "decision_ready_brief",
+        not missing_brief_headings and brief_boundary,
+        "Decision-ready brief leads with the supportable action and preserves human authority."
+        if not missing_brief_headings and brief_boundary
+        else f"Missing headings={missing_brief_headings}; authority_boundary={brief_boundary}",
+    )
+
     broken_links: list[str] = []
     markdown_scan_error: str | None = None
     try:
