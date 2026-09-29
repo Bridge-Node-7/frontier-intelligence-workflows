@@ -4,7 +4,9 @@ Notable public changes to Frontier Intelligence Workflows are recorded here.
 
 ## [Unreleased]
 
-_No unreleased changes._
+- Completed post-v0.9.0 Frontier Signal Integrity terminology cleanup.
+- Clarified Frontier Intelligence Workflows' bounded role within the Bridge Node 7 Frontier Assurance architecture.
+- Refined public methodology and decision-briefing guidance to surface the supportable disposition, decision criteria, and priority tradeoffs while preserving evidence depth and accountable human decision authority.
 
 ## [0.9.0] - 2026-09-19
 
