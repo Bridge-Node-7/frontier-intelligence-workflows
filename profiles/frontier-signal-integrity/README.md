@@ -29,6 +29,10 @@ Divergent Brainstorm is an explicit hypothesis-generation mode:
 
 Reality, evidence, and accountable human review govern what survives.
 
+## Additional pattern
+
+See [`EXTREME_UNCERTAINTY_PATTERN.md`](EXTREME_UNCERTAINTY_PATTERN.md) for a public-safe method for difficult cases with incomplete access, uncertain provenance, or changing predictions.
+
 ## Evaluation order
 
 1. Run/inspect the relevant PI assessment and validation.
