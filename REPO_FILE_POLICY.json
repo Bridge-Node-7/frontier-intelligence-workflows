@@ -74,6 +74,7 @@
     "profiles/frontier-signal-integrity/CONTROL_CATALOG.md",
     "profiles/frontier-signal-integrity/INTEGRATION.md",
     "profiles/frontier-signal-integrity/METHOD.md",
+    "profiles/frontier-signal-integrity/EXTREME_UNCERTAINTY_PATTERN.md",
     "profiles/frontier-signal-integrity/README.md",
     "profiles/frontier-signal-integrity/STATUS_SEMANTICS.md",
     "profiles/frontier-signal-integrity/examples/FSI-SYN-001/PIA-FSI-SYN-001.validation.json",
@@ -168,8 +169,8 @@
   },
   "prohibited_path_segments": [
     ".ssh",
-    "cred\u0065ntials",
-    "s\u0065crets",
+    "credentials",
+    "secrets",
     "restricted",
     "controlled",
     "dist",

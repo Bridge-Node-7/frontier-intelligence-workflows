@@ -58,8 +58,8 @@
     },
     {
       "path": "REPO_FILE_POLICY.json",
-      "sha256": "df32b7694f6213237955395b7327cb0a3262e7abca149d44b6dd4c9ea8835260",
-      "size_bytes": 9506
+      "sha256": "ca7dd6deaa7ca8c4b121c6cdad147b7caf0eaef78e347796555da56f2dd9b84b",
+      "size_bytes": 9569
     },
     {
       "path": "SECURITY.md",
@@ -182,6 +182,11 @@
       "size_bytes": 2186
     },
     {
+      "path": "profiles/frontier-signal-integrity/EXTREME_UNCERTAINTY_PATTERN.md",
+      "sha256": "e691aa5ffcd594ac46c39c2af4d2616ed08e1a15f75d45f7a7087e17e08ce6f3",
+      "size_bytes": 3712
+    },
+    {
       "path": "profiles/frontier-signal-integrity/INTEGRATION.md",
       "sha256": "1072220a7614814e2e131c9bc4d63dda2c19dc0e4c7ec8d5c9b00a05491404ac",
       "size_bytes": 724
@@ -193,8 +198,8 @@
     },
     {
       "path": "profiles/frontier-signal-integrity/README.md",
-      "sha256": "b7695576db0cb6fd64c8e3e91a892ac6ade9e2ca6a99b091ccbf5de7bf8b831d",
-      "size_bytes": 2108
+      "sha256": "ae6ab70a574f567d830b191ddb7d8fed81057a61ff5f687add3041192404efe9",
+      "size_bytes": 2319
     },
     {
       "path": "profiles/frontier-signal-integrity/STATUS_SEMANTICS.md",
