@@ -578,8 +578,8 @@
     },
     {
       "path": "scripts/validate_repo.py",
-      "sha256": "5106ad1a0b6a00cc235da3a3949c43e20b795d3f3a36ea6f114914be8388768f",
-      "size_bytes": 9376
+      "sha256": "f6bc2c09b4d7c92d7e488a809832001096fdb9b3ef1213dcd3533f5a3a2709be",
+      "size_bytes": 9402
     },
     {
       "path": "scripts/validate_repo_core.py",
