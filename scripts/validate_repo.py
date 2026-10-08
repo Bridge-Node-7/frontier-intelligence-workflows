@@ -206,6 +206,7 @@ def _structured_semantic_findings(root: Path) -> list[str]:
 def validate(root: Path, check_manifest: bool = True):
     """Run the core 19-control validator with independent diagnostic scans."""
 
+    root = root.resolve()
     original_text_files = _core.text_files
     _core.text_files = _approved_text_files
     try:
