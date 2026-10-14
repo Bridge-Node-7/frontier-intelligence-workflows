@@ -1,0 +1,63 @@
+{
+  "case_id": "QUBIT-BENCHMARK-SYNTHETIC-002",
+  "claim": "A fictional qubit benchmarking summary reports average single-qubit gate fidelity above a specified acceptance threshold.",
+  "source": {
+    "kind": "fictional_benchmark_summary",
+    "locator": "Synthetic qubit characterization report; training example only"
+  },
+  "worlds": [
+    "calibration_bias_or_unmodeled_error",
+    "reproducible_reported_fidelity"
+  ],
+  "actions": {
+    "approve_performance_claim": {
+      "calibration_bias_or_unmodeled_error": -500,
+      "reproducible_reported_fidelity": 100
+    },
+    "retain_pending_measurement": {
+      "calibration_bias_or_unmodeled_error": 0,
+      "reproducible_reported_fidelity": 0
+    }
+  },
+  "tests": [
+    {
+      "name": "Independently reproduce randomized benchmarking with calibrated error controls",
+      "assumed_cost": 8,
+      "possible_outcomes_by_world": {
+        "calibration_bias_or_unmodeled_error": [
+          "performance_not_reproduced"
+        ],
+        "reproducible_reported_fidelity": [
+          "performance_reproduced"
+        ]
+      }
+    },
+    {
+      "name": "Review summary chart without raw calibration data",
+      "assumed_cost": 1,
+      "possible_outcomes_by_world": {
+        "calibration_bias_or_unmodeled_error": [
+          "reported_above_threshold"
+        ],
+        "reproducible_reported_fidelity": [
+          "reported_above_threshold"
+        ]
+      }
+    },
+    {
+      "name": "Review limited bench notes with uncertain error bars",
+      "assumed_cost": 2,
+      "possible_outcomes_by_world": {
+        "calibration_bias_or_unmodeled_error": [
+          "reported_above_threshold",
+          "unclear"
+        ],
+        "reproducible_reported_fidelity": [
+          "reported_above_threshold",
+          "unclear"
+        ]
+      }
+    }
+  ],
+  "interpretation_boundary": "Fidelity values, payoffs, measurement reliability and costs are fictional assumptions. No independent device performance claim or qualification is established."
+}

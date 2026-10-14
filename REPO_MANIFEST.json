@@ -58,8 +58,8 @@
     },
     {
       "path": "REPO_FILE_POLICY.json",
-      "sha256": "ca7dd6deaa7ca8c4b121c6cdad147b7caf0eaef78e347796555da56f2dd9b84b",
-      "size_bytes": 9569
+      "sha256": "8f4d464660ce530493e50c89443c721d94617061a30a5b1bee9c33df30631e4a",
+      "size_bytes": 9942
     },
     {
       "path": "SECURITY.md",
@@ -197,9 +197,14 @@
       "size_bytes": 2013
     },
     {
+      "path": "profiles/frontier-signal-integrity/PROOF_HINGE_RESEARCH.md",
+      "sha256": "c8bae8eed0b5624d3541d21bec3f9d49e9f883c3fd95aeb00dfecad470eaa4cb",
+      "size_bytes": 5764
+    },
+    {
       "path": "profiles/frontier-signal-integrity/README.md",
-      "sha256": "ae6ab70a574f567d830b191ddb7d8fed81057a61ff5f687add3041192404efe9",
-      "size_bytes": 2319
+      "sha256": "814e89195598f06a2449c8fd184116e3c6ac22c71d4cf697079cb69465790650",
+      "size_bytes": 2801
     },
     {
       "path": "profiles/frontier-signal-integrity/STATUS_SEMANTICS.md",
@@ -295,6 +300,16 @@
       "path": "profiles/frontier-signal-integrity/fixtures/valid/assessment-ready.json",
       "sha256": "d617e350d2dab12602ed560f7567a5d0f8b66fc63b634ff965ccd0950cdb037f",
       "size_bytes": 4387
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/fixtures/valid/proof-hinge-qubit.synthetic.json",
+      "sha256": "58162e0ff3ab0ca6194accde25ffca597f33a6911069714631835c749e230dc9",
+      "size_bytes": 2015
+    },
+    {
+      "path": "profiles/frontier-signal-integrity/fixtures/valid/proof-hinge-supplier.synthetic.json",
+      "sha256": "6d581db429ca6c94f9c695d397020dd8607e51041f647f0693561996fa408b85",
+      "size_bytes": 1903
     },
     {
       "path": "profiles/frontier-signal-integrity/schema/frontier-signal-integrity-case.schema.json",
@@ -537,6 +552,11 @@
       "size_bytes": 22214
     },
     {
+      "path": "scripts/proof_hinge_research.py",
+      "sha256": "91d90aff86ffcf558790ec9b164fbf4e42ae9f077ef848fbd4cac4ed4337fd1d",
+      "size_bytes": 13458
+    },
+    {
       "path": "scripts/refresh_release_metadata.py",
       "sha256": "4033dab382cc720046c83558c23b8eff7a12d093ece8d047a7669a15732d726d",
       "size_bytes": 2811
@@ -650,6 +670,16 @@
       "path": "tests/test_perception_integrity.py",
       "sha256": "2a80becfc38caeae9129eaf4a413af9084d36b0fa8216bf416955700b5579649",
       "size_bytes": 24637
+    },
+    {
+      "path": "tests/test_proof_hinge_benchmark.py",
+      "sha256": "30405bd19046136a1f39cb4c28f659deeac161a542672d7b6f71f94ed37527c0",
+      "size_bytes": 6798
+    },
+    {
+      "path": "tests/test_proof_hinge_research.py",
+      "sha256": "a76f1cb1c5e4ceba28a7316fc2d049bad8121f3e7b40b90b80a670ae0432863a",
+      "size_bytes": 7720
     },
     {
       "path": "tests/test_release_semantics.py",

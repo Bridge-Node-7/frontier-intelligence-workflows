@@ -52,3 +52,7 @@ FSI must never mask or downgrade an upstream PI finding.
 ## Result semantics
 
 See `STATUS_SEMANTICS.md`. `NO_FSI_FINDINGS` is not evidence verification and is not a truth determination.
+
+## Optional Proof-Hinge research sidecar
+
+[Proof-Hinge Research](PROOF_HINGE_RESEARCH.md) is a standalone, offline, synthetic experiment for ranking human-specified discriminating tests under worst-case regret and explicitly abstaining when supplied payoff alternatives reverse its priority. It is not a source validator, scientific confirmation, release clearance, PI/FSI gate, or consequential decision authority. The source and tests are under scripts/ and tests/ respectively.

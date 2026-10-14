@@ -1,0 +1,63 @@
+{
+  "case_id": "SUPPLIER-QUALIFICATION-SYNTHETIC-001",
+  "claim": "A fictional supplier datasheet states that a power-conversion module achieves at least 96 percent efficiency under a specified test condition.",
+  "source": {
+    "kind": "fictional_supplier_datasheet",
+    "locator": "Synthetic supplier qualification worksheet; training example only"
+  },
+  "worlds": [
+    "specification_reproducible",
+    "specification_not_reproducible"
+  ],
+  "actions": {
+    "approve_specification": {
+      "specification_reproducible": 20,
+      "specification_not_reproducible": -100
+    },
+    "retain_pending_validation": {
+      "specification_reproducible": 0,
+      "specification_not_reproducible": 0
+    }
+  },
+  "tests": [
+    {
+      "name": "Obtain independent accredited efficiency test results against stated conditions",
+      "assumed_cost": 4,
+      "possible_outcomes_by_world": {
+        "specification_reproducible": [
+          "independent_match"
+        ],
+        "specification_not_reproducible": [
+          "independent_mismatch"
+        ]
+      }
+    },
+    {
+      "name": "Confirm datasheet revision was issued",
+      "assumed_cost": 1,
+      "possible_outcomes_by_world": {
+        "specification_reproducible": [
+          "revision_found"
+        ],
+        "specification_not_reproducible": [
+          "revision_found"
+        ]
+      }
+    },
+    {
+      "name": "Review inconclusive supplier presentation",
+      "assumed_cost": 2,
+      "possible_outcomes_by_world": {
+        "specification_reproducible": [
+          "looks_consistent",
+          "unclear"
+        ],
+        "specification_not_reproducible": [
+          "looks_consistent",
+          "unclear"
+        ]
+      }
+    }
+  ],
+  "interpretation_boundary": "All utilities, outcomes and test reliability are synthetic assumptions. This case does not verify supplier qualification or measured efficiency."
+}
