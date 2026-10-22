@@ -162,7 +162,7 @@
     "codeql.yml": "6e891be8f88587bc36a18b43adf832675af9e8bb6bbc6c4310a62659d5947f52",
     "release.yml": "d09bfb3a64cdd62e40999b32e4ac20effbbe44c3c737726e67db4fc40c0527a0",
     "validate.yml": "b6ca7a6e565e51ca9766cde4c8f240138423a11fe5efc28cf4302a3131e0a739",
-    "privacy-preflight.yml": "97ef549d18120b0f4d67539bec03f6bb3ba71b97c2748ea5cd86515c2f327c40"
+    "privacy-preflight.yml": "64cd99f24c31b1bfeda232ca32f371d499851e8f0a9259ea52e05ece77385ddc"
   },
   "binary_files_allowed": false,
   "max_file_size_bytes": 524288,
