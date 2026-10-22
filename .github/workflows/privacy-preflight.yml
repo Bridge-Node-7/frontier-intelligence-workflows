@@ -1,0 +1,16 @@
+name: Privacy preflight
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  privacy:
+    uses: Bridge-Node-7/Bridge-Node-7/.github/workflows/privacy-preflight.yml@main
+    permissions:
+      contents: read
