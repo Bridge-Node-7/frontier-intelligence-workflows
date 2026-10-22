@@ -18,8 +18,8 @@
     },
     {
       "path": ".github/workflows/privacy-preflight.yml",
-      "sha256": "97ef549d18120b0f4d67539bec03f6bb3ba71b97c2748ea5cd86515c2f327c40",
-      "size_bytes": 265
+      "sha256": "64cd99f24c31b1bfeda232ca32f371d499851e8f0a9259ea52e05ece77385ddc",
+      "size_bytes": 1290
     },
     {
       "path": ".github/workflows/release.yml",
@@ -63,7 +63,7 @@
     },
     {
       "path": "REPO_FILE_POLICY.json",
-      "sha256": "5bd8e7e84eee09cb4ba3955164c6826b7c74d11a1ae2a8a27d6fe977c54a1ac4",
+      "sha256": "124938d4c3ca7aefdcd2f98cfa0a3cc5169454cbef9ed655ef25044f67ee4572",
       "size_bytes": 10133
     },
     {
