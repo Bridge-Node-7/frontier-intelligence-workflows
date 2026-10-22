@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           repository: Bridge-Node-7/Bridge-Node-7
-          ref: 1913677087329fc65040cd479c5b51843c8b59d8
+          ref: e82771c31751360fbc66ca67d4c2f8be9a35a623
           path: policy
           persist-credentials: false
           submodules: false
