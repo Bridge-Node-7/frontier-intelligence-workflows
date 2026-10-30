@@ -2,6 +2,15 @@
 
 Notable public changes to Frontier Intelligence Workflows are recorded here.
 
+## [0.9.2] (2026-10-30)
+
+
+### Bug Fixes
+
+* **docs:** drop broken CHANGELOG issue link targets ([#9](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/9)) ([d9d703a](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/d9d703a389cdda745f90c2ee7e6ca5022655d92f))
+* **release:** use generic extra-file type for VERSION ([#10](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/10)) ([33c9ba2](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/33c9ba271bfeee7f36cbc41d71835c1bd0b57274))
+* **release:** zero-touch release-candidate sync ([#12](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/12)) ([21d0ea4](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/21d0ea4600657e242a957fd3187b539be3a01cbb))
+
 ## [0.9.1](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/compare/v0.9.0...v0.9.1) (2026-10-30)
 
 
