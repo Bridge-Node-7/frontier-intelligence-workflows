@@ -543,8 +543,8 @@
     },
     {
       "path": "release-please-config.json",
-      "sha256": "edabf549ffdd04f149beeac4f962f1a287daba55dda7736a5ad9cca7b2b783f9",
-      "size_bytes": 1097
+      "sha256": "f3822cbd0e4379bcba824c4764fdbfb1faa9750626c00c1f29eea3230e98b804",
+      "size_bytes": 1098
     },
     {
       "path": "requirements-validation.txt",
