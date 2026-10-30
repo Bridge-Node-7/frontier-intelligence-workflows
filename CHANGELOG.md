@@ -2,6 +2,40 @@
 
 Notable public changes to Frontier Intelligence Workflows are recorded here.
 
+## [0.9.1](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/compare/v0.9.0...v0.9.1) (2026-10-30)
+
+
+### Bug Fixes
+
+* normalize FIW validator root path identity (F04) ([c354024](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/c3540249d7b1c3e0c790a2615ebfb3564b4b5f0b))
+
+
+### Security
+
+* pin reviewed public metadata policy ([#5](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/5)) ([0c4aae5](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/0c4aae51bd38d3d80b67123e4fc8ff4cdcfb4612))
+* repin reviewed privacy policy ([9d7bf2c](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/9d7bf2cdeb33f968d5cee9e1a954ebb21e2913e7))
+
+
+### Documentation
+
+* clarify public README scope ([#4](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/4)) ([7d2c06e](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/7d2c06e1a8b02dca816fc08557ffc8290f4a46dd))
+* clarify reviewed source and stable release ([#29](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/29)) ([049c61a](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/049c61aac5ee86f04a84dc95bff85c7bb3840420))
+* clarify role in Frontier Assurance architecture ([#31](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/31)) ([16432dd](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/16432ddf76dd646a537a000c3536e61804ac4651))
+* simplify release status wording ([#30](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/30)) ([39dcf97](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/39dcf97edb4ac5c2d7b37857a6c751732458d16e))
+
+
+### CI
+
+* activate immutable privacy preflight with validated release policy ([c7cd091](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/c7cd09153eb2351da47b948a8b4b8e86ceff9280))
+* add release-please and repository quality gates ([e8a4e6e](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/e8a4e6ef2fe7a3cb1f5f142650ede8c569b4f80f))
+* check privacy on public PR metadata edits ([232e9a2](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/232e9a26e02750e5b28aece3aa7f0e156ff36676))
+
+
+### Miscellaneous
+
+* **deps:** bump jsonschema from 4.25.1 to 4.26.0 in the validation-dependencies group ([#38](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/38)) ([7eb26ac](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/7eb26aca293dce4df63725c42f2c68c91c46986f))
+* **deps:** bump the github-actions group with 2 updates ([#39](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/39)) ([a42c283](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/a42c28306e5036bfe3f33c9ef4244469e4ed0f0b))
+
 ## [Unreleased]
 
 - Completed post-v0.9.0 Frontier Signal Integrity terminology cleanup.

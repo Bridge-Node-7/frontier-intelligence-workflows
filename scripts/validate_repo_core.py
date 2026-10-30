@@ -554,7 +554,7 @@ def validate(root: Path, check_manifest: bool = True) -> dict[str, Any]:
     exact_release_markers = {
         "README.md": re.compile(rf"^\*\*v{re.escape(EXPECTED_VERSION)} — Frontier Signal Integrity\*\*$", re.MULTILINE),
         "LIMITATIONS.md": re.compile(rf"^Current release: `{re.escape(EXPECTED_VERSION)}`\.$", re.MULTILINE),
-        "CHANGELOG.md": re.compile(rf"^(?:## \[{re.escape(EXPECTED_VERSION)}\] - \d{{4}}-\d{{2}}-\d{{2}}|## \[Unreleased\])$", re.MULTILINE),
+        "CHANGELOG.md": re.compile(rf"^(?:## \[{re.escape(EXPECTED_VERSION)}\](?:\s|-|\(|$)|## \[Unreleased\])", re.MULTILINE),
         "docs/assurance/TESTING.md": re.compile(rf"^# Validation — v{re.escape(EXPECTED_VERSION)}$", re.MULTILINE),
     }
     version_gaps = [
