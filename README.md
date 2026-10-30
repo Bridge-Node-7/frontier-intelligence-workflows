@@ -2,6 +2,8 @@
 
 **Turn uncertain frontier-technology claims into decision-ready intelligence.**
 
+Stable public release — see the latest [GitHub Release](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/releases/latest). Quickstart: `python scripts/run_tests.py --root .` · `python scripts/validate_repo.py --root .`.
+
 ## Scope and limitations
 
 Use these methods to collect and challenge source-linked claims, document uncertainty and prepare reviewed research outputs. They do not establish scientific truth, certify readiness or authorize a consequential decision.
