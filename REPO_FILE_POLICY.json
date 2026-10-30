@@ -229,6 +229,6 @@
     ".pyc",
     ".pyo"
   ],
-  "release_version": "0.9.1",
+  "release_version": "0.9.2",
   "schema_version": "1.1"
 }
