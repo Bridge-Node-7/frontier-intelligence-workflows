@@ -171,13 +171,13 @@
     "requirements-validation.txt"
   ],
   "approved_workflow_sha256": {
+    "version-consistency.yml": "4cdf4a82f696b6af47862b6a2f71c1a55d76e8e3f27f44c52e23803ad2768cfb",
+    "docs-link-check.yml": "0742e0c866ad7ef6975ce6545d47e30651431a59681c878a9bface699ff5662a",
     "codeql.yml": "6e891be8f88587bc36a18b43adf832675af9e8bb6bbc6c4310a62659d5947f52",
-    "release.yml": "d09bfb3a64cdd62e40999b32e4ac20effbbe44c3c737726e67db4fc40c0527a0",
     "validate.yml": "b6ca7a6e565e51ca9766cde4c8f240138423a11fe5efc28cf4302a3131e0a739",
     "privacy-preflight.yml": "ec0db08ecca7300bc03cfeeb4779757d290d0358d882c0da7bfc84ceb71d5857",
-    ".github/workflows/docs-link-check.yml": "0742e0c866ad7ef6975ce6545d47e30651431a59681c878a9bface699ff5662a",
-    ".github/workflows/release-please.yml": "69881290dccdd3881a09cc351e01322190f5f2b76ffe85668172749fee313bba",
-    ".github/workflows/version-consistency.yml": "4cdf4a82f696b6af47862b6a2f71c1a55d76e8e3f27f44c52e23803ad2768cfb"
+    "release.yml": "d09bfb3a64cdd62e40999b32e4ac20effbbe44c3c737726e67db4fc40c0527a0",
+    "release-please.yml": "69881290dccdd3881a09cc351e01322190f5f2b76ffe85668172749fee313bba"
   },
   "binary_files_allowed": false,
   "max_file_size_bytes": 524288,

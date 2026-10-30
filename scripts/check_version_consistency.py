@@ -71,8 +71,9 @@ def from_project_facts() -> str | None:
             continue
         data = json.loads(read_text(p))
         for key in ("version", "application_version", "app_version"):
-            if key in data and data[key]:
-                return str(data[key]).lstrip("v")
+            val = data.get(key)
+            if val:
+                return str(val).lstrip("v")
     return None
 
 

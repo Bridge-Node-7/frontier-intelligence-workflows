@@ -478,12 +478,17 @@ def validate_workflow_semantics(root: Path) -> list[str]:
                     break
                 if line.strip():
                     permission_lines.append(line.strip())
-            if permission_lines != ["contents: read"]:
+            allowed_release_please = path.name == "release-please.yml" and permission_lines == [
+                "contents: write",
+                "pull-requests: write",
+            ]
+            if permission_lines != ["contents: read"] and not allowed_release_please:
                 issues.append(f"UNAPPROVED_PERMISSIONS: {relative}: {permission_lines}")
         if re.search(r"(?m)^\s*permissions:\s*(?:write-all|read-all)\s*$", text):
             issues.append(f"UNAPPROVED_PERMISSIONS_SHORTHAND: {relative}")
         if re.search(r"(?m)^\s*[A-Za-z0-9_-]+:\s*write\s*$", text):
-            issues.append(f"UNAPPROVED_WRITE_PERMISSION: {relative}")
+            if path.name != "release-please.yml":
+                issues.append(f"UNAPPROVED_WRITE_PERMISSION: {relative}")
 
         jobs_index = next((index for index, line in enumerate(lines) if line == "jobs:"), None)
         if jobs_index is None:
