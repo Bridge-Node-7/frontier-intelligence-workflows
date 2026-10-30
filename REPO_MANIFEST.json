@@ -38,8 +38,8 @@
     },
     {
       "path": ".github/workflows/validate.yml",
-      "sha256": "b6ca7a6e565e51ca9766cde4c8f240138423a11fe5efc28cf4302a3131e0a739",
-      "size_bytes": 2235
+      "sha256": "5dddd6523c04b29e306a1bf6fb4f7174ee9a6ff3e641b303a311fe6b5d0b1dff",
+      "size_bytes": 3066
     },
     {
       "path": ".github/workflows/version-consistency.yml",
@@ -78,12 +78,12 @@
     },
     {
       "path": "README.md",
-      "sha256": "7c62052270ba4328fc6ecd464c7fc76472f3e6eeba1372734fe9e48005ca19aa",
-      "size_bytes": 9740
+      "sha256": "634c494cbb078ddd093e62cf3d26c84cd050c3e2eb6eaab0737ca95777e281a2",
+      "size_bytes": 9980
     },
     {
       "path": "REPO_FILE_POLICY.json",
-      "sha256": "0ba192a27a5ee2cb41b9ef048191507d16bfe4a92d9f40326b891cadd6e5082f",
+      "sha256": "95b81645eef27d2c993ed953a1af9afce23de8a7070889d17e636b7246af0eec",
       "size_bytes": 10971
     },
     {
