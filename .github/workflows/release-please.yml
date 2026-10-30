@@ -1,0 +1,26 @@
+name: release-please
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: release-please-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Run release-please
+        id: release
+        uses: googleapis/release-please-action@16a9c90856f42705b7e50afe47681b0928795265 # v4.4.0
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
