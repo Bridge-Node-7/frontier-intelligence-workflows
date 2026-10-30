@@ -8,8 +8,29 @@
       "include-component-in-tag": false,
       "extra-files": [
         {
+          "type": "json",
+          "path": "REPO_FILE_POLICY.json",
+          "jsonpath": "$.release_version"
+        },
+        {
           "type": "generic",
-          "path": "VERSION"
+          "path": "scripts/release_common.py"
+        },
+        {
+          "type": "generic",
+          "path": "scripts/frontier_signal_integrity.py"
+        },
+        {
+          "type": "generic",
+          "path": "README.md"
+        },
+        {
+          "type": "generic",
+          "path": "LIMITATIONS.md"
+        },
+        {
+          "type": "generic",
+          "path": "docs/assurance/TESTING.md"
         }
       ]
     }

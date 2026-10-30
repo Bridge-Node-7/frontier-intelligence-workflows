@@ -177,8 +177,7 @@ Published by [Bridge Node 7](https://bridgenode7.com/).
 
 ## Release
 
-**v0.9.1 — Frontier Signal Integrity**
-
+**v0.9.1 — Frontier Signal Integrity** <!-- x-release-please-version -->
 This is the latest stable distribution milestone.
 
 `main` is the current reviewed source and may contain validated maintenance after the latest stable release. GitHub Releases are explicit distribution milestones; post-release maintenance is not represented as a new stable version until the next meaningful release milestone.
