@@ -1,0 +1,41 @@
+name: version-consistency
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "VERSION"
+      - "scripts/check_version_consistency.py"
+      - "release-please-config.json"
+      - ".release-please-manifest.json"
+      - ".github/workflows/version-consistency.yml"
+  push:
+    branches: [main]
+    paths:
+      - "VERSION"
+      - "scripts/check_version_consistency.py"
+      - "release-please-config.json"
+      - ".release-please-manifest.json"
+      - ".github/workflows/version-consistency.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: version-consistency-${ github.ref }
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Verify version files agree
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/check_version_consistency.py

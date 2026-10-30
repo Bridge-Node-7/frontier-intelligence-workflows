@@ -17,9 +17,19 @@
       "size_bytes": 1016
     },
     {
+      "path": ".github/workflows/docs-link-check.yml",
+      "sha256": "0742e0c866ad7ef6975ce6545d47e30651431a59681c878a9bface699ff5662a",
+      "size_bytes": 973
+    },
+    {
       "path": ".github/workflows/privacy-preflight.yml",
       "sha256": "ec0db08ecca7300bc03cfeeb4779757d290d0358d882c0da7bfc84ceb71d5857",
       "size_bytes": 1359
+    },
+    {
+      "path": ".github/workflows/release-please.yml",
+      "sha256": "e514b21ff6ef61904463051db66d3a83c011e28e4b120df4399b01fcad223cb1",
+      "size_bytes": 578
     },
     {
       "path": ".github/workflows/release.yml",
@@ -32,9 +42,19 @@
       "size_bytes": 2235
     },
     {
+      "path": ".github/workflows/version-consistency.yml",
+      "sha256": "4cdf4a82f696b6af47862b6a2f71c1a55d76e8e3f27f44c52e23803ad2768cfb",
+      "size_bytes": 1013
+    },
+    {
       "path": ".gitignore",
       "sha256": "5133e8f00f3fe4f950c50b2cc06be2b4ed31a121e87c834b2e8c79723e157ca2",
       "size_bytes": 85
+    },
+    {
+      "path": ".release-please-manifest.json",
+      "sha256": "f98a17c2fbccbcc4834a8640033b44baeb87da26daf316ac371fcc4924f6d1f7",
+      "size_bytes": 19
     },
     {
       "path": "CHANGELOG.md",
@@ -63,8 +83,8 @@
     },
     {
       "path": "REPO_FILE_POLICY.json",
-      "sha256": "cf28978e5b23347f60739f8c402076e25026a913299427005a5202910997a924",
-      "size_bytes": 10133
+      "sha256": "59723818662f3458045ae39775940c0ce826cdb69b11c30948f2c68e25fb2b41",
+      "size_bytes": 10920
     },
     {
       "path": "SECURITY.md",
@@ -522,6 +542,11 @@
       "size_bytes": 3784
     },
     {
+      "path": "release-please-config.json",
+      "sha256": "f3822cbd0e4379bcba824c4764fdbfb1faa9750626c00c1f29eea3230e98b804",
+      "size_bytes": 1098
+    },
+    {
       "path": "requirements-validation.txt",
       "sha256": "37caf5bff910fbd7dda44433b92df25fbfd989aea829e9bc4ce37e70df1f1782",
       "size_bytes": 33
@@ -535,6 +560,11 @@
       "path": "scripts/build_release.py",
       "sha256": "3675f3aff41eb21564b22efb5efdf792a41639bc0376cffe413957dea41fc31f",
       "size_bytes": 7994
+    },
+    {
+      "path": "scripts/check_version_consistency.py",
+      "sha256": "c51a83074ac0a2a622193a49c6c1947e93d49644bc837d9d5f34fd2ec020a019",
+      "size_bytes": 2669
     },
     {
       "path": "scripts/compile_sources.py",
@@ -568,8 +598,8 @@
     },
     {
       "path": "scripts/release_common.py",
-      "sha256": "4fb0b06388f5fdf260dabb26dfc5f189e0220258419fd18c43ea1c0c36af9597",
-      "size_bytes": 22235
+      "sha256": "17152564171ee5f2cde64f4f16d838e969800862088e402c28471dbcd476cd0c",
+      "size_bytes": 22506
     },
     {
       "path": "scripts/run_frontier_signal_integrity.py",
