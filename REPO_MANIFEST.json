@@ -53,13 +53,13 @@
     },
     {
       "path": ".release-please-manifest.json",
-      "sha256": "f98a17c2fbccbcc4834a8640033b44baeb87da26daf316ac371fcc4924f6d1f7",
+      "sha256": "4e2be55a82a41c65ff4444565e007b52d08580b27236568bcaad02791be65f06",
       "size_bytes": 19
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "0679488c6ed1c63785f4a57544c0c7676e6229d2d62a006a6b17eb30de9fd208",
-      "size_bytes": 4053
+      "sha256": "97a6499d88d73436e31333d97d971929619d4a9ded40408b9072f0e947f56486",
+      "size_bytes": 6936
     },
     {
       "path": "LICENSE",
@@ -68,7 +68,7 @@
     },
     {
       "path": "LIMITATIONS.md",
-      "sha256": "b12ae27abd0e2a74f9554fe7460e01e1c57f821fb3af0ec5d4b5219222298667",
+      "sha256": "3dfd929510cbdfbf4b94b7ce593fe89cbb140ea6f9196a4550f935806c48a18b",
       "size_bytes": 2325
     },
     {
@@ -78,12 +78,12 @@
     },
     {
       "path": "README.md",
-      "sha256": "385267cbedd9b0701d03e99c1e0da50464efe5a21571659c11d54ff59d15c24d",
+      "sha256": "09f4d6ffa47197ea424f47271eda79c55bfe5792a7890d27bda47238a1813167",
       "size_bytes": 9707
     },
     {
       "path": "REPO_FILE_POLICY.json",
-      "sha256": "59723818662f3458045ae39775940c0ce826cdb69b11c30948f2c68e25fb2b41",
+      "sha256": "92acec72a938fc2257320447ce745474247e5456463fe46fcffd9c6093ef7180",
       "size_bytes": 10920
     },
     {
@@ -93,7 +93,7 @@
     },
     {
       "path": "VERSION",
-      "sha256": "9d8c94f1ad3ea96b1e2ac4914fda4cb93c76b4a3e0d8cc6dd8976d6c0b227d15",
+      "sha256": "179a5390966e85c2071a87c1b31de13df67460665196f6529f8c4986842f81e5",
       "size_bytes": 6
     },
     {
@@ -128,7 +128,7 @@
     },
     {
       "path": "docs/assurance/TESTING.md",
-      "sha256": "89b27404582e65f17ed4c67dbcde20f0c6e89b223561409f6e43e7b73b68204c",
+      "sha256": "549771eb7e6512e2a2c998a47a96ad8708a51bb51094b8b34c48520245c9b987",
       "size_bytes": 1238
     },
     {
@@ -543,8 +543,8 @@
     },
     {
       "path": "release-please-config.json",
-      "sha256": "f3822cbd0e4379bcba824c4764fdbfb1faa9750626c00c1f29eea3230e98b804",
-      "size_bytes": 1098
+      "sha256": "edabf549ffdd04f149beeac4f962f1a287daba55dda7736a5ad9cca7b2b783f9",
+      "size_bytes": 1097
     },
     {
       "path": "requirements-validation.txt",
@@ -573,7 +573,7 @@
     },
     {
       "path": "scripts/frontier_signal_integrity.py",
-      "sha256": "2cbe825b00de08fdbd12b7bd928514f15175e56cc0d575095856e66e4e7d9874",
+      "sha256": "c2b08337be9af15c6bbb28abd479a7e0689a36bdeb5d6cd1a135b46f56758012",
       "size_bytes": 16725
     },
     {
@@ -598,7 +598,7 @@
     },
     {
       "path": "scripts/release_common.py",
-      "sha256": "17152564171ee5f2cde64f4f16d838e969800862088e402c28471dbcd476cd0c",
+      "sha256": "dab3afeeb5ec44fa536c88f1a967ec634c98aa00ede3eb053f85d79eec2ca623",
       "size_bytes": 22506
     },
     {
@@ -638,8 +638,8 @@
     },
     {
       "path": "scripts/validate_repo_core.py",
-      "sha256": "c99678d1d1ee1a5fefc13ab53c329e628fcde902e85fa497320d79d3711e656b",
-      "size_bytes": 37067
+      "sha256": "25c76e9c704d5c0e4487f7617c137c6bba221d9b5f0406d3237aae3e1b02a750",
+      "size_bytes": 37053
     },
     {
       "path": "templates/ai-governance-gate.md",
@@ -718,7 +718,7 @@
     },
     {
       "path": "tests/test_release_semantics.py",
-      "sha256": "d71769e1a07afe8e0e16d0dd5818299540291b1e4e8e92debd415ebac9f9bba9",
+      "sha256": "4f1a913c81bfb484be6a6e9801252288ca5ed66d4c33bc1ade5dce3c9bc92cb1",
       "size_bytes": 11098
     },
     {
@@ -735,5 +735,5 @@
   "generated_at_utc": "1980-01-01T00:00:00Z",
   "project": "Frontier Intelligence Workflows",
   "schema_version": "1.0",
-  "version": "0.9.0"
+  "version": "0.9.1"
 }
