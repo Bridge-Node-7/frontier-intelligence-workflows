@@ -31,14 +31,25 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          PR_NUMBER='${{ steps.release.outputs.pr }}'
-          if [ -z "${PR_NUMBER}" ] || [ "${PR_NUMBER}" = "null" ]; then
-            echo "No release-please PR number; skipping manifest sync."
+          # release-please-action v4 may emit either a bare PR number or a JSON
+          # object with .number / .headBranchName.
+          PR_RAW='${{ steps.release.outputs.pr }}'
+          if [ -z "${PR_RAW}" ] || [ "${PR_RAW}" = "null" ]; then
+            echo "No release-please PR; skipping manifest sync."
             exit 0
           fi
-          BRANCH="$(gh pr view "${PR_NUMBER}" --repo "${GITHUB_REPOSITORY}" --json headRefName -q .headRefName)"
+          if [[ "${PR_RAW}" =~ ^[0-9]+$ ]]; then
+            PR_NUMBER="${PR_RAW}"
+            BRANCH="$(gh pr view "${PR_NUMBER}" --repo "${GITHUB_REPOSITORY}" --json headRefName -q .headRefName)"
+          else
+            PR_NUMBER="$(printf '%s' "${PR_RAW}" | jq -r '.number // empty')"
+            BRANCH="$(printf '%s' "${PR_RAW}" | jq -r '.headBranchName // empty')"
+            if [ -z "${BRANCH}" ] && [ -n "${PR_NUMBER}" ]; then
+              BRANCH="$(gh pr view "${PR_NUMBER}" --repo "${GITHUB_REPOSITORY}" --json headRefName -q .headRefName)"
+            fi
+          fi
           if [ -z "${BRANCH}" ] || [ "${BRANCH}" = "null" ]; then
-            echo "Could not resolve headRefName for PR ${PR_NUMBER}; skipping."
+            echo "Could not resolve release PR branch from outputs.pr; skipping."
             exit 0
           fi
           # Split noreply identity so the workflow file itself has no email literal.
@@ -50,11 +61,11 @@ jobs:
           git clone --branch "${BRANCH}" --single-branch "https://github.com/${GITHUB_REPOSITORY}.git" .repo-sync
           cd .repo-sync
           python3 -B scripts/sync_release_candidate_manifests.py
-          if git diff --quiet -- MANIFEST.sha256 REPO_MANIFEST.json; then
-            echo "Manifests already current on ${BRANCH}."
+          if git diff --quiet -- VERSION MANIFEST.sha256 REPO_MANIFEST.json; then
+            echo "Release-candidate VERSION/manifests already current on ${BRANCH}."
             exit 0
           fi
-          git -c "user.name=${GIT_NAME}" -c "user.email=${GIT_MAIL_LOCAL}@${GIT_MAIL_DOMAIN}" add MANIFEST.sha256 REPO_MANIFEST.json
-          git -c "user.name=${GIT_NAME}" -c "user.email=${GIT_MAIL_LOCAL}@${GIT_MAIL_DOMAIN}" commit -m "chore: refresh release manifests for release candidate"
+          git -c "user.name=${GIT_NAME}" -c "user.email=${GIT_MAIL_LOCAL}@${GIT_MAIL_DOMAIN}" add VERSION MANIFEST.sha256 REPO_MANIFEST.json
+          git -c "user.name=${GIT_NAME}" -c "user.email=${GIT_MAIL_LOCAL}@${GIT_MAIL_DOMAIN}" commit -m "chore: align VERSION and refresh manifests for release candidate"
           git push origin "HEAD:${BRANCH}"
           echo "PASS refreshed manifests on ${BRANCH}"
