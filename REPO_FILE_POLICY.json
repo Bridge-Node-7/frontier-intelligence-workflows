@@ -175,7 +175,7 @@
     "version-consistency.yml": "4cdf4a82f696b6af47862b6a2f71c1a55d76e8e3f27f44c52e23803ad2768cfb",
     "docs-link-check.yml": "3e60e76f5b96a28b5712c5b17410c8ac8f3aecbb01b0ffab6b106b7e7ef1ef44",
     "codeql.yml": "6e891be8f88587bc36a18b43adf832675af9e8bb6bbc6c4310a62659d5947f52",
-    "validate.yml": "5dddd6523c04b29e306a1bf6fb4f7174ee9a6ff3e641b303a311fe6b5d0b1dff",
+    "validate.yml": "b6ca7a6e565e51ca9766cde4c8f240138423a11fe5efc28cf4302a3131e0a739",
     "privacy-preflight.yml": "ec0db08ecca7300bc03cfeeb4779757d290d0358d882c0da7bfc84ceb71d5857",
     "release.yml": "d09bfb3a64cdd62e40999b32e4ac20effbbe44c3c737726e67db4fc40c0527a0",
     "release-please.yml": "fb0d4006d41632213489f42628dd0eefe6cde3bc63e24c88bb730dd6ef629792"
