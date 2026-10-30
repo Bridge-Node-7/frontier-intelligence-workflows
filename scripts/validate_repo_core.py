@@ -81,6 +81,7 @@ REQUIRED_FILES = {
     "scripts/language_integrity.py",
     "scripts/perception_integrity.py",
     "scripts/refresh_release_metadata.py",
+    "scripts/sync_release_candidate_manifests.py",
     "scripts/release_common.py",
     "scripts/run_language_integrity.py",
     "scripts/run_tests.py",
@@ -552,10 +553,19 @@ def validate(root: Path, check_manifest: bool = True) -> dict[str, Any]:
     check("version_format", version_ok, f"VERSION={version!r}; expected {EXPECTED_VERSION!r} without a leading v.")
 
     exact_release_markers = {
-        "README.md": re.compile(rf"^\*\*v{re.escape(EXPECTED_VERSION)} — Frontier Signal Integrity\*\*$", re.MULTILINE),
-        "LIMITATIONS.md": re.compile(rf"^Current release: `{re.escape(EXPECTED_VERSION)}`\.$", re.MULTILINE),
+        "README.md": re.compile(
+            rf"^\*\*v{re.escape(EXPECTED_VERSION)} — Frontier Signal Integrity\*\*(?:\s+<!-- x-release-please-version -->)?$",
+            re.MULTILINE,
+        ),
+        "LIMITATIONS.md": re.compile(
+            rf"^Current release: `{re.escape(EXPECTED_VERSION)}`\.(?:\s+<!-- x-release-please-version -->)?$",
+            re.MULTILINE,
+        ),
         "CHANGELOG.md": re.compile(rf"^(?:## \[{re.escape(EXPECTED_VERSION)}\](?:\s|-|\(|$)|## \[Unreleased\])", re.MULTILINE),
-        "docs/assurance/TESTING.md": re.compile(rf"^# Validation — v{re.escape(EXPECTED_VERSION)}$", re.MULTILINE),
+        "docs/assurance/TESTING.md": re.compile(
+            rf"^# Validation — v{re.escape(EXPECTED_VERSION)}(?:\s+<!-- x-release-please-version -->)?$",
+            re.MULTILINE,
+        ),
     }
     version_gaps = [
         rel for rel, pattern in exact_release_markers.items()

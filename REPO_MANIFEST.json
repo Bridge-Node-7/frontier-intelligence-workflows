@@ -18,8 +18,8 @@
     },
     {
       "path": ".github/workflows/docs-link-check.yml",
-      "sha256": "0742e0c866ad7ef6975ce6545d47e30651431a59681c878a9bface699ff5662a",
-      "size_bytes": 973
+      "sha256": "70ec83bb19aa2f4d296f8cb06c5122c86a0b72f5d5b76dd66ba59a6ec7724a03",
+      "size_bytes": 1032
     },
     {
       "path": ".github/workflows/privacy-preflight.yml",
@@ -28,8 +28,8 @@
     },
     {
       "path": ".github/workflows/release-please.yml",
-      "sha256": "e514b21ff6ef61904463051db66d3a83c011e28e4b120df4399b01fcad223cb1",
-      "size_bytes": 578
+      "sha256": "49d818845339daab2a25211f54126af2133c2faf8776e48e8ae8aefe1234aa13",
+      "size_bytes": 2352
     },
     {
       "path": ".github/workflows/release.yml",
@@ -68,8 +68,8 @@
     },
     {
       "path": "LIMITATIONS.md",
-      "sha256": "3dfd929510cbdfbf4b94b7ce593fe89cbb140ea6f9196a4550f935806c48a18b",
-      "size_bytes": 2325
+      "sha256": "43ff841f492b3c9a31ea465e68b9f6b9799ca9ce4781cd715969d683f4d99627",
+      "size_bytes": 2358
     },
     {
       "path": "NOTICE.md",
@@ -78,13 +78,13 @@
     },
     {
       "path": "README.md",
-      "sha256": "09f4d6ffa47197ea424f47271eda79c55bfe5792a7890d27bda47238a1813167",
-      "size_bytes": 9707
+      "sha256": "bfe99b972555bd2ae3524720fd91e2f4f689b57403880196103af760bc84b304",
+      "size_bytes": 9740
     },
     {
       "path": "REPO_FILE_POLICY.json",
-      "sha256": "92acec72a938fc2257320447ce745474247e5456463fe46fcffd9c6093ef7180",
-      "size_bytes": 10920
+      "sha256": "ab1d19abe0ce086a94aa8ee3249e7a2157fec7a2037039b1d8f0eb297e17359f",
+      "size_bytes": 10971
     },
     {
       "path": "SECURITY.md",
@@ -128,8 +128,8 @@
     },
     {
       "path": "docs/assurance/TESTING.md",
-      "sha256": "549771eb7e6512e2a2c998a47a96ad8708a51bb51094b8b34c48520245c9b987",
-      "size_bytes": 1238
+      "sha256": "ae0da68e6a2f3149efaead1bd9417556c52a5bd5dc8573ce07c3b044e3c94ea9",
+      "size_bytes": 1271
     },
     {
       "path": "docs/briefs/FIW-SYN-001-decision-ready-brief.md",
@@ -543,8 +543,8 @@
     },
     {
       "path": "release-please-config.json",
-      "sha256": "f3822cbd0e4379bcba824c4764fdbfb1faa9750626c00c1f29eea3230e98b804",
-      "size_bytes": 1098
+      "sha256": "82282cf2835b1fcffa3bf3ccf98d32543b9a8c9861b2dcda073de709002d781f",
+      "size_bytes": 1616
     },
     {
       "path": "requirements-validation.txt",
@@ -573,8 +573,8 @@
     },
     {
       "path": "scripts/frontier_signal_integrity.py",
-      "sha256": "c2b08337be9af15c6bbb28abd479a7e0689a36bdeb5d6cd1a135b46f56758012",
-      "size_bytes": 16725
+      "sha256": "8b948d99ed5d8602d01bd864a621bae6c8f1adf5ac93df0dc3d84bd1143b7f88",
+      "size_bytes": 16781
     },
     {
       "path": "scripts/language_integrity.py",
@@ -598,8 +598,8 @@
     },
     {
       "path": "scripts/release_common.py",
-      "sha256": "dab3afeeb5ec44fa536c88f1a967ec634c98aa00ede3eb053f85d79eec2ca623",
-      "size_bytes": 22506
+      "sha256": "ee341dfbd031e6083ce07c37f08637149b39e0191d79aa753ac15d10f435a8fe",
+      "size_bytes": 22534
     },
     {
       "path": "scripts/run_frontier_signal_integrity.py",
@@ -632,14 +632,19 @@
       "size_bytes": 15895
     },
     {
+      "path": "scripts/sync_release_candidate_manifests.py",
+      "sha256": "03e85847428b8f83bd5ea67a7d636006ac5f84d5342b211380e672ac35848499",
+      "size_bytes": 836
+    },
+    {
       "path": "scripts/validate_repo.py",
       "sha256": "f6bc2c09b4d7c92d7e488a809832001096fdb9b3ef1213dcd3533f5a3a2709be",
       "size_bytes": 9402
     },
     {
       "path": "scripts/validate_repo_core.py",
-      "sha256": "25c76e9c704d5c0e4487f7617c137c6bba221d9b5f0406d3237aae3e1b02a750",
-      "size_bytes": 37053
+      "sha256": "1ca61ff8ba13c3c1c1d038c04452a1c8f19cba58cf9ce7ddf449f1a62a6c2529",
+      "size_bytes": 37332
     },
     {
       "path": "templates/ai-governance-gate.md",
@@ -718,8 +723,8 @@
     },
     {
       "path": "tests/test_release_semantics.py",
-      "sha256": "4f1a913c81bfb484be6a6e9801252288ca5ed66d4c33bc1ade5dce3c9bc92cb1",
-      "size_bytes": 11098
+      "sha256": "b0c796607d80ccce7b44c3bb1a89dd6a3c9bf51a73a86613afd39d0f602cc859",
+      "size_bytes": 11230
     },
     {
       "path": "tests/test_release_tooling.py",

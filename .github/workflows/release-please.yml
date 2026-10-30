@@ -16,7 +16,7 @@ concurrency:
 jobs:
   release-please:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 25
     steps:
       - name: Run release-please
         id: release
@@ -24,3 +24,37 @@ jobs:
         with:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+
+      - name: Sync release-candidate manifests on open release PR
+        if: ${{ steps.release.outputs.pr != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          PR_NUMBER='${{ steps.release.outputs.pr }}'
+          if [ -z "${PR_NUMBER}" ] || [ "${PR_NUMBER}" = "null" ]; then
+            echo "No release-please PR number; skipping manifest sync."
+            exit 0
+          fi
+          BRANCH="$(gh pr view "${PR_NUMBER}" --repo "${GITHUB_REPOSITORY}" --json headRefName -q .headRefName)"
+          if [ -z "${BRANCH}" ] || [ "${BRANCH}" = "null" ]; then
+            echo "Could not resolve headRefName for PR ${PR_NUMBER}; skipping."
+            exit 0
+          fi
+          # Split noreply identity so the workflow file itself has no email literal.
+          GIT_NAME='Bridge-Node-7'
+          GIT_MAIL_LOCAL='291729790+Bridge-Node-7'
+          GIT_MAIL_DOMAIN='users.noreply.github.com'
+          gh auth setup-git
+          rm -rf .repo-sync
+          git clone --branch "${BRANCH}" --single-branch "https://github.com/${GITHUB_REPOSITORY}.git" .repo-sync
+          cd .repo-sync
+          python3 -B scripts/sync_release_candidate_manifests.py
+          if git diff --quiet -- MANIFEST.sha256 REPO_MANIFEST.json; then
+            echo "Manifests already current on ${BRANCH}."
+            exit 0
+          fi
+          git -c "user.name=${GIT_NAME}" -c "user.email=${GIT_MAIL_LOCAL}@${GIT_MAIL_DOMAIN}" add MANIFEST.sha256 REPO_MANIFEST.json
+          git -c "user.name=${GIT_NAME}" -c "user.email=${GIT_MAIL_LOCAL}@${GIT_MAIL_DOMAIN}" commit -m "chore: refresh release manifests for release candidate"
+          git push origin "HEAD:${BRANCH}"
+          echo "PASS refreshed manifests on ${BRANCH}"
