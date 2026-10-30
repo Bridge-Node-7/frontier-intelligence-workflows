@@ -18,8 +18,8 @@
     },
     {
       "path": ".github/workflows/docs-link-check.yml",
-      "sha256": "70ec83bb19aa2f4d296f8cb06c5122c86a0b72f5d5b76dd66ba59a6ec7724a03",
-      "size_bytes": 1032
+      "sha256": "3e60e76f5b96a28b5712c5b17410c8ac8f3aecbb01b0ffab6b106b7e7ef1ef44",
+      "size_bytes": 1030
     },
     {
       "path": ".github/workflows/privacy-preflight.yml",
@@ -28,8 +28,8 @@
     },
     {
       "path": ".github/workflows/release-please.yml",
-      "sha256": "49d818845339daab2a25211f54126af2133c2faf8776e48e8ae8aefe1234aa13",
-      "size_bytes": 2352
+      "sha256": "fb0d4006d41632213489f42628dd0eefe6cde3bc63e24c88bb730dd6ef629792",
+      "size_bytes": 3038
     },
     {
       "path": ".github/workflows/release.yml",
@@ -83,7 +83,7 @@
     },
     {
       "path": "REPO_FILE_POLICY.json",
-      "sha256": "a870559dd949460d1f649d83f9f3b80765fe45a5afcdd115855952cbb3097bc8",
+      "sha256": "0ba192a27a5ee2cb41b9ef048191507d16bfe4a92d9f40326b891cadd6e5082f",
       "size_bytes": 10971
     },
     {
@@ -543,8 +543,8 @@
     },
     {
       "path": "release-please-config.json",
-      "sha256": "82282cf2835b1fcffa3bf3ccf98d32543b9a8c9861b2dcda073de709002d781f",
-      "size_bytes": 1616
+      "sha256": "a13e378fbfbe2c439b1fbd2ecd6cf9ab17ee01922322ed596f781990b46abb3f",
+      "size_bytes": 1727
     },
     {
       "path": "requirements-validation.txt",
@@ -633,8 +633,8 @@
     },
     {
       "path": "scripts/sync_release_candidate_manifests.py",
-      "sha256": "03e85847428b8f83bd5ea67a7d636006ac5f84d5342b211380e672ac35848499",
-      "size_bytes": 836
+      "sha256": "7a7e295f89578d8523a022f4ce3f6a6c3c322fd33083e39fa1c79b48e61fdc7a",
+      "size_bytes": 2063
     },
     {
       "path": "scripts/validate_repo.py",
