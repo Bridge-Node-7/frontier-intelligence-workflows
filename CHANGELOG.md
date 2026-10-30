@@ -19,9 +19,9 @@ Notable public changes to Frontier Intelligence Workflows are recorded here.
 ### Documentation
 
 * clarify public README scope ([#4](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/4)) ([7d2c06e](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/7d2c06e1a8b02dca816fc08557ffc8290f4a46dd))
-* clarify reviewed source and stable release ([#29](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/29)) ([049c61a](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/049c61aac5ee86f04a84dc95bff85c7bb3840420))
-* clarify role in Frontier Assurance architecture ([#31](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/31)) ([16432dd](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/16432ddf76dd646a537a000c3536e61804ac4651))
-* simplify release status wording ([#30](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/30)) ([39dcf97](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/39dcf97edb4ac5c2d7b37857a6c751732458d16e))
+* clarify reviewed source and stable release (#29) ([049c61a](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/049c61aac5ee86f04a84dc95bff85c7bb3840420))
+* clarify role in Frontier Assurance architecture (#31) ([16432dd](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/16432ddf76dd646a537a000c3536e61804ac4651))
+* simplify release status wording (#30) ([39dcf97](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/39dcf97edb4ac5c2d7b37857a6c751732458d16e))
 
 
 ### CI
@@ -33,8 +33,8 @@ Notable public changes to Frontier Intelligence Workflows are recorded here.
 
 ### Miscellaneous
 
-* **deps:** bump jsonschema from 4.25.1 to 4.26.0 in the validation-dependencies group ([#38](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/38)) ([7eb26ac](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/7eb26aca293dce4df63725c42f2c68c91c46986f))
-* **deps:** bump the github-actions group with 2 updates ([#39](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/39)) ([a42c283](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/a42c28306e5036bfe3f33c9ef4244469e4ed0f0b))
+* **deps:** bump jsonschema from 4.25.1 to 4.26.0 in the validation-dependencies group (#38) ([7eb26ac](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/7eb26aca293dce4df63725c42f2c68c91c46986f))
+* **deps:** bump the github-actions group with 2 updates (#39) ([a42c283](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/a42c28306e5036bfe3f33c9ef4244469e4ed0f0b))
 
 ## [Unreleased]
 
