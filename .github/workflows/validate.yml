@@ -44,6 +44,21 @@ jobs:
           --root .
           --json-output "${RUNNER_TEMP}/fiw-validation/source-test-summary.json"
 
+      - name: Publish test coverage summary
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check 'coverage>=7,<8'
+          mkdir -p "${RUNNER_TEMP}/fiw-validation"
+          python -m coverage run --source=scripts -m unittest discover -s tests -p 'test_*.py'
+          python -m coverage report | tee "${RUNNER_TEMP}/fiw-validation/coverage-report.txt"
+          python -m coverage xml -o "${RUNNER_TEMP}/fiw-validation/coverage.xml"
+          {
+            echo "### Test coverage (scripts/)"
+            echo ""
+            echo '```'
+            tail -n 30 "${RUNNER_TEMP}/fiw-validation/coverage-report.txt"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
       - name: Check Python syntax without bytecode
         run: python scripts/compile_sources.py --root .
 

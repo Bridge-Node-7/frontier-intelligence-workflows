@@ -1,6 +1,18 @@
 # Frontier Intelligence Workflows
 
+[![Release](https://img.shields.io/github/v/release/Bridge-Node-7/frontier-intelligence-workflows?display_name=tag)](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/releases/latest)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![CI](https://img.shields.io/github/actions/workflow/status/Bridge-Node-7/frontier-intelligence-workflows/validate.yml?branch=main&label=CI)](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/actions/workflows/validate.yml)
+
 **Turn uncertain frontier-technology claims into decision-ready intelligence.**
+
+| | |
+|---|---|
+| **What** | Evidence-first workflow for collecting, challenging, and documenting source-linked claims under uncertainty |
+| **Status** | Stable public release — latest [GitHub Release](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/releases/latest) |
+| **Quickstart** | `python scripts/run_tests.py --root .` · `python scripts/validate_repo.py --root .` |
+| **Architecture** | [Frontier Assurance Architecture](https://github.com/Bridge-Node-7/Bridge-Node-7/blob/main/docs/FRONTIER_ASSURANCE_ARCHITECTURE.md) |
+| **Collaboration** | [Issues](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues) · [Innovation Partnerships](https://bridgenode7.com/partner/) |
 
 ## Scope and limitations
 
