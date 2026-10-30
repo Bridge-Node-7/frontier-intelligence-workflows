@@ -28,7 +28,7 @@
     },
     {
       "path": ".github/workflows/release-please.yml",
-      "sha256": "69881290dccdd3881a09cc351e01322190f5f2b76ffe85668172749fee313bba",
+      "sha256": "e514b21ff6ef61904463051db66d3a83c011e28e4b120df4399b01fcad223cb1",
       "size_bytes": 578
     },
     {
@@ -83,7 +83,7 @@
     },
     {
       "path": "REPO_FILE_POLICY.json",
-      "sha256": "ac572473c4bdf18f2df09f2682f4740caa7f05ddfb8d35b2eaaf19a4260bf044",
+      "sha256": "59723818662f3458045ae39775940c0ce826cdb69b11c30948f2c68e25fb2b41",
       "size_bytes": 10920
     },
     {

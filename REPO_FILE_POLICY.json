@@ -177,7 +177,7 @@
     "validate.yml": "b6ca7a6e565e51ca9766cde4c8f240138423a11fe5efc28cf4302a3131e0a739",
     "privacy-preflight.yml": "ec0db08ecca7300bc03cfeeb4779757d290d0358d882c0da7bfc84ceb71d5857",
     "release.yml": "d09bfb3a64cdd62e40999b32e4ac20effbbe44c3c737726e67db4fc40c0527a0",
-    "release-please.yml": "69881290dccdd3881a09cc351e01322190f5f2b76ffe85668172749fee313bba"
+    "release-please.yml": "e514b21ff6ef61904463051db66d3a83c011e28e4b120df4399b01fcad223cb1"
   },
   "binary_files_allowed": false,
   "max_file_size_bytes": 524288,
