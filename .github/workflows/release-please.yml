@@ -61,11 +61,11 @@ jobs:
           git clone --branch "${BRANCH}" --single-branch "https://github.com/${GITHUB_REPOSITORY}.git" .repo-sync
           cd .repo-sync
           python3 -B scripts/sync_release_candidate_manifests.py
-          if git diff --quiet -- VERSION MANIFEST.sha256 REPO_MANIFEST.json; then
-            echo "Release-candidate VERSION/manifests already current on ${BRANCH}."
+          if git diff --quiet -- VERSION CHANGELOG.md MANIFEST.sha256 REPO_MANIFEST.json; then
+            echo "Release-candidate VERSION/CHANGELOG/manifests already current on ${BRANCH}."
             exit 0
           fi
-          git -c "user.name=${GIT_NAME}" -c "user.email=${GIT_MAIL_LOCAL}@${GIT_MAIL_DOMAIN}" add VERSION MANIFEST.sha256 REPO_MANIFEST.json
-          git -c "user.name=${GIT_NAME}" -c "user.email=${GIT_MAIL_LOCAL}@${GIT_MAIL_DOMAIN}" commit -m "chore: align VERSION and refresh manifests for release candidate"
+          git -c "user.name=${GIT_NAME}" -c "user.email=${GIT_MAIL_LOCAL}@${GIT_MAIL_DOMAIN}" add VERSION CHANGELOG.md MANIFEST.sha256 REPO_MANIFEST.json
+          git -c "user.name=${GIT_NAME}" -c "user.email=${GIT_MAIL_LOCAL}@${GIT_MAIL_DOMAIN}" commit -m "chore: align VERSION/CHANGELOG and refresh manifests for release candidate"
           git push origin "HEAD:${BRANCH}"
           echo "PASS refreshed manifests on ${BRANCH}"
