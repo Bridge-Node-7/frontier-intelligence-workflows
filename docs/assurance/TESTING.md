@@ -1,4 +1,4 @@
-# Validation — v0.9.2 <!-- x-release-please-version -->
+# Validation — v0.9.3 <!-- x-release-please-version -->
 FIW validation is reproducible from a clean checkout.
 
 ## Complete Gate
