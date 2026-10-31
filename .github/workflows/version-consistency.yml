@@ -23,7 +23,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: version-consistency-${ github.ref }
+  group: version-consistency-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:

@@ -172,7 +172,7 @@
     "requirements-validation.txt"
   ],
   "approved_workflow_sha256": {
-    "version-consistency.yml": "4cdf4a82f696b6af47862b6a2f71c1a55d76e8e3f27f44c52e23803ad2768cfb",
+    "version-consistency.yml": "b47ec943f98df35e18c0e1f6613f71edff4024bc8668f5c76ca3bf0bade19555",
     "docs-link-check.yml": "3e60e76f5b96a28b5712c5b17410c8ac8f3aecbb01b0ffab6b106b7e7ef1ef44",
     "codeql.yml": "6e891be8f88587bc36a18b43adf832675af9e8bb6bbc6c4310a62659d5947f52",
     "validate.yml": "b42df1fb459009ed2ee5d29cf1e6d7080916537b10650983983501d2c980a186",
