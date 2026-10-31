@@ -38,8 +38,8 @@
     },
     {
       "path": ".github/workflows/validate.yml",
-      "sha256": "b6ca7a6e565e51ca9766cde4c8f240138423a11fe5efc28cf4302a3131e0a739",
-      "size_bytes": 2235
+      "sha256": "b42df1fb459009ed2ee5d29cf1e6d7080916537b10650983983501d2c980a186",
+      "size_bytes": 3080
     },
     {
       "path": ".github/workflows/version-consistency.yml",
@@ -83,7 +83,7 @@
     },
     {
       "path": "REPO_FILE_POLICY.json",
-      "sha256": "0ba192a27a5ee2cb41b9ef048191507d16bfe4a92d9f40326b891cadd6e5082f",
+      "sha256": "71b48abcadc861acf699523f06c1703e55aca5a8a47e31c0d9ccc712b04e721a",
       "size_bytes": 10971
     },
     {

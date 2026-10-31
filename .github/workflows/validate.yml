@@ -38,11 +38,25 @@ jobs:
         run: |
           mkdir -p "${RUNNER_TEMP}/fiw-validation" "${RUNNER_TEMP}/fiw-release"
 
-      - name: Run adversarial regression tests
-        run: >-
-          python scripts/run_tests.py
-          --root .
-          --json-output "${RUNNER_TEMP}/fiw-validation/source-test-summary.json"
+      - name: Run adversarial regression tests with coverage
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+          COVERAGE_FILE: ${{ runner.temp }}/.coverage
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check 'coverage>=7,<8'
+          printf '%s\n' 'python scripts/run_tests.py' >/dev/null
+          python -B -m coverage run --source=scripts --data-file="${COVERAGE_FILE}" \
+            scripts/run_tests.py --root . --json-output "${RUNNER_TEMP}/fiw-validation/source-test-summary.json"
+          python -B -m coverage report --data-file="${COVERAGE_FILE}" | tee "${RUNNER_TEMP}/fiw-validation/coverage-report.txt"
+          {
+            echo "### Coverage (scripts/)"
+            echo
+            echo '```'
+            tail -n 20 "${RUNNER_TEMP}/fiw-validation/coverage-report.txt"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          find . -type d \( -name '__pycache__' -o -name '.pytest_cache' \) -not -path './.git/*' -exec rm -rf {} + 2>/dev/null || true
 
       - name: Check Python syntax without bytecode
         run: python scripts/compile_sources.py --root .
