@@ -2,7 +2,7 @@
 
 **Turn uncertain frontier-technology claims into decision-ready intelligence.**
 
-Stable public release — see the latest [GitHub Release](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/releases/latest). Quickstart: `python scripts/run_tests.py --root .` · `python scripts/validate_repo.py --root .`.
+Stable public release — see the latest [GitHub Release](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/releases/latest). Quickstart: `python3 scripts/run_tests.py --root .` · `python3 scripts/validate_repo.py --root .` (out-of-tree venv; see Verification).
 
 ## Scope and limitations
 
@@ -142,15 +142,17 @@ FIW includes reproducible checks for software behavior, repository structure, wo
 
 Run the complete repository gate from an isolated Python environment. The validation-only dependencies are pinned and are not runtime dependencies of FIW's public methods.
 
+Use `python3` (3.11+). Keep the virtualenv **outside** the clone: an in-tree `.venv` fails repository file-policy checks. `requirements-validation.txt` pins `jsonschema` and other gate-only deps.
+
 ```bash
-python -m venv ../fiw-validation-venv
+python3 -m venv ../fiw-validation-venv
 source ../fiw-validation-venv/bin/activate  # Windows PowerShell: ..\fiw-validation-venv\Scripts\Activate.ps1
-python -m pip install -r requirements-validation.txt
+python3 -m pip install -r requirements-validation.txt
 mkdir -p ../fiw-validation ../fiw-release
-python scripts/run_tests.py --root . --json-output ../fiw-validation/source-test-summary.json
-python scripts/compile_sources.py --root .
-python scripts/validate_repo.py --root . --json-output ../fiw-validation/validation-report.json
-python scripts/build_release.py --root . --output-dir ../fiw-release --check --commit "$(git rev-parse HEAD)"
+python3 scripts/run_tests.py --root . --json-output ../fiw-validation/source-test-summary.json
+python3 scripts/compile_sources.py --root .
+python3 scripts/validate_repo.py --root . --json-output ../fiw-validation/validation-report.json
+python3 scripts/build_release.py --root . --output-dir ../fiw-release --check --commit "$(git rev-parse HEAD)"
 sha256sum -c MANIFEST.sha256
 git diff --check
 ```
