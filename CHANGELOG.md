@@ -2,6 +2,13 @@
 
 Notable public changes to Frontier Intelligence Workflows are recorded here.
 
+## [0.9.4] (2026-10-31)
+
+
+### CI
+
+* restore concurrency group expression ([#18](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/18)) ([0524822](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/05248227a70f990303c76cc526b32ac32b0bdfc1))
+
 ## [0.9.3] (2026-10-31)
 
 
