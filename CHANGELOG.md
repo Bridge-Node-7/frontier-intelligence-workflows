@@ -2,6 +2,24 @@
 
 Notable public changes to Frontier Intelligence Workflows are recorded here.
 
+## [0.9.3] (2026-10-31)
+
+
+### Bug Fixes
+
+* **release:** restore VERSION authority and parse RP v4 PR JSON ([#13](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/13)) ([201d448](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/201d448dac04d9f7e25d1490120246aec96b2197))
+
+
+### Documentation
+
+* clarify python3 and out-of-tree validation venv ([#17](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/17)) ([47538ab](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/47538ab940f7617eeecf32e92297da1f4f96227a))
+* partner-ready front door, citation, coverage summary ([#15](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/15)) ([e475c04](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/e475c0429f7577ba2411b885de299f6037302d45))
+
+
+### CI
+
+* publish scripts coverage to summary without dirtying the tree ([#16](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/16)) ([3a08096](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/3a0809695cf8d81a702e1ebac0e169bdb446e4d0))
+
 ## [0.9.2] (2026-10-30)
 
 
