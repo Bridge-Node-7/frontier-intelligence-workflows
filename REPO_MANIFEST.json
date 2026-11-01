@@ -47,6 +47,11 @@
       "size_bytes": 1015
     },
     {
+      "path": ".github/workflows/version-marker.yml",
+      "sha256": "4aa9e9838cb76aad50a734134709374dae12cd612ac9d61928379d9f37b88b82",
+      "size_bytes": 2248
+    },
+    {
       "path": ".gitignore",
       "sha256": "5133e8f00f3fe4f950c50b2cc06be2b4ed31a121e87c834b2e8c79723e157ca2",
       "size_bytes": 85
@@ -83,8 +88,8 @@
     },
     {
       "path": "REPO_FILE_POLICY.json",
-      "sha256": "d157c743ccac9410208677ee936d6985a9891f150073d05859482be3ae133dfc",
-      "size_bytes": 11022
+      "sha256": "2f3689a29b9ce3681bd32fe66ea417b51da675d131a6f3a93bbdcf0036353a51",
+      "size_bytes": 11204
     },
     {
       "path": "SECURITY.md",
