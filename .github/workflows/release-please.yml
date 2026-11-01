@@ -83,6 +83,15 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
+          # Only mark the merge commit of a release PR (avoids tagging later chore commits).
+          COMMIT_MSG="$(gh api "repos/${GITHUB_REPOSITORY}/commits/${GITHUB_SHA}" --jq .commit.message | head -n1)"
+          case "${COMMIT_MSG}" in
+            "chore(main): release "*) ;;
+            *)
+              echo "Skip version marker: head commit is not a release-please merge (${COMMIT_MSG})."
+              exit 0
+              ;;
+          esac
           VERSION="$(gh api "repos/${GITHUB_REPOSITORY}/contents/VERSION?ref=${GITHUB_SHA}" --jq .content | base64 -d | tr -d '\r\n')"
           TAG="v${VERSION}"
           if [[ ! "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+([.-][A-Za-z0-9.-]+)?$ ]]; then
