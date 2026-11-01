@@ -178,7 +178,7 @@
     "codeql.yml": "6e891be8f88587bc36a18b43adf832675af9e8bb6bbc6c4310a62659d5947f52",
     "validate.yml": "b42df1fb459009ed2ee5d29cf1e6d7080916537b10650983983501d2c980a186",
     "privacy-preflight.yml": "ec0db08ecca7300bc03cfeeb4779757d290d0358d882c0da7bfc84ceb71d5857",
-    "release.yml": "45f33598da6b0fca81123addbb3c3ffd23153a1c7a1d2b3dfd8d7af7f9a0815d",
+    "release.yml": "7058987799d236d7434a4dee8941eac727fcb7b4177fca2124ef48b4d7bd2c51",
     "release-please.yml": "e4e53508c01fccdf340df4d8c502ee28eed1226898af2d6307ed3a82b3d7d6b4"
   },
   "binary_files_allowed": false,
