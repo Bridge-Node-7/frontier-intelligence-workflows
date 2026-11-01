@@ -2,6 +2,18 @@
 
 Notable public changes to Frontier Intelligence Workflows are recorded here.
 
+## [0.9.4] (2026-11-01)
+
+
+### Bug Fixes
+
+* **ci:** release-please must not preempt release evidence publisher ([#20](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/20)) ([abdb02b](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/abdb02b575b50a48d267324faac47cf2f1391919))
+
+
+### CI
+
+* restore concurrency group expression ([#18](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/18)) ([0524822](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/05248227a70f990303c76cc526b32ac32b0bdfc1))
+
 ## [0.9.3] (2026-10-31)
 
 
