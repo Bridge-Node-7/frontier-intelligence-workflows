@@ -73,3 +73,40 @@ jobs:
           git -c "user.name=${GIT_NAME}" -c "user.email=${GIT_MAIL_LOCAL}@${GIT_MAIL_DOMAIN}" commit -m "chore: align VERSION/CHANGELOG and refresh manifests for release candidate"
           git push origin "HEAD:${BRANCH}"
           echo "PASS refreshed manifests on ${BRANCH}"
+
+      - name: Ensure annotated version marker tag
+        # Durable evidence-only marker when skip-github-release leaves merged
+        # release PRs untagged. Creates annotated git tag only; never a Release.
+        # Tag push triggers release.yml (contents: read) for evidence artifacts.
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          VERSION="$(gh api "repos/${GITHUB_REPOSITORY}/contents/VERSION?ref=${GITHUB_SHA}" --jq .content | base64 -d | tr -d '\r\n')"
+          TAG="v${VERSION}"
+          if [[ ! "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+([.-][A-Za-z0-9.-]+)?$ ]]; then
+            echo "Refusing non-semver VERSION marker: ${TAG}"
+            exit 1
+          fi
+          if gh api "repos/${GITHUB_REPOSITORY}/git/ref/tags/${TAG}" >/dev/null 2>&1; then
+            echo "Tag ${TAG} already exists; nothing to do."
+            exit 0
+          fi
+          # Split noreply identity so the workflow file itself has no email literal.
+          TAGGER_NAME='Bridge-Node-7'
+          TAGGER_LOCAL='291729790+Bridge-Node-7'
+          TAGGER_DOMAIN='users.noreply.github.com'
+          TAG_OBJ="$(gh api --method POST "repos/${GITHUB_REPOSITORY}/git/tags" \
+            -f tag="${TAG}" \
+            -f message="${TAG}" \
+            -f object="${GITHUB_SHA}" \
+            -f type=commit \
+            -f "tagger[name]=${TAGGER_NAME}" \
+            -f "tagger[email]=${TAGGER_LOCAL}@${TAGGER_DOMAIN}" \
+            -f "tagger[date]=$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            --jq .sha)"
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/git/refs" \
+            -f ref="refs/tags/${TAG}" \
+            -f sha="${TAG_OBJ}" >/dev/null
+          echo "PASS created annotated tag ${TAG} at ${GITHUB_SHA} (no GitHub Release)."
