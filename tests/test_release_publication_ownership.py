@@ -31,5 +31,14 @@ class ReleasePublicationOwnershipTests(unittest.TestCase):
             self.assertNotRegex(text, r"secrets\.[A-Z0-9_]*(TOKEN|PAT|APP)")
 
 
+    def test_artifact_name_is_filesystem_safe(self) -> None:
+        rel = REL.read_text(encoding="utf-8")
+        # Branch names may contain "/"; artifact names must not derive from ref_name.
+        self.assertNotIn("github.ref_name", rel)
+        self.assertIn(
+            "frontier-intelligence-workflows-release-${{ github.run_id }}-${{ github.sha }}",
+            rel,
+        )
+
 if __name__ == "__main__":
     unittest.main()

@@ -33,8 +33,8 @@
     },
     {
       "path": ".github/workflows/release.yml",
-      "sha256": "45f33598da6b0fca81123addbb3c3ffd23153a1c7a1d2b3dfd8d7af7f9a0815d",
-      "size_bytes": 3094
+      "sha256": "7058987799d236d7434a4dee8941eac727fcb7b4177fca2124ef48b4d7bd2c51",
+      "size_bytes": 3092
     },
     {
       "path": ".github/workflows/validate.yml",
@@ -723,8 +723,8 @@
     },
     {
       "path": "tests/test_release_publication_ownership.py",
-      "sha256": "3112b72a4045cf1878688ec4727f4c211e88aecb3eaea1ce97eede527ac1b504",
-      "size_bytes": 1398
+      "sha256": "7c97c02cb3be56d2e8a27d088b86f401749be180642745d858655afa670ec18c",
+      "size_bytes": 1785
     },
     {
       "path": "tests/test_release_semantics.py",
