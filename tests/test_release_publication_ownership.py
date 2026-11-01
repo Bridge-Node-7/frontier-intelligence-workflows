@@ -1,4 +1,4 @@
-"""t91u: release-please must not create GitHub Releases; release workflow owns publication."""
+"""t91u: release-please must not create GitHub Releases; FIW release.yml is evidence-only."""
 
 from __future__ import annotations
 
@@ -15,17 +15,20 @@ class ReleasePublicationOwnershipTests(unittest.TestCase):
         text = RP.read_text(encoding="utf-8")
         self.assertRegex(text, r"(?m)^\s*skip-github-release:\s*true\s*$")
 
-    def test_release_workflow_is_sole_github_release_creator(self) -> None:
+    def test_release_workflow_is_evidence_only_no_write(self) -> None:
         rp = RP.read_text(encoding="utf-8")
         rel = REL.read_text(encoding="utf-8")
         self.assertNotIn("gh release create", rp)
-        self.assertIn("gh release create", rel)
-        self.assertIn("dry_run", rel)
-        self.assertIn("git/tags", rel)
+        self.assertNotIn("gh release create", rel)
+        # Top-level contents: read only on release.yml (policy forbids write except release-please)
+        self.assertRegex(rel, r"(?m)^permissions:\n  contents: read\s*$")
+        self.assertNotRegex(rel, r"(?m)^\s+contents:\s*write\s*$")
+        self.assertIn("skip-github-release: true", rp)
 
-    def test_release_please_avoids_pat_secrets(self) -> None:
-        text = RP.read_text(encoding="utf-8")
-        self.assertNotRegex(text, r"secrets\.[A-Z0-9_]*(TOKEN|PAT|APP)")
+    def test_no_new_pat_secret_required(self) -> None:
+        for path in (RP, REL):
+            text = path.read_text(encoding="utf-8")
+            self.assertNotRegex(text, r"secrets\.[A-Z0-9_]*(TOKEN|PAT|APP)")
 
 
 if __name__ == "__main__":
