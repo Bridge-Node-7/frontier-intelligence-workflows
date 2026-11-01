@@ -2,6 +2,11 @@ name: release
 
 on:
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Build and verify release evidence only; do not create tag or GitHub Release"
+        type: boolean
+        default: true
   push:
     tags:
       - "v*"
@@ -10,7 +15,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: release-${{ github.ref }}
+  group: release-${{ github.event_name == 'workflow_dispatch' && format('dispatch-{0}', github.sha) || github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -18,11 +23,16 @@ jobs:
     name: release
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    outputs:
+      version: ${{ steps.identity.outputs.version }}
+      tag: ${{ steps.identity.outputs.tag }}
+      release_sha: ${{ steps.identity.outputs.release_sha }}
 
     steps:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && 'main' || github.ref }}
           fetch-depth: 0
           persist-credentials: false
 
@@ -38,14 +48,23 @@ jobs:
         run: |
           mkdir -p "${RUNNER_TEMP}/fiw-validation" "${RUNNER_TEMP}/fiw-release"
 
-      - name: Reconcile tag and VERSION
-        if: github.ref_type == 'tag'
+      - name: Resolve release identity
+        id: identity
+        shell: bash
         run: |
-          expected="v$(tr -d '\r\n' < VERSION)"
-          if [[ "${GITHUB_REF_NAME}" != "$expected" ]]; then
-            echo "Tag ${GITHUB_REF_NAME} does not match VERSION (${expected})."
-            exit 1
+          set -euo pipefail
+          version="$(tr -d '\r\n' < VERSION)"
+          tag="v${version}"
+          sha="$(git rev-parse HEAD)"
+          if [ "${GITHUB_EVENT_NAME}" = "push" ] && [ "${GITHUB_REF_TYPE}" = "tag" ]; then
+            if [ "${GITHUB_REF_NAME}" != "$tag" ]; then
+              echo "Tag ${GITHUB_REF_NAME} does not match VERSION (${tag})."
+              exit 1
+            fi
           fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "release_sha=$sha" >> "$GITHUB_OUTPUT"
 
       - name: Run adversarial regression tests
         run: >-
@@ -68,7 +87,7 @@ jobs:
           --root .
           --output-dir "${RUNNER_TEMP}/fiw-release"
           --check
-          --commit "${GITHUB_SHA}"
+          --commit "${{ steps.identity.outputs.release_sha }}"
 
       - name: Confirm checks did not modify the repository
         run: |
@@ -78,7 +97,74 @@ jobs:
       - name: Upload release evidence
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: frontier-intelligence-workflows-release-${{ github.ref_name }}-${{ github.sha }}
+          name: frontier-intelligence-workflows-release-${{ steps.identity.outputs.tag }}-${{ steps.identity.outputs.release_sha }}
           path: ${{ runner.temp }}/fiw-release/
           if-no-files-found: error
           retention-days: 30
+
+  publish:
+    name: Publish GitHub Release
+    needs: release
+    if: >-
+      github.event_name == 'workflow_dispatch' &&
+      inputs.dry_run != true &&
+      github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      actions: read
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      VERSION: ${{ needs.release.outputs.version }}
+      TAG: ${{ needs.release.outputs.tag }}
+      RELEASE_SHA: ${{ needs.release.outputs.release_sha }}
+    steps:
+      - name: Download release evidence
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: frontier-intelligence-workflows-release-${{ needs.release.outputs.tag }}-${{ needs.release.outputs.release_sha }}
+          path: evidence
+
+      - name: Create annotated tag if absent
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$TAG" >/dev/null 2>&1; then
+            echo "::error::Tag $TAG already exists; refusing to overwrite."
+            exit 1
+          fi
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "::error::Release $TAG already exists; refusing to overwrite."
+            exit 1
+          fi
+          tag_object_sha="$(gh api --method POST "repos/$GITHUB_REPOSITORY/git/tags" \
+            -f tag="$TAG" \
+            -f message="Frontier Intelligence Workflows $TAG" \
+            -f object="$RELEASE_SHA" \
+            -f type="commit" \
+            --jq '.sha')"
+          gh api --method POST "repos/$GITHUB_REPOSITORY/git/refs" \
+            -f ref="refs/tags/$TAG" \
+            -f sha="$tag_object_sha" >/dev/null
+
+      - name: Create GitHub Release with evidence assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd evidence
+          archive="frontier-intelligence-workflows-v${VERSION}-source.zip"
+          test -f "$archive"
+          test -f "${archive}.sha256"
+          test -f RELEASE_EVIDENCE.md
+          test -f ASSET_HASHES.json
+          gh release create "$TAG" \
+            "$archive" \
+            "${archive}.sha256" \
+            RELEASE_EVIDENCE.md \
+            ASSET_HASHES.json \
+            --repo "$GITHUB_REPOSITORY" \
+            --verify-tag \
+            --target "$RELEASE_SHA" \
+            --title "Frontier Intelligence Workflows $TAG" \
+            --notes-file RELEASE_EVIDENCE.md
