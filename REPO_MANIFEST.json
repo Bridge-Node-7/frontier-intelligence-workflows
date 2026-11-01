@@ -28,13 +28,13 @@
     },
     {
       "path": ".github/workflows/release-please.yml",
-      "sha256": "fb0d4006d41632213489f42628dd0eefe6cde3bc63e24c88bb730dd6ef629792",
-      "size_bytes": 3038
+      "sha256": "e4e53508c01fccdf340df4d8c502ee28eed1226898af2d6307ed3a82b3d7d6b4",
+      "size_bytes": 3306
     },
     {
       "path": ".github/workflows/release.yml",
-      "sha256": "d09bfb3a64cdd62e40999b32e4ac20effbbe44c3c737726e67db4fc40c0527a0",
-      "size_bytes": 2466
+      "sha256": "7058987799d236d7434a4dee8941eac727fcb7b4177fca2124ef48b4d7bd2c51",
+      "size_bytes": 3092
     },
     {
       "path": ".github/workflows/validate.yml",
@@ -83,8 +83,8 @@
     },
     {
       "path": "REPO_FILE_POLICY.json",
-      "sha256": "eb2fa5bd72957460bb40f8c1aad9575f60d856ff0e75f3e24ff32dc477bffa11",
-      "size_bytes": 10971
+      "sha256": "bf6078b6cfcbe4aa6716cd5989d68cd37465a93c92d86bfa18061c3bf6579d5b",
+      "size_bytes": 11022
     },
     {
       "path": "SECURITY.md",
@@ -720,6 +720,11 @@
       "path": "tests/test_proof_hinge_research.py",
       "sha256": "a76f1cb1c5e4ceba28a7316fc2d049bad8121f3e7b40b90b80a670ae0432863a",
       "size_bytes": 7720
+    },
+    {
+      "path": "tests/test_release_publication_ownership.py",
+      "sha256": "7c97c02cb3be56d2e8a27d088b86f401749be180642745d858655afa670ec18c",
+      "size_bytes": 1785
     },
     {
       "path": "tests/test_release_semantics.py",

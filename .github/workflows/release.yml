@@ -2,6 +2,12 @@ name: release
 
 on:
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Nonpublishing evidence build (always true for this workflow; no GitHub Release write perms)"
+        type: boolean
+        default: true
+        required: false
   push:
     tags:
       - "v*"
@@ -33,6 +39,13 @@ jobs:
 
       - name: Install validation dependencies
         run: python -m pip install --disable-pip-version-check -r requirements-validation.txt
+
+      - name: Publication ownership notice
+        run: |
+          echo "FIW release.yml is evidence-only (contents: read)."
+          echo "GitHub Releases are NOT created here; release-please uses skip-github-release."
+          echo "Deliberate annotated-tag + asset Release requires Founder-approved policy exception or manual publish."
+          echo "dry_run input=${{ github.event.inputs.dry_run || 'n/a' }}"
 
       - name: Create external evidence directories
         run: |
@@ -78,7 +91,7 @@ jobs:
       - name: Upload release evidence
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: frontier-intelligence-workflows-release-${{ github.ref_name }}-${{ github.sha }}
+          name: frontier-intelligence-workflows-release-${{ github.run_id }}-${{ github.sha }}
           path: ${{ runner.temp }}/fiw-release/
           if-no-files-found: error
           retention-days: 30
