@@ -8,6 +8,11 @@ on:
         type: boolean
         default: true
         required: false
+      tag_name:
+        description: "Optional annotated tag to check out for evidence (e.g. v0.9.4); empty uses the dispatch ref"
+        type: string
+        required: false
+        default: ""
   push:
     tags:
       - "v*"
@@ -31,6 +36,7 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
+          ref: ${{ github.event.inputs.tag_name != '' && github.event.inputs.tag_name || github.ref }}
 
       - name: Set up Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
@@ -52,11 +58,15 @@ jobs:
           mkdir -p "${RUNNER_TEMP}/fiw-validation" "${RUNNER_TEMP}/fiw-release"
 
       - name: Reconcile tag and VERSION
-        if: github.ref_type == 'tag'
+        if: github.ref_type == 'tag' || (github.event_name == 'workflow_dispatch' && github.event.inputs.tag_name != '')
         run: |
           expected="v$(tr -d '\r\n' < VERSION)"
-          if [[ "${GITHUB_REF_NAME}" != "$expected" ]]; then
-            echo "Tag ${GITHUB_REF_NAME} does not match VERSION (${expected})."
+          actual="${{ github.event.inputs.tag_name }}"
+          if [[ -z "$actual" ]]; then
+            actual="${GITHUB_REF_NAME}"
+          fi
+          if [[ "$actual" != "$expected" ]]; then
+            echo "Tag ${actual} does not match VERSION (${expected})."
             exit 1
           fi
 

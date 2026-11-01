@@ -481,6 +481,7 @@ def validate_workflow_semantics(root: Path) -> list[str]:
             allowed_release_please = path.name == "release-please.yml" and permission_lines == [
                 "contents: write",
                 "pull-requests: write",
+                "actions: write",
             ]
             if permission_lines != ["contents: read"] and not allowed_release_please:
                 issues.append(f"UNAPPROVED_PERMISSIONS: {relative}: {permission_lines}")
