@@ -8,6 +8,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  actions: write
 
 concurrency:
   group: release-please-${{ github.repository }}
@@ -119,3 +120,7 @@ jobs:
             -f ref="refs/tags/${TAG}" \
             -f sha="${TAG_OBJ}" >/dev/null
           echo "PASS created annotated tag ${TAG} at ${GITHUB_SHA} (no GitHub Release)."
+          # GITHUB_TOKEN-created tags do not trigger other workflows' push events.
+          # Explicitly dispatch existing evidence-only release.yml (no new secrets).
+          gh workflow run release.yml --repo "${GITHUB_REPOSITORY}" -f dry_run=true -f tag_name="${TAG}"
+          echo "PASS dispatched release.yml evidence workflow for ${TAG}."

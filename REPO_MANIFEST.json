@@ -28,13 +28,13 @@
     },
     {
       "path": ".github/workflows/release-please.yml",
-      "sha256": "458b162c0458e5e2b91193e48a268fc960bff94fd414d33c78c3ea2483120e7f",
-      "size_bytes": 5627
+      "sha256": "a0846586f4925ebb3f314d54f4c0b11b6076ccb74f210ea97787c74b3be1835c",
+      "size_bytes": 5992
     },
     {
       "path": ".github/workflows/release.yml",
-      "sha256": "7058987799d236d7434a4dee8941eac727fcb7b4177fca2124ef48b4d7bd2c51",
-      "size_bytes": 3092
+      "sha256": "28e5f2efa9cd66de2e35fd0d196f4685f7e1d3d8d369bcc3ae71668289089df2",
+      "size_bytes": 3601
     },
     {
       "path": ".github/workflows/validate.yml",
@@ -83,7 +83,7 @@
     },
     {
       "path": "REPO_FILE_POLICY.json",
-      "sha256": "dd923b81b7feaea39a925eb2e516a331f8d09d194b0e33575c5317b3f3885988",
+      "sha256": "6ee3bd5ef935672628825147a9504d4f8f70b09ca8ac4add6727c4b5813fda26",
       "size_bytes": 11022
     },
     {
@@ -598,8 +598,8 @@
     },
     {
       "path": "scripts/release_common.py",
-      "sha256": "a40f93d76862b0c23bf74f5c7652c7ded843d4ca500798b91ae297319963db65",
-      "size_bytes": 22534
+      "sha256": "f53b524d169ff5ecddc42ecd4dfdbadfd48050004a29cb1e93732cb3344b8f5b",
+      "size_bytes": 22568
     },
     {
       "path": "scripts/run_frontier_signal_integrity.py",
