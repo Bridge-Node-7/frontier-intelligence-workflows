@@ -37,7 +37,15 @@
           "path": "docs/assurance/TESTING.md"
         }
       ],
-      "version-file": "VERSION"
+      "version-file": "VERSION",
+      "exclude-paths": [
+        "CODE_OF_CONDUCT.md",
+        "CONTRIBUTING.md",
+        "LICENSE",
+        "README.md",
+        "SECURITY.md",
+        "docs"
+      ]
     }
   },
   "changelog-sections": [
@@ -59,7 +67,8 @@
     },
     {
       "type": "docs",
-      "section": "Documentation"
+      "section": "Documentation",
+      "hidden": true
     },
     {
       "type": "ci",

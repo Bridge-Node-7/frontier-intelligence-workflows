@@ -23,7 +23,7 @@ jobs:
         id: release
         uses: googleapis/release-please-action@16a9c90856f42705d54a6fda1823352bdc62cf38 # v4.4.0
         with:
-          # t91u: release-please prepares VERSION/CHANGELOG/PR only.
+          # Release-please prepares VERSION/CHANGELOG/PR only; publication remains evidence-only unless a Release is published deliberately.
           # Authoritative release workflow builds evidence and (on deliberate
           # non-dry-run dispatch) creates the annotated tag + GitHub Release assets.
           skip-github-release: true

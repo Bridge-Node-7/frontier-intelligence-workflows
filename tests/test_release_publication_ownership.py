@@ -1,4 +1,4 @@
-"""t91u: release-please must not create GitHub Releases; FIW release.yml is evidence-only."""
+"""Release-please must not create GitHub Releases; FIW release.yml is evidence-only."""
 
 from __future__ import annotations
 
