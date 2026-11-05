@@ -1,12 +1,10 @@
 # Frontier Intelligence Workflows
 
-**Turn uncertain frontier-technology claims into decision-ready intelligence.**
+**Trace frontier-technology claims to evidence before the decision moves forward.**
 
 Frontier Intelligence Workflows (FIW) is an open, evidence-first method for consequential technology questions. It traces claims to sources, separates observation from inference, exposes contradictions and unknowns, and records the evidence needed before a decision moves forward.
 
 [Latest release](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/releases/latest) · Quickstart below · [Partner](https://bridgenode7.com/partner/)
-
-Automation checks structure, traceability, and declared evidence conditions. It does not determine truth, verify the underlying claim, make investment decisions, certify readiness, or authorize action.
 
 ## Core workflow
 
@@ -36,7 +34,7 @@ Real case inputs and generated results remain in the authorized working environm
 | [Language Integrity](profiles/language-integrity/) | Preserves declared source meaning: forecast vs result, attribution, inference labeling, provenance-root collapse, supersession |
 | [Source Genealogy](profiles/source-genealogy/) | Collapses declared derivatives, mirrors, translations, syndication, and coordinated publication to provenance roots |
 | [Frontier Signal Integrity](profiles/frontier-signal-integrity/) | Frontier-signal genealogy, surprise hypotheses, prediction integrity, discriminating tests, update receipts, Proof Loop reassessment |
-| [FIW-SYN-001 — Synthetic Component Readiness](examples/synthetic-component-readiness/) | Complete evidence-to-decision artifact chain using fictional data |
+| [Synthetic Component Readiness](examples/synthetic-component-readiness/) | Complete evidence-to-decision artifact chain using fictional data |
 
 ## Status semantics
 
@@ -116,7 +114,4 @@ Private vulnerability reporting via GitHub. See [Security](SECURITY.md).
 
 ## Release
 
-**v0.9.4 — Frontier Signal Integrity** <!-- x-release-please-version -->
-This is the latest stable distribution milestone.
-
-`main` is the current reviewed source. Distribution milestones live on the repository Releases page and in CHANGELOG.
+Distribution milestones live on the repository Releases page and in CHANGELOG. `main` is the current reviewed source.
