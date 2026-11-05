@@ -44,7 +44,14 @@
         "LICENSE",
         "README.md",
         "SECURITY.md",
-        "docs"
+        "docs",
+        ".github",
+        "MANIFEST.sha256",
+        "REPO_MANIFEST.json",
+        "REPO_FILE_MANIFEST.sha256",
+        "SHA256SUMS",
+        "release-please-config.json",
+        "CHANGELOG.md"
       ]
     }
   },

@@ -3,6 +3,20 @@ name: release-please
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - "README.md"
+      - "CHANGELOG.md"
+      - "docs/**"
+      - "CONTRIBUTING.md"
+      - "CODE_OF_CONDUCT.md"
+      - "SECURITY.md"
+      - "LICENSE"
+      - ".github/**"
+      - "release-please-config.json"
+      - "MANIFEST.sha256"
+      - "REPO_MANIFEST.json"
+      - "REPO_FILE_MANIFEST.sha256"
+      - "SHA256SUMS"
   workflow_dispatch:
 
 permissions:

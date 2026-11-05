@@ -35,7 +35,7 @@ def run_pre_manifest_gate(root: Path) -> None:
             ignore=shutil.ignore_patterns(".git", "__pycache__", ".pytest_cache", "dist"),
         )
         # Refresh only the disposable staging copy so semantic tests run against
-        # internally consistent metadata before the reviewed tree is blessed.
+        # consistent metadata before updating the working tree.
         write_manifests(staged)
         subprocess.run(["git", "-C", str(staged), "init", "-q"], check=True, env=environment)
         subprocess.run(["git", "-C", str(staged), "add", "--intent-to-add", "-A"], check=True, env=environment)
