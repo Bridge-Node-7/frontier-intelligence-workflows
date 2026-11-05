@@ -90,7 +90,7 @@ class FrontierTechnologyDiligenceTests(unittest.TestCase):
     def test_07_readme_preserves_product_boundary_and_user_orientation(self) -> None:
         text = (ROOT / "README.md").read_text(encoding="utf-8").casefold()
         for phrase in (
-            "decision-ready intelligence",
+            "trace frontier-technology claims to evidence before the decision moves forward.",
             "accountable human",
             "portable record",
             "use a separate working directory in the environment authorized for assessment inputs and generated results.",

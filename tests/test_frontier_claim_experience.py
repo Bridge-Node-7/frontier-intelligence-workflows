@@ -185,7 +185,7 @@ class FrontierClaimExperienceTests(unittest.TestCase):
 
     def test_17_product_promise_is_aligned_with_repository_positioning(self) -> None:
         self.assertIn(
-            "Turn uncertain frontier-technology claims into decision-ready intelligence.",
+            "Trace frontier-technology claims to evidence before the decision moves forward.",
             self.html,
         )
         self.assertIn("Follow the provenance.", self.html)

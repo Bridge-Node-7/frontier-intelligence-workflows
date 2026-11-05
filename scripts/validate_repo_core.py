@@ -553,10 +553,7 @@ def validate(root: Path, check_manifest: bool = True) -> dict[str, Any]:
     check("version_format", version_ok, f"VERSION={version!r}; expected {EXPECTED_VERSION!r} without a leading v.")
 
     exact_release_markers = {
-        "README.md": re.compile(
-            rf"^\*\*v{re.escape(EXPECTED_VERSION)} — Frontier Signal Integrity\*\*(?:\s+<!-- x-release-please-version -->)?$",
-            re.MULTILINE,
-        ),
+        # README stays timeless: release identity lives in VERSION / CHANGELOG / Releases.
         "LIMITATIONS.md": re.compile(
             rf"^Current release: `{re.escape(EXPECTED_VERSION)}`\.(?:\s+<!-- x-release-please-version -->)?$",
             re.MULTILINE,
@@ -599,8 +596,8 @@ def validate(root: Path, check_manifest: bool = True) -> dict[str, Any]:
     readme = read_text(root / "README.md") if (root / "README.md").is_file() else ""
     readme_phrases = [
         PROJECT,
-        "Turn uncertain frontier-technology claims into decision-ready intelligence.",
-        "Automation checks structure, traceability, and declared evidence conditions. It does not determine truth, verify the underlying claim, make investment decisions, certify readiness, or authorize action.",
+        "Trace frontier-technology claims to evidence before the decision moves forward.",
+        "Automation checks structure, traceability, and declared evidence conditions. Scientific truth, readiness certification, investment decisions, and authorization to act remain with accountable human processes.",
         "Use a separate working directory in the environment authorized for assessment inputs and generated results.",
         "FIW-SYN-001",
         "Perception Integrity",

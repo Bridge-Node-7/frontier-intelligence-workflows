@@ -78,8 +78,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "d7bcd310c11b8b21c2159eba6be4ac3066869aeed6c2dd9bd8948f67ea5fbf87",
-      "size_bytes": 6138
+      "sha256": "4cec5f79f387335922d7eb32d4a60c233a208ba30d5f86daa9c133ded5f777b9",
+      "size_bytes": 5813
     },
     {
       "path": "REPO_FILE_POLICY.json",
@@ -173,8 +173,8 @@
     },
     {
       "path": "examples/frontier-claim-experience/index.html",
-      "sha256": "1993d3078f939a6e0999c9aef46dcaad8c1fcba97132efcd2d0cf583d6fa29e9",
-      "size_bytes": 33228
+      "sha256": "7c12276cb596c362c5fe7a2946cd963cbd5de466210cc08b8b87047e01db1c90",
+      "size_bytes": 33232
     },
     {
       "path": "examples/frontier-technology-diligence/README.md",
@@ -643,8 +643,8 @@
     },
     {
       "path": "scripts/validate_repo_core.py",
-      "sha256": "1ca61ff8ba13c3c1c1d038c04452a1c8f19cba58cf9ce7ddf449f1a62a6c2529",
-      "size_bytes": 37332
+      "sha256": "bd976499e20361399161a0858f834b5ecb7d75f7dfb6d7d9589d02a9a32a8231",
+      "size_bytes": 37234
     },
     {
       "path": "templates/ai-governance-gate.md",
@@ -688,8 +688,8 @@
     },
     {
       "path": "tests/test_frontier_claim_experience.py",
-      "sha256": "6ba4fc4753b389b61f1fdf7c75a559b29ede72be74cb825403a01ce5b5f9b56f",
-      "size_bytes": 10982
+      "sha256": "198f15ee4c1a517dabb683f9846fc4ca08946a6f2606c44489659266509abcfa",
+      "size_bytes": 10986
     },
     {
       "path": "tests/test_frontier_signal_integrity.py",
@@ -698,8 +698,8 @@
     },
     {
       "path": "tests/test_frontier_technology_diligence.py",
-      "sha256": "4a58dd110c02a22d210970151feb9e4a28d5c0069d19102d4d3d5dce1d8c6dd5",
-      "size_bytes": 4558
+      "sha256": "eddb0dfb65d294abf258101135c01a2ba67902292e18e776ff5f5b642373e115",
+      "size_bytes": 4610
     },
     {
       "path": "tests/test_language_integrity.py",
@@ -728,8 +728,8 @@
     },
     {
       "path": "tests/test_release_semantics.py",
-      "sha256": "b0c796607d80ccce7b44c3bb1a89dd6a3c9bf51a73a86613afd39d0f602cc859",
-      "size_bytes": 11230
+      "sha256": "816b6a8093769df3aed095992ba27f9f3e8d056da5b1cc2bbacef0d0863375a0",
+      "size_bytes": 11220
     },
     {
       "path": "tests/test_release_tooling.py",
