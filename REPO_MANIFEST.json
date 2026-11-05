@@ -28,8 +28,8 @@
     },
     {
       "path": ".github/workflows/release-please.yml",
-      "sha256": "5956f872ae3c04a8dc6024c67845e39b30c606e23e4d77c73a2b405ff5053135",
-      "size_bytes": 6064
+      "sha256": "5d594151e12d7693e97869869c459afd892951ac051c7f6a594347cef8b837aa",
+      "size_bytes": 6408
     },
     {
       "path": ".github/workflows/release.yml",
@@ -83,7 +83,7 @@
     },
     {
       "path": "REPO_FILE_POLICY.json",
-      "sha256": "0167be94a5479fe3a230385b00886c4ceb7fda8222b70198ef05505c40e17281",
+      "sha256": "5014646209a1b548d78664b18605bd094683cd9dc969916e46f445340594f67e",
       "size_bytes": 11022
     },
     {
@@ -543,8 +543,8 @@
     },
     {
       "path": "release-please-config.json",
-      "sha256": "4582ba7c549dae76e94f4e64a71d0690db23180247b9ee475e2070da2037cb64",
-      "size_bytes": 1918
+      "sha256": "20ed286398e936075a6811d5a266adf42f3052f02ab4c88ea89bef40b363c40d",
+      "size_bytes": 2115
     },
     {
       "path": "requirements-validation.txt",
@@ -593,8 +593,8 @@
     },
     {
       "path": "scripts/refresh_release_metadata.py",
-      "sha256": "4033dab382cc720046c83558c23b8eff7a12d093ece8d047a7669a15732d726d",
-      "size_bytes": 2811
+      "sha256": "b2418b9c5b064e59c5b61c4f03c1978fcb2687cab37f1abc30cad3fc1cee3b1d",
+      "size_bytes": 2797
     },
     {
       "path": "scripts/release_common.py",
