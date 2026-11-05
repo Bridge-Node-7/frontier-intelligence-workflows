@@ -1,102 +1,51 @@
 # Frontier Intelligence Workflows
 
-**Turn uncertain frontier-technology claims into decision-ready intelligence.**
+**Trace frontier-technology claims to evidence before the decision moves forward.**
 
-Stable public release — see the latest [GitHub Release](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/releases/latest). Quickstart: `python3 scripts/run_tests.py --root .` · `python3 scripts/validate_repo.py --root .` (out-of-tree venv; see Verification).
+Frontier Intelligence Workflows (FIW) is an open, evidence-first method for consequential technology questions. It traces claims to sources, separates observation from inference, exposes contradictions and unknowns, and records the evidence needed before a decision moves forward.
 
-## Scope and limitations
+[Latest release](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/releases/latest) · Quickstart below · [Partner](https://bridgenode7.com/partner/)
 
-Use these methods to collect and challenge source-linked claims, document uncertainty and prepare reviewed research outputs. They do not establish scientific truth, certify readiness or authorize a consequential decision.
-
-Frontier Intelligence Workflows (FIW) is an open, evidence-first workflow for consequential technology questions when evidence is incomplete. It traces claims to sources, separates observation from inference, exposes contradictions and unknowns, and records the evidence needed before a decision responsibly moves forward.
-
-**Automation checks structure, traceability, and declared evidence conditions. It does not determine truth, verify the underlying claim, make investment decisions, certify readiness, or authorize action.**
-
-Language Integrity and Source Genealogy add deterministic checks over declared language semantics and declared provenance relationships; neither changes that assurance boundary.
-
-## Core Workflow
+## Core workflow
 
 ```text
 Decision Question
-  ↓
-Claims
-  ↓
-Evidence
-  ↓
-Provenance
-  ↓
-Contradictions / Challenges
-  ↓
-Knowns · Unknowns
-  ↓
-Assumptions
-  ↓
-Assessment
-  ↓
-Decision Boundary
-  ↓
-Next Evidence
-  ↓
-Accountable Human
+  → Claims → Evidence → Provenance
+  → Contradictions / Challenges
+  → Knowns · Unknowns → Assumptions
+  → Assessment → Decision Boundary
+  → Next Evidence → Accountable Human
 ```
 
-## Status Semantics
+## Decision artifacts
 
-- **Perception Integrity:** `NO_FINDINGS` / `REVIEW_REQUIRED` describe configured deterministic findings in the declared assessment.
-- **Language Integrity:** `NO_FINDINGS` / `REVIEW_REQUIRED` describe configured deterministic semantic-integrity findings in a declared public-safe case.
-- **Repository controls:** `PASS` / `FAIL` / `NOT_RUN` describe whether a named machine control executed and satisfied its assertion.
+- [FIW Decision Record](templates/decision-record.md) — portable record for a bounded assessment: context, claims, evidence, provenance, uncertainty, decision boundary, next evidence, accountable owner, and rationale.
+- [Decision-Ready Brief](templates/decision-ready-brief.md) — human-facing handoff: supportable disposition or next move, strongest countercase, decision hinge, criteria and tradeoffs, minimum sufficient commitment, material unknowns, stop conditions, and reconsideration triggers. Advisory preparation; the accountable human decides.
 
-`NO_FINDINGS` does not mean a claim or evidence set was verified. A passing repository control establishes only what that control tested.
-
-See [Status Semantics](docs/assurance/STATUS_SEMANTICS.md).
-
-## Decision Record
-
-The [FIW Decision Record](templates/decision-record.md) is a portable record for a bounded assessment. It captures the decision context, material claims, evidence, provenance, uncertainty, decision boundary, next evidence, accountable owner, and rationale without converting uncertainty into certainty.
-
-## Decision-Ready Brief
-
-The [Decision-Ready Brief](templates/decision-ready-brief.md) is the human-facing handoff for a consequential decision. It leads with the current supportable disposition or next move, then exposes why, the strongest countercase, the decision hinge, material decision criteria and tradeoffs, the minimum sufficient commitment, material unknowns, stop conditions, and the evidence that should trigger reconsideration.
-
-The brief is advisory preparation. It does not replace the accountable human decision. Real case inputs and generated results remain in the authorized working environment rather than being committed to this public repository unless they are explicitly approved for public release.
+Real case inputs and generated results remain in the authorized working environment unless explicitly approved for public release.
 
 ## Explore
 
-### Frontier Claim Experience
+| Path | What it shows |
+|---|---|
+| [Frontier Claim Experience](examples/frontier-claim-experience/) | Local-first synthetic example: apparent corroboration that shares one provenance root |
+| [Frontier Technology Diligence](examples/frontier-technology-diligence/) | Fictional diligence scenario: repeated reporting vs independent corroboration |
+| [Perception Integrity](profiles/perception-integrity/) | Deterministic checks for declared lineage, observation vs inference, assumptions, stop conditions, and decision authority |
+| [Language Integrity](profiles/language-integrity/) | Preserves declared source meaning: forecast vs result, attribution, inference labeling, provenance-root collapse, supersession |
+| [Source Genealogy](profiles/source-genealogy/) | Collapses declared derivatives, mirrors, translations, syndication, and coordinated publication to provenance roots |
+| [Frontier Signal Integrity](profiles/frontier-signal-integrity/) | Frontier-signal genealogy, surprise hypotheses, prediction integrity, discriminating tests, update receipts, Proof Loop reassessment |
+| [Synthetic Component Readiness](examples/synthetic-component-readiness/) | Complete evidence-to-decision artifact chain using fictional data |
 
-The [Frontier Claim Experience](examples/frontier-claim-experience/) is a local-first synthetic example. Several reports appear to corroborate a claim, but tracing their origins reveals that they share a single provenance root.
+## Status semantics
 
-### Frontier Technology Diligence
+- **Perception / Language Integrity:** `NO_FINDINGS` / `REVIEW_REQUIRED` describe configured deterministic findings in the declared assessment.
+- **Repository controls:** `PASS` / `FAIL` / `NOT_RUN` describe whether a named machine control executed and satisfied its assertion.
 
-[FIW-SYN-005 — Frontier Technology Diligence](examples/frontier-technology-diligence/) is a fictional diligence scenario showing how repeated reporting can be distinguished from independent corroboration. It ends at a bounded evidence-gathering decision and does not recommend or execute an investment.
-
-### Perception Integrity
-
-[Perception Integrity](profiles/perception-integrity/) provides deterministic checks for declared evidence lineage, observation-versus-inference separation, assumptions, alternative hypotheses, evidence state, stop conditions, release-surface integrity, and decision authority.
-
-Source independence remains analyst-established. FIW validates declared lineage consistency; it does not determine whether two real-world sources are genuinely independent.
-
-### Language Integrity
-
-[Language Integrity](profiles/language-integrity/) is a deterministic profile for preserving declared source meaning before information moves deeper into an assurance or decision workflow. It checks forecast-versus-result separation, quoted attribution, inference-versus-direct-support labeling, declared provenance-root collapse, and temporal supersession. The bundled fixtures are synthetic and exercise only the declared profile contracts.
-
-### Source Genealogy
-
-[Source Genealogy](profiles/source-genealogy/) prevents publication multiplicity from masquerading as independent corroboration. It collapses declared derivatives, mirrors, translations, syndication, AI derivatives, and coordinated publication to their declared provenance roots; preserves superseded, retracted, unavailable, and unknown lineage states; and never treats URL count as proof of source independence.
-
-### Frontier Signal Integrity — Frontier Signal Integrity
-
-[Frontier Signal Integrity](profiles/frontier-signal-integrity/) adds deterministic controls for frontier-signal genealogy, strategic-surprise hypotheses, self-sealing-model risk, prediction integrity, discriminating tests, update receipts, and Proof Loop reassessment. It composes with Perception Integrity and does not determine external truth.
-
-### Synthetic Component Readiness
-
-[FIW-SYN-001](examples/synthetic-component-readiness/) shows a complete evidence-to-decision artifact chain using fictional data.
+See [Status Semantics](docs/assurance/STATUS_SEMANTICS.md).
 
 ## Use FIW
 
 Use a separate working directory in the environment authorized for assessment inputs and generated results.
-
-Start from the intentionally incomplete teaching template using the shell you already have.
 
 ### macOS, Linux, or Git Bash
 
@@ -125,24 +74,18 @@ python scripts/run_perception_integrity.py `
   --json-output ../fiw-results/validation.json
 ```
 
-The first run is expected to produce findings and exit with code `1`. Improve the declared record, rerun it, and treat `NO_FINDINGS` only as the absence of configured deterministic findings.
+The first run is expected to produce findings and exit with code `1`. Improve the declared record and rerun. Preserve prior artifacts when reassessment is needed.
 
-For an existing assessment, preserve the prior artifact and create a new result when reassessment is needed rather than silently rewriting the earlier record.
+### CLI result contract
 
-### CLI Result Contract
-
-- Exit `0`: recommendation is `READY_FOR_HUMAN_REVIEW`.
-- Exit `1`: deterministic findings require action before ordinary review.
-- Exit `2`: input, path, or output handling error.
-- Exit `3`: assessment fails the bounded schema contract.
+- Exit `0`: `READY_FOR_HUMAN_REVIEW`
+- Exit `1`: deterministic findings require action before ordinary review
+- Exit `2`: input, path, or output handling error
+- Exit `3`: assessment fails the bounded schema contract
 
 ## Verification
 
-FIW includes reproducible checks for software behavior, repository structure, workflow integrity, manifest consistency, and deterministic packaging.
-
-Run the complete repository gate from an isolated Python environment. The validation-only dependencies are pinned and are not runtime dependencies of FIW's public methods.
-
-Use `python3` (3.11+). Keep the virtualenv **outside** the clone: an in-tree `.venv` fails repository file-policy checks. `requirements-validation.txt` pins `jsonschema` and other gate-only deps.
+Use `python3` (3.11+). Keep the virtualenv **outside** the clone.
 
 ```bash
 python3 -m venv ../fiw-validation-venv
@@ -157,31 +100,18 @@ sha256sum -c MANIFEST.sha256
 git diff --check
 ```
 
-A passing control establishes only what that control tested. Manifest checks establish byte consistency against the recorded manifest; they do not establish external truth or authorship.
+## Assurance boundary
 
-## Scope and nonclaims
-
-FIW provides deterministic methods, synthetic examples, and inspectable assurance controls for evidence-first intelligence workflows.
-
-FIW does not certify scientific truth, technical performance, supplier qualification, production readiness, safety, regulatory approval, legal compliance, investment merit, or deployment authority.
+Automation checks structure, traceability, and declared evidence conditions. Scientific truth, readiness certification, investment decisions, and authorization to act remain with accountable human processes. See [boundary notes](LIMITATIONS.md).
 
 ## Security
 
-Use GitHub private vulnerability reporting for security issues. Do not disclose sensitive security details through public repository surfaces.
-
-See [Security](SECURITY.md), [Limitations](LIMITATIONS.md), and [Status Semantics](docs/assurance/STATUS_SEMANTICS.md).
+Private vulnerability reporting via GitHub. See [Security](SECURITY.md).
 
 ## License
 
-Repository code and documentation are available under the [MIT License](LICENSE).
-
-Use of this repository does not imply Bridge Node 7 endorsement, certification, qualification, partnership, or approval.
-
-Published by [Bridge Node 7](https://bridgenode7.com/).
+[MIT License](LICENSE). Published by [Bridge Node 7](https://bridgenode7.com/).
 
 ## Release
 
-**v0.9.4 — Frontier Signal Integrity** <!-- x-release-please-version -->
-This is the latest stable distribution milestone.
-
-`main` is the current reviewed source and may contain validated maintenance after the latest stable release. GitHub Releases are explicit distribution milestones; post-release maintenance is not represented as a new stable version until the next meaningful release milestone.
+Distribution milestones live on the repository Releases page and in CHANGELOG. `main` is the current reviewed source.
