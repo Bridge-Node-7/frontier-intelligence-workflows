@@ -183,15 +183,15 @@ class ReleaseSemanticsTests(unittest.TestCase):
         with tempfile.TemporaryDirectory(prefix="fiw-version-spoof-") as temporary:
             repo = Path(temporary) / "repo"
             shutil.copytree(ROOT, repo, ignore=shutil.ignore_patterns(".git", "__pycache__"))
-            readme = repo / "README.md"
-            text = readme.read_text(encoding="utf-8")
+            limitations = repo / "LIMITATIONS.md"
+            text = limitations.read_text(encoding="utf-8")
             from release_common import EXPECTED_VERSION
 
-            current_marker = f"**v{EXPECTED_VERSION} — Frontier Signal Integrity**"
+            current_marker = f"Current release: `{EXPECTED_VERSION}`."
             self.assertIn(current_marker, text)
             spoof_version = f"1{EXPECTED_VERSION}1"
-            readme.write_text(
-                text.replace(current_marker, f"**v{spoof_version} — Frontier Signal Integrity**", 1),
+            limitations.write_text(
+                text.replace(current_marker, f"Current release: `{spoof_version}`.", 1),
                 encoding="utf-8",
                 newline="\n",
             )
