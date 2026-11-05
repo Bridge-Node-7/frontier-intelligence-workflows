@@ -50,7 +50,7 @@ jobs:
         run: |
           echo "FIW release.yml is evidence-only (contents: read)."
           echo "GitHub Releases are NOT created here; release-please uses skip-github-release."
-          echo "Deliberate annotated-tag + asset Release requires Founder-approved policy exception or manual publish."
+          echo "Deliberate annotated-tag + asset Release requires an explicit policy exception or manual publish."
           echo "dry_run input=${{ github.event.inputs.dry_run || 'n/a' }}"
 
       - name: Create external evidence directories
