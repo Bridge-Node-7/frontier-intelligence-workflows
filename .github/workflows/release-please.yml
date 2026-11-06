@@ -48,11 +48,11 @@ jobs:
         if: ${{ steps.release.outputs.pr != '' }}
         env:
           GH_TOKEN: ${{ github.token }}
+          PR_RAW: ${{ steps.release.outputs.pr }}
         run: |
           set -euo pipefail
           # release-please-action v4 may emit either a bare PR number or a JSON
           # object with .number / .headBranchName.
-          PR_RAW='${{ steps.release.outputs.pr }}'
           if [ -z "${PR_RAW}" ] || [ "${PR_RAW}" = "null" ]; then
             echo "No release-please PR; skipping manifest sync."
             exit 0

@@ -28,13 +28,13 @@
     },
     {
       "path": ".github/workflows/release-please.yml",
-      "sha256": "5d594151e12d7693e97869869c459afd892951ac051c7f6a594347cef8b837aa",
-      "size_bytes": 6408
+      "sha256": "363d9809af361744a27ddc4806a9a639e625f2ba792c739ea4445f2acb730248",
+      "size_bytes": 6407
     },
     {
       "path": ".github/workflows/release.yml",
-      "sha256": "ec992096e719568d1b4a90e0c117ae9298d667cdcfaca8b7dc75be309eefeaab",
-      "size_bytes": 3596
+      "sha256": "b70b8c0082f3f23fa99047e88cc32c6bdc63324b16cc845ad6be00395e4ebcff",
+      "size_bytes": 3653
     },
     {
       "path": ".github/workflows/validate.yml",
@@ -83,7 +83,7 @@
     },
     {
       "path": "REPO_FILE_POLICY.json",
-      "sha256": "5014646209a1b548d78664b18605bd094683cd9dc969916e46f445340594f67e",
+      "sha256": "e123ffdd0c1baaefac03a463548b372c1200358cb8dd14acdbfd81883366ca90",
       "size_bytes": 11022
     },
     {

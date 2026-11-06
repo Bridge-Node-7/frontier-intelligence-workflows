@@ -176,8 +176,8 @@
     "codeql.yml": "6e891be8f88587bc36a18b43adf832675af9e8bb6bbc6c4310a62659d5947f52",
     "docs-link-check.yml": "3e60e76f5b96a28b5712c5b17410c8ac8f3aecbb01b0ffab6b106b7e7ef1ef44",
     "privacy-preflight.yml": "ec0db08ecca7300bc03cfeeb4779757d290d0358d882c0da7bfc84ceb71d5857",
-    "release-please.yml": "5d594151e12d7693e97869869c459afd892951ac051c7f6a594347cef8b837aa",
-    "release.yml": "ec992096e719568d1b4a90e0c117ae9298d667cdcfaca8b7dc75be309eefeaab",
+    "release-please.yml": "363d9809af361744a27ddc4806a9a639e625f2ba792c739ea4445f2acb730248",
+    "release.yml": "b70b8c0082f3f23fa99047e88cc32c6bdc63324b16cc845ad6be00395e4ebcff",
     "validate.yml": "b42df1fb459009ed2ee5d29cf1e6d7080916537b10650983983501d2c980a186",
     "version-consistency.yml": "b47ec943f98df35e18c0e1f6613f71edff4024bc8668f5c76ca3bf0bade19555"
   },

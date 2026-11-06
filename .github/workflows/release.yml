@@ -59,9 +59,11 @@ jobs:
 
       - name: Reconcile tag and VERSION
         if: github.ref_type == 'tag' || (github.event_name == 'workflow_dispatch' && github.event.inputs.tag_name != '')
+        env:
+          REQUESTED_TAG: ${{ github.event.inputs.tag_name }}
         run: |
           expected="v$(tr -d '\r\n' < VERSION)"
-          actual="${{ github.event.inputs.tag_name }}"
+          actual="${REQUESTED_TAG:-}"
           if [[ -z "$actual" ]]; then
             actual="${GITHUB_REF_NAME}"
           fi
