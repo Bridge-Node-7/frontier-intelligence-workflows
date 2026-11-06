@@ -487,9 +487,14 @@ def validate_workflow_semantics(root: Path) -> list[str]:
                 issues.append(f"UNAPPROVED_PERMISSIONS: {relative}: {permission_lines}")
         if re.search(r"(?m)^\s*permissions:\s*(?:write-all|read-all)\s*$", text):
             issues.append(f"UNAPPROVED_PERMISSIONS_SHORTHAND: {relative}")
-        if re.search(r"(?m)^\s*[A-Za-z0-9_-]+:\s*write\s*$", text):
-            if path.name != "release-please.yml":
-                issues.append(f"UNAPPROVED_WRITE_PERMISSION: {relative}")
+        write_permissions = re.findall(r"(?m)^\s*([A-Za-z0-9_-]+):\s*write\s*$", text)
+        approved_codeql_upload = (
+            path.name == "codeql.yml"
+            and write_permissions == ["security-events"]
+            and "  analyze:\n    permissions:\n      contents: read\n      security-events: write\n    runs-on:" in text
+        )
+        if write_permissions and path.name != "release-please.yml" and not approved_codeql_upload:
+            issues.append(f"UNAPPROVED_WRITE_PERMISSION: {relative}")
 
         jobs_index = next((index for index, line in enumerate(lines) if line == "jobs:"), None)
         if jobs_index is None:

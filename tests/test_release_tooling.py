@@ -151,6 +151,24 @@ class ReleaseToolingTests(unittest.TestCase):
         self.approve_workflow_change("validate.yml")
         self.assert_check_fails("workflow_controls")
 
+    def test_13a_codeql_extra_write_scope_rejected(self):
+        path = self.repo / ".github" / "workflows" / "codeql.yml"
+        text = path.read_text(encoding="utf-8").replace(
+            "      security-events: write\n", "      security-events: write\n      actions: write\n", 1
+        )
+        path.write_text(text, encoding="utf-8", newline="\n")
+        self.approve_workflow_change("codeql.yml")
+        self.assert_check_fails("workflow_controls")
+
+    def test_13b_workflow_level_security_events_write_rejected(self):
+        path = self.repo / ".github" / "workflows" / "validate.yml"
+        text = path.read_text(encoding="utf-8").replace(
+            "permissions:\n  contents: read\n", "permissions:\n  contents: read\n  security-events: write\n", 1
+        )
+        path.write_text(text, encoding="utf-8", newline="\n")
+        self.approve_workflow_change("validate.yml")
+        self.assert_check_fails("workflow_controls")
+
     def test_14_comment_spoofed_checkout_control_rejected(self):
         path = self.repo / ".github" / "workflows" / "validate.yml"
         text = path.read_text(encoding="utf-8").replace("          persist-credentials: false", "          # persist-credentials: false")
