@@ -13,18 +13,18 @@
     },
     {
       "path": ".github/workflows/codeql.yml",
-      "sha256": "6e891be8f88587bc36a18b43adf832675af9e8bb6bbc6c4310a62659d5947f52",
-      "size_bytes": 1016
+      "sha256": "859f1bd6707b7caf5fecef6a19b790b72d032914ecd1ddd066d093f91e1e6841",
+      "size_bytes": 1221
     },
     {
       "path": ".github/workflows/docs-link-check.yml",
-      "sha256": "3e60e76f5b96a28b5712c5b17410c8ac8f3aecbb01b0ffab6b106b7e7ef1ef44",
+      "sha256": "b65420f65e93e7af3c28b3e0222f3c0ba59425f41a4272d9d283b05a93cd40e9",
       "size_bytes": 1030
     },
     {
       "path": ".github/workflows/privacy-preflight.yml",
-      "sha256": "ec0db08ecca7300bc03cfeeb4779757d290d0358d882c0da7bfc84ceb71d5857",
-      "size_bytes": 1359
+      "sha256": "102e3354300dd54af9d14e620592cefc94d655a0503949ff08cb71edcc8c6b8c",
+      "size_bytes": 1497
     },
     {
       "path": ".github/workflows/release-please.yml",
@@ -38,8 +38,8 @@
     },
     {
       "path": ".github/workflows/validate.yml",
-      "sha256": "b42df1fb459009ed2ee5d29cf1e6d7080916537b10650983983501d2c980a186",
-      "size_bytes": 3080
+      "sha256": "e24e7149976f6b278f7df82fcf35050113505e543813e31482c1b5e9c652d203",
+      "size_bytes": 3079
     },
     {
       "path": ".github/workflows/version-consistency.yml",
@@ -83,7 +83,7 @@
     },
     {
       "path": "REPO_FILE_POLICY.json",
-      "sha256": "e123ffdd0c1baaefac03a463548b372c1200358cb8dd14acdbfd81883366ca90",
+      "sha256": "6b344f70e62480f3045df7e8d3edd8b039666907730a45e1ccf93df534924629",
       "size_bytes": 11022
     },
     {
@@ -598,8 +598,8 @@
     },
     {
       "path": "scripts/release_common.py",
-      "sha256": "f53b524d169ff5ecddc42ecd4dfdbadfd48050004a29cb1e93732cb3344b8f5b",
-      "size_bytes": 22568
+      "sha256": "219bb5454e985b1cfa6e36a2761ef6735bb06cd861af241f942a6c2afe5b82d7",
+      "size_bytes": 22893
     },
     {
       "path": "scripts/run_frontier_signal_integrity.py",
@@ -733,8 +733,8 @@
     },
     {
       "path": "tests/test_release_tooling.py",
-      "sha256": "08c6e13b97f22f121d6fda973d9bde3d6ea36a78141fce8b53700dad4b80d973",
-      "size_bytes": 19215
+      "sha256": "1569b77f4458631fb672c93b76575f62b1a200747c55508a634dc18a52118fb7",
+      "size_bytes": 20163
     },
     {
       "path": "tests/test_source_genealogy.py",

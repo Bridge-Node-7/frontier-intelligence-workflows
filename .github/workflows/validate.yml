@@ -89,4 +89,4 @@ jobs:
             ${{ runner.temp }}/fiw-validation/
             ${{ runner.temp }}/fiw-release/
           if-no-files-found: warn
-          retention-days: 14
+          retention-days: 7
