@@ -38,8 +38,8 @@
     },
     {
       "path": ".github/workflows/validate.yml",
-      "sha256": "e24e7149976f6b278f7df82fcf35050113505e543813e31482c1b5e9c652d203",
-      "size_bytes": 3079
+      "sha256": "315b326967dfe3c64b0a65a62c281f79bf57436d24c76fe91faba1b9807ecee0",
+      "size_bytes": 3081
     },
     {
       "path": ".github/workflows/version-consistency.yml",
@@ -48,8 +48,8 @@
     },
     {
       "path": ".gitignore",
-      "sha256": "5133e8f00f3fe4f950c50b2cc06be2b4ed31a121e87c834b2e8c79723e157ca2",
-      "size_bytes": 85
+      "sha256": "782ea511afc0a336f4d0ef22db8a013a87381716afa17c11d16188a472f3c8dc",
+      "size_bytes": 149
     },
     {
       "path": ".release-please-manifest.json",
@@ -83,7 +83,7 @@
     },
     {
       "path": "REPO_FILE_POLICY.json",
-      "sha256": "6b344f70e62480f3045df7e8d3edd8b039666907730a45e1ccf93df534924629",
+      "sha256": "9ae4bf77cf91fa723b9a86cf27614fcef63aee3ae19139b74e094867e9bc69a3",
       "size_bytes": 11022
     },
     {
@@ -563,8 +563,8 @@
     },
     {
       "path": "scripts/check_version_consistency.py",
-      "sha256": "c51a83074ac0a2a622193a49c6c1947e93d49644bc837d9d5f34fd2ec020a019",
-      "size_bytes": 2669
+      "sha256": "9bf5859bb7f082ff3a9f30848a75cd66639551219c8b63900014e79b9704b237",
+      "size_bytes": 1426
     },
     {
       "path": "scripts/compile_sources.py",

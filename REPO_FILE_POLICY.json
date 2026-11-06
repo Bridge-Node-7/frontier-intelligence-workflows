@@ -178,7 +178,7 @@
     "privacy-preflight.yml": "102e3354300dd54af9d14e620592cefc94d655a0503949ff08cb71edcc8c6b8c",
     "release-please.yml": "363d9809af361744a27ddc4806a9a639e625f2ba792c739ea4445f2acb730248",
     "release.yml": "b70b8c0082f3f23fa99047e88cc32c6bdc63324b16cc845ad6be00395e4ebcff",
-    "validate.yml": "e24e7149976f6b278f7df82fcf35050113505e543813e31482c1b5e9c652d203",
+    "validate.yml": "315b326967dfe3c64b0a65a62c281f79bf57436d24c76fe91faba1b9807ecee0",
     "version-consistency.yml": "b47ec943f98df35e18c0e1f6613f71edff4024bc8668f5c76ca3bf0bade19555"
   },
   "binary_files_allowed": false,
