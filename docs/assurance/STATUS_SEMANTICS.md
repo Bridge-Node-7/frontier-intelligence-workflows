@@ -45,4 +45,4 @@ Schema rejection and deterministic PI findings are intentionally distinct channe
 
 A v0.4.x Perception Integrity artifact that records `validation_status: "PASS"` remains a historical artifact produced under the v0.4.x contract. Do not relabel it in place.
 
-If a current v0.5.x assessment is needed, preserve the original artifact and re-run the underlying assessment with the current tooling. The new result should carry its own component versions, evaluation time, and digest so the history remains auditable.
+If a new assessment is needed, preserve the original artifact and re-run the underlying assessment with the current tooling. The new result should carry its own component versions, evaluation time, and digest so the history remains auditable.
