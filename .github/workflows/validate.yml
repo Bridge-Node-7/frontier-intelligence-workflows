@@ -44,7 +44,7 @@ jobs:
           COVERAGE_FILE: ${{ runner.temp }}/.coverage
         run: |
           set -euo pipefail
-          python -m pip install --disable-pip-version-check 'coverage>=7,<8'
+          python -m pip install --disable-pip-version-check 'coverage==7.17.2'
           printf '%s\n' 'python scripts/run_tests.py' >/dev/null
           python -B -m coverage run --source=scripts --data-file="${COVERAGE_FILE}" \
             scripts/run_tests.py --root . --json-output "${RUNNER_TEMP}/fiw-validation/source-test-summary.json"
