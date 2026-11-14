@@ -2,6 +2,27 @@
 
 Notable public changes to Frontier Intelligence Workflows are recorded here.
 
+## [0.9.5] (2026-11-14)
+
+
+### Bug Fixes
+
+* publish complete FIW stable release evidence ([#33](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/33)) ([1f41de0](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/1f41de0ea54c910564f3fec02f51bb9af92a29aa))
+
+
+### CI
+
+* annotated version marker with evidence dispatch ([48baf9c](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/48baf9cd8e4b138f1b2c0367f9225fa5e984384a))
+* narrow release automation triggers ([2e678b8](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/2e678b8a4228873980c280822d02f50dc55af9d2))
+* pass workflow data through environment variables ([#30](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/30)) ([83b2843](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/83b2843be9efdad0e02f3138de2ce9423f1b6518))
+* pin coverage tooling and tighten version checks ([#32](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/32)) ([fc79674](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/fc7967462d0a46bb80e6bb247ed9008010988cef))
+* publish code scanning results and streamline workflow runs ([#31](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/31)) ([a264a64](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/a264a642a5560cb2a16970bc49c858a194ae26a9))
+
+
+### Miscellaneous
+
+* neutralize internal wording and skip docs-only releases ([#27](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/27)) ([20887b8](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/20887b82b7535b9e14c70852894f05a260ab00c0))
+
 ## [0.9.4] (2026-11-01)
 
 

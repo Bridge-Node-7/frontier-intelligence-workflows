@@ -53,13 +53,13 @@
     },
     {
       "path": ".release-please-manifest.json",
-      "sha256": "fb2e8cb835e7b635299f490d5b9ea6baf32a8251d1f7325bc2f1a9463acf2112",
+      "sha256": "48e31b3ceb9469cc23fbd6cbd6d6971e243400e942d465e7a1a0723e42f531f4",
       "size_bytes": 19
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "9fee6e123c031f4bf43af87a7a329caba40f53018540edb34eabef159937919c",
-      "size_bytes": 9100
+      "sha256": "65e67257871a2a93640b3d21fdf991d76b9141c09a889a9a68c7ec6e32481ad3",
+      "size_bytes": 10829
     },
     {
       "path": "LICENSE",
@@ -68,7 +68,7 @@
     },
     {
       "path": "LIMITATIONS.md",
-      "sha256": "409d3e133065e13e1991331d95b5ac88a3e1c21c36fa48e716090892a98bb890",
+      "sha256": "cd67ca5753cc43f4f0778e5305d4f0fd3375ab721ca66f693087a8f2de0a9c72",
       "size_bytes": 2358
     },
     {
@@ -83,7 +83,7 @@
     },
     {
       "path": "REPO_FILE_POLICY.json",
-      "sha256": "b7ea35047c90adedf8faff3d360a13ac9486b5f8a3ce03e359d254b6acdf784b",
+      "sha256": "602dac77d4da2b7ff05604a01e569ccb4c23c9f2c92b91d293c920edecbd74af",
       "size_bytes": 11022
     },
     {
@@ -93,7 +93,7 @@
     },
     {
       "path": "VERSION",
-      "sha256": "a61cc7a990558a2b76c4a814eb233267e219158dcf184b6b30ce458d27027674",
+      "sha256": "8780409dbc52c96276102c5a079a7d3e325510d7bf87af5257508ecc088a3730",
       "size_bytes": 6
     },
     {
@@ -128,7 +128,7 @@
     },
     {
       "path": "docs/assurance/TESTING.md",
-      "sha256": "3542887588ef9702eddab9e14580637f33447de2f947e9d7ee6d1efe4b773b1b",
+      "sha256": "8ab2b1dd95f0db95b05aa62b8bf61115066d17bc42dc62db426ede5649ea9d9a",
       "size_bytes": 1271
     },
     {
@@ -573,7 +573,7 @@
     },
     {
       "path": "scripts/frontier_signal_integrity.py",
-      "sha256": "8790ab556c5a0f049274718b1f9b667511fc6da06ebfeba25a93d0f85aa5367b",
+      "sha256": "967f838c057fd74b62b5fa2fb32d150e4aaee227aaea83c53a52b322a053ce4b",
       "size_bytes": 16781
     },
     {
@@ -598,7 +598,7 @@
     },
     {
       "path": "scripts/release_common.py",
-      "sha256": "219bb5454e985b1cfa6e36a2761ef6735bb06cd861af241f942a6c2afe5b82d7",
+      "sha256": "72384b06f086ae02ac41930034b99d1c4b9eaabce273c9ab25ecaefab9f34d3a",
       "size_bytes": 22893
     },
     {
@@ -745,5 +745,5 @@
   "generated_at_utc": "1980-01-01T00:00:00Z",
   "project": "Frontier Intelligence Workflows",
   "schema_version": "1.0",
-  "version": "0.9.4"
+  "version": "0.9.5"
 }
