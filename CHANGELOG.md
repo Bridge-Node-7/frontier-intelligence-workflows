@@ -2,7 +2,7 @@
 
 Notable public changes to Frontier Intelligence Workflows are recorded here.
 
-## [0.9.5](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/compare/v0.9.4...v0.9.5) (2026-11-14)
+## [0.9.5] (2026-11-14)
 
 
 ### Bug Fixes
