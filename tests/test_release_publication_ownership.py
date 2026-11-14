@@ -1,4 +1,4 @@
-"""Release-please must not create GitHub Releases; FIW release.yml is evidence-only."""
+"""Release-please owns versioning and packaged publication; release.yml remains evidence-only."""
 
 from __future__ import annotations
 
@@ -26,6 +26,9 @@ class ReleasePublicationOwnershipTests(unittest.TestCase):
         self.assertRegex(rel, r"(?m)^permissions:\n  contents: read\s*$")
         self.assertNotRegex(rel, r"(?m)^\s+contents:\s*write\s*$")
         self.assertIn("skip-github-release: true", rp)
+        self.assertIn('SYNC_DIR="${RUNNER_TEMP}/fiw-release-please-sync"', rp)
+        self.assertNotIn("rm -rf .repo-sync", rp)
+        self.assertNotIn("COMMIT_MSG=", rp)
 
     def test_no_new_pat_secret_required(self) -> None:
         for path in (RP, REL):
