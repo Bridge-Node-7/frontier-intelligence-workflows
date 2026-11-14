@@ -41,8 +41,8 @@ Notable public changes to Frontier Intelligence Workflows are recorded here.
 ### Miscellaneous
 
 * correct FIW v0.6.1 release-regression fixtures ([3d5572d](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/3d5572d4ff79e94a3add0b801139a2069c57c86e))
-* **deps:** bump jsonschema from 4.25.1 to 4.26.0 in the validation-dependencies group ([#38](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/38)) ([7eb26ac](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/7eb26aca293dce4df63725c42f2c68c91c46986f))
-* **deps:** bump the github-actions group with 2 updates ([#39](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/39)) ([a42c283](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/a42c28306e5036bfe3f33c9ef4244469e4ed0f0b))
+* **deps:** bump jsonschema from 4.25.1 to 4.26.0 in the validation-dependencies group (#38) ([7eb26ac](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/7eb26aca293dce4df63725c42f2c68c91c46986f))
+* **deps:** bump the github-actions group with 2 updates (#39) ([a42c283](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/a42c28306e5036bfe3f33c9ef4244469e4ed0f0b))
 * **main:** release 0.9.1 ([#8](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/8)) ([7d8a8a5](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/7d8a8a5e6f0e516ea6eab33211c260a0437c022a))
 * **main:** release 0.9.2 ([#11](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/11)) ([5c82ab9](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/5c82ab90d87294f967d8a89b33608d1cd1889ef1))
 * **main:** release 0.9.3 ([#14](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/issues/14)) ([b8190f9](https://github.com/Bridge-Node-7/frontier-intelligence-workflows/commit/b8190f9c51ef67684ffe622c2dd3e417c1c9fadc))
