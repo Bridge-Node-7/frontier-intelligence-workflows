@@ -176,7 +176,7 @@
     "codeql.yml": "859f1bd6707b7caf5fecef6a19b790b72d032914ecd1ddd066d093f91e1e6841",
     "docs-link-check.yml": "b65420f65e93e7af3c28b3e0222f3c0ba59425f41a4272d9d283b05a93cd40e9",
     "privacy-preflight.yml": "102e3354300dd54af9d14e620592cefc94d655a0503949ff08cb71edcc8c6b8c",
-    "release-please.yml": "b0a969c921a92620bcd808a26112c831769155f07bdf5a1dd3a6bd904544fa47",
+    "release-please.yml": "6a6ef4a91ac512167d6a38de017872f52c389dabba648a76964dcb2934a8e6a7",
     "release.yml": "b70b8c0082f3f23fa99047e88cc32c6bdc63324b16cc845ad6be00395e4ebcff",
     "validate.yml": "315b326967dfe3c64b0a65a62c281f79bf57436d24c76fe91faba1b9807ecee0",
     "version-consistency.yml": "b47ec943f98df35e18c0e1f6613f71edff4024bc8668f5c76ca3bf0bade19555"
