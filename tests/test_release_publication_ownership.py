@@ -15,12 +15,14 @@ class ReleasePublicationOwnershipTests(unittest.TestCase):
         text = RP.read_text(encoding="utf-8")
         self.assertRegex(text, r"(?m)^\s*skip-github-release:\s*true\s*$")
 
-    def test_release_workflow_is_evidence_only_no_write(self) -> None:
+    def test_release_please_owns_packaged_publication(self) -> None:
         rp = RP.read_text(encoding="utf-8")
         rel = REL.read_text(encoding="utf-8")
-        self.assertNotIn("gh release create", rp)
+        self.assertIn("gh release create", rp)
+        self.assertIn("scripts/build_release.py", rp)
+        self.assertIn("Existing release ${TAG} is incomplete", rp)
+        self.assertIn("ASSET_HASHES.json", rp)
         self.assertNotIn("gh release create", rel)
-        # Top-level contents: read only on release.yml (policy forbids write except release-please)
         self.assertRegex(rel, r"(?m)^permissions:\n  contents: read\s*$")
         self.assertNotRegex(rel, r"(?m)^\s+contents:\s*write\s*$")
         self.assertIn("skip-github-release: true", rp)
