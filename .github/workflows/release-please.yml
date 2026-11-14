@@ -82,9 +82,10 @@ jobs:
           GIT_MAIL_LOCAL='291729790+Bridge-Node-7'
           GIT_MAIL_DOMAIN='users.noreply.github.com'
           gh auth setup-git
-          rm -rf .repo-sync
-          git clone --branch "${BRANCH}" --single-branch "https://github.com/${GITHUB_REPOSITORY}.git" .repo-sync
-          cd .repo-sync
+          SYNC_DIR="${RUNNER_TEMP}/fiw-release-please-sync"
+          rm -rf "${SYNC_DIR}"
+          git clone --branch "${BRANCH}" --single-branch "https://github.com/${GITHUB_REPOSITORY}.git" "${SYNC_DIR}"
+          cd "${SYNC_DIR}"
           python3 -B scripts/sync_release_candidate_manifests.py
           if git diff --quiet -- VERSION CHANGELOG.md MANIFEST.sha256 REPO_MANIFEST.json; then
             echo "Release-candidate VERSION/CHANGELOG/manifests already current on ${BRANCH}."
@@ -101,15 +102,6 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          COMMIT_MSG="$(gh api "repos/${GITHUB_REPOSITORY}/commits/${GITHUB_SHA}" --jq .commit.message | head -n1)"
-          case "${COMMIT_MSG}" in
-            "chore(main): release "*) ;;
-            *)
-              echo "Skip publication: head commit is not a release-please merge (${COMMIT_MSG})."
-              exit 0
-              ;;
-          esac
-
           VERSION="$(tr -d '\r\n' < VERSION)"
           TAG="v${VERSION}"
           ARCHIVE="frontier-intelligence-workflows-v${VERSION}-source.zip"
