@@ -723,8 +723,8 @@
     },
     {
       "path": "tests/test_release_publication_ownership.py",
-      "sha256": "64313822902bf5b70e0547b1ba0efe4d5802817927a3b7eb537c946a943f8808",
-      "size_bytes": 1842
+      "sha256": "7e5530f7af487cf8ab4870ab5625f680a6e3a9530e234ea14c3ad5316e4cde0b",
+      "size_bytes": 1841
     },
     {
       "path": "tests/test_release_semantics.py",
